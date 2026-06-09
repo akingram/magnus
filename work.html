@@ -10,7 +10,6 @@
       rel="stylesheet"
     />
     <style>
-      /* Same exact styles as index.html and about.html — copy the full CSS from about.html here */
       *,
       *::before,
       *::after {
@@ -98,11 +97,16 @@
       body.light nav {
         background: rgba(247, 244, 239, 0.85);
       }
+
+      /* ── NAVBAR INNER: min-height so it can wrap on small screens ── */
       .nav-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 60px;
+        min-height: 60px;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        padding: 0.4rem 0;
       }
       .nav-logo {
         font-family: "Lora", serif;
@@ -438,7 +442,6 @@
         border-color: var(--accent);
         color: var(--accent);
       }
-      /* iPhone styles (same as index) — abbreviated for length, copy from about.html */
       .iphone-aura {
         position: absolute;
         inset: -30px;
@@ -1151,6 +1154,8 @@
         cursor: pointer;
         margin-top: auto;
       }
+
+      /* ── RESPONSIVE ── */
       @media (max-width: 960px) {
         .layout {
           grid-template-columns: 1fr;
@@ -1216,35 +1221,37 @@
           padding: 1.5rem;
         }
       }
-      /* @media (max-width: 480px) {
+
+      /* ── MOBILE NAV: show all links, wrap to second row ── */
+      @media (max-width: 480px) {
+        nav {
+          padding: 0 1rem;
+        }
+        .nav-inner {
+          flex-wrap: wrap;
+          min-height: auto;
+          padding: 0.5rem 0;
+          gap: 0.3rem;
+        }
+        .nav-logo {
+          font-size: 1rem;
+        }
         .nav-links {
-          display: none;
+          order: 3;
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          padding-bottom: 0.35rem;
+        }
+        .nav-links a {
+          font-size: 0.76rem;
+          padding: 0.3rem 0.65rem;
         }
         .iphone-wrap {
           width: 260px;
           height: 560px;
-        } */
-         @media (max-width: 480px) {
-  .nav-links {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    flex-shrink: 1;
-    min-width: 0;
-  }
-  .nav-links::-webkit-scrollbar {
-    display: none;
-  }
-  .nav-links a {
-    font-size: 0.76rem;
-    padding: 0.3rem 0.65rem;
-  }
-  .iphone-wrap {
-    width: 260px;
-    height: 560px;
-  }
-}
-     
+        }
+      }
     </style>
   </head>
   <body>
@@ -1289,15 +1296,13 @@
 
         <section id="experience-full">
           <div class="section-label">Experience</div>
-          <h2 class="section-title">Where I've worked <em>& learned.</em></h2>
+          <h2 class="section-title">Where I've worked <em>&amp; learned.</em></h2>
           <div class="exp-list">
             <div class="exp-item">
               <div class="exp-period">Summer 2026</div>
               <div>
                 <div class="exp-role">AI/ML Intern</div>
-                <div class="exp-company">
-                  American Tractor Company (first-ever intern)
-                </div>
+                <div class="exp-company">American Tractor Company (first-ever intern)</div>
                 <div class="exp-desc">
                   Working on AgFM-1, the world's first multimodal AI foundation
                   model trained exclusively on agricultural data (soil
@@ -1312,9 +1317,7 @@
               <div class="exp-period">2025 — Present</div>
               <div>
                 <div class="exp-role">IPCC Youth Delegate</div>
-                <div class="exp-company">
-                  Intergovernmental Panel on Climate Change, United Nations
-                </div>
+                <div class="exp-company">Intergovernmental Panel on Climate Change, United Nations</div>
                 <div class="exp-desc">
                   Selected as 1 of 8 Ghanaian youth delegates (from 400+
                   finalists) to the IPCC outreach event reviewing the Special
@@ -1347,7 +1350,7 @@
                   Building an early-stage accelerator for student-led startups
                   solving African problems, with chapters at universities across
                   the continent. Designing founder onboarding, mentorship
-                  pairing, and a flagship pitch & demo day with venture
+                  pairing, and a flagship pitch &amp; demo day with venture
                   capitalists as the end-stage outcome. Sector-agnostic:
                   climate, fintech, healthtech, agtech, edtech, and beyond.
                 </div>
@@ -1357,9 +1360,7 @@
               <div class="exp-period">2025, 2026</div>
               <div>
                 <div class="exp-role">African Service Fellow (2x)</div>
-                <div class="exp-company">
-                  Stanford Haas Center for Public Service
-                </div>
+                <div class="exp-company">Stanford Haas Center for Public Service</div>
                 <div class="exp-desc">
                   Awarded a combined ~$20,000 in grant funding across two summer
                   fellowships. Committed 35–40 hours/week for nine consecutive
@@ -1401,7 +1402,7 @@
             <div class="exp-item">
               <div class="exp-period">2023 — 2024</div>
               <div>
-                <div class="exp-role">Co-Project Lead & Organizer</div>
+                <div class="exp-role">Co-Project Lead &amp; Organizer</div>
                 <div class="exp-company">Madina Garden Project, Accra</div>
                 <div class="exp-desc">
                   Co-led a community garden project growing free fruits and
@@ -1463,17 +1464,14 @@
                   that real users depend on.
                 </div>
                 <div class="project-tags">
-                  <span class="tag">Swift</span><span class="tag">Firebase</span
-                  ><span class="tag">iOS</span>
+                  <span class="tag">Swift</span><span class="tag">Firebase</span><span class="tag">iOS</span>
                 </div>
               </div>
               <div class="project-type">Shipped</div>
             </div>
             <div class="project-card">
               <div>
-                <div class="project-name">
-                  CS124 AI Booking Agent — Movie Recommendation & Ticket Booking
-                </div>
+                <div class="project-name">CS124 AI Booking Agent — Movie Recommendation &amp; Ticket Booking</div>
                 <div class="project-desc">
                   Python · DSPy · ReAct pattern. Built an AI agent that
                   recommends movies and books tickets through tool use. Wrote
@@ -1481,8 +1479,7 @@
                   reflected in writing on agent autonomy and failure modes.
                 </div>
                 <div class="project-tags">
-                  <span class="tag">Python</span><span class="tag">DSPy</span
-                  ><span class="tag">AI Agents</span>
+                  <span class="tag">Python</span><span class="tag">DSPy</span><span class="tag">AI Agents</span>
                 </div>
               </div>
               <div class="project-type">Course Project</div>
@@ -1496,8 +1493,7 @@
                   Won first place.
                 </div>
                 <div class="project-tags">
-                  <span class="tag">Flutter</span><span class="tag">Dart</span
-                  ><span class="tag">Hackathon</span>
+                  <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Hackathon</span>
                 </div>
               </div>
               <div class="project-type">1st Place</div>
@@ -1506,29 +1502,24 @@
               <div>
                 <div class="project-name">TimeSand — Chrome Extension</div>
                 <div class="project-desc">
-                  JavaScript. A browser extension that tracks time spent on
-                  websites.
+                  JavaScript. A browser extension that tracks time spent on websites.
                 </div>
                 <div class="project-tags">
-                  <span class="tag">JavaScript</span
-                  ><span class="tag">Chrome API</span>
+                  <span class="tag">JavaScript</span><span class="tag">Chrome API</span>
                 </div>
               </div>
               <div class="project-type">Tool</div>
             </div>
             <div class="project-card">
               <div>
-                <div class="project-name">
-                  SymSys 1 Project — Dog Behavior Analysis
-                </div>
+                <div class="project-name">SymSys 1 Project — Dog Behavior Analysis</div>
                 <div class="project-desc">
                   Project analyzing a dog performing learned behaviors. Covered
                   goal analysis, functional decomposition, Bayesian vs.
                   heuristic reasoning, and parallels to machine learning.
                 </div>
                 <div class="project-tags">
-                  <span class="tag">Cognitive Science</span
-                  ><span class="tag">AI</span>
+                  <span class="tag">Cognitive Science</span><span class="tag">AI</span>
                 </div>
               </div>
               <div class="project-type">Research</div>
@@ -1537,14 +1528,12 @@
         </section>
 
         <section id="writing">
-          <div class="section-label">Writing & Research</div>
+          <div class="section-label">Writing &amp; Research</div>
           <h2 class="section-title">What I've <em>written.</em></h2>
           <div class="projects-list">
             <div class="project-card">
               <div>
-                <div class="project-name">
-                  Football Twitter's Binary Dialect
-                </div>
+                <div class="project-name">Football Twitter's Binary Dialect</div>
                 <div class="project-desc">
                   PWR 2JJA Research-Based Argument (Stanford, Spring 2026). A
                   research paper applying the weak Sapir-Whorf hypothesis to
@@ -1556,9 +1545,7 @@
                   and social psychology.
                 </div>
                 <div class="project-tags">
-                  <span class="tag">Linguistics</span
-                  ><span class="tag">Platform Studies</span
-                  ><span class="tag">Social Psychology</span>
+                  <span class="tag">Linguistics</span><span class="tag">Platform Studies</span><span class="tag">Social Psychology</span>
                 </div>
               </div>
               <div class="project-type">Paper</div>
@@ -1571,17 +1558,14 @@
                   autism spectrum disorder in "Young Sheldon" and "Atypical."
                 </div>
                 <div class="project-tags">
-                  <span class="tag">Psychology</span
-                  ><span class="tag">Media Studies</span>
+                  <span class="tag">Psychology</span><span class="tag">Media Studies</span>
                 </div>
               </div>
               <div class="project-type">Poster</div>
             </div>
             <div class="project-card">
               <div>
-                <div class="project-name">
-                  Brain-Friendly Teaching Materials
-                </div>
+                <div class="project-name">Brain-Friendly Teaching Materials</div>
                 <div class="project-desc">
                   Research presented at the Ghana Education Service Annual
                   Summit on cognitive load, visual design, and material
@@ -1589,8 +1573,7 @@
                   schools.
                 </div>
                 <div class="project-tags">
-                  <span class="tag">Education</span
-                  ><span class="tag">Cognitive Science</span>
+                  <span class="tag">Education</span><span class="tag">Cognitive Science</span>
                 </div>
               </div>
               <div class="project-type">Summit Presentation</div>
@@ -1605,40 +1588,25 @@
             <div class="skill-group">
               <div class="skill-group-name">Languages</div>
               <div class="skill-pills">
-                <span class="pill">Python</span><span class="pill">Swift</span
-                ><span class="pill">C</span><span class="pill">JavaScript</span
-                ><span class="pill">Java</span><span class="pill">OCaml</span
-                ><span class="pill">Dart</span><span class="pill">SQL</span>
+                <span class="pill">Python</span><span class="pill">Swift</span><span class="pill">C</span><span class="pill">JavaScript</span><span class="pill">Java</span><span class="pill">OCaml</span><span class="pill">Dart</span><span class="pill">SQL</span>
               </div>
             </div>
             <div class="skill-group">
-              <div class="skill-group-name">Frameworks & Libraries</div>
+              <div class="skill-group-name">Frameworks &amp; Libraries</div>
               <div class="skill-pills">
-                <span class="pill">React</span><span class="pill">Flutter</span
-                ><span class="pill">DSPy</span><span class="pill">PyTorch</span
-                ><span class="pill">TensorFlow</span
-                ><span class="pill">Node.js</span>
+                <span class="pill">React</span><span class="pill">Flutter</span><span class="pill">DSPy</span><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">Node.js</span>
               </div>
             </div>
             <div class="skill-group">
-              <div class="skill-group-name">Tools & Platforms</div>
+              <div class="skill-group-name">Tools &amp; Platforms</div>
               <div class="skill-pills">
-                <span class="pill">Firebase</span><span class="pill">Git</span
-                ><span class="pill">Unix</span><span class="pill">Xcode</span
-                ><span class="pill">Google One AI Pro</span
-                ><span class="pill">NeetCode</span>
+                <span class="pill">Firebase</span><span class="pill">Git</span><span class="pill">Unix</span><span class="pill">Xcode</span><span class="pill">Google One AI Pro</span><span class="pill">NeetCode</span>
               </div>
             </div>
             <div class="skill-group">
               <div class="skill-group-name">Domains</div>
               <div class="skill-pills">
-                <span class="pill">Mobile dev (iOS native, Flutter)</span
-                ><span class="pill">Full-stack web</span
-                ><span class="pill">AI agents & tool use</span
-                ><span class="pill">Systems programming in C</span
-                ><span class="pill"
-                  >Linear algebra & multivariable calculus</span
-                >
+                <span class="pill">Mobile dev (iOS native, Flutter)</span><span class="pill">Full-stack web</span><span class="pill">AI agents &amp; tool use</span><span class="pill">Systems programming in C</span><span class="pill">Linear algebra &amp; multivariable calculus</span>
               </div>
             </div>
           </div>
@@ -1654,7 +1622,7 @@
         </footer>
       </div>
 
-      <!-- IPHONE SIDE (same as index/about) — abbreviated for length -->
+      <!-- IPHONE SIDE — untouched -->
       <div class="iphone-side">
         <div class="iphone-aura"></div>
         <div class="iphone-wrap" id="iphoneWrap">
@@ -1776,9 +1744,6 @@
     </div>
 
     <script>
-      // Same JavaScript as index.html and about.html (full iPhone emulator logic)
-      // Copy the complete script from about.html here (the one with all functions)
-      // For brevity, the full script would be included here
       let unlocked = false,
         currentApp = null,
         musicPlaying = false,
