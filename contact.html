@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact | Selorm Avakame</title>
+    <title>Work | Selorm Avakame · Projects & Research</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* Same exact styles as work.html — full CSS from about.html */
       *,
       *::before,
       *::after {
@@ -33,15 +32,20 @@
         --accent2: #b83a4b;
         --indigo: #8c1515;
         --teal: #4d4f53;
+        --r: 0.75rem;
       }
       html {
         scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: var(--text3) var(--bg2);
       }
       body {
         background: var(--bg);
         color: var(--text);
         font-family: "Inter", sans-serif;
+        overflow-x: hidden;
         line-height: 1.6;
+        font-size: 16px;
       }
       body.light {
         --bg: #f7f4ef;
@@ -78,7 +82,11 @@
         );
         border-left: 1px solid var(--border);
         overflow: hidden;
+        user-select: none;
+        isolation: isolate;
       }
+
+      /* ── NAV ── */
       nav {
         position: sticky;
         top: 0;
@@ -88,17 +96,24 @@
         border-bottom: 1px solid var(--border);
         padding: 0 2.5rem;
       }
+      body.light nav {
+        background: rgba(247, 244, 239, 0.85);
+      }
       .nav-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: 60px;
+        gap: 0.5rem;
       }
       .nav-logo {
         font-family: "Lora", serif;
         font-size: 1.15rem;
         font-weight: 500;
+        letter-spacing: 0.01em;
         color: var(--text);
+        white-space: nowrap;
+        flex-shrink: 0;
       }
       .nav-logo em {
         color: var(--accent);
@@ -107,6 +122,7 @@
       .nav-links {
         display: flex;
         gap: 0.25rem;
+        align-items: center;
       }
       .nav-links a {
         color: var(--text2);
@@ -117,6 +133,8 @@
         border-radius: 100px;
         transition: all 0.2s;
         cursor: pointer;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
       }
       .nav-links a:hover,
       .nav-links a.active {
@@ -125,7 +143,9 @@
       }
       .nav-right {
         display: flex;
-        gap: 0.6rem;
+        gap: 0.5rem;
+        align-items: center;
+        flex-shrink: 0;
       }
       .theme-btn {
         background: var(--surface);
@@ -135,7 +155,23 @@
         padding: 0.35rem 0.9rem;
         cursor: pointer;
         font-size: 0.78rem;
+        transition: all 0.2s;
+        white-space: nowrap;
       }
+      .theme-btn:hover {
+        color: var(--text);
+      }
+
+      /* Hamburger — hidden on all sizes now */
+      .nav-hamburger {
+        display: none;
+      }
+
+      /* Slide-down drawer — kept in DOM but never shown */
+      .nav-drawer {
+        display: none;
+      }
+
       .scroll-progress {
         position: fixed;
         top: 0;
@@ -144,9 +180,12 @@
         background: var(--accent);
         z-index: 999;
         transition: width 0.1s;
+        pointer-events: none;
       }
       .hero {
         padding: 5rem 2.75rem 4rem;
+        position: relative;
+        overflow: hidden;
         border-bottom: 1px solid var(--border);
       }
       .hero-inner {
@@ -177,7 +216,9 @@
         font-size: clamp(2.2rem, 4vw, 3.4rem);
         font-weight: 500;
         line-height: 1.12;
+        letter-spacing: -0.02em;
         margin-bottom: 1.25rem;
+        color: var(--text);
       }
       .hero h1 em {
         font-style: italic;
@@ -190,20 +231,15 @@
         line-height: 1.8;
         margin-bottom: 2rem;
       }
-      .hero-image-col {
-        flex-shrink: 0;
-      }
-      .profile-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid var(--accent);
-        display: block;
+      .hero-cta {
+        display: flex;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+        align-items: center;
       }
       .btn-primary {
         background: var(--accent);
-        color: #0b0a0f;
+        color: #fff;
         border: none;
         padding: 0.7rem 1.6rem;
         border-radius: 100px;
@@ -232,92 +268,154 @@
         font-family: "Lora", serif;
         font-size: clamp(1.6rem, 2.5vw, 2.1rem);
         font-weight: 500;
+        letter-spacing: -0.02em;
         margin-bottom: 2.25rem;
+        color: var(--text);
+        line-height: 1.25;
       }
       .section-title em {
         font-style: italic;
         color: var(--accent);
       }
-      .contact-layout {
+
+      /* Experience */
+      .exp-list {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
+        gap: 0;
       }
-      .contact-lede {
-        font-family: "Lora", serif;
-        font-style: italic;
-        font-size: 1.05rem;
+      .exp-item {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .exp-item:last-child {
+        border-bottom: none;
+      }
+      .exp-period {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--text3);
+        padding-top: 0.15rem;
+        line-height: 1.6;
+      }
+      .exp-role {
+        font-size: 0.94rem;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 0.2rem;
+      }
+      .exp-company {
+        font-size: 0.8rem;
+        color: var(--accent);
+        margin-bottom: 0.55rem;
+      }
+      .exp-desc {
+        font-size: 0.82rem;
         color: var(--text2);
         line-height: 1.7;
-        margin-bottom: 1.25rem;
       }
-      .contact-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+
+      /* Projects */
+      .projects-list {
+        display: grid;
+        gap: 1rem;
       }
-      .clink {
-        display: flex;
-        align-items: center;
+      .project-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.6rem;
+        cursor: pointer;
+        transition: all 0.22s;
+        display: grid;
+        grid-template-columns: 1fr auto;
         gap: 0.75rem;
-        color: var(--text2);
-        text-decoration: none;
-        font-size: 0.86rem;
-        padding: 0.7rem 0.9rem;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        transition: all 0.18s;
       }
-      .clink:hover {
-        color: var(--text);
+      .project-card:hover {
         border-color: var(--border2);
+        transform: translateY(-2px);
         background: var(--surface2);
       }
-      .clink-icon {
-        width: 30px;
-        height: 30px;
-        border-radius: 7px;
-        background: var(--surface2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
+      .project-type {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.67rem;
+        color: var(--accent);
+        background: rgba(140, 21, 21, 0.1);
+        border: 1px solid rgba(140, 21, 21, 0.18);
+        border-radius: 100px;
+        padding: 0.22rem 0.65rem;
+        white-space: nowrap;
+        align-self: start;
       }
-      .contact-form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
+      .project-name {
+        font-family: "Lora", serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 0.45rem;
       }
-      .fgroup {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
+      .project-desc {
+        font-size: 0.84rem;
+        color: var(--text2);
+        line-height: 1.7;
+        margin-bottom: 0.85rem;
       }
-      .fgroup label {
-        font-size: 0.72rem;
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .tag {
+        font-size: 0.7rem;
         color: var(--text3);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 0.18rem 0.55rem;
       }
-      .fgroup input,
-      .fgroup textarea {
+
+      /* Skills */
+      .skills-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.1rem;
+      }
+      .skill-group {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 9px;
-        padding: 0.65rem 0.9rem;
-        color: var(--text);
-        font-size: 0.86rem;
-        font-family: inherit;
-        outline: none;
+        border-radius: 14px;
+        padding: 1.3rem;
       }
-      .fgroup input:focus,
-      .fgroup textarea:focus {
+      .skill-group-name {
+        font-size: 0.68rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text3);
+        margin-bottom: 0.9rem;
+      }
+      .skill-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .pill {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 0.28rem 0.75rem;
+        font-size: 0.76rem;
+        color: var(--text2);
+        transition: all 0.18s;
+        cursor: default;
+      }
+      .pill:hover {
         border-color: var(--accent);
+        color: var(--accent);
       }
-      .fgroup textarea {
-        min-height: 90px;
-      }
+
       footer {
         border-top: 1px solid var(--border);
         padding: 1.75rem 2.75rem;
@@ -352,7 +450,8 @@
         border-color: var(--accent);
         color: var(--accent);
       }
-      /* iPhone styles (same) */
+
+      /* iPhone */
       .iphone-aura {
         position: absolute;
         inset: -30px;
@@ -388,7 +487,10 @@
           #1c1c1e 70%,
           #2a2a2c 100%
         );
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22),
+          0 0 0 0.5px #000;
       }
       .iphone-screen {
         position: absolute;
@@ -400,6 +502,85 @@
         overflow: hidden;
         background: #000;
         isolation: isolate;
+        overscroll-behavior: contain;
+      }
+      .iphone-screen-inner {
+        position: absolute;
+        inset: 0;
+        overscroll-behavior: contain;
+      }
+      .phone-btn-l {
+        position: absolute;
+        left: -4px;
+        background: #2c2c2e;
+        width: 4px;
+        border-radius: 2px 0 0 2px;
+      }
+      .phone-btn-r {
+        position: absolute;
+        right: -4px;
+        background: #2c2c2e;
+        width: 4px;
+        border-radius: 0 2px 2px 0;
+      }
+      .vol-up {
+        top: 115px;
+        height: 40px;
+      }
+      .vol-dn {
+        top: 168px;
+        height: 40px;
+      }
+      .mute {
+        top: 92px;
+        height: 28px;
+      }
+      .power {
+        top: 150px;
+        height: 62px;
+      }
+      .camera-bump {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(145deg, #3a3a3c, #2c2c2e);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cam-lenses {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        padding: 4px;
+      }
+      .cam-lens {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #1a1a1c;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 0 5px rgba(91, 95, 214, 0.2);
+      }
+      .cam-lens.small {
+        width: 9px;
+        height: 9px;
+        background: #111;
+        margin-top: 4px;
+      }
+      .cam-flash {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #c9a96e;
+        box-shadow: 0 0 5px rgba(201, 169, 110, 0.5);
       }
       .dynamic-island {
         position: absolute;
@@ -411,7 +592,71 @@
         background: #000;
         border-radius: 20px;
         z-index: 50;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         cursor: pointer;
+      }
+      .dynamic-island.expanded {
+        width: 220px;
+        height: 72px;
+        top: 8px;
+      }
+      .di-content {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.45rem 0.85rem;
+        height: 100%;
+      }
+      .dynamic-island.expanded .di-content {
+        display: flex;
+      }
+      .di-music {
+        font-size: 0.6rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .di-music strong {
+        display: block;
+        color: #fff;
+        font-size: 0.65rem;
+        margin-bottom: 0.1rem;
+      }
+      .di-bars {
+        display: flex;
+        gap: 2px;
+        align-items: flex-end;
+        height: 16px;
+      }
+      .di-bar {
+        width: 3px;
+        background: #c9a96e;
+        border-radius: 2px;
+        animation: dibar 1s ease-in-out infinite alternate;
+      }
+      .di-bar:nth-child(1) {
+        height: 40%;
+      }
+      .di-bar:nth-child(2) {
+        animation-delay: 0.2s;
+        height: 60%;
+      }
+      .di-bar:nth-child(3) {
+        animation-delay: 0.4s;
+        height: 100%;
+      }
+      @keyframes dibar {
+        to {
+          transform: scaleY(1.8);
+        }
+      }
+      .di-cover {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
       }
       .status-bar {
         position: absolute;
@@ -429,6 +674,35 @@
         font-size: 0.78rem;
         font-weight: 600;
         color: #fff;
+        margin-top: 2px;
+      }
+      .battery {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+      }
+      .battery-body {
+        width: 20px;
+        height: 10px;
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        border-radius: 3px;
+        position: relative;
+        overflow: hidden;
+      }
+      .battery-fill {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        bottom: 1px;
+        width: 80%;
+        background: #fff;
+        border-radius: 1px;
+      }
+      .battery-tip {
+        width: 2px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 0 1px 1px 0;
       }
       .scroll-pill {
         position: absolute;
@@ -440,6 +714,7 @@
         background: rgba(255, 255, 255, 0.28);
         border-radius: 3px;
         z-index: 50;
+        cursor: pointer;
       }
       #lock-screen {
         background: linear-gradient(
@@ -455,24 +730,60 @@
         padding-top: 60px;
         cursor: pointer;
       }
+      .lock-bg-orb {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(91, 95, 214, 0.28) 0%,
+          transparent 70%
+        );
+        top: 28%;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
       .lock-time {
         font-size: 4rem;
         font-weight: 200;
         color: #fff;
+        letter-spacing: -0.04em;
+        line-height: 1;
         margin-bottom: 0.3rem;
+        position: relative;
+        z-index: 1;
+        font-family: "Lora", serif;
       }
       .lock-date {
         font-size: 0.82rem;
         color: rgba(255, 255, 255, 0.65);
+        position: relative;
+        z-index: 1;
         margin-bottom: 2rem;
       }
       .lock-notif {
         background: rgba(255, 255, 255, 0.11);
         backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.14);
         border-radius: 16px;
         padding: 0.85rem 0.95rem;
         margin: 0 1rem 0.7rem;
         width: calc(100% - 2rem);
+        position: relative;
+        z-index: 1;
+      }
+      .notif-app {
+        font-size: 0.62rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.22rem;
+        font-weight: 500;
+      }
+      .notif-text {
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.4;
       }
       .faceid-ring {
         width: 46px;
@@ -483,14 +794,46 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto 1.4rem;
+        animation: faceid 3s ease-in-out infinite;
+        position: relative;
+        z-index: 1;
+      }
+      @keyframes faceid {
+        0%,
+        100% {
+          border-color: rgba(255, 255, 255, 0.2);
+          box-shadow: none;
+        }
+        50% {
+          border-color: rgba(201, 169, 110, 0.8);
+          box-shadow: 0 0 16px rgba(201, 169, 110, 0.35);
+        }
       }
       .swipe-hint {
         position: absolute;
         bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
         color: rgba(255, 255, 255, 0.38);
         font-size: 0.7rem;
-        text-align: center;
-        width: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .swipe-arrow {
+        display: block;
+        animation: swipeup 2s ease-in-out infinite;
+      }
+      @keyframes swipeup {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.38;
+        }
+        50% {
+          transform: translateY(-9px);
+          opacity: 0.8;
+        }
       }
       #home-screen {
         background: linear-gradient(
@@ -501,12 +844,46 @@
         );
         display: none;
         flex-direction: column;
+        overflow: hidden;
+      }
+      .home-wallpaper-orb {
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(79, 70, 229, 0.22) 0%,
+          transparent 70%
+        );
+        top: 13%;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      .home-wallpaper-orb2 {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(44, 196, 168, 0.13) 0%,
+          transparent 70%
+        );
+        bottom: 22%;
+        right: 8%;
+        pointer-events: none;
       }
       .home-grid {
         padding: 54px 14px 8px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 11px;
+        flex: 1;
+        position: relative;
+        z-index: 5;
+        align-content: start;
       }
       .app-icon {
         display: flex;
@@ -514,6 +891,12 @@
         align-items: center;
         gap: 5px;
         cursor: pointer;
+        transition: transform 0.15s;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+      }
+      .app-icon:active {
+        transform: scale(0.86);
       }
       .app-icon-img {
         width: 48px;
@@ -523,10 +906,29 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+        position: relative;
+        overflow: hidden;
       }
       .app-label {
         font-size: 0.58rem;
         color: rgba(255, 255, 255, 0.83);
+        font-weight: 500;
+        text-align: center;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+      }
+      .app-badge {
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        background: #ff3b30;
+        color: #fff;
+        font-size: 0.44rem;
+        font-weight: 700;
+        padding: 1px 4px;
+        border-radius: 10px;
+        border: 1.5px solid #000;
+        min-width: 14px;
+        text-align: center;
       }
       .dock {
         position: absolute;
@@ -535,23 +937,36 @@
         right: 14px;
         background: rgba(255, 255, 255, 0.11);
         backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.14);
         border-radius: 20px;
         padding: 11px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 8px;
+        z-index: 10;
       }
       .widget-row {
         padding: 0 14px 12px;
         display: flex;
         gap: 9px;
+        position: relative;
+        z-index: 5;
       }
       .widget {
         background: rgba(255, 255, 255, 0.09);
         backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.09);
         border-radius: 14px;
         flex: 1;
         padding: 0.6rem;
+        overflow: hidden;
+      }
+      .widget-title {
+        font-size: 0.54rem;
+        color: rgba(255, 255, 255, 0.48);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.25rem;
       }
       .widget-val {
         font-size: 1.2rem;
@@ -564,10 +979,12 @@
         background: #f2f2f7;
         display: none;
         flex-direction: column;
-        z-index: 20;
+        z-index: 70;
         border-radius: 45px;
+        overflow: hidden;
         opacity: 0;
         transform: scale(0.85);
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
       #app-screen.visible {
         display: flex;
@@ -577,7 +994,14 @@
       .app-header {
         padding: 52px 0.95rem 0.95rem;
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        flex-shrink: 0;
+      }
+      .app-header-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
       }
       .app-close {
         background: rgba(255, 255, 255, 0.2);
@@ -586,12 +1010,22 @@
         width: 28px;
         height: 28px;
         border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
+        font-size: 0.9rem;
       }
       .app-body {
         flex: 1;
-        overflow-y: auto;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
         padding: 0.85rem;
+        background: #f2f2f7;
+        overscroll-behavior: contain;
+      }
+      .app-body::-webkit-scrollbar {
+        width: 0;
       }
       .phone-toast {
         position: absolute;
@@ -599,13 +1033,40 @@
         left: 11px;
         right: 11px;
         background: rgba(28, 28, 30, 0.92);
+        backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 14px;
         padding: 0.7rem 0.95rem;
         z-index: 80;
         display: none;
+        align-items: center;
+        gap: 0.55rem;
+        animation: toastin 0.3s ease;
       }
       .phone-toast.show {
         display: flex;
+      }
+      @keyframes toastin {
+        from {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .toast-icon {
+        flex-shrink: 0;
+      }
+      .toast-text {
+        font-size: 0.74rem;
+        color: #fff;
+        line-height: 1.3;
+      }
+      .toast-title {
+        font-weight: 600;
+        font-size: 0.76rem;
       }
       #control-center {
         position: absolute;
@@ -615,10 +1076,53 @@
         z-index: 60;
         display: none;
         padding: 58px 11px 18px;
+        flex-direction: column;
+        gap: 9px;
       }
       #control-center.visible {
         display: flex;
       }
+      .cc-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+      .cc-tile {
+        background: rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        padding: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .cc-tile:active {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .cc-tile.wide {
+        grid-column: span 2;
+        justify-content: space-between;
+      }
+      .cc-tile-label {
+        font-size: 0.7rem;
+        color: #fff;
+        font-weight: 500;
+      }
+      .cc-close {
+        align-self: center;
+        background: rgba(255, 255, 255, 0.14);
+        border: none;
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 0.9rem;
+        cursor: pointer;
+        margin-top: auto;
+      }
+
+      /* ── RESPONSIVE ── */
       @media (max-width: 960px) {
         .layout {
           grid-template-columns: 1fr;
@@ -628,24 +1132,70 @@
         }
         .hero-inner {
           grid-template-columns: 1fr;
-          text-align: center;
         }
-        .hero-image-col {
-          display: flex;
-          justify-content: center;
-        }
-        .profile-image {
-          width: 150px;
-          height: 150px;
+        .hero h1 {
+          font-size: clamp(1.9rem, 6vw, 2.8rem);
         }
         section {
           padding: 3rem 1.5rem;
+        }
+        .hero {
+          padding: 3.5rem 1.5rem 3rem;
+        }
+        nav {
+          padding: 0 1.5rem;
+        }
+        footer {
+          padding: 1.5rem;
+        }
+        .exp-item {
+          grid-template-columns: 90px 1fr;
+          gap: 1rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        nav {
+          padding: 0 1rem;
+        }
+        .nav-logo {
+          font-size: 0.95rem;
+        }
+        /* Keep links visible but smaller */
+        .nav-links a {
+          font-size: 0.75rem;
+          padding: 0.3rem 0.55rem;
+        }
+        .theme-btn {
+          padding: 0.3rem 0.65rem;
+          font-size: 0.73rem;
+        }
+        .skills-cols {
+          grid-template-columns: 1fr;
+        }
+        .exp-item {
+          grid-template-columns: 1fr;
+          gap: 0.35rem;
+        }
+        .project-card {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .nav-links a {
+          font-size: 0.7rem;
+          padding: 0.28rem 0.45rem;
+        }
+        .theme-btn {
+          display: none;
         }
       }
     </style>
   </head>
   <body>
     <div class="scroll-progress" id="scrollProgress"></div>
+
     <div class="layout">
       <div class="portfolio-side" id="portfolioSide">
         <nav>
@@ -654,8 +1204,8 @@
             <div class="nav-links">
               <a href="index.html">Home</a>
               <a href="about.html">About</a>
-              <a href="work.html">Work</a>
-              <a href="contact.html" class="active">Contact</a>
+              <a href="work.html" class="active">Work</a>
+              <a href="contact.html">Contact</a>
             </div>
             <div class="nav-right">
               <button class="theme-btn" onclick="toggleTheme()">◐ Theme</button>
@@ -666,105 +1216,210 @@
         <section class="hero" id="hero">
           <div class="hero-inner">
             <div class="hero-text">
-              <div class="hero-kicker">Get in Touch</div>
-              <h1>Let's build something <em>worth building.</em></h1>
+              <div class="hero-kicker">Portfolio</div>
+              <h1>Projects &amp; <em>Research.</em></h1>
               <p class="hero-body">
-                I'm usually quick to respond. Whether it's a research
-                collaboration, a startup idea, or just a conversation about AI,
-                climate, or African tech — I'm happy to talk.
+                Building at the intersection of AI, climate technology, and
+                African innovation. From published iOS apps to hackathon-winning
+                Flutter projects and ongoing ML research.
               </p>
-            </div>
-            <div class="hero-image-col">
-              <img
-                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop"
-                alt="Selorm Avakame"
-                class="profile-image"
-              />
+              <div class="hero-cta">
+                <a href="https://github.com/smagnusavakame" target="_blank">
+                  <button class="btn-primary">View GitHub →</button>
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="contact-full">
-          <div class="contact-layout">
-            <div>
-              <div class="contact-lede">Reach me directly:</div>
-              <div class="contact-links">
-                <a href="mailto:smagnusavakame1@gmail.com" class="clink"
-                  ><div class="clink-icon">✉️</div>
-                  smagnusavakame1@gmail.com</a
-                >
-                <a href="mailto:smagnus1@stanford.edu" class="clink"
-                  ><div class="clink-icon">🎓</div>
-                  smagnus1@stanford.edu</a
-                >
-                <a href="tel:+16506654959" class="clink"
-                  ><div class="clink-icon">📱</div>
-                  +1 (650) 665 4959</a
-                >
-                <a href="tel:+233554041072" class="clink"
-                  ><div class="clink-icon">🇬🇭</div>
-                  +233 554 041 072</a
-                >
-                <a href="https://github.com/smagnusavakame" class="clink"
-                  ><div class="clink-icon">🐙</div>
-                  github.com/smagnusavakame</a
-                >
-                <a href="#" class="clink"
-                  ><div class="clink-icon">💼</div>
-                  linkedin.com/in/selormavakame</a
-                >
+        <section id="projects">
+          <div class="section-label">Selected Work</div>
+          <h2 class="section-title">Things I've <em>built.</em></h2>
+          <div class="projects-list">
+            <div class="project-card">
+              <div>
+                <div class="project-name">Drop It Off — iOS App</div>
+                <div class="project-desc">
+                  A published iOS app with 1,000+ downloads and a 4.8-star
+                  rating. Built with Swift and Firebase, enabling users to
+                  schedule and track item drop-offs with real-time updates.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">Swift</span>
+                  <span class="tag">Firebase</span>
+                  <span class="tag">iOS</span>
+                  <span class="tag">App Store</span>
+                </div>
               </div>
+              <span class="project-type">iOS App</span>
             </div>
-            <div class="contact-form">
-              <div class="fgroup">
-                <label>Name</label><input type="text" placeholder="Your name" />
+            <div class="project-card">
+              <div>
+                <div class="project-name">CS124 AI Booking Agent</div>
+                <div class="project-desc">
+                  A conversational AI booking agent built with Python using the
+                  DSPy framework and ReAct reasoning pattern. Handles multi-turn
+                  dialogue and booking confirmation flows.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">DSPy</span>
+                  <span class="tag">ReAct</span>
+                  <span class="tag">NLP</span>
+                </div>
               </div>
-              <div class="fgroup">
-                <label>Email</label
-                ><input type="email" placeholder="you@example.com" />
+              <span class="project-type">AI / ML</span>
+            </div>
+            <div class="project-card">
+              <div>
+                <div class="project-name">SafeRoute — Flutter Safety App</div>
+                <div class="project-desc">
+                  A national hackathon-winning Flutter safety app with real-time
+                  location sharing, SOS alerting, and community-based safe-route
+                  mapping for university campuses.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">Flutter</span>
+                  <span class="tag">Dart</span>
+                  <span class="tag">Google Maps API</span>
+                  <span class="tag">Firebase</span>
+                </div>
               </div>
-              <div class="fgroup">
-                <label>Message</label
-                ><textarea
-                  placeholder="Tell me about your project, research, or just say hello..."
-                ></textarea>
+              <span class="project-type">Hackathon</span>
+            </div>
+            <div class="project-card">
+              <div>
+                <div class="project-name">Plastic Upcycling Initiative</div>
+                <div class="project-desc">
+                  Led a community initiative in Ghana converting plastic waste
+                  into school furniture, producing over 40 desks and chairs.
+                  Combined fabrication, logistics, and community organizing.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">Social Impact</span>
+                  <span class="tag">Ghana</span>
+                  <span class="tag">Sustainability</span>
+                </div>
               </div>
-              <button
-                class="btn-primary"
-                style="width: 100%"
-                onclick="
-                  alert(
-                    'Message sent (demo). Thanks for reaching out, Selorm will respond soon!',
-                  )
-                "
-              >
-                Send message →
-              </button>
+              <span class="project-type">Impact</span>
+            </div>
+            <div class="project-card">
+              <div>
+                <div class="project-name">Katalyze Africa</div>
+                <div class="project-desc">
+                  Founder and builder of an accelerator network for African
+                  startups. Designing the program structure, chapter model, and
+                  partnerships. Received first Nairobi chapter application in
+                  2025.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">Startup</span>
+                  <span class="tag">Africa</span>
+                  <span class="tag">Accelerator</span>
+                  <span class="tag">Founder</span>
+                </div>
+              </div>
+              <span class="project-type">Venture</span>
             </div>
           </div>
         </section>
 
-        <section id="locations">
-          <div class="section-label">Where to find me</div>
-          <h2 class="section-title">Stanford & <em>beyond.</em></h2>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem">
+        <section id="experience">
+          <div class="section-label">Experience</div>
+          <h2 class="section-title">Where I've <em>contributed.</em></h2>
+          <div class="exp-list">
+            <div class="exp-item">
+              <div class="exp-period">2024 – Present</div>
+              <div>
+                <div class="exp-role">Undergraduate Researcher</div>
+                <div class="exp-company">Stanford HAI / CS Department</div>
+                <div class="exp-desc">
+                  Researching AI applications in smallholder agriculture and
+                  climate resilience for sub-Saharan Africa. Collaborating with
+                  faculty on ML model adaptation for low-resource environments.
+                </div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-period">2023 – 2024</div>
+              <div>
+                <div class="exp-role">2× African Service Fellow</div>
+                <div class="exp-company">Haas Center for Public Service</div>
+                <div class="exp-desc">
+                  Selected twice as an African Service Fellow, designing and
+                  executing community technology initiatives across Ghana and
+                  Kenya in partnership with local NGOs.
+                </div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-period">Summer 2024</div>
+              <div>
+                <div class="exp-role">iOS Developer (Independent)</div>
+                <div class="exp-company">Self-Published</div>
+                <div class="exp-desc">
+                  Designed, built, and shipped Drop It Off to the App Store.
+                  Managed the full development lifecycle from wireframes to App
+                  Store approval, reaching 1K+ users.
+                </div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-period">2022 – 2023</div>
+              <div>
+                <div class="exp-role">Hackathon Lead Developer</div>
+                <div class="exp-company">
+                  National Youth Innovation Challenge, Ghana
+                </div>
+                <div class="exp-desc">
+                  Led the technical team that built SafeRoute, winning the
+                  national hackathon. Responsible for architecture decisions,
+                  Flutter development, and demo presentation to judges.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills">
+          <div class="section-label">Technical Skills</div>
+          <h2 class="section-title">What I <em>work with.</em></h2>
+          <div class="skills-cols">
             <div class="skill-group">
-              <div class="skill-group-name">On Campus</div>
+              <div class="skill-group-name">Languages</div>
               <div class="skill-pills">
-                <span class="pill"
-                  >Ujamaa House (African & African American themed dorm)</span
-                ><span class="pill">Huang Engineering Center</span
-                ><span class="pill">Terman Engineering</span>
+                <span class="pill">Python</span><span class="pill">Swift</span>
+                <span class="pill">Dart</span
+                ><span class="pill">JavaScript</span>
+                <span class="pill">C++</span><span class="pill">Java</span>
               </div>
             </div>
             <div class="skill-group">
-              <div class="skill-group-name">Off Campus</div>
+              <div class="skill-group-name">Frameworks & Tools</div>
               <div class="skill-pills">
-                <span class="pill">San Francisco (weekends)</span
-                ><span class="pill">Accra, Ghana (breaks)</span
-                ><span class="pill"
-                  >Nairobi, Kenya (partner at Kenyatta University)</span
-                >
+                <span class="pill">Flutter</span
+                ><span class="pill">Firebase</span>
+                <span class="pill">DSPy</span><span class="pill">PyTorch</span>
+                <span class="pill">SwiftUI</span><span class="pill">React</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-name">AI / ML</div>
+              <div class="skill-pills">
+                <span class="pill">LLM Prompting</span
+                ><span class="pill">ReAct Agents</span>
+                <span class="pill">Fine-tuning</span
+                ><span class="pill">Computer Vision</span>
+                <span class="pill">NLP</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-name">Domains</div>
+              <div class="skill-pills">
+                <span class="pill">Climate Tech</span
+                ><span class="pill">AgriTech</span> <span class="pill">HCI</span
+                ><span class="pill">Mobile Dev</span>
+                <span class="pill">Social Impact</span>
               </div>
             </div>
           </div>
@@ -773,14 +1428,18 @@
         <footer>
           <p>© 2025 Selorm Magnus Avakame — Stanford, CA</p>
           <div class="social-row">
-            <a href="https://github.com/smagnusavakame" class="soc">GH</a>
+            <a
+              href="https://github.com/smagnusavakame"
+              class="soc"
+              target="_blank"
+              >GH</a
+            >
             <a href="#" class="soc">LI</a>
             <a href="#" class="soc">𝕏</a>
           </div>
         </footer>
       </div>
 
-      <!-- IPHONE SIDE (same as other pages) -->
       <div class="iphone-side">
         <div class="iphone-aura"></div>
         <div class="iphone-wrap">
@@ -799,18 +1458,13 @@
             </div>
           </div>
           <div class="iphone-screen" id="iphoneScreen">
-            <div class="dynamic-island">
+            <div class="dynamic-island" id="dynamicIsland">
               <div class="di-content">
-                <div class="di-cover" style="background: #8c1515">
-                  <svg viewBox="0 0 24 24" width="20">
-                    <path d="M9 18V5l12-2v13" />
-                    <circle cx="6" cy="18" r="3" />
-                    <circle cx="18" cy="16" r="3" />
-                  </svg>
+                <div class="di-cover" style="background: #8c1515">🎵</div>
+                <div class="di-music">
+                  <strong id="diTitle">Afrobeats Mix</strong
+                  ><span id="diSub">Now Playing</span>
                 </div>
-                <!-- <div class="di-music">
-                  <strong>Afrobeats Mix</strong><span>Now Playing</span>
-                </div> -->
                 <div class="di-bars">
                   <div class="di-bar"></div>
                   <div class="di-bar"></div>
@@ -822,44 +1476,83 @@
               <div class="status-time" id="statusTime">9:41</div>
               <div class="battery">
                 <div class="battery-body"><div class="battery-fill"></div></div>
+                <div class="battery-tip"></div>
               </div>
             </div>
             <div class="scroll-pill" onclick="goHome()"></div>
-            <div class="phone-toast" id="phoneToast"></div>
-            <div class="iphone-screen-inner" id="lock-screen">
-              <div class="lock-time">9:41</div>
-              <div class="lock-date">Stanford · June 2026</div>
-              <div class="faceid-ring">
-                <svg viewBox="0 0 24 24" width="22">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
+            <div class="phone-toast" id="phoneToast">
+              <div class="toast-icon">📱</div>
+              <div>
+                <div class="toast-title">Notification</div>
+                <div class="toast-text" id="toastText"></div>
               </div>
-              <div class="lock-notif">
-                <div class="notif-app">Portfolio</div>
-                <div class="notif-text">
-                  Selorm is open for research collaborations
+            </div>
+            <div id="control-center">
+              <div class="cc-row">
+                <div class="cc-tile" onclick="ccToggle(this)">
+                  <div class="cc-tile-label">Wi-Fi</div>
+                </div>
+                <div class="cc-tile" onclick="ccToggle(this)">
+                  <div class="cc-tile-label">Bluetooth</div>
                 </div>
               </div>
-              <div class="swipe-hint">↑ Swipe up to unlock</div>
+              <div class="cc-row">
+                <div
+                  class="cc-tile wide"
+                  style="
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.4rem;
+                  "
+                >
+                  <div class="cc-tile-label">Brightness</div>
+                  <input type="range" class="cc-slider" value="70" />
+                </div>
+              </div>
+              <button class="cc-close" onclick="closeCC()">✕</button>
+            </div>
+            <div class="iphone-screen-inner" id="lock-screen">
+              <div class="lock-bg-orb"></div>
+              <div class="lock-time" id="lockTime">9:41</div>
+              <div class="lock-date" id="lockDate">Stanford · June 2026</div>
+              <div class="faceid-ring">👤</div>
+              <div class="lock-notif">
+                <div class="notif-app">GitHub</div>
+                <div class="notif-text">New star on Drop It Off repository</div>
+              </div>
+              <div class="lock-notif">
+                <div class="notif-app">Katalyze Africa</div>
+                <div class="notif-text">
+                  New chapter application received from Nairobi
+                </div>
+              </div>
+              <div class="swipe-hint">
+                <span class="swipe-arrow">↑</span>Swipe up to unlock
+              </div>
             </div>
             <div class="iphone-screen-inner" id="home-screen">
+              <div class="home-wallpaper-orb"></div>
+              <div class="home-wallpaper-orb2"></div>
               <div class="home-grid" id="homeGrid"></div>
               <div class="widget-row">
                 <div class="widget">
-                  <div class="widget-title">GPA</div>
-                  <div class="widget-val">3.94</div>
+                  <div class="widget-title">Projects</div>
+                  <div class="widget-val">5+</div>
                 </div>
                 <div class="widget">
-                  <div class="widget-title">Apps</div>
+                  <div class="widget-title">Downloads</div>
                   <div class="widget-val">1k+</div>
+                </div>
+                <div class="widget">
+                  <div class="widget-title">Awards</div>
+                  <div class="widget-val">3</div>
                 </div>
               </div>
               <div class="dock" id="dock"></div>
             </div>
             <div class="iphone-screen-inner" id="app-screen">
-              <div class="app-header">
-                <div class="app-header-title">App</div>
+              <div class="app-header" id="appHeader">
+                <div class="app-header-title" id="appTitle">App</div>
                 <button class="app-close" onclick="closeApp()">✕</button>
               </div>
               <div class="app-body" id="appBody"></div>
@@ -870,70 +1563,162 @@
     </div>
 
     <script>
-      // Basic iPhone functionality
       let unlocked = false,
         currentApp = null;
+
       function updateClock() {
         const n = new Date(),
           h = n.getHours().toString().padStart(2, "0"),
           m = n.getMinutes().toString().padStart(2, "0"),
           t = h + ":" + m;
-        document.getElementById("statusTime") &&
-          (document.getElementById("statusTime").textContent = t);
-        document.getElementById("lockTime") &&
-          (document.getElementById("lockTime").textContent = t);
+        if (document.getElementById("statusTime"))
+          document.getElementById("statusTime").textContent = t;
+        if (document.getElementById("lockTime"))
+          document.getElementById("lockTime").textContent = t;
+        const days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+        if (document.getElementById("lockDate"))
+          document.getElementById("lockDate").textContent =
+            days[n.getDay()] + ", " + months[n.getMonth()] + " " + n.getDate();
       }
       updateClock();
       setInterval(updateClock, 30000);
+
       function toggleTheme() {
         document.body.classList.toggle("light");
       }
-      const lockScreen = document.getElementById("lock-screen"),
-        homeScreen = document.getElementById("home-screen");
+
+      const ps = document.getElementById("portfolioSide"),
+        sp = document.getElementById("scrollProgress");
+      ps.addEventListener("scroll", function () {
+        const pct = (ps.scrollTop / (ps.scrollHeight - ps.clientHeight)) * 100;
+        sp.style.width = pct + "%";
+      });
+
+      const lockDiv = document.getElementById("lock-screen"),
+        homeDiv = document.getElementById("home-screen");
+
       function unlock() {
         if (unlocked) return;
         unlocked = true;
-        if (lockScreen && homeScreen) {
-          lockScreen.style.transform = "translateY(-100%)";
-          lockScreen.style.opacity = "0";
-          setTimeout(() => {
-            lockScreen.style.display = "none";
-            homeScreen.style.display = "flex";
-          }, 380);
-        }
+        lockDiv.style.transition = "transform .4s ease,opacity .4s";
+        lockDiv.style.transform = "translateY(-100%)";
+        lockDiv.style.opacity = "0";
+        setTimeout(() => {
+          lockDiv.style.display = "none";
+          homeDiv.style.display = "flex";
+          homeDiv.style.opacity = "1";
+          renderHomeScreen();
+        }, 380);
       }
-      lockScreen && lockScreen.addEventListener("click", unlock);
+      lockDiv.addEventListener("click", unlock);
+
       function goHome() {
-        const appScreen = document.getElementById("app-screen");
-        if (appScreen && appScreen.classList.contains("visible")) {
+        const appScr = document.getElementById("app-screen");
+        if (appScr.classList.contains("visible")) {
           closeApp();
+          return;
         }
+        if (
+          document
+            .getElementById("control-center")
+            .classList.contains("visible")
+        )
+          closeCC();
+      }
+      function closeCC() {
+        document.getElementById("control-center").classList.remove("visible");
+      }
+      function ccToggle(el) {
+        el.style.background = el.style.background
+          ? ""
+          : "rgba(255,255,255,0.28)";
       }
       function closeApp() {
-        const s = document.getElementById("app-screen");
-        if (s) {
-          s.classList.remove("visible");
-          currentApp = null;
-        }
+        document.getElementById("app-screen").classList.remove("visible");
+        currentApp = null;
       }
       function openApp(name) {
         if (!unlocked) unlock();
-        const appScreen = document.getElementById("app-screen");
-        if (appScreen) {
-          appScreen.classList.add("visible");
-        }
         currentApp = name;
+        const titles = {
+          portfolio: "About Selorm",
+          projects: "Projects",
+          skills: "Skills",
+          resume: "Resume",
+          contact: "Contact",
+          music: "Music",
+        };
+        document.getElementById("appTitle").textContent = titles[name] || name;
+        document.getElementById("appHeader").style.background =
+          "linear-gradient(135deg,#8C1515,#b83a3a)";
+        let html = "";
+        if (name === "projects")
+          html = `<div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Drop It Off — iOS App</div><div style="font-size:.75rem;color:#666">4.8★ · 1K+ downloads · Swift + Firebase</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">SafeRoute</div><div style="font-size:.75rem;color:#666">National hackathon winner · Flutter</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Katalyze Africa</div><div style="font-size:.75rem;color:#666">Startup accelerator · Founder</div></div>`;
+        else if (name === "resume")
+          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff;font-weight:600;cursor:pointer">Download Resume</button></div>`;
+        else if (name === "portfolio")
+          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div style="font-size:.82rem;color:#333;line-height:1.7;padding:.5rem 0">Building at the intersection of AI, climate tech, and African innovation.</div>`;
+        else
+          html =
+            '<div style="padding:1rem;color:#8e8e93;text-align:center">Coming soon</div>';
+        document.getElementById("appBody").innerHTML = html;
+        document.getElementById("app-screen").classList.add("visible");
       }
+
       function renderHomeScreen() {
-        const homeGrid = document.getElementById("homeGrid");
-        const dock = document.getElementById("dock");
-        if (homeGrid) {
-          homeGrid.innerHTML = `<div class="app-icon" onclick="openApp('portfolio')"><div class="app-icon-img" style="background:#8C1515">🏠</div><div class="app-label">About</div></div><div class="app-icon" onclick="openApp('projects')"><div class="app-icon-img" style="background:#8C1515">🚀</div><div class="app-label">Projects</div></div><div class="app-icon" onclick="openApp('skills')"><div class="app-icon-img" style="background:#8C1515">⚡</div><div class="app-label">Skills</div></div><div class="app-icon" onclick="openApp('resume')"><div class="app-icon-img" style="background:#8C1515">📄</div><div class="app-label">Resume</div></div><div class="app-icon" onclick="openApp('contact')"><div class="app-icon-img" style="background:#8C1515">✉️</div><div class="app-label">Contact</div></div><div class="app-icon" onclick="openApp('music')"><div class="app-icon-img" style="background:#8C1515">🎵</div><div class="app-label">Music</div></div>`;
-        }
-        if (dock) {
-          dock.innerHTML = `<div class="app-icon" onclick="openApp('portfolio')"><div class="app-icon-img" style="background:#8C1515">🏠</div></div><div class="app-icon" onclick="openApp('projects')"><div class="app-icon-img" style="background:#8C1515">🚀</div></div><div class="app-icon" onclick="openApp('contact')"><div class="app-icon-img" style="background:#8C1515">✉️</div></div><div class="app-icon" onclick="openApp('music')"><div class="app-icon-img" style="background:#8C1515">🎵</div></div>`;
-        }
+        const grid = document.getElementById("homeGrid"),
+          dock = document.getElementById("dock");
+        const apps = [
+          { name: "portfolio", label: "About", icon: "🏠" },
+          { name: "projects", label: "Projects", icon: "🚀" },
+          { name: "skills", label: "Skills", icon: "⚡" },
+          { name: "resume", label: "Resume", icon: "📄" },
+          { name: "contact", label: "Contact", icon: "✉️" },
+          { name: "music", label: "Music", icon: "🎵" },
+        ];
+        if (grid)
+          grid.innerHTML = apps
+            .map(
+              (a) =>
+                `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div><div class="app-label">${a.label}</div></div>`,
+            )
+            .join("");
+        if (dock)
+          dock.innerHTML = apps
+            .slice(0, 4)
+            .map(
+              (a) =>
+                `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div></div>`,
+            )
+            .join("");
       }
+
+      window.openApp = openApp;
+      window.closeApp = closeApp;
+      window.goHome = goHome;
+      window.toggleTheme = toggleTheme;
       renderHomeScreen();
     </script>
   </body>

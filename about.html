@@ -10,7 +10,6 @@
       rel="stylesheet"
     />
     <style>
-      /* Copy the ENTIRE CSS block from index.html here (same styles) */
       *,
       *::before,
       *::after {
@@ -80,6 +79,8 @@
         user-select: none;
         isolation: isolate;
       }
+
+      /* ── NAV ── */
       nav {
         position: sticky;
         top: 0;
@@ -97,38 +98,47 @@
         align-items: center;
         justify-content: space-between;
         height: 60px;
+        gap: 0.5rem;
       }
       .nav-logo {
         font-family: "Lora", serif;
         font-size: 1.15rem;
         font-weight: 500;
         color: var(--text);
+        white-space: nowrap;
+        flex-shrink: 0;
       }
       .nav-logo em {
         color: var(--accent);
         font-style: italic;
       }
+
+      /* Inline links — always visible on wide screens */
       .nav-links {
         display: flex;
-        gap: 0.25rem;
+        gap: 0.15rem;
       }
       .nav-links a {
         color: var(--text2);
         text-decoration: none;
         font-size: 0.82rem;
         font-weight: 500;
-        padding: 0.35rem 0.85rem;
+        padding: 0.35rem 0.75rem;
         border-radius: 100px;
         transition: all 0.2s;
+        white-space: nowrap;
       }
       .nav-links a:hover,
       .nav-links a.active {
         color: var(--text);
         background: var(--surface2);
       }
+
       .nav-right {
         display: flex;
-        gap: 0.6rem;
+        gap: 0.5rem;
+        align-items: center;
+        flex-shrink: 0;
       }
       .theme-btn {
         background: var(--surface);
@@ -138,7 +148,76 @@
         padding: 0.35rem 0.9rem;
         cursor: pointer;
         font-size: 0.78rem;
+        white-space: nowrap;
       }
+
+      /* Hamburger — hidden by default, revealed below 640px */
+      .nav-hamburger {
+        display: none;
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        color: var(--text2);
+        border-radius: 8px;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        transition: color 0.2s;
+      }
+      .nav-hamburger:hover {
+        color: var(--text);
+      }
+
+      /* Slide-down drawer */
+      .nav-drawer {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        background: rgba(11, 10, 15, 0.97);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border);
+        padding: 0.6rem 1.25rem 0.85rem;
+        flex-direction: column;
+        gap: 0.2rem;
+        animation: drawerIn 0.2s ease;
+      }
+      body.light .nav-drawer {
+        background: rgba(247, 244, 239, 0.97);
+      }
+      .nav-drawer.open {
+        display: flex;
+      }
+      @keyframes drawerIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .nav-drawer a {
+        color: var(--text2);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0.65rem 0.85rem;
+        border-radius: 10px;
+        transition: all 0.18s;
+      }
+      .nav-drawer a:hover,
+      .nav-drawer a.active {
+        color: var(--text);
+        background: var(--surface2);
+      }
+
       .scroll-progress {
         position: fixed;
         top: 0;
@@ -337,7 +416,8 @@
         border-color: var(--accent);
         color: var(--accent);
       }
-      /* iPhone styles - same as index */
+
+      /* iPhone */
       .iphone-aura {
         position: absolute;
         inset: -30px;
@@ -561,35 +641,6 @@
         font-weight: 600;
         color: #fff;
         margin-top: 2px;
-      }
-      .status-icons {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        margin-top: 2px;
-      }
-      .signal-bars {
-        display: flex;
-        gap: 1.5px;
-        align-items: flex-end;
-        height: 10px;
-      }
-      .signal-bar {
-        width: 2.5px;
-        background: #fff;
-        border-radius: 1px;
-      }
-      .signal-bar:nth-child(1) {
-        height: 40%;
-      }
-      .signal-bar:nth-child(2) {
-        height: 65%;
-      }
-      .signal-bar:nth-child(3) {
-        height: 85%;
-      }
-      .signal-bar:nth-child(4) {
-        height: 100%;
       }
       .battery {
         display: flex;
@@ -824,35 +875,12 @@
         position: relative;
         overflow: hidden;
       }
-      .app-icon-img svg {
-        width: 26px;
-        height: 26px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 1.8;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
       .app-label {
         font-size: 0.58rem;
         color: rgba(255, 255, 255, 0.83);
         font-weight: 500;
         text-align: center;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-      }
-      .app-badge {
-        position: absolute;
-        top: -3px;
-        right: -3px;
-        background: #ff3b30;
-        color: #fff;
-        font-size: 0.44rem;
-        font-weight: 700;
-        padding: 1px 4px;
-        border-radius: 10px;
-        border: 1.5px solid #000;
-        min-width: 14px;
-        text-align: center;
       }
       .dock {
         position: absolute;
@@ -897,11 +925,6 @@
         font-weight: 700;
         color: #fff;
       }
-      .widget-sub {
-        font-size: 0.5rem;
-        color: rgba(255, 255, 255, 0.42);
-        margin-top: 0.1rem;
-      }
       #app-screen {
         position: absolute;
         inset: 0;
@@ -931,7 +954,6 @@
         font-size: 0.95rem;
         font-weight: 700;
         color: #fff;
-        letter-spacing: -0.01em;
       }
       .app-close {
         background: rgba(255, 255, 255, 0.2);
@@ -945,8 +967,6 @@
         justify-content: center;
         cursor: pointer;
         font-size: 0.9rem;
-        line-height: 1;
-        flex-shrink: 0;
       }
       .app-body {
         flex: 1;
@@ -958,47 +978,6 @@
       }
       .app-body::-webkit-scrollbar {
         width: 0;
-      }
-      .phone-toast {
-        position: absolute;
-        top: 60px;
-        left: 11px;
-        right: 11px;
-        background: rgba(28, 28, 30, 0.92);
-        backdrop-filter: blur(22px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        padding: 0.7rem 0.95rem;
-        z-index: 80;
-        display: none;
-        align-items: center;
-        gap: 0.55rem;
-        animation: toastin 0.3s ease;
-      }
-      .phone-toast.show {
-        display: flex;
-      }
-      @keyframes toastin {
-        from {
-          transform: translateY(-10px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      .toast-icon {
-        flex-shrink: 0;
-      }
-      .toast-text {
-        font-size: 0.74rem;
-        color: #fff;
-        line-height: 1.3;
-      }
-      .toast-title {
-        font-weight: 600;
-        font-size: 0.76rem;
       }
       #control-center {
         position: absolute;
@@ -1027,14 +1006,9 @@
         align-items: center;
         gap: 0.55rem;
         cursor: pointer;
-        transition: background 0.15s;
-      }
-      .cc-tile:active {
-        background: rgba(255, 255, 255, 0.25);
       }
       .cc-tile.wide {
         grid-column: span 2;
-        justify-content: space-between;
       }
       .cc-tile-label {
         font-size: 0.7rem;
@@ -1053,6 +1027,8 @@
         cursor: pointer;
         margin-top: auto;
       }
+
+      /* ── RESPONSIVE ── */
       @media (max-width: 960px) {
         .layout {
           grid-template-columns: 1fr;
@@ -1071,9 +1047,6 @@
         .profile-img {
           width: 150px;
           height: 150px;
-        }
-        .hero-cta {
-          justify-content: center;
         }
         .hero-body {
           max-width: 100%;
@@ -1094,34 +1067,67 @@
           padding: 1.5rem;
         }
       }
-      @media (max-width: 480px) {
+
+      /* Below 640px: swap inline links for hamburger */
+      @media (max-width: 640px) {
+        nav {
+          padding: 0 1rem;
+        }
         .nav-links {
           display: none;
         }
-        .iphone-wrap {
-          width: 260px;
-          height: 560px;
+        .nav-hamburger {
+          display: flex;
+        }
+        .nav-logo {
+          font-size: 1rem;
+        }
+        .theme-btn {
+          padding: 0.3rem 0.65rem;
+          font-size: 0.73rem;
+        }
+        .skills-cols {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
     <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Mobile nav drawer (renders above layout, outside scroll container) -->
+    <div class="nav-drawer" id="navDrawer">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="work.html">Work</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
     <div class="layout">
       <div class="portfolio-side" id="portfolioSide">
         <nav>
           <div class="nav-inner">
             <div class="nav-logo">Selorm <em>Avakame</em></div>
             <div class="nav-links">
-              <a href="index.html">Home</a
-              ><a href="about.html" class="active">About</a
-              ><a href="work.html">Work</a><a href="contact.html">Contact</a>
+              <a href="index.html">Home</a>
+              <a href="about.html" class="active">About</a>
+              <a href="work.html">Work</a>
+              <a href="contact.html">Contact</a>
             </div>
             <div class="nav-right">
               <button class="theme-btn" onclick="toggleTheme()">◐ Theme</button>
+              <button
+                class="nav-hamburger"
+                id="hamburger"
+                onclick="toggleDrawer()"
+                aria-label="Open menu"
+              >
+                ☰
+              </button>
             </div>
           </div>
         </nav>
+
         <section class="hero" id="hero">
           <div class="hero-inner">
             <div class="hero-text">
@@ -1145,6 +1151,7 @@
             </div>
           </div>
         </section>
+
         <section id="full-bio">
           <div class="section-label">Extended Bio</div>
           <h2 class="section-title">
@@ -1187,6 +1194,7 @@
             </p>
           </div>
         </section>
+
         <section id="philosophy">
           <div class="section-label">My Philosophy</div>
           <h2 class="section-title">What drives me.</h2>
@@ -1227,6 +1235,7 @@
             </div>
           </div>
         </section>
+
         <section id="interests">
           <div class="section-label">Beyond the Classroom</div>
           <h2 class="section-title">What I do for <em>fun.</em></h2>
@@ -1264,14 +1273,17 @@
             </div>
           </div>
         </section>
+
         <footer>
           <p>© 2025 Selorm Magnus Avakame — Stanford, CA</p>
           <div class="social-row">
-            <a href="https://github.com/smagnusavakame" class="soc">GH</a
-            ><a href="#" class="soc">LI</a><a href="#" class="soc">𝕏</a>
+            <a href="https://github.com/smagnusavakame" class="soc">GH</a>
+            <a href="#" class="soc">LI</a>
+            <a href="#" class="soc">𝕏</a>
           </div>
         </footer>
       </div>
+
       <div class="iphone-side">
         <div class="iphone-aura"></div>
         <div class="iphone-wrap">
@@ -1312,13 +1324,6 @@
               </div>
             </div>
             <div class="scroll-pill" id="scrollPill" onclick="goHome()"></div>
-            <div class="phone-toast" id="phoneToast">
-              <div class="toast-icon">📱</div>
-              <div>
-                <div class="toast-title">Notification</div>
-                <div class="toast-text" id="toastText"></div>
-              </div>
-            </div>
             <div id="control-center">
               <div class="cc-row">
                 <div class="cc-tile" onclick="ccToggle(this)">
@@ -1337,9 +1342,7 @@
                     gap: 0.4rem;
                   "
                 >
-                  <div style="display: flex; align-items: center; gap: 0.45rem">
-                    <div class="cc-tile-label">Brightness</div>
-                  </div>
+                  <div class="cc-tile-label">Brightness</div>
                   <input type="range" class="cc-slider" value="70" />
                 </div>
               </div>
@@ -1397,10 +1400,11 @@
         </div>
       </div>
     </div>
+
     <script>
-      // Same iPhone logic as index.html
       let unlocked = false,
         currentApp = null;
+
       function updateClock() {
         const n = new Date(),
           h = n.getHours().toString().padStart(2, "0"),
@@ -1439,17 +1443,36 @@
       }
       updateClock();
       setInterval(updateClock, 30000);
+
       function toggleTheme() {
         document.body.classList.toggle("light");
       }
+
+      // Hamburger drawer
+      function toggleDrawer() {
+        const drawer = document.getElementById("navDrawer");
+        const btn = document.getElementById("hamburger");
+        const isOpen = drawer.classList.toggle("open");
+        btn.textContent = isOpen ? "✕" : "☰";
+        btn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      }
+      document.querySelectorAll(".nav-drawer a").forEach((a) => {
+        a.addEventListener("click", () => {
+          document.getElementById("navDrawer").classList.remove("open");
+          document.getElementById("hamburger").textContent = "☰";
+        });
+      });
+
       const ps = document.getElementById("portfolioSide"),
         sp = document.getElementById("scrollProgress");
       ps.addEventListener("scroll", function () {
         const pct = (ps.scrollTop / (ps.scrollHeight - ps.clientHeight)) * 100;
         sp.style.width = pct + "%";
       });
+
       const lockDiv = document.getElementById("lock-screen"),
         homeDiv = document.getElementById("home-screen");
+
       function unlock() {
         if (unlocked) return;
         unlocked = true;
@@ -1464,6 +1487,7 @@
         }, 380);
       }
       lockDiv.addEventListener("click", unlock);
+
       function goHome() {
         const appScr = document.getElementById("app-screen");
         if (appScr.classList.contains("visible")) {
@@ -1477,9 +1501,16 @@
         )
           closeCC();
       }
+      function closeCC() {
+        document.getElementById("control-center").classList.remove("visible");
+      }
+      function ccToggle(el) {
+        el.style.background = el.style.background
+          ? ""
+          : "rgba(255,255,255,0.28)";
+      }
       function closeApp() {
-        const appScr = document.getElementById("app-screen");
-        appScr.classList.remove("visible");
+        document.getElementById("app-screen").classList.remove("visible");
         currentApp = null;
       }
       function openApp(name) {
@@ -1498,18 +1529,18 @@
           "linear-gradient(135deg,#8C1515,#b83a3a)";
         let html = "";
         if (name === "portfolio")
-          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div class="app-section"><div class="app-section-title">Bio</div><div class="app-row"><div class="app-row-text"><div class="app-row-sub">CS student at Stanford. Building at intersection of AI, climate tech, and African innovation. Founder of Katalyze Africa. 2x African Service Fellow.</div></div></div></div>`;
+          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div style="padding:.5rem 0;color:#333;font-size:.82rem;line-height:1.7">CS student at Stanford. Building at intersection of AI, climate tech, and African innovation. Founder of Katalyze Africa. 2x African Service Fellow.</div>`;
         else if (name === "projects")
-          html = `<div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Drop It Off — iOS App</div><div>4.8★ · 1K+ downloads · Swift + Firebase</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">CS124 AI Booking Agent</div><div>Python · DSPy · ReAct pattern</div></div>`;
+          html = `<div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Drop It Off — iOS App</div><div style="font-size:.75rem;color:#666">4.8★ · 1K+ downloads · Swift + Firebase</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">CS124 AI Booking Agent</div><div style="font-size:.75rem;color:#666">Python · DSPy · ReAct pattern</div></div>`;
         else if (name === "resume")
-          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button class="btn-primary" style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff" onclick="showToast('📄','Download','Resume would download here')">Download Resume</button></div>`;
+          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff;font-weight:600;cursor:pointer">Download Resume</button></div>`;
         else
           html =
             '<div style="padding:1rem;color:#8e8e93;text-align:center">Coming soon</div>';
         document.getElementById("appBody").innerHTML = html;
-        const appScr = document.getElementById("app-screen");
-        appScr.classList.add("visible");
+        document.getElementById("app-screen").classList.add("visible");
       }
+
       function renderHomeScreen() {
         const grid = document.getElementById("homeGrid"),
           dock = document.getElementById("dock");
@@ -1537,6 +1568,7 @@
             )
             .join("");
       }
+
       window.openApp = openApp;
       window.closeApp = closeApp;
       window.goHome = goHome;
