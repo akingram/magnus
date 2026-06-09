@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Selorm Avakame</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Same exact styles as work.html — full CSS from about.html */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #0b0a0f;
+        --bg2: #111018;
+        --bg3: #18162080;
+        --surface: rgba(255, 255, 255, 0.03);
+        --surface2: rgba(255, 255, 255, 0.065);
+        --border: rgba(255, 255, 255, 0.07);
+        --border2: rgba(255, 255, 255, 0.13);
+        --text: #ede9e0;
+        --text2: #9e9a90;
+        --text3: #5a5750;
+        --accent: #8c1515;
+        --accent2: #b83a4b;
+        --indigo: #8c1515;
+        --teal: #4d4f53;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+      }
+      body.light {
+        --bg: #f7f4ef;
+        --bg2: #ede9e0;
+        --bg3: #e5e0d5;
+        --surface: rgba(0, 0, 0, 0.03);
+        --surface2: rgba(0, 0, 0, 0.055);
+        --border: rgba(0, 0, 0, 0.07);
+        --border2: rgba(0, 0, 0, 0.13);
+        --text: #18160f;
+        --text2: #5a5750;
+        --text3: #a09890;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 1fr 480px;
+        min-height: 100vh;
+      }
+      .portfolio-side {
+        overflow-y: auto;
+        height: 100vh;
+      }
+      .iphone-side {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(
+          ellipse 70% 80% at 60% 40%,
+          #1a1535 0%,
+          var(--bg) 70%
+        );
+        border-left: 1px solid var(--border);
+        overflow: hidden;
+      }
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(24px);
+        background: rgba(11, 10, 15, 0.75);
+        border-bottom: 1px solid var(--border);
+        padding: 0 2.5rem;
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+      }
+      .nav-logo {
+        font-family: "Lora", serif;
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .nav-logo em {
+        color: var(--accent);
+        font-style: italic;
+      }
+      .nav-links {
+        display: flex;
+        gap: 0.25rem;
+      }
+      .nav-links a {
+        color: var(--text2);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+        background: var(--surface2);
+      }
+      .nav-right {
+        display: flex;
+        gap: 0.6rem;
+      }
+      .theme-btn {
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        color: var(--text2);
+        border-radius: 100px;
+        padding: 0.35rem 0.9rem;
+        cursor: pointer;
+        font-size: 0.78rem;
+      }
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: var(--accent);
+        z-index: 999;
+        transition: width 0.1s;
+      }
+      .hero {
+        padding: 5rem 2.75rem 4rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2.5rem;
+        align-items: center;
+      }
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      .hero-kicker::before {
+        content: "";
+        width: 2rem;
+        height: 1px;
+        background: var(--accent);
+      }
+      .hero h1 {
+        font-family: "Lora", serif;
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+        font-weight: 500;
+        line-height: 1.12;
+        margin-bottom: 1.25rem;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-body {
+        color: var(--text2);
+        font-size: 0.95rem;
+        max-width: 400px;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+      .hero-image-col {
+        flex-shrink: 0;
+      }
+      .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--accent);
+        display: block;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #0b0a0f;
+        border: none;
+        padding: 0.7rem 1.6rem;
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.22s;
+      }
+      .btn-primary:hover {
+        background: var(--accent2);
+        transform: translateY(-1px);
+      }
+      section {
+        padding: 4.5rem 2.75rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .section-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--accent);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 0.9rem;
+      }
+      .section-title {
+        font-family: "Lora", serif;
+        font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+        font-weight: 500;
+        margin-bottom: 2.25rem;
+      }
+      .section-title em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+      .contact-lede {
+        font-family: "Lora", serif;
+        font-style: italic;
+        font-size: 1.05rem;
+        color: var(--text2);
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .clink {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text2);
+        text-decoration: none;
+        font-size: 0.86rem;
+        padding: 0.7rem 0.9rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        transition: all 0.18s;
+      }
+      .clink:hover {
+        color: var(--text);
+        border-color: var(--border2);
+        background: var(--surface2);
+      }
+      .clink-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
+        background: var(--surface2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .fgroup {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .fgroup label {
+        font-size: 0.72rem;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .fgroup input,
+      .fgroup textarea {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        padding: 0.65rem 0.9rem;
+        color: var(--text);
+        font-size: 0.86rem;
+        font-family: inherit;
+        outline: none;
+      }
+      .fgroup input:focus,
+      .fgroup textarea:focus {
+        border-color: var(--accent);
+      }
+      .fgroup textarea {
+        min-height: 90px;
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 1.75rem 2.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      footer p {
+        font-size: 0.76rem;
+        color: var(--text3);
+      }
+      .social-row {
+        display: flex;
+        gap: 0.4rem;
+      }
+      .soc {
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text2);
+        text-decoration: none;
+        font-size: 0.72rem;
+        font-weight: 600;
+        transition: all 0.18s;
+      }
+      .soc:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      /* iPhone styles (same) */
+      .iphone-aura {
+        position: absolute;
+        inset: -30px;
+        border-radius: 80px;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(91, 95, 214, 0.12) 0%,
+          transparent 65%
+        );
+        animation: aura 5s ease-in-out infinite alternate;
+        pointer-events: none;
+      }
+      @keyframes aura {
+        to {
+          opacity: 0.6;
+        }
+      }
+      .iphone-wrap {
+        position: relative;
+        width: 320px;
+        height: 680px;
+        filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.75));
+        z-index: 1;
+      }
+      .iphone-frame {
+        position: absolute;
+        inset: 0;
+        border-radius: 52px;
+        background: linear-gradient(
+          145deg,
+          #3f3f41 0%,
+          #2c2c2e 35%,
+          #1c1c1e 70%,
+          #2a2a2c 100%
+        );
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+      }
+      .iphone-screen {
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        right: 7px;
+        bottom: 7px;
+        border-radius: 45px;
+        overflow: hidden;
+        background: #000;
+        isolation: isolate;
+      }
+      .dynamic-island {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90px;
+        height: 28px;
+        background: #000;
+        border-radius: 20px;
+        z-index: 50;
+        cursor: pointer;
+      }
+      .status-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.2rem 0 0.9rem;
+      }
+      .status-time {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .scroll-pill {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.28);
+        border-radius: 3px;
+        z-index: 50;
+      }
+      #lock-screen {
+        background: linear-gradient(
+          160deg,
+          #0a0a2e 0%,
+          #1a0a3e 40%,
+          #0d1b3e 100%
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 60px;
+        cursor: pointer;
+      }
+      .lock-time {
+        font-size: 4rem;
+        font-weight: 200;
+        color: #fff;
+        margin-bottom: 0.3rem;
+      }
+      .lock-date {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 2rem;
+      }
+      .lock-notif {
+        background: rgba(255, 255, 255, 0.11);
+        backdrop-filter: blur(20px);
+        border-radius: 16px;
+        padding: 0.85rem 0.95rem;
+        margin: 0 1rem 0.7rem;
+        width: calc(100% - 2rem);
+      }
+      .faceid-ring {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.28);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.4rem;
+      }
+      .swipe-hint {
+        position: absolute;
+        bottom: 2.5rem;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 0.7rem;
+        text-align: center;
+        width: 100%;
+      }
+      #home-screen {
+        background: linear-gradient(
+          160deg,
+          #0d0d2e 0%,
+          #1a0d3d 50%,
+          #0a1528 100%
+        );
+        display: none;
+        flex-direction: column;
+      }
+      .home-grid {
+        padding: 54px 14px 8px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 11px;
+      }
+      .app-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+      }
+      .app-icon-img {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      }
+      .app-label {
+        font-size: 0.58rem;
+        color: rgba(255, 255, 255, 0.83);
+      }
+      .dock {
+        position: absolute;
+        bottom: 16px;
+        left: 14px;
+        right: 14px;
+        background: rgba(255, 255, 255, 0.11);
+        backdrop-filter: blur(22px);
+        border-radius: 20px;
+        padding: 11px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+      .widget-row {
+        padding: 0 14px 12px;
+        display: flex;
+        gap: 9px;
+      }
+      .widget {
+        background: rgba(255, 255, 255, 0.09);
+        backdrop-filter: blur(15px);
+        border-radius: 14px;
+        flex: 1;
+        padding: 0.6rem;
+      }
+      .widget-val {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      #app-screen {
+        position: absolute;
+        inset: 0;
+        background: #f2f2f7;
+        display: none;
+        flex-direction: column;
+        z-index: 20;
+        border-radius: 45px;
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      #app-screen.visible {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+      }
+      .app-header {
+        padding: 52px 0.95rem 0.95rem;
+        display: flex;
+        justify-content: space-between;
+      }
+      .app-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .app-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0.85rem;
+      }
+      .phone-toast {
+        position: absolute;
+        top: 60px;
+        left: 11px;
+        right: 11px;
+        background: rgba(28, 28, 30, 0.92);
+        border-radius: 14px;
+        padding: 0.7rem 0.95rem;
+        z-index: 80;
+        display: none;
+      }
+      .phone-toast.show {
+        display: flex;
+      }
+      #control-center {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(32px);
+        z-index: 60;
+        display: none;
+        padding: 58px 11px 18px;
+      }
+      #control-center.visible {
+        display: flex;
+      }
+      @media (max-width: 960px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .iphone-side {
+          display: none;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero-image-col {
+          display: flex;
+          justify-content: center;
+        }
+        .profile-image {
+          width: 150px;
+          height: 150px;
+        }
+        section {
+          padding: 3rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="layout">
+      <div class="portfolio-side" id="portfolioSide">
+        <nav>
+          <div class="nav-inner">
+            <div class="nav-logo">Selorm <em>Avakame</em></div>
+            <div class="nav-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About</a>
+              <a href="work.html">Work</a>
+              <a href="contact.html" class="active">Contact</a>
+            </div>
+            <div class="nav-right">
+              <button class="theme-btn" onclick="toggleTheme()">◐ Theme</button>
+            </div>
+          </div>
+        </nav>
+
+        <section class="hero" id="hero">
+          <div class="hero-inner">
+            <div class="hero-text">
+              <div class="hero-kicker">Get in Touch</div>
+              <h1>Let's build something <em>worth building.</em></h1>
+              <p class="hero-body">
+                I'm usually quick to respond. Whether it's a research
+                collaboration, a startup idea, or just a conversation about AI,
+                climate, or African tech — I'm happy to talk.
+              </p>
+            </div>
+            <div class="hero-image-col">
+              <img
+                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop"
+                alt="Selorm Avakame"
+                class="profile-image"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section id="contact-full">
+          <div class="contact-layout">
+            <div>
+              <div class="contact-lede">Reach me directly:</div>
+              <div class="contact-links">
+                <a href="mailto:smagnusavakame1@gmail.com" class="clink"
+                  ><div class="clink-icon">✉️</div>
+                  smagnusavakame1@gmail.com</a
+                >
+                <a href="mailto:smagnus1@stanford.edu" class="clink"
+                  ><div class="clink-icon">🎓</div>
+                  smagnus1@stanford.edu</a
+                >
+                <a href="tel:+16506654959" class="clink"
+                  ><div class="clink-icon">📱</div>
+                  +1 (650) 665 4959</a
+                >
+                <a href="tel:+233554041072" class="clink"
+                  ><div class="clink-icon">🇬🇭</div>
+                  +233 554 041 072</a
+                >
+                <a href="https://github.com/smagnusavakame" class="clink"
+                  ><div class="clink-icon">🐙</div>
+                  github.com/smagnusavakame</a
+                >
+                <a href="#" class="clink"
+                  ><div class="clink-icon">💼</div>
+                  linkedin.com/in/selormavakame</a
+                >
+              </div>
+            </div>
+            <div class="contact-form">
+              <div class="fgroup">
+                <label>Name</label><input type="text" placeholder="Your name" />
+              </div>
+              <div class="fgroup">
+                <label>Email</label
+                ><input type="email" placeholder="you@example.com" />
+              </div>
+              <div class="fgroup">
+                <label>Message</label
+                ><textarea
+                  placeholder="Tell me about your project, research, or just say hello..."
+                ></textarea>
+              </div>
+              <button
+                class="btn-primary"
+                style="width: 100%"
+                onclick="
+                  alert(
+                    'Message sent (demo). Thanks for reaching out, Selorm will respond soon!',
+                  )
+                "
+              >
+                Send message →
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="locations">
+          <div class="section-label">Where to find me</div>
+          <h2 class="section-title">Stanford & <em>beyond.</em></h2>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem">
+            <div class="skill-group">
+              <div class="skill-group-name">On Campus</div>
+              <div class="skill-pills">
+                <span class="pill"
+                  >Ujamaa House (African & African American themed dorm)</span
+                ><span class="pill">Huang Engineering Center</span
+                ><span class="pill">Terman Engineering</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-name">Off Campus</div>
+              <div class="skill-pills">
+                <span class="pill">San Francisco (weekends)</span
+                ><span class="pill">Accra, Ghana (breaks)</span
+                ><span class="pill"
+                  >Nairobi, Kenya (partner at Kenyatta University)</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <p>© 2025 Selorm Magnus Avakame — Stanford, CA</p>
+          <div class="social-row">
+            <a href="https://github.com/smagnusavakame" class="soc">GH</a>
+            <a href="#" class="soc">LI</a>
+            <a href="#" class="soc">𝕏</a>
+          </div>
+        </footer>
+      </div>
+
+      <!-- IPHONE SIDE (same as other pages) -->
+      <div class="iphone-side">
+        <div class="iphone-aura"></div>
+        <div class="iphone-wrap">
+          <div class="phone-btn-l mute"></div>
+          <div class="phone-btn-l vol-up"></div>
+          <div class="phone-btn-l vol-dn"></div>
+          <div class="phone-btn-r power"></div>
+          <div class="iphone-frame">
+            <div class="camera-bump">
+              <div class="cam-lenses">
+                <div class="cam-lens"></div>
+                <div class="cam-lens"></div>
+                <div class="cam-lens small"></div>
+              </div>
+              <div class="cam-flash"></div>
+            </div>
+          </div>
+          <div class="iphone-screen" id="iphoneScreen">
+            <div class="dynamic-island">
+              <div class="di-content">
+                <div class="di-cover" style="background: #8c1515">
+                  <svg viewBox="0 0 24 24" width="20">
+                    <path d="M9 18V5l12-2v13" />
+                    <circle cx="6" cy="18" r="3" />
+                    <circle cx="18" cy="16" r="3" />
+                  </svg>
+                </div>
+                <!-- <div class="di-music">
+                  <strong>Afrobeats Mix</strong><span>Now Playing</span>
+                </div> -->
+                <div class="di-bars">
+                  <div class="di-bar"></div>
+                  <div class="di-bar"></div>
+                  <div class="di-bar"></div>
+                </div>
+              </div>
+            </div>
+            <div class="status-bar">
+              <div class="status-time" id="statusTime">9:41</div>
+              <div class="battery">
+                <div class="battery-body"><div class="battery-fill"></div></div>
+              </div>
+            </div>
+            <div class="scroll-pill" onclick="goHome()"></div>
+            <div class="phone-toast" id="phoneToast"></div>
+            <div class="iphone-screen-inner" id="lock-screen">
+              <div class="lock-time">9:41</div>
+              <div class="lock-date">Stanford · June 2026</div>
+              <div class="faceid-ring">
+                <svg viewBox="0 0 24 24" width="22">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+              <div class="lock-notif">
+                <div class="notif-app">Portfolio</div>
+                <div class="notif-text">
+                  Selorm is open for research collaborations
+                </div>
+              </div>
+              <div class="swipe-hint">↑ Swipe up to unlock</div>
+            </div>
+            <div class="iphone-screen-inner" id="home-screen">
+              <div class="home-grid" id="homeGrid"></div>
+              <div class="widget-row">
+                <div class="widget">
+                  <div class="widget-title">GPA</div>
+                  <div class="widget-val">3.94</div>
+                </div>
+                <div class="widget">
+                  <div class="widget-title">Apps</div>
+                  <div class="widget-val">1k+</div>
+                </div>
+              </div>
+              <div class="dock" id="dock"></div>
+            </div>
+            <div class="iphone-screen-inner" id="app-screen">
+              <div class="app-header">
+                <div class="app-header-title">App</div>
+                <button class="app-close" onclick="closeApp()">✕</button>
+              </div>
+              <div class="app-body" id="appBody"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Basic iPhone functionality
+      let unlocked = false,
+        currentApp = null;
+      function updateClock() {
+        const n = new Date(),
+          h = n.getHours().toString().padStart(2, "0"),
+          m = n.getMinutes().toString().padStart(2, "0"),
+          t = h + ":" + m;
+        document.getElementById("statusTime") &&
+          (document.getElementById("statusTime").textContent = t);
+        document.getElementById("lockTime") &&
+          (document.getElementById("lockTime").textContent = t);
+      }
+      updateClock();
+      setInterval(updateClock, 30000);
+      function toggleTheme() {
+        document.body.classList.toggle("light");
+      }
+      const lockScreen = document.getElementById("lock-screen"),
+        homeScreen = document.getElementById("home-screen");
+      function unlock() {
+        if (unlocked) return;
+        unlocked = true;
+        if (lockScreen && homeScreen) {
+          lockScreen.style.transform = "translateY(-100%)";
+          lockScreen.style.opacity = "0";
+          setTimeout(() => {
+            lockScreen.style.display = "none";
+            homeScreen.style.display = "flex";
+          }, 380);
+        }
+      }
+      lockScreen && lockScreen.addEventListener("click", unlock);
+      function goHome() {
+        const appScreen = document.getElementById("app-screen");
+        if (appScreen && appScreen.classList.contains("visible")) {
+          closeApp();
+        }
+      }
+      function closeApp() {
+        const s = document.getElementById("app-screen");
+        if (s) {
+          s.classList.remove("visible");
+          currentApp = null;
+        }
+      }
+      function openApp(name) {
+        if (!unlocked) unlock();
+        const appScreen = document.getElementById("app-screen");
+        if (appScreen) {
+          appScreen.classList.add("visible");
+        }
+        currentApp = name;
+      }
+      function renderHomeScreen() {
+        const homeGrid = document.getElementById("homeGrid");
+        const dock = document.getElementById("dock");
+        if (homeGrid) {
+          homeGrid.innerHTML = `<div class="app-icon" onclick="openApp('portfolio')"><div class="app-icon-img" style="background:#8C1515">🏠</div><div class="app-label">About</div></div><div class="app-icon" onclick="openApp('projects')"><div class="app-icon-img" style="background:#8C1515">🚀</div><div class="app-label">Projects</div></div><div class="app-icon" onclick="openApp('skills')"><div class="app-icon-img" style="background:#8C1515">⚡</div><div class="app-label">Skills</div></div><div class="app-icon" onclick="openApp('resume')"><div class="app-icon-img" style="background:#8C1515">📄</div><div class="app-label">Resume</div></div><div class="app-icon" onclick="openApp('contact')"><div class="app-icon-img" style="background:#8C1515">✉️</div><div class="app-label">Contact</div></div><div class="app-icon" onclick="openApp('music')"><div class="app-icon-img" style="background:#8C1515">🎵</div><div class="app-label">Music</div></div>`;
+        }
+        if (dock) {
+          dock.innerHTML = `<div class="app-icon" onclick="openApp('portfolio')"><div class="app-icon-img" style="background:#8C1515">🏠</div></div><div class="app-icon" onclick="openApp('projects')"><div class="app-icon-img" style="background:#8C1515">🚀</div></div><div class="app-icon" onclick="openApp('contact')"><div class="app-icon-img" style="background:#8C1515">✉️</div></div><div class="app-icon" onclick="openApp('music')"><div class="app-icon-img" style="background:#8C1515">🎵</div></div>`;
+        }
+      }
+      renderHomeScreen();
+    </script>
+  </body>
+</html>

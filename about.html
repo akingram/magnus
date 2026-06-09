@@ -1,0 +1,1547 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About · Selorm Avakame | Stanford CS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Copy the ENTIRE CSS block from index.html here (same styles) */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #0b0a0f;
+        --bg2: #111018;
+        --surface: rgba(255, 255, 255, 0.03);
+        --surface2: rgba(255, 255, 255, 0.065);
+        --border: rgba(255, 255, 255, 0.07);
+        --border2: rgba(255, 255, 255, 0.13);
+        --text: #ede9e0;
+        --text2: #9e9a90;
+        --text3: #5a5750;
+        --accent: #8c1515;
+        --accent2: #b83a4b;
+        --teal: #2bae66;
+      }
+      html {
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+      body.light {
+        --bg: #f7f4ef;
+        --bg2: #ede9e0;
+        --surface: rgba(0, 0, 0, 0.03);
+        --surface2: rgba(0, 0, 0, 0.055);
+        --border: rgba(0, 0, 0, 0.07);
+        --border2: rgba(0, 0, 0, 0.13);
+        --text: #18160f;
+        --text2: #5a5750;
+        --text3: #a09890;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 1fr 480px;
+        min-height: 100vh;
+      }
+      .portfolio-side {
+        overflow-y: auto;
+        height: 100vh;
+      }
+      .iphone-side {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(
+          ellipse 70% 80% at 60% 40%,
+          #1a1535 0%,
+          var(--bg) 70%
+        );
+        border-left: 1px solid var(--border);
+        overflow: hidden;
+        user-select: none;
+        isolation: isolate;
+      }
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(24px);
+        background: rgba(11, 10, 15, 0.75);
+        border-bottom: 1px solid var(--border);
+        padding: 0 2.5rem;
+      }
+      body.light nav {
+        background: rgba(247, 244, 239, 0.85);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+      }
+      .nav-logo {
+        font-family: "Lora", serif;
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .nav-logo em {
+        color: var(--accent);
+        font-style: italic;
+      }
+      .nav-links {
+        display: flex;
+        gap: 0.25rem;
+      }
+      .nav-links a {
+        color: var(--text2);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+        transition: all 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+        background: var(--surface2);
+      }
+      .nav-right {
+        display: flex;
+        gap: 0.6rem;
+      }
+      .theme-btn {
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        color: var(--text2);
+        border-radius: 100px;
+        padding: 0.35rem 0.9rem;
+        cursor: pointer;
+        font-size: 0.78rem;
+      }
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: var(--accent);
+        z-index: 999;
+        transition: width 0.1s;
+      }
+      .hero {
+        padding: 5rem 2.75rem 4rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2.5rem;
+        align-items: center;
+      }
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      .hero-kicker::before {
+        content: "";
+        width: 2rem;
+        height: 1px;
+        background: var(--accent);
+      }
+      .hero h1 {
+        font-family: "Lora", serif;
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+        font-weight: 500;
+        line-height: 1.12;
+        margin-bottom: 1.25rem;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-body {
+        color: var(--text2);
+        font-size: 0.95rem;
+        max-width: 400px;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+      .hero-image-col {
+        flex-shrink: 0;
+      }
+      .profile-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--accent);
+        display: block;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 0.7rem 1.6rem;
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.22s;
+      }
+      .btn-primary:hover {
+        background: var(--accent2);
+        transform: translateY(-1px);
+      }
+      section {
+        padding: 4.5rem 2.75rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .section-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--accent);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 0.9rem;
+      }
+      .section-title {
+        font-family: "Lora", serif;
+        font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+        font-weight: 500;
+        margin-bottom: 2.25rem;
+      }
+      .section-title em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .about-copy-full p {
+        color: var(--text2);
+        margin-bottom: 1rem;
+        line-height: 1.85;
+        font-size: 0.95rem;
+      }
+      .skills-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .skill-group {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.2rem;
+      }
+      .skill-group-name {
+        font-size: 0.68rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--text3);
+        margin-bottom: 0.8rem;
+      }
+      .pill {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 0.25rem 0.7rem;
+        font-size: 0.72rem;
+        color: var(--text2);
+        display: inline-block;
+        margin: 0.2rem 0.2rem 0 0;
+      }
+      .service-row {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.25rem;
+        padding: 1.2rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        margin-bottom: 0.75rem;
+      }
+      .service-row:hover {
+        border-color: var(--border2);
+        background: var(--surface2);
+      }
+      .svc-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--text3);
+      }
+      .svc-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+      .svc-desc {
+        font-size: 0.78rem;
+        color: var(--text2);
+        line-height: 1.6;
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 1.5rem 2.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      footer p {
+        font-size: 0.72rem;
+        color: var(--text3);
+      }
+      .social-row {
+        display: flex;
+        gap: 0.4rem;
+      }
+      .soc {
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text2);
+        text-decoration: none;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+      .soc:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      /* iPhone styles - same as index */
+      .iphone-aura {
+        position: absolute;
+        inset: -30px;
+        border-radius: 80px;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(91, 95, 214, 0.12) 0%,
+          transparent 65%
+        );
+        animation: aura 5s ease-in-out infinite alternate;
+      }
+      @keyframes aura {
+        to {
+          opacity: 0.6;
+        }
+      }
+      .iphone-wrap {
+        position: relative;
+        width: 320px;
+        height: 680px;
+        filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.75));
+        z-index: 1;
+      }
+      .iphone-frame {
+        position: absolute;
+        inset: 0;
+        border-radius: 52px;
+        background: linear-gradient(
+          145deg,
+          #3f3f41 0%,
+          #2c2c2e 35%,
+          #1c1c1e 70%,
+          #2a2a2c 100%
+        );
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22),
+          0 0 0 0.5px #000;
+      }
+      .iphone-screen {
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        right: 7px;
+        bottom: 7px;
+        border-radius: 45px;
+        overflow: hidden;
+        background: #000;
+        isolation: isolate;
+        overscroll-behavior: contain;
+      }
+      .iphone-screen-inner {
+        position: absolute;
+        inset: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+      .phone-btn-l {
+        position: absolute;
+        left: -4px;
+        background: #2c2c2e;
+        width: 4px;
+        border-radius: 2px 0 0 2px;
+      }
+      .phone-btn-r {
+        position: absolute;
+        right: -4px;
+        background: #2c2c2e;
+        width: 4px;
+        border-radius: 0 2px 2px 0;
+      }
+      .vol-up {
+        top: 115px;
+        height: 40px;
+      }
+      .vol-dn {
+        top: 168px;
+        height: 40px;
+      }
+      .mute {
+        top: 92px;
+        height: 28px;
+      }
+      .power {
+        top: 150px;
+        height: 62px;
+      }
+      .camera-bump {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(145deg, #3a3a3c, #2c2c2e);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cam-lenses {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        padding: 4px;
+      }
+      .cam-lens {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #1a1a1c;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 0 5px rgba(91, 95, 214, 0.2);
+      }
+      .cam-lens.small {
+        width: 9px;
+        height: 9px;
+        background: #111;
+        margin-top: 4px;
+      }
+      .cam-flash {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #c9a96e;
+        box-shadow: 0 0 5px rgba(201, 169, 110, 0.5);
+      }
+      .dynamic-island {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90px;
+        height: 28px;
+        background: #000;
+        border-radius: 20px;
+        z-index: 50;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        cursor: pointer;
+      }
+      .dynamic-island.expanded {
+        width: 220px;
+        height: 72px;
+        top: 8px;
+      }
+      .di-content {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.45rem 0.85rem;
+        height: 100%;
+      }
+      .dynamic-island.expanded .di-content {
+        display: flex;
+      }
+      .di-music {
+        font-size: 0.6rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .di-music strong {
+        display: block;
+        color: #fff;
+        font-size: 0.65rem;
+        margin-bottom: 0.1rem;
+      }
+      .di-bars {
+        display: flex;
+        gap: 2px;
+        align-items: flex-end;
+        height: 16px;
+      }
+      .di-bar {
+        width: 3px;
+        background: #c9a96e;
+        border-radius: 2px;
+        animation: dibar 1s ease-in-out infinite alternate;
+      }
+      .di-bar:nth-child(2) {
+        animation-delay: 0.2s;
+        height: 60%;
+      }
+      .di-bar:nth-child(3) {
+        animation-delay: 0.4s;
+        height: 100%;
+      }
+      .di-bar:nth-child(1) {
+        height: 40%;
+      }
+      @keyframes dibar {
+        to {
+          transform: scaleY(1.8);
+        }
+      }
+      .di-cover {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+      }
+      .status-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.2rem 0 0.9rem;
+      }
+      .status-time {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #fff;
+        margin-top: 2px;
+      }
+      .status-icons {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 2px;
+      }
+      .signal-bars {
+        display: flex;
+        gap: 1.5px;
+        align-items: flex-end;
+        height: 10px;
+      }
+      .signal-bar {
+        width: 2.5px;
+        background: #fff;
+        border-radius: 1px;
+      }
+      .signal-bar:nth-child(1) {
+        height: 40%;
+      }
+      .signal-bar:nth-child(2) {
+        height: 65%;
+      }
+      .signal-bar:nth-child(3) {
+        height: 85%;
+      }
+      .signal-bar:nth-child(4) {
+        height: 100%;
+      }
+      .battery {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+      }
+      .battery-body {
+        width: 20px;
+        height: 10px;
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        border-radius: 3px;
+        position: relative;
+        overflow: hidden;
+      }
+      .battery-fill {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        bottom: 1px;
+        width: 80%;
+        background: #fff;
+        border-radius: 1px;
+      }
+      .battery-tip {
+        width: 2px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 0 1px 1px 0;
+      }
+      .scroll-pill {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.28);
+        border-radius: 3px;
+        z-index: 50;
+        cursor: pointer;
+      }
+      #lock-screen {
+        background: linear-gradient(
+          160deg,
+          #0a0a2e 0%,
+          #1a0a3e 40%,
+          #0d1b3e 100%
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 60px;
+        cursor: pointer;
+      }
+      .lock-bg-orb {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(91, 95, 214, 0.28) 0%,
+          transparent 70%
+        );
+        top: 28%;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      .lock-time {
+        font-size: 4rem;
+        font-weight: 200;
+        color: #fff;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+        position: relative;
+        z-index: 1;
+        font-family: "Lora", serif;
+      }
+      .lock-date {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.65);
+        position: relative;
+        z-index: 1;
+        margin-bottom: 2rem;
+      }
+      .lock-notif {
+        background: rgba(255, 255, 255, 0.11);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 16px;
+        padding: 0.85rem 0.95rem;
+        margin: 0 1rem 0.7rem;
+        width: calc(100% - 2rem);
+        position: relative;
+        z-index: 1;
+      }
+      .notif-app {
+        font-size: 0.62rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.22rem;
+        font-weight: 500;
+      }
+      .notif-text {
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.4;
+      }
+      .faceid-ring {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.28);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.4rem;
+        animation: faceid 3s ease-in-out infinite;
+        position: relative;
+        z-index: 1;
+      }
+      @keyframes faceid {
+        0%,
+        100% {
+          border-color: rgba(255, 255, 255, 0.2);
+          box-shadow: none;
+        }
+        50% {
+          border-color: rgba(201, 169, 110, 0.8);
+          box-shadow: 0 0 16px rgba(201, 169, 110, 0.35);
+        }
+      }
+      .swipe-hint {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 0.7rem;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .swipe-arrow {
+        display: block;
+        animation: swipeup 2s ease-in-out infinite;
+      }
+      @keyframes swipeup {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.38;
+        }
+        50% {
+          transform: translateY(-9px);
+          opacity: 0.8;
+        }
+      }
+      #home-screen {
+        background: linear-gradient(
+          160deg,
+          #0d0d2e 0%,
+          #1a0d3d 50%,
+          #0a1528 100%
+        );
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .home-wallpaper-orb {
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(79, 70, 229, 0.22) 0%,
+          transparent 70%
+        );
+        top: 13%;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      .home-wallpaper-orb2 {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(44, 196, 168, 0.13) 0%,
+          transparent 70%
+        );
+        bottom: 22%;
+        right: 8%;
+        pointer-events: none;
+      }
+      .home-grid {
+        padding: 54px 14px 8px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 11px;
+        flex: 1;
+        position: relative;
+        z-index: 5;
+        align-content: start;
+      }
+      .app-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        transition: transform 0.15s;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+      }
+      .app-icon:active {
+        transform: scale(0.86);
+      }
+      .app-icon-img {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+        position: relative;
+        overflow: hidden;
+      }
+      .app-icon-img svg {
+        width: 26px;
+        height: 26px;
+        fill: none;
+        stroke: #fff;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .app-label {
+        font-size: 0.58rem;
+        color: rgba(255, 255, 255, 0.83);
+        font-weight: 500;
+        text-align: center;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+      }
+      .app-badge {
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        background: #ff3b30;
+        color: #fff;
+        font-size: 0.44rem;
+        font-weight: 700;
+        padding: 1px 4px;
+        border-radius: 10px;
+        border: 1.5px solid #000;
+        min-width: 14px;
+        text-align: center;
+      }
+      .dock {
+        position: absolute;
+        bottom: 16px;
+        left: 14px;
+        right: 14px;
+        background: rgba(255, 255, 255, 0.11);
+        backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 20px;
+        padding: 11px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        z-index: 10;
+      }
+      .widget-row {
+        padding: 0 14px 12px;
+        display: flex;
+        gap: 9px;
+        position: relative;
+        z-index: 5;
+      }
+      .widget {
+        background: rgba(255, 255, 255, 0.09);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 14px;
+        flex: 1;
+        padding: 0.6rem;
+        overflow: hidden;
+      }
+      .widget-title {
+        font-size: 0.54rem;
+        color: rgba(255, 255, 255, 0.48);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.25rem;
+      }
+      .widget-val {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .widget-sub {
+        font-size: 0.5rem;
+        color: rgba(255, 255, 255, 0.42);
+        margin-top: 0.1rem;
+      }
+      #app-screen {
+        position: absolute;
+        inset: 0;
+        background: #f2f2f7;
+        display: none;
+        flex-direction: column;
+        z-index: 70;
+        border-radius: 45px;
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0.85);
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      #app-screen.visible {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+      }
+      .app-header {
+        padding: 52px 0.95rem 0.95rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+      .app-header-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.01em;
+      }
+      .app-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 0.9rem;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .app-body {
+        flex: 1;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.85rem;
+        background: #f2f2f7;
+        overscroll-behavior: contain;
+      }
+      .app-body::-webkit-scrollbar {
+        width: 0;
+      }
+      .phone-toast {
+        position: absolute;
+        top: 60px;
+        left: 11px;
+        right: 11px;
+        background: rgba(28, 28, 30, 0.92);
+        backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 0.7rem 0.95rem;
+        z-index: 80;
+        display: none;
+        align-items: center;
+        gap: 0.55rem;
+        animation: toastin 0.3s ease;
+      }
+      .phone-toast.show {
+        display: flex;
+      }
+      @keyframes toastin {
+        from {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .toast-icon {
+        flex-shrink: 0;
+      }
+      .toast-text {
+        font-size: 0.74rem;
+        color: #fff;
+        line-height: 1.3;
+      }
+      .toast-title {
+        font-weight: 600;
+        font-size: 0.76rem;
+      }
+      #control-center {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(32px);
+        z-index: 60;
+        display: none;
+        padding: 58px 11px 18px;
+        flex-direction: column;
+        gap: 9px;
+      }
+      #control-center.visible {
+        display: flex;
+      }
+      .cc-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+      .cc-tile {
+        background: rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        padding: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .cc-tile:active {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .cc-tile.wide {
+        grid-column: span 2;
+        justify-content: space-between;
+      }
+      .cc-tile-label {
+        font-size: 0.7rem;
+        color: #fff;
+        font-weight: 500;
+      }
+      .cc-close {
+        align-self: center;
+        background: rgba(255, 255, 255, 0.14);
+        border: none;
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 0.9rem;
+        cursor: pointer;
+        margin-top: auto;
+      }
+      @media (max-width: 960px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .iphone-side {
+          display: none;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero-image-col {
+          display: flex;
+          justify-content: center;
+        }
+        .profile-img {
+          width: 150px;
+          height: 150px;
+        }
+        .hero-cta {
+          justify-content: center;
+        }
+        .hero-body {
+          max-width: 100%;
+        }
+        .hero h1 {
+          font-size: clamp(1.9rem, 6vw, 2.8rem);
+        }
+        section {
+          padding: 3rem 1.5rem;
+        }
+        .hero {
+          padding: 3.5rem 1.5rem 3rem;
+        }
+        nav {
+          padding: 0 1.5rem;
+        }
+        footer {
+          padding: 1.5rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .nav-links {
+          display: none;
+        }
+        .iphone-wrap {
+          width: 260px;
+          height: 560px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="layout">
+      <div class="portfolio-side" id="portfolioSide">
+        <nav>
+          <div class="nav-inner">
+            <div class="nav-logo">Selorm <em>Avakame</em></div>
+            <div class="nav-links">
+              <a href="index.html">Home</a
+              ><a href="about.html" class="active">About</a
+              ><a href="work.html">Work</a><a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-right">
+              <button class="theme-btn" onclick="toggleTheme()">◐ Theme</button>
+            </div>
+          </div>
+        </nav>
+        <section class="hero" id="hero">
+          <div class="hero-inner">
+            <div class="hero-text">
+              <div class="hero-kicker">Personal Story</div>
+              <h1>Education as <em>liberation.</em></h1>
+              <p class="hero-body">
+                "My journey from a limited set of high school options in Ghana,
+                through PRESEC's General Arts track, to Stanford's open
+                curriculum mirrors what Plato describes in the Allegory of the
+                Cave. That framing shapes how I talk about my own path and how I
+                think about the kind of access I want my future work to create
+                for others."
+              </p>
+            </div>
+            <div class="hero-image-col">
+              <img
+                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop"
+                alt="Selorm Avakame"
+                class="profile-img"
+              />
+            </div>
+          </div>
+        </section>
+        <section id="full-bio">
+          <div class="section-label">Extended Bio</div>
+          <h2 class="section-title">
+            From Accra to Stanford,<br /><em>building with purpose.</em>
+          </h2>
+          <div class="about-copy-full">
+            <p>
+              I am a sophomore studying Computer Science (AI track) at Stanford
+              University, with additional study for a minor in Earth Systems. I
+              came to Stanford as an international student from Accra, Ghana, on
+              a full ride for a
+              <strong>$400,000 Leland Scholarship</strong> covering meals,
+              tuition, room, and board.
+            </p>
+            <p>
+              My long-term goal is to launch a climate tech startup at the
+              intersection of AI, machine learning, and human-computer
+              interaction, while building an accelerator for African startups.
+              The work I am most proud of so far sits at the meeting point of
+              software and social impact: a published iOS app shipped to
+              thousands of users, a Flutter safety app that won a national
+              hackathon, and earlier work upcycling plastic waste into school
+              furniture in Ghana.
+            </p>
+            <p>
+              I think of education as liberation and self-discovery. My journey
+              from a limited set of high school options in Ghana, through
+              PRESEC's General Arts track, to Stanford's open curriculum mirrors
+              what Plato describes in the Allegory of the Cave. That framing
+              shapes how I talk about my own path and how I think about the kind
+              of access I want my future work to create for others.
+            </p>
+            <p>
+              When I'm not coding, you'll find me deeply embedded in Football
+              Twitter culture (which became the subject of my PWR 2 paper),
+              learning to swim at Stanford, or exploring Japanese, American, and
+              Indian/Pakistani cuisine around the Bay Area. My partner is based
+              at Kenyatta University in Nairobi, and I split my time between
+              Ujamaa House and Accra during breaks.
+            </p>
+          </div>
+        </section>
+        <section id="philosophy">
+          <div class="section-label">My Philosophy</div>
+          <h2 class="section-title">What drives me.</h2>
+          <div class="service-row">
+            <span class="svc-num">01</span>
+            <div>
+              <div class="svc-title">Education as Liberation</div>
+              <div class="svc-desc">
+                I believe access to quality education is the most powerful lever
+                for changing lives and communities. The Leland Scholarship made
+                Stanford possible for me — I want to build similar pathways for
+                others.
+              </div>
+            </div>
+          </div>
+          <div class="service-row">
+            <span class="svc-num">02</span>
+            <div>
+              <div class="svc-title">AI for Climate & Africa</div>
+              <div class="svc-desc">
+                Technology should serve the places and people who need it most —
+                not just the wealthiest markets. My research and building focus
+                on adapting AI to smallholder agriculture and climate
+                resilience.
+              </div>
+            </div>
+          </div>
+          <div class="service-row">
+            <span class="svc-num">03</span>
+            <div>
+              <div class="svc-title">Building in Public</div>
+              <div class="svc-desc">
+                I share what I learn so others can follow. Open source, open
+                notes, open doors. The projects I build are documented, the
+                research I do is shared, and the accelerator I'm building is
+                designed to be replicated.
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="interests">
+          <div class="section-label">Beyond the Classroom</div>
+          <h2 class="section-title">What I do for <em>fun.</em></h2>
+          <div class="skills-cols">
+            <div class="skill-group">
+              <div class="skill-group-name">Football (Soccer)</div>
+              <div class="skill-pills">
+                <span class="pill">Massive fan</span
+                ><span class="pill">Football Twitter</span
+                ><span class="pill">PWR paper subject</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-name">Creative</div>
+              <div class="skill-pills">
+                <span class="pill">Photography</span
+                ><span class="pill">Drawing</span
+                ><span class="pill">Swimming (learning!)</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-name">Food</div>
+              <div class="skill-pills">
+                <span class="pill">Japanese sushi</span
+                ><span class="pill">American burgers</span
+                ><span class="pill">Indian/Pakistani</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-name">Community</div>
+              <div class="skill-pills">
+                <span class="pill">Partner at Kenyatta University</span
+                ><span class="pill">Ujamaa House resident (2025–2027)</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer>
+          <p>© 2025 Selorm Magnus Avakame — Stanford, CA</p>
+          <div class="social-row">
+            <a href="https://github.com/smagnusavakame" class="soc">GH</a
+            ><a href="#" class="soc">LI</a><a href="#" class="soc">𝕏</a>
+          </div>
+        </footer>
+      </div>
+      <div class="iphone-side">
+        <div class="iphone-aura"></div>
+        <div class="iphone-wrap">
+          <div class="phone-btn-l mute"></div>
+          <div class="phone-btn-l vol-up"></div>
+          <div class="phone-btn-l vol-dn"></div>
+          <div class="phone-btn-r power"></div>
+          <div class="iphone-frame">
+            <div class="camera-bump">
+              <div class="cam-lenses">
+                <div class="cam-lens"></div>
+                <div class="cam-lens"></div>
+                <div class="cam-lens small"></div>
+              </div>
+              <div class="cam-flash"></div>
+            </div>
+          </div>
+          <div class="iphone-screen" id="iphoneScreen">
+            <div class="dynamic-island" id="dynamicIsland">
+              <div class="di-content">
+                <div class="di-cover" style="background: #8c1515">🎵</div>
+                <div class="di-music">
+                  <strong id="diTitle">Afrobeats Mix</strong
+                  ><span id="diSub">Now Playing</span>
+                </div>
+                <div class="di-bars">
+                  <div class="di-bar"></div>
+                  <div class="di-bar"></div>
+                  <div class="di-bar"></div>
+                </div>
+              </div>
+            </div>
+            <div class="status-bar">
+              <div class="status-time" id="statusTime">9:41</div>
+              <div class="battery">
+                <div class="battery-body"><div class="battery-fill"></div></div>
+                <div class="battery-tip"></div>
+              </div>
+            </div>
+            <div class="scroll-pill" id="scrollPill" onclick="goHome()"></div>
+            <div class="phone-toast" id="phoneToast">
+              <div class="toast-icon">📱</div>
+              <div>
+                <div class="toast-title">Notification</div>
+                <div class="toast-text" id="toastText"></div>
+              </div>
+            </div>
+            <div id="control-center">
+              <div class="cc-row">
+                <div class="cc-tile" onclick="ccToggle(this)">
+                  <div class="cc-tile-label">Wi-Fi</div>
+                </div>
+                <div class="cc-tile" onclick="ccToggle(this)">
+                  <div class="cc-tile-label">Bluetooth</div>
+                </div>
+              </div>
+              <div class="cc-row">
+                <div
+                  class="cc-tile wide"
+                  style="
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.4rem;
+                  "
+                >
+                  <div style="display: flex; align-items: center; gap: 0.45rem">
+                    <div class="cc-tile-label">Brightness</div>
+                  </div>
+                  <input type="range" class="cc-slider" value="70" />
+                </div>
+              </div>
+              <button class="cc-close" onclick="closeCC()">✕</button>
+            </div>
+            <div class="iphone-screen-inner" id="lock-screen">
+              <div class="lock-bg-orb"></div>
+              <div class="lock-time" id="lockTime">9:41</div>
+              <div class="lock-date" id="lockDate">Stanford · June 2026</div>
+              <div class="faceid-ring">👤</div>
+              <div class="lock-notif">
+                <div class="notif-app">Portfolio</div>
+                <div class="notif-text">
+                  Selorm is open for research collaborations
+                </div>
+              </div>
+              <div class="lock-notif">
+                <div class="notif-app">Katalyze Africa</div>
+                <div class="notif-text">
+                  New chapter application received from Nairobi
+                </div>
+              </div>
+              <div class="swipe-hint">
+                <span class="swipe-arrow">↑</span>Swipe up to unlock
+              </div>
+            </div>
+            <div class="iphone-screen-inner" id="home-screen">
+              <div class="home-wallpaper-orb"></div>
+              <div class="home-wallpaper-orb2"></div>
+              <div class="home-grid" id="homeGrid"></div>
+              <div class="widget-row">
+                <div class="widget">
+                  <div class="widget-title">GPA</div>
+                  <div class="widget-val">3.94</div>
+                </div>
+                <div class="widget">
+                  <div class="widget-title">Apps</div>
+                  <div class="widget-val">1k+</div>
+                </div>
+                <div class="widget">
+                  <div class="widget-title">Countries</div>
+                  <div class="widget-val">8+</div>
+                </div>
+              </div>
+              <div class="dock" id="dock"></div>
+            </div>
+            <div class="iphone-screen-inner" id="app-screen">
+              <div class="app-header" id="appHeader">
+                <div class="app-header-title" id="appTitle">App</div>
+                <button class="app-close" onclick="closeApp()">✕</button>
+              </div>
+              <div class="app-body" id="appBody"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Same iPhone logic as index.html
+      let unlocked = false,
+        currentApp = null;
+      function updateClock() {
+        const n = new Date(),
+          h = n.getHours().toString().padStart(2, "0"),
+          m = n.getMinutes().toString().padStart(2, "0"),
+          t = h + ":" + m;
+        if (document.getElementById("statusTime"))
+          document.getElementById("statusTime").textContent = t;
+        if (document.getElementById("lockTime"))
+          document.getElementById("lockTime").textContent = t;
+        const days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+        if (document.getElementById("lockDate"))
+          document.getElementById("lockDate").textContent =
+            days[n.getDay()] + ", " + months[n.getMonth()] + " " + n.getDate();
+      }
+      updateClock();
+      setInterval(updateClock, 30000);
+      function toggleTheme() {
+        document.body.classList.toggle("light");
+      }
+      const ps = document.getElementById("portfolioSide"),
+        sp = document.getElementById("scrollProgress");
+      ps.addEventListener("scroll", function () {
+        const pct = (ps.scrollTop / (ps.scrollHeight - ps.clientHeight)) * 100;
+        sp.style.width = pct + "%";
+      });
+      const lockDiv = document.getElementById("lock-screen"),
+        homeDiv = document.getElementById("home-screen");
+      function unlock() {
+        if (unlocked) return;
+        unlocked = true;
+        lockDiv.style.transition = "transform .4s ease,opacity .4s";
+        lockDiv.style.transform = "translateY(-100%)";
+        lockDiv.style.opacity = "0";
+        setTimeout(() => {
+          lockDiv.style.display = "none";
+          homeDiv.style.display = "flex";
+          homeDiv.style.opacity = "1";
+          renderHomeScreen();
+        }, 380);
+      }
+      lockDiv.addEventListener("click", unlock);
+      function goHome() {
+        const appScr = document.getElementById("app-screen");
+        if (appScr.classList.contains("visible")) {
+          closeApp();
+          return;
+        }
+        if (
+          document
+            .getElementById("control-center")
+            .classList.contains("visible")
+        )
+          closeCC();
+      }
+      function closeApp() {
+        const appScr = document.getElementById("app-screen");
+        appScr.classList.remove("visible");
+        currentApp = null;
+      }
+      function openApp(name) {
+        if (!unlocked) unlock();
+        currentApp = name;
+        const titles = {
+          portfolio: "About Selorm",
+          projects: "Projects",
+          skills: "Skills",
+          resume: "Resume",
+          contact: "Contact",
+          music: "Music",
+        };
+        document.getElementById("appTitle").textContent = titles[name] || name;
+        document.getElementById("appHeader").style.background =
+          "linear-gradient(135deg,#8C1515,#b83a3a)";
+        let html = "";
+        if (name === "portfolio")
+          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div class="app-section"><div class="app-section-title">Bio</div><div class="app-row"><div class="app-row-text"><div class="app-row-sub">CS student at Stanford. Building at intersection of AI, climate tech, and African innovation. Founder of Katalyze Africa. 2x African Service Fellow.</div></div></div></div>`;
+        else if (name === "projects")
+          html = `<div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Drop It Off — iOS App</div><div>4.8★ · 1K+ downloads · Swift + Firebase</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">CS124 AI Booking Agent</div><div>Python · DSPy · ReAct pattern</div></div>`;
+        else if (name === "resume")
+          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button class="btn-primary" style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff" onclick="showToast('📄','Download','Resume would download here')">Download Resume</button></div>`;
+        else
+          html =
+            '<div style="padding:1rem;color:#8e8e93;text-align:center">Coming soon</div>';
+        document.getElementById("appBody").innerHTML = html;
+        const appScr = document.getElementById("app-screen");
+        appScr.classList.add("visible");
+      }
+      function renderHomeScreen() {
+        const grid = document.getElementById("homeGrid"),
+          dock = document.getElementById("dock");
+        const apps = [
+          { name: "portfolio", label: "About", icon: "🏠" },
+          { name: "projects", label: "Projects", icon: "🚀" },
+          { name: "skills", label: "Skills", icon: "⚡" },
+          { name: "resume", label: "Resume", icon: "📄" },
+          { name: "contact", label: "Contact", icon: "✉️" },
+          { name: "music", label: "Music", icon: "🎵" },
+        ];
+        if (grid)
+          grid.innerHTML = apps
+            .map(
+              (a) =>
+                `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div><div class="app-label">${a.label}</div></div>`,
+            )
+            .join("");
+        if (dock)
+          dock.innerHTML = apps
+            .slice(0, 4)
+            .map(
+              (a) =>
+                `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div></div>`,
+            )
+            .join("");
+      }
+      window.openApp = openApp;
+      window.closeApp = closeApp;
+      window.goHome = goHome;
+      window.toggleTheme = toggleTheme;
+      renderHomeScreen();
+    </script>
+  </body>
+</html>

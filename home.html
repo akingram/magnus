@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Mercer — Creative Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0a0f;--bg2:#111018;--bg3:#18162080;
+  --surface:rgba(255,255,255,0.03);--surface2:rgba(255,255,255,0.065);
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#ede9e0;--text2:#9e9a90;--text3:#5a5750;
+  --accent:#8C1515;--accent2:#B83A4B;--indigo:#8C1515;--teal:#4D4F53;--r:0.75rem;
+}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--text3) var(--bg2)}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6;font-size:16px}
+body.light{--bg:#f7f4ef;--bg2:#ede9e0;--bg3:#e5e0d5;--surface:rgba(0,0,0,0.03);--surface2:rgba(0,0,0,0.055);--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);--text:#18160f;--text2:#5a5750;--text3:#a09890;}
+
+/* ─── LAYOUT ─── */
+.layout{display:grid;grid-template-columns:1fr 480px;min-height:100vh}
+.portfolio-side{overflow-y:auto;height:100vh}
+.iphone-side{
+  position:sticky;top:0;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse 70% 80% at 60% 40%,#1a1535 0%,var(--bg) 70%);
+  border-left:1px solid var(--border);overflow:hidden;user-select:none;isolation:isolate
+}
+
+/* ─── NAV ─── */
+nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(24px);background:rgba(11,10,15,0.75);border-bottom:1px solid var(--border);padding:0 2.5rem}
+body.light nav{background:rgba(247,244,239,0.85)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:'Lora',serif;font-size:1.15rem;font-weight:500;letter-spacing:.01em;color:var(--text)}
+.nav-logo em{color:var(--accent);font-style:italic}
+.nav-links{display:flex;gap:.25rem;align-items:center}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.82rem;font-weight:500;padding:.35rem .85rem;border-radius:100px;transition:all .2s;cursor:pointer;letter-spacing:.01em}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--surface2)}
+.nav-right{display:flex;gap:.6rem;align-items:center}
+.theme-btn{background:var(--surface);border:1px solid var(--border2);color:var(--text2);border-radius:100px;padding:.35rem .9rem;cursor:pointer;font-size:.78rem;transition:all .2s}
+.theme-btn:hover{color:var(--text)}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:999;transition:width .1s;pointer-events:none}
+
+/* ─── HERO ─── */
+.hero{padding:5rem 2.75rem 4rem;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-inner{display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center}
+.hero-text{}
+.hero-kicker{display:inline-flex;align-items:center;gap:.6rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:2rem}
+.hero-kicker::before{content:'';width:2rem;height:1px;background:var(--accent)}
+.hero h1{font-family:'Lora',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:500;line-height:1.12;letter-spacing:-.02em;margin-bottom:1.25rem;color:var(--text)}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-body{color:var(--text2);font-size:.95rem;max-width:400px;line-height:1.8;margin-bottom:2rem;font-weight:400}
+.hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+.hero-image-col{flex-shrink:0}
+.profile-image{width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);display:block}
+.btn-primary{background:var(--accent);color:#0b0a0f;border:none;padding:.7rem 1.6rem;border-radius:100px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .22s;letter-spacing:.02em}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,169,110,.25)}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2);padding:.7rem 1.6rem;border-radius:100px;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .22s}
+.btn-ghost:hover{color:var(--text);border-color:var(--text3)}
+.avail-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(44,196,168,.1);border:1px solid rgba(44,196,168,.2);border-radius:100px;padding:.3rem .9rem;font-size:.76rem;color:var(--teal);font-weight:500}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ─── SECTIONS ─── */
+section{padding:4.5rem 2.75rem;border-bottom:1px solid var(--border)}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem}
+.section-title{font-family:'Lora',serif;font-size:clamp(1.6rem,2.5vw,2.1rem);font-weight:500;letter-spacing:-.02em;margin-bottom:2.25rem;color:var(--text);line-height:1.25}
+.section-title em{font-style:italic;color:var(--accent)}
+
+/* ─── ABOUT ─── */
+.about-layout{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:start}
+.about-copy p{color:var(--text2);margin-bottom:1.1rem;line-height:1.85;font-size:.95rem}
+.about-copy p strong{color:var(--text);font-weight:500}
+.about-aside{display:flex;flex-direction:column;gap:1rem;min-width:180px}
+.aside-fact{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem}
+.aside-num{font-family:'Lora',serif;font-size:2rem;font-weight:500;color:var(--text);line-height:1}
+.aside-num em{font-size:1.2rem;font-style:normal;color:var(--accent)}
+.aside-label{font-size:.72rem;color:var(--text3);margin-top:.2rem}
+.signature{font-family:'Lora',serif;font-style:italic;font-size:1.4rem;color:var(--text3);margin-top:.5rem;display:block}
+
+/* ─── SKILLS ─── */
+.skills-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.skill-group{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem}
+.skill-group-name{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:.9rem}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.pill{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:.28rem .75rem;font-size:.76rem;color:var(--text2);transition:all .18s;cursor:default}
+.pill:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ─── SERVICES ─── */
+.services-list{display:grid;gap:.75rem}
+.service-row{display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:1.25rem;padding:1.35rem 1.4rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;transition:all .2s}
+.service-row:hover{border-color:var(--border2);background:var(--surface2)}
+.svc-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text3);padding-top:.15rem}
+.svc-title{font-size:.95rem;font-weight:500;color:var(--text);margin-bottom:.3rem}
+.svc-desc{font-size:.82rem;color:var(--text2);line-height:1.65}
+.svc-arrow{color:var(--text3);font-size:.9rem;padding-top:.1rem}
+
+/* ─── PROJECTS ─── */
+.projects-list{display:grid;gap:1rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem;cursor:pointer;transition:all .22s;display:grid;grid-template-columns:1fr auto;gap:.75rem}
+.project-card:hover{border-color:var(--border2);transform:translateY(-2px);background:var(--surface2)}
+.project-type{font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--accent);background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.18);border-radius:100px;padding:.22rem .65rem;white-space:nowrap;align-self:start}
+.project-name{font-family:'Lora',serif;font-size:1.05rem;font-weight:500;color:var(--text);margin-bottom:.45rem}
+.project-desc{font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:.85rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-size:.7rem;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:.18rem .55rem}
+
+/* ─── TESTIMONIALS ─── */
+.testi-grid{display:grid;gap:.85rem}
+.testi-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem}
+.testi-quote{font-family:'Lora',serif;font-style:italic;font-size:.92rem;color:var(--text2);line-height:1.8;margin-bottom:1rem}
+.testi-stars{color:var(--accent);font-size:.82rem;margin-bottom:.65rem;letter-spacing:.08em}
+.testi-person{display:flex;align-items:center;gap:.75rem}
+.testi-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:#fff;flex-shrink:0}
+.testi-name{font-size:.84rem;font-weight:500;color:var(--text)}
+.testi-role{font-size:.72rem;color:var(--text3)}
+
+/* ─── EXPERIENCE ─── */
+.exp-list{display:grid;gap:0}
+.exp-item{display:grid;grid-template-columns:120px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border)}
+.exp-item:last-child{border-bottom:none}
+.exp-period{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--text3);padding-top:.15rem;line-height:1.6}
+.exp-role{font-size:.94rem;font-weight:500;color:var(--text);margin-bottom:.2rem}
+.exp-company{font-size:.8rem;color:var(--accent);margin-bottom:.55rem}
+.exp-desc{font-size:.82rem;color:var(--text2);line-height:1.7}
+
+/* ─── CONTACT ─── */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.contact-lede{font-family:'Lora',serif;font-style:italic;font-size:1.05rem;color:var(--text2);line-height:1.7;margin-bottom:1.25rem}
+.contact-links{display:flex;flex-direction:column;gap:.5rem}
+.clink{display:flex;align-items:center;gap:.75rem;color:var(--text2);text-decoration:none;font-size:.86rem;padding:.7rem .9rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;transition:all .18s}
+.clink:hover{color:var(--text);border-color:var(--border2);background:var(--surface2)}
+.clink-icon{width:30px;height:30px;border-radius:7px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.contact-form{display:flex;flex-direction:column;gap:.6rem}
+.fgroup{display:flex;flex-direction:column;gap:.3rem}
+.fgroup label{font-size:.72rem;color:var(--text3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.fgroup input,.fgroup textarea{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:.65rem .9rem;color:var(--text);font-size:.86rem;font-family:inherit;resize:none;outline:none;transition:border .18s}
+.fgroup input:focus,.fgroup textarea:focus{border-color:var(--accent)}
+.fgroup textarea{min-height:90px}
+body.light .fgroup input,body.light .fgroup textarea{color:var(--text)}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--border);padding:1.75rem 2.75rem;display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:.76rem;color:var(--text3)}
+.social-row{display:flex;gap:.4rem}
+.soc{width:32px;height:32px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;font-size:.72rem;font-weight:600;transition:all .18s}
+.soc:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ─── IPHONE ─── */
+.iphone-aura{position:absolute;inset:-30px;border-radius:80px;background:radial-gradient(ellipse at center,rgba(91,95,214,.12) 0%,transparent 65%);animation:aura 5s ease-in-out infinite alternate;pointer-events:none}
+@keyframes aura{to{opacity:.6}}
+.iphone-wrap{position:relative;width:320px;height:680px;filter:drop-shadow(0 40px 70px rgba(0,0,0,.75));z-index:1}
+.iphone-frame{position:absolute;inset:0;border-radius:52px;background:linear-gradient(145deg,#3f3f41 0%,#2c2c2e 35%,#1c1c1e 70%,#2a2a2c 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),inset 0 1px 0 rgba(255,255,255,.22),0 0 0 .5px #000}
+.iphone-screen{position:absolute;top:7px;left:7px;right:7px;bottom:7px;border-radius:45px;overflow:hidden;background:#000;isolation:isolate;overscroll-behavior:contain;touch-action:none}
+.iphone-screen-inner{position:absolute;inset:0;overscroll-behavior:contain}
+.phone-btn-l{position:absolute;left:-4px;background:#2c2c2e;width:4px;border-radius:2px 0 0 2px}
+.phone-btn-r{position:absolute;right:-4px;background:#2c2c2e;width:4px;border-radius:0 2px 2px 0}
+.vol-up{top:115px;height:40px}.vol-dn{top:168px;height:40px}.mute{top:92px;height:28px}.power{top:150px;height:62px}
+.camera-bump{position:absolute;top:13px;right:13px;width:60px;height:60px;background:linear-gradient(145deg,#3a3a3c,#2c2c2e);border-radius:16px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center}
+.cam-lenses{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:4px}
+.cam-lens{width:13px;height:13px;border-radius:50%;background:#1a1a1c;border:1px solid rgba(255,255,255,.1);box-shadow:inset 0 0 5px rgba(91,95,214,.2)}
+.cam-lens.small{width:9px;height:9px;background:#111;margin-top:4px}
+.cam-flash{position:absolute;bottom:10px;right:10px;width:6px;height:6px;border-radius:50%;background:#c9a96e;box-shadow:0 0 5px rgba(201,169,110,.5)}
+.dynamic-island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:90px;height:28px;background:#000;border-radius:20px;z-index:50;transition:all .4s cubic-bezier(.34,1.56,.64,1);cursor:pointer}
+.dynamic-island.expanded{width:220px;height:72px;top:8px}
+.di-content{display:none;align-items:center;justify-content:space-between;padding:.45rem .85rem;height:100%}
+.dynamic-island.expanded .di-content{display:flex}
+.di-music{font-size:.6rem;color:rgba(255,255,255,.7)}
+.di-music strong{display:block;color:#fff;font-size:.65rem;margin-bottom:.1rem}
+.di-bars{display:flex;gap:2px;align-items:flex-end;height:16px}
+.di-bar{width:3px;background:#c9a96e;border-radius:2px;animation:dibar 1s ease-in-out infinite alternate}
+.di-bar:nth-child(2){animation-delay:.2s;height:60%}.di-bar:nth-child(3){animation-delay:.4s;height:100%}.di-bar:nth-child(1){height:40%}
+@keyframes dibar{to{transform:scaleY(1.8)}}
+.di-cover{width:36px;height:36px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.status-bar{position:absolute;top:0;left:0;right:0;height:50px;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:0 1.2rem 0 .9rem}
+.status-time{font-size:.78rem;font-weight:600;color:#fff;margin-top:2px}
+.status-icons{display:flex;align-items:center;gap:.35rem;margin-top:2px}
+.signal-bars{display:flex;gap:1.5px;align-items:flex-end;height:10px}
+.signal-bar{width:2.5px;background:#fff;border-radius:1px}
+.signal-bar:nth-child(1){height:40%}.signal-bar:nth-child(2){height:65%}.signal-bar:nth-child(3){height:85%}.signal-bar:nth-child(4){height:100%}
+.battery{display:flex;align-items:center;gap:1px}
+.battery-body{width:20px;height:10px;border:1.5px solid rgba(255,255,255,.6);border-radius:3px;position:relative;overflow:hidden}
+.battery-fill{position:absolute;top:1px;left:1px;bottom:1px;width:80%;background:#fff;border-radius:1px}
+.battery-tip{width:2px;height:5px;background:rgba(255,255,255,.4);border-radius:0 1px 1px 0}
+.scroll-pill{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:90px;height:4px;background:rgba(255,255,255,.28);border-radius:3px;z-index:50}
+
+/* LOCK SCREEN */
+#lock-screen{background:linear-gradient(160deg,#0a0a2e 0%,#1a0a3e 40%,#0d1b3e 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:60px;cursor:pointer}
+.lock-bg-orb{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(91,95,214,.28) 0%,transparent 70%);top:28%;left:50%;transform:translateX(-50%);pointer-events:none}
+.lock-time{font-size:4rem;font-weight:200;color:#fff;letter-spacing:-.04em;line-height:1;margin-bottom:.3rem;position:relative;z-index:1;font-family:'Lora',serif}
+.lock-date{font-size:.82rem;color:rgba(255,255,255,.65);position:relative;z-index:1;margin-bottom:2rem}
+.lock-notif{background:rgba(255,255,255,.11);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:.85rem .95rem;margin:0 1rem .7rem;width:calc(100% - 2rem);position:relative;z-index:1}
+.notif-app{font-size:.62rem;color:rgba(255,255,255,.55);margin-bottom:.22rem;font-weight:500}
+.notif-text{font-size:.76rem;color:rgba(255,255,255,.88);line-height:1.4}
+.faceid-ring{width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;animation:faceid 3s ease-in-out infinite;position:relative;z-index:1}
+@keyframes faceid{0%,100%{border-color:rgba(255,255,255,.2);box-shadow:none}50%{border-color:rgba(201,169,110,.8);box-shadow:0 0 16px rgba(201,169,110,.35)}}
+.swipe-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,255,255,.38);font-size:.7rem;z-index:1;pointer-events:none}
+.swipe-arrow{display:block;animation:swipeup 2s ease-in-out infinite}
+@keyframes swipeup{0%,100%{transform:translateY(0);opacity:.38}50%{transform:translateY(-9px);opacity:.8}}
+
+/* HOME SCREEN */
+#home-screen{background:linear-gradient(160deg,#0d0d2e 0%,#1a0d3d 50%,#0a1528 100%);display:none;flex-direction:column;overflow:hidden}
+.home-wallpaper-orb{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.22) 0%,transparent 70%);top:13%;left:50%;transform:translateX(-50%);pointer-events:none}
+.home-wallpaper-orb2{position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(44,196,168,.13) 0%,transparent 70%);bottom:22%;right:8%;pointer-events:none}
+.home-grid{padding:54px 14px 8px;display:grid;grid-template-columns:repeat(4,1fr);gap:11px;flex:1;position:relative;z-index:5;align-content:start}
+.app-icon{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:transform .15s;-webkit-tap-highlight-color:transparent;user-select:none}
+.app-icon:active{transform:scale(.86)}
+.app-icon-img{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.45);position:relative;overflow:hidden}
+.app-icon-img svg{width:26px;height:26px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.app-label{font-size:.58rem;color:rgba(255,255,255,.83);font-weight:500;text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.app-badge{position:absolute;top:-3px;right:-3px;background:#ff3b30;color:#fff;font-size:.44rem;font-weight:700;padding:1px 4px;border-radius:10px;border:1.5px solid #000;min-width:14px;text-align:center}
+.dock{position:absolute;bottom:16px;left:14px;right:14px;background:rgba(255,255,255,.11);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:11px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;z-index:10}
+.widget-row{padding:0 14px 12px;display:flex;gap:9px;position:relative;z-index:5}
+.widget{background:rgba(255,255,255,.09);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.09);border-radius:14px;flex:1;padding:.6rem;overflow:hidden}
+.widget-title{font-size:.54rem;color:rgba(255,255,255,.48);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem}
+.widget-val{font-size:1.2rem;font-weight:700;color:#fff}
+.widget-sub{font-size:.5rem;color:rgba(255,255,255,.42);margin-top:.1rem}
+
+/* APP SCREEN */
+#app-screen{position:absolute;inset:0;background:#f2f2f7;display:none;flex-direction:column;z-index:20;border-radius:45px;overflow:hidden;opacity:0;transform:scale(.85)}
+#app-screen.visible{display:flex}
+.app-header{padding:52px .95rem .95rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.app-header-title{font-size:.95rem;font-weight:700;color:#fff;letter-spacing:-.01em}
+.app-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;line-height:1;flex-shrink:0}
+.app-body{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;padding:.85rem;background:#f2f2f7;overscroll-behavior:contain}
+.app-body::-webkit-scrollbar{width:0}
+
+/* APP COMPONENTS */
+.app-section{background:#fff;border-radius:13px;margin-bottom:.7rem;overflow:hidden}
+.app-section-title{font-size:.67rem;color:#8e8e93;text-transform:uppercase;letter-spacing:.06em;padding:.6rem 1rem .3rem;background:#fff}
+.app-row{display:flex;align-items:center;gap:.7rem;padding:.65rem 1rem;border-bottom:1px solid #f2f2f7;cursor:pointer;transition:background .1s}
+.app-row:last-child{border-bottom:none}
+.app-row:active{background:#f5f5f5}
+.app-row-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.app-row-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.app-row-text{flex:1;min-width:0}
+.app-row-title{font-size:.8rem;font-weight:500;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-row-sub{font-size:.7rem;color:#8e8e93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-row-arrow{color:#c7c7cc;font-size:.78rem;flex-shrink:0}
+.app-hero{border-radius:13px;padding:1.2rem;margin-bottom:.7rem;color:#fff}
+.app-hero-name{font-size:1.05rem;font-weight:700;margin-bottom:.18rem}
+.app-hero-sub{font-size:.75rem;opacity:.8}
+.app-chip{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.2rem .6rem;font-size:.62rem;margin:.25rem .25rem 0 0;color:#fff}
+.proj-card{background:#fff;border-radius:13px;overflow:hidden;margin-bottom:.7rem}
+.proj-thumb{height:76px;display:flex;align-items:center;justify-content:center}
+.proj-thumb svg{width:36px;height:36px;fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.proj-info{padding:.75rem}
+.proj-name{font-size:.84rem;font-weight:600;color:#000;margin-bottom:.25rem}
+.proj-desc{font-size:.7rem;color:#8e8e93;line-height:1.5;margin-bottom:.5rem}
+.proj-tags-inner{display:flex;flex-wrap:wrap;gap:.28rem}
+.proj-tag-inner{font-size:.6rem;background:#f2f2f7;border-radius:4px;padding:.14rem .38rem;color:#636366}
+.contact-btn{display:flex;align-items:center;gap:.7rem;background:#fff;border-radius:13px;padding:.75rem .95rem;margin-bottom:.5rem;cursor:pointer;transition:background .1s}
+.contact-btn:active{background:#f5f5f5}
+.contact-btn-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-btn-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.contact-btn-label{font-size:.84rem;font-weight:500;color:#000}
+.contact-btn-sub{font-size:.7rem;color:#8e8e93}
+.skill-bar-wrap{padding:.38rem 0}
+.skill-bar-label{display:flex;justify-content:space-between;font-size:.7rem;color:#3c3c43;margin-bottom:.35rem}
+.skill-bar{height:5px;background:#f2f2f7;border-radius:3px;overflow:hidden}
+.skill-fill{height:100%;border-radius:3px;width:0;transition:width 1s ease}
+.testi-item{background:#fff;border-radius:13px;padding:.85rem;margin-bottom:.7rem}
+.testi-stars{color:#ff9500;font-size:.75rem;margin-bottom:.38rem}
+.testi-quote{font-size:.76rem;color:#3c3c43;line-height:1.6;margin-bottom:.6rem;font-style:italic}
+.testi-person{display:flex;align-items:center;gap:.5rem}
+.testi-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.64rem;font-weight:700;color:#fff}
+.testi-pname{font-size:.7rem;font-weight:600;color:#000}
+.testi-prole{font-size:.62rem;color:#8e8e93}
+.resume-preview{background:#fff;border-radius:13px;overflow:hidden;margin-bottom:.7rem}
+.resume-header-preview{padding:.85rem;color:#fff}
+.resume-h-name{font-size:.95rem;font-weight:700;margin-bottom:.12rem}
+.resume-h-role{font-size:.72rem;opacity:.8}
+.resume-body-preview{padding:.75rem}
+.resume-section-h{font-size:.68rem;font-weight:600;color:#5b5fd6;text-transform:uppercase;letter-spacing:.06em;margin:.6rem 0 .28rem}
+.resume-item{margin-bottom:.38rem}
+.resume-item-title{font-size:.74rem;font-weight:600;color:#000}
+.resume-item-sub{font-size:.66rem;color:#8e8e93}
+.settings-section{background:#fff;border-radius:13px;margin-bottom:.7rem;overflow:hidden}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1rem;border-bottom:1px solid #f2f2f7}
+.settings-row:last-child{border-bottom:none}
+.settings-label{font-size:.8rem;color:#000}
+.settings-sub{font-size:.68rem;color:#8e8e93}
+.toggle{width:36px;height:20px;background:#e5e5ea;border-radius:20px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle.on{background:#34c759}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.toggle.on::after{transform:translateX(16px)}
+.music-player{background:#fff;border-radius:15px;overflow:hidden;margin-bottom:.7rem}
+.music-cover{height:140px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative}
+.music-cover svg{width:56px;height:56px;fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
+.music-cover-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.3) 100%)}
+.music-info{padding:.8rem 1rem .5rem;text-align:center}
+.music-title{font-size:.9rem;font-weight:700;color:#000;margin-bottom:.18rem}
+.music-artist{font-size:.74rem;color:#8e8e93}
+.music-controls{display:flex;align-items:center;justify-content:center;gap:1.4rem;padding:.7rem 1rem}
+.music-btn{background:none;border:none;cursor:pointer;padding:.25rem;transition:transform .1s;color:#000}
+.music-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.music-btn:active{transform:scale(.88)}
+.music-btn.play-btn{width:44px;height:44px;background:#5b5fd6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+.music-btn.play-btn svg{width:20px;height:20px}
+.music-progress-wrap{padding:0 1rem .7rem}
+.music-progress{width:100%;height:3px;-webkit-appearance:none;appearance:none;border-radius:3px;background:#f2f2f7;outline:none;cursor:pointer}
+.music-progress::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:12px;height:12px;border-radius:50%;background:#5b5fd6}
+.music-times{display:flex;justify-content:space-between;font-size:.6rem;color:#8e8e93;margin-top:.28rem}
+.music-tracklist{background:#fff;border-radius:13px;overflow:hidden}
+.music-track{display:flex;align-items:center;gap:.7rem;padding:.6rem 1rem;border-bottom:1px solid #f2f2f7;cursor:pointer;transition:background .1s}
+.music-track:last-child{border-bottom:none}
+.music-track:active,.music-track.playing{background:#f0efff}
+.track-num{font-size:.7rem;color:#8e8e93;width:16px;text-align:center;flex-shrink:0}
+.track-info{flex:1;min-width:0}
+.track-name{font-size:.78rem;font-weight:500;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track-artist{font-size:.66rem;color:#8e8e93}
+.track-dur{font-size:.66rem;color:#8e8e93;flex-shrink:0}
+.notes-list{display:grid;gap:.5rem}
+.note-card{background:#fff;border-radius:11px;padding:.7rem;cursor:pointer;transition:background .1s;border:1px solid transparent}
+.note-card.selected{border-color:#5b5fd6}
+.note-card:active{background:#f5f5f5}
+.note-title{font-size:.8rem;font-weight:600;color:#000;margin-bottom:.12rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note-preview{font-size:.7rem;color:#8e8e93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note-date{font-size:.6rem;color:#c7c7cc;margin-bottom:.18rem}
+.note-editor{background:#fff;border-radius:13px;overflow:hidden;margin-bottom:.7rem}
+.note-editor-header{padding:.7rem 1rem;border-bottom:1px solid #f2f2f7;display:flex;align-items:center;justify-content:space-between}
+.note-editor-title-input{font-size:.86rem;font-weight:600;border:none;outline:none;color:#000;width:100%;font-family:inherit}
+.note-editor-body{padding:.7rem 1rem;min-height:120px;font-size:.78rem;color:#3c3c43;line-height:1.65;border:none;outline:none;width:100%;resize:none;font-family:inherit}
+.note-actions{display:flex;gap:.5rem;margin-bottom:.7rem}
+.note-action-btn{flex:1;padding:.6rem;border-radius:9px;font-size:.74rem;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+.photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-radius:13px;overflow:hidden;margin-bottom:.7rem}
+.photo-thumb{aspect-ratio:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .15s}
+.photo-thumb svg{width:32px;height:32px;fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+.photo-thumb:active{opacity:.7}
+.file-item{display:flex;align-items:center;gap:.7rem;background:#fff;border-radius:11px;padding:.7rem 1rem;margin-bottom:.5rem;cursor:pointer;transition:background .1s}
+.file-item:active{background:#f5f5f5}
+.file-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.file-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.file-info{flex:1;min-width:0}
+.file-name{font-size:.8rem;font-weight:500;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-meta{font-size:.66rem;color:#8e8e93}
+.file-dl{color:#5b5fd6;font-size:.7rem;font-weight:600;white-space:nowrap}
+#control-center{position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(32px);z-index:60;display:none;padding:58px 11px 18px;flex-direction:column;gap:9px}
+#control-center.visible{display:flex}
+.cc-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.cc-tile{background:rgba(255,255,255,.14);border-radius:14px;padding:.8rem;display:flex;align-items:center;gap:.55rem;cursor:pointer;transition:background .15s}
+.cc-tile:active{background:rgba(255,255,255,.25)}
+.cc-tile.wide{grid-column:span 2;justify-content:space-between}
+.cc-tile svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.cc-tile-label{font-size:.7rem;color:#fff;font-weight:500}
+.cc-slider{width:100%;height:4px;-webkit-appearance:none;appearance:none;background:rgba(255,255,255,.28);border-radius:4px;outline:none}
+.cc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:#fff}
+.cc-close{align-self:center;background:rgba(255,255,255,.14);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:.9rem;cursor:pointer;margin-top:auto}
+.phone-toast{position:absolute;top:60px;left:11px;right:11px;background:rgba(28,28,30,.92);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:.7rem .95rem;z-index:80;display:none;animation:toastin .3s ease}
+.phone-toast.show{display:flex;align-items:center;gap:.55rem}
+@keyframes toastin{from{transform:translateY(-10px);opacity:0}to{transform:translateY(0);opacity:1}}
+.toast-icon{flex-shrink:0}
+.toast-icon svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.toast-text{font-size:.74rem;color:#fff;line-height:1.3}
+.toast-title{font-weight:600;font-size:.76rem}
+
+/* ─── MOBILE LAYOUT ─── */
+@media(max-width:960px){
+  .layout{grid-template-columns:1fr;grid-template-rows:auto auto}
+  .portfolio-side{height:auto;overflow-y:visible}
+  .iphone-side{
+    display:flex;
+    position:relative;height:auto;
+    padding:2.5rem 1rem 2rem;
+    border-left:none;border-top:1px solid var(--border);
+    background:radial-gradient(ellipse 80% 80% at 50% 50%,#1a1535 0%,var(--bg) 80%);
+    order:2
+  }
+  .iphone-wrap{width:280px;height:600px;transform:scale(1)}
+  .portfolio-side{order:1}
+  .about-layout,.skills-cols,.contact-layout{grid-template-columns:1fr}
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-image-col{display:flex;justify-content:center}
+  .profile-image{width:150px;height:150px}
+  .hero-cta{justify-content:center}
+  .hero-body{max-width:100%}
+  .hero h1{font-size:clamp(1.9rem,6vw,2.8rem)}
+  section{padding:3rem 1.5rem}
+  .hero{padding:3.5rem 1.5rem 3rem}
+  nav{padding:0 1.5rem}
+  footer{padding:1.5rem}
+}
+@media(max-width:480px){
+  .nav-links{display:none}
+  .iphone-wrap{width:260px;height:560px}
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="layout">
+
+  <!-- ═══════════════ PORTFOLIO SIDE ═══════════════ -->
+  <div class="portfolio-side" id="portfolioSide">
+    <nav>
+      <div class="nav-inner">
+        <div class="nav-logo">Alex <em>Mercer</em></div>
+        <div class="nav-links">
+          <a onclick="sScrollTo('about')" data-section="about">About</a>
+          <a onclick="sScrollTo('projects')" data-section="projects">Work</a>
+          <a onclick="sScrollTo('skills')" data-section="skills">Skills</a>
+          <a onclick="sScrollTo('contact')" data-section="contact">Contact</a>
+        </div>
+        <div class="nav-right">
+          <button class="theme-btn" onclick="toggleTheme()">◐ Theme</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-kicker">Creative Developer · San Francisco</div>
+          <h1>I build things<br>that feel <em>alive.</em></h1>
+          <p class="hero-body">Seven years making software that people genuinely want to use. I care about the gap between how something works and how it <em>feels</em> — and I close it obsessively.</p>
+          <div class="hero-cta">
+            <button class="btn-primary" onclick="sScrollTo('projects')">See my work</button>
+            <button class="btn-ghost" onclick="sScrollTo('contact')">Say hello</button>
+            <span class="avail-pill"><span class="avail-dot"></span>Open to projects</span>
+          </div>
+        </div>
+        <div class="hero-image-col">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600" alt="Alex Mercer" class="profile-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">About</div>
+      <h2 class="section-title">I'm a builder at heart,<br>a <em>designer</em> by instinct.</h2>
+      <div class="about-layout">
+        <div class="about-copy">
+          <p>I grew up pulling apart websites to see how they worked. That curiosity turned into a career, and now I'm a senior engineer at <strong>Stripe</strong>, leading UI architecture for the merchant dashboard.</p>
+          <p>My work sits at the intersection of <strong>engineering precision</strong> and <strong>design intuition</strong>. I've partnered with startups, agencies, and Fortune 500 teams to ship products used by millions — always with an obsessive attention to both the pixel and the pipeline.</p>
+          <p>When I'm not writing code, I'm usually thinking about type, contributing to open source, or writing about interface engineering for the people who read about it obsessively.</p>
+          <button class="btn-primary" style="margin-top:1rem" onclick="openApp('resume')">View Résumé</button>
+        </div>
+        <div class="about-aside">
+          <div class="aside-fact"><div class="aside-num">7<em>+</em></div><div class="aside-label">Years in the craft</div></div>
+          <div class="aside-fact"><div class="aside-num">60<em>+</em></div><div class="aside-label">Projects shipped</div></div>
+          <div class="aside-fact"><div class="aside-num">40<em>+</em></div><div class="aside-label">Clients I'd work with again</div></div>
+          <span class="signature">Alex M.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">Skills</div>
+      <h2 class="section-title">Tools I reach for <em>daily.</em></h2>
+      <div class="skills-cols">
+        <div class="skill-group"><div class="skill-group-name">Frontend</div><div class="skill-pills"><span class="pill">React / Next.js</span><span class="pill">TypeScript</span><span class="pill">Vue.js</span><span class="pill">Tailwind CSS</span><span class="pill">Framer Motion</span><span class="pill">Three.js</span></div></div>
+        <div class="skill-group"><div class="skill-group-name">Backend</div><div class="skill-pills"><span class="pill">Node.js</span><span class="pill">Python</span><span class="pill">PostgreSQL</span><span class="pill">GraphQL</span><span class="pill">REST APIs</span><span class="pill">Redis</span></div></div>
+        <div class="skill-group"><div class="skill-group-name">Design</div><div class="skill-pills"><span class="pill">Figma</span><span class="pill">Design Systems</span><span class="pill">Prototyping</span><span class="pill">Motion Design</span><span class="pill">Typography</span></div></div>
+        <div class="skill-group"><div class="skill-group-name">Infrastructure</div><div class="skill-pills"><span class="pill">AWS</span><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">CI/CD</span><span class="pill">Vercel</span><span class="pill">GitHub Actions</span></div></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-label">Services</div>
+      <h2 class="section-title">How I can <em>help.</em></h2>
+      <div class="services-list">
+        <div class="service-row"><span class="svc-num">01</span><div class="svc-body"><div class="svc-title">Web Development</div><div class="svc-desc">End-to-end web applications — architecture, frontend, backend, deployment. Built to scale without getting in your way.</div></div><span class="svc-arrow">↗</span></div>
+        <div class="service-row"><span class="svc-num">02</span><div class="svc-body"><div class="svc-title">UI/UX Design</div><div class="svc-desc">Interfaces that are both beautiful and legible. I care about visual hierarchy, interaction patterns, and real accessibility.</div></div><span class="svc-arrow">↗</span></div>
+        <div class="service-row"><span class="svc-num">03</span><div class="svc-body"><div class="svc-title">Branding & Identity</div><div class="svc-desc">Cohesive visual systems — logos, palettes, type, and the logic that makes them hold together across contexts.</div></div><span class="svc-arrow">↗</span></div>
+        <div class="service-row"><span class="svc-num">04</span><div class="svc-body"><div class="svc-title">Technical Consulting</div><div class="svc-desc">An honest outside eye on stack choices, architecture, performance, or anything else your team is wrestling with.</div></div><span class="svc-arrow">↗</span></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Things I'm proud of.</h2>
+      <div class="projects-list">
+        <div class="project-card" onclick="openApp('projects')"><div><div class="project-name">Lyra — AI Music Platform</div><div class="project-desc">A streaming platform built around AI-powered discovery. I designed and engineered a real-time audio engine with waveform visualisation, serving 200K+ active listeners.</div><div class="project-tags"><span class="tag">React</span><span class="tag">WebAudio API</span><span class="tag">GraphQL</span><span class="tag">AWS</span></div></div><div class="project-type">Web App</div></div>
+        <div class="project-card" onclick="openApp('projects')"><div><div class="project-name">Vault — Finance Dashboard</div><div class="project-desc">Real-time financial analytics for enterprise clients — D3.js charts, multi-currency support, and an AI anomaly detection layer. Reduced time-to-insight by 60%.</div><div class="project-tags"><span class="tag">Next.js</span><span class="tag">D3.js</span><span class="tag">Python</span><span class="tag">PostgreSQL</span></div></div><div class="project-type">SaaS</div></div>
+        <div class="project-card" onclick="openApp('projects')"><div><div class="project-name">Atlas — Design System</div><div class="project-desc">120+ components, full dark mode, and deep Figma integration. Built for a Fortune 500 engineering org, cutting feature development time by 40% across 15 teams.</div><div class="project-tags"><span class="tag">TypeScript</span><span class="tag">Storybook</span><span class="tag">Figma API</span><span class="tag">Tailwind</span></div></div><div class="project-type">Open Source</div></div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="section-label">Client Words</div>
+      <h2 class="section-title">Straight from the people<br>I've worked with.</h2>
+      <div class="testi-grid">
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-quote">"Alex delivered a product that exceeded every expectation. The attention to detail in both design and code quality was remarkable. We shipped in half the time we'd planned."</div><div class="testi-person"><div class="testi-av" style="background:#5b5fd6">SC</div><div><div class="testi-name">Sarah Chen</div><div class="testi-role">CTO, Lyra Inc.</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-quote">"Creativity and technical depth in equal measure — and they shipped everything on time. I've worked with a lot of developers. Alex is one of a kind."</div><div class="testi-person"><div class="testi-av" style="background:#4f46e5">MR</div><div><div class="testi-name">Marcus Rivera</div><div class="testi-role">Product Lead, Vault</div></div></div></div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">Where I've been.</h2>
+      <div class="exp-list">
+        <div class="exp-item"><div class="exp-period">2022 —<br>Present</div><div><div class="exp-role">Senior Frontend Engineer</div><div class="exp-company">Stripe · San Francisco</div><div class="exp-desc">Leading UI architecture for Stripe's merchant dashboard. Introduced the Atlas design system, improving engineering velocity by 40% in six months. Performance metrics for 300K+ merchants rendering in under 50ms.</div></div></div>
+        <div class="exp-item"><div class="exp-period">2019 —<br>2022</div><div><div class="exp-role">Full-Stack Developer</div><div class="exp-company">Linear · Remote</div><div class="exp-desc">Built core product features — real-time collaboration, GitHub sync, and the keyboard-first navigation layer that made Linear feel fast.</div></div></div>
+        <div class="exp-item"><div class="exp-period">2017 —<br>2019</div><div><div class="exp-role">UI/UX Designer & Developer</div><div class="exp-company">Freelance</div><div class="exp-desc">Designed and built interfaces for 20+ clients in fintech, healthcare, and e-commerce. Built a repeat-client base through obsessive quality and honest scoping.</div></div></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Let's make something<br><em>worth making.</em></h2>
+      <div class="contact-layout">
+        <div>
+          <p class="contact-lede">I'm usually quick to respond. Whether it's a big project or a small question — I'm happy to talk.</p>
+          <div class="contact-links">
+            <a class="clink" href="mailto:alex@alexmercer.dev"><div class="clink-icon">✉</div>alex@alexmercer.dev</a>
+            <a class="clink" href="#"><div class="clink-icon">💼</div>linkedin.com/in/alexmercer</a>
+            <a class="clink" href="#"><div class="clink-icon">🐙</div>github.com/alexmercer</a>
+            <a class="clink" href="#"><div class="clink-icon">𝕏</div>@alexmercer_dev</a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <div class="fgroup"><label>Name</label><input type="text" placeholder="Your name"></div>
+          <div class="fgroup"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+          <div class="fgroup"><label>Message</label><textarea placeholder="Tell me about your project..."></textarea></div>
+          <button class="btn-primary" style="width:100%;border-radius:10px" onclick="showToast('sent','Sent!','Your message has been delivered.')">Send it →</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Alex Mercer — crafted by hand.</p>
+      <div class="social-row"><a class="soc" href="#">GH</a><a class="soc" href="#">LI</a><a class="soc" href="#">𝕏</a></div>
+    </footer>
+  </div>
+
+  <!-- ═══════════════ IPHONE SIDE ═══════════════ -->
+  <div class="iphone-side">
+    <div class="iphone-aura"></div>
+    <div class="iphone-wrap" id="iphoneWrap">
+      <div class="phone-btn-l mute"></div>
+      <div class="phone-btn-l vol-up"></div>
+      <div class="phone-btn-l vol-dn"></div>
+      <div class="phone-btn-r power"></div>
+      <div class="iphone-frame">
+        <div class="camera-bump">
+          <div class="cam-lenses">
+            <div class="cam-lens"></div><div class="cam-lens"></div>
+            <div class="cam-lens small"></div>
+            <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.04);margin-top:6px"></div>
+          </div>
+          <div class="cam-flash"></div>
+        </div>
+      </div>
+      <div class="iphone-screen" id="iphoneScreen">
+        <div class="dynamic-island" id="dynamicIsland">
+          <div class="di-content" id="diContent">
+            <div class="di-cover" id="diCover" style="background:linear-gradient(135deg,#5b5fd6,#4f46e5)">
+              <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            </div>
+            <div class="di-music"><strong id="diTitle">Midnight City</strong><span id="diSub">M83 · Now Playing</span></div>
+            <div class="di-bars"><div class="di-bar"></div><div class="di-bar"></div><div class="di-bar"></div></div>
+          </div>
+        </div>
+        <div class="status-bar">
+          <div class="status-time" id="statusTime">9:41</div>
+          <div class="status-icons">
+            <div class="signal-bars"><div class="signal-bar"></div><div class="signal-bar"></div><div class="signal-bar"></div><div class="signal-bar"></div></div>
+            <span style="font-size:7px;color:#fff;margin:0 1px">▲</span>
+            <div class="battery"><div class="battery-body"><div class="battery-fill"></div></div><div class="battery-tip"></div></div>
+          </div>
+        </div>
+        <div class="scroll-pill" id="scrollPill" onclick="goHome()"></div>
+        <div class="phone-toast" id="phoneToast">
+          <div class="toast-icon" id="toastIconEl"></div>
+          <div><div class="toast-title" id="toastTitle">Notification</div><div class="toast-text" id="toastText"></div></div>
+        </div>
+        <div id="control-center">
+          <div style="font-size:.75rem;font-weight:600;color:#fff;margin-bottom:.22rem">Control Center</div>
+          <div class="cc-row">
+            <div class="cc-tile" onclick="ccToggle(this)"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="#fff"/></svg><div class="cc-tile-label">Wi-Fi</div></div>
+            <div class="cc-tile" onclick="ccToggle(this)"><svg viewBox="0 0 24 24"><path d="M6.5 6.5 17.5 17.5M6.5 17.5l5-5m5.5-5.5-5 5"/></svg><div class="cc-tile-label">Bluetooth</div></div>
+            <div class="cc-tile" onclick="ccToggle(this)"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg><div class="cc-tile-label">Do Not Disturb</div></div>
+            <div class="cc-tile" onclick="ccToggle(this)"><svg viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 1 16.5 2.5L13 6l-8.2 1.8C3 8.2 2.6 9.4 3.5 10.5L7.5 15l-2 4L9 18.5l2.5 2.5 4-2zm-6.5-6.5L14.5 10 5.3 7.5 7.5 14.5z"/></svg><div class="cc-tile-label">Airplane Mode</div></div>
+          </div>
+          <div class="cc-row"><div class="cc-tile wide" style="flex-direction:column;align-items:flex-start;gap:.4rem"><div style="display:flex;align-items:center;gap:.45rem"><svg class="cc-tile" viewBox="0 0 24 24" style="background:none;padding:0;border-radius:0;width:18px;height:18px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><div class="cc-tile-label">Brightness</div></div><input type="range" class="cc-slider" value="70"></div></div>
+          <div class="cc-row"><div class="cc-tile wide" style="flex-direction:column;align-items:flex-start;gap:.4rem"><div style="display:flex;align-items:center;gap:.45rem"><svg class="cc-tile" viewBox="0 0 24 24" style="background:none;padding:0;border-radius:0;width:18px;height:18px"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg><div class="cc-tile-label">Volume</div></div><input type="range" class="cc-slider" value="60"></div></div>
+          <button class="cc-close" onclick="closeCC()">✕</button>
+        </div>
+
+        <!-- LOCK SCREEN -->
+        <div class="iphone-screen-inner" id="lock-screen">
+          <div class="lock-bg-orb"></div>
+          <div class="lock-time" id="lockTime">9:41</div>
+          <div class="lock-date" id="lockDate">Monday, June 9</div>
+          <div class="faceid-ring">
+            <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:none;stroke:rgba(255,255,255,.7);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="lock-notif"><div class="notif-app">Portfolio · Now</div><div class="notif-text">Alex Mercer is open for new projects</div></div>
+          <div class="lock-notif"><div class="notif-app">Dribbble · 2m ago</div><div class="notif-text">Your shot just got 248 likes 🎉</div></div>
+          <div class="swipe-hint"><span class="swipe-arrow">↑</span>Swipe up to unlock</div>
+        </div>
+
+        <!-- HOME SCREEN -->
+        <div class="iphone-screen-inner" id="home-screen">
+          <div class="home-wallpaper-orb"></div>
+          <div class="home-wallpaper-orb2"></div>
+          <div class="home-grid">
+            <!-- About Me -->
+            <div class="app-icon" onclick="openApp('portfolio')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#5b5fd6,#4f46e5)">
+                <div class="app-badge">1</div>
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div><div class="app-label">About Me</div>
+            </div>
+            <!-- Projects -->
+            <div class="app-icon" onclick="openApp('projects')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div><div class="app-label">Projects</div>
+            </div>
+            <!-- Photos -->
+            <div class="app-icon" onclick="openApp('photos')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div><div class="app-label">Photos</div>
+            </div>
+            <!-- Skills -->
+            <div class="app-icon" onclick="openApp('skills')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#10b981,#059669)">
+                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div><div class="app-label">Skills</div>
+            </div>
+            <!-- Resume -->
+            <div class="app-icon" onclick="openApp('resume')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div><div class="app-label">Résumé</div>
+            </div>
+            <!-- Contact -->
+            <div class="app-icon" onclick="openApp('contact')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#22c55e,#16a34a)">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div><div class="app-label">Contact</div>
+            </div>
+            <!-- Music -->
+            <div class="app-icon" onclick="openApp('music')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#ff2d55,#ff6b81)">
+                <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              </div><div class="app-label">Music</div>
+            </div>
+            <!-- Notes -->
+            <div class="app-icon" onclick="openApp('notes')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#ffcc00,#ff9500)">
+                <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </div><div class="app-label">Notes</div>
+            </div>
+            <!-- Files -->
+            <div class="app-icon" onclick="openApp('files')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#007aff,#0056cc)">
+                <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div><div class="app-label">Files</div>
+            </div>
+            <!-- Reviews -->
+            <div class="app-icon" onclick="openApp('testimonials')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#f472b6,#ec4899)">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div><div class="app-label">Reviews</div>
+            </div>
+            <!-- Blog -->
+            <div class="app-icon" onclick="openApp('blog')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#f97316,#ea580c)">
+                <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div><div class="app-label">Blog</div>
+            </div>
+            <!-- Settings -->
+            <div class="app-icon" onclick="openApp('settings')">
+              <div class="app-icon-img" style="background:linear-gradient(135deg,#8e8e93,#636366)">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </div><div class="app-label">Settings</div>
+            </div>
+          </div>
+          <div class="widget-row">
+            <div class="widget"><div class="widget-title">Experience</div><div class="widget-val">7+</div><div class="widget-sub">Years</div></div>
+            <div class="widget"><div class="widget-title">Projects</div><div class="widget-val">60+</div><div class="widget-sub">Delivered</div></div>
+            <div class="widget"><div class="widget-title">Clients</div><div class="widget-val">40+</div><div class="widget-sub">Happy</div></div>
+          </div>
+          <div class="dock">
+            <div class="app-icon" onclick="openApp('portfolio')" style="align-items:center"><div class="app-icon-img" style="background:linear-gradient(135deg,#5b5fd6,#4f46e5)"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
+            <div class="app-icon" onclick="openApp('projects')" style="align-items:center"><div class="app-icon-img" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div></div>
+            <div class="app-icon" onclick="openApp('contact')" style="align-items:center"><div class="app-icon-img" style="background:linear-gradient(135deg,#22c55e,#16a34a)"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div></div>
+            <div class="app-icon" onclick="openApp('music')" style="align-items:center"><div class="app-icon-img" style="background:linear-gradient(135deg,#ff2d55,#ff6b81)"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div></div>
+          </div>
+        </div>
+
+        <!-- APP SCREEN -->
+        <div class="iphone-screen-inner" id="app-screen">
+          <div class="app-header" id="appHeader">
+            <div class="app-header-title" id="appTitle">App</div>
+            <button class="app-close" onclick="closeApp()">✕</button>
+          </div>
+          <div class="app-body" id="appBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── SVG ICON HELPERS ──
+const icons={
+  user:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  star:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  code:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+  file:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+  music:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+  download:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+  send:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  check:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:#34c759;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"><polyline points="20 6 9 17 4 12"/></svg>',
+  link:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+  github:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>',
+  linkedin:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>',
+  briefcase:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+  activity:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+  image:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  zap:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+  phone:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+  pen:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
+  award:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>',
+  folder:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>',
+  palette:'<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>'
+};
+
+// ── STATE ──
+let unlocked=false,currentApp=null,musicPlaying=false,currentTrack=0,musicInterval=null,progressVal=0,editingNote=null;
+let notesData=JSON.parse(localStorage.getItem('iphone_notes')||'null')||[
+  {id:1,title:'Meeting Notes',body:'Discuss Q3 roadmap with design team. Key items: new component library, accessibility audit, mobile nav rework.',date:'Today'},
+  {id:2,title:'Project Ideas',body:'1. CLI tool for design tokens\n2. Browser extension for Figma\n3. Component diffing tool',date:'Yesterday'},
+  {id:3,title:'Learning Goals',body:'Rust — systems programming\nWebGPU — compute shaders\nSwift — native macOS apps',date:'Jun 3'}
+];
+const tracks=[
+  {title:'Midnight City',artist:'M83',color:'linear-gradient(135deg,#5b5fd6,#312e81)',dur:'4:04'},
+  {title:'Electric Feel',artist:'MGMT',color:'linear-gradient(135deg,#10b981,#064e3b)',dur:'3:49'},
+  {title:'Breathe',artist:'Télépopmusik',color:'linear-gradient(135deg,#0ea5e9,#0c4a6e)',dur:'4:26'},
+  {title:'Digital Love',artist:'Daft Punk',color:'linear-gradient(135deg,#f59e0b,#78350f)',dur:'4:58'},
+  {title:'Intro',artist:'The xx',color:'linear-gradient(135deg,#374151,#111827)',dur:'2:07'}
+];
+
+// ── CLOCK ──
+function updateClock(){
+  const n=new Date(),h=String(n.getHours()).padStart(2,'0'),m=String(n.getMinutes()).padStart(2,'0');
+  const t=h+':'+m;
+  document.getElementById('statusTime').textContent=t;
+  document.getElementById('lockTime').textContent=t;
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('lockDate').textContent=days[n.getDay()]+', '+months[n.getMonth()]+' '+n.getDate();
+}
+updateClock();setInterval(updateClock,30000);
+
+function toggleTheme(){document.body.classList.toggle('light')}
+
+// ── SCROLL PROGRESS ──
+const ps=document.getElementById('portfolioSide'),sp=document.getElementById('scrollProgress');
+function handleScroll(){
+  const scrollEl=window.innerWidth>960?ps:window;
+  const scrollTop=window.innerWidth>960?ps.scrollTop:window.scrollY;
+  const scrollHeight=window.innerWidth>960?ps.scrollHeight-ps.clientHeight:document.body.scrollHeight-window.innerHeight;
+  sp.style.width=((scrollTop/scrollHeight)*100)+'%';
+  const sections=['hero','about','skills','services','projects','testimonials','experience','contact'];
+  let current='hero';
+  sections.forEach(id=>{const el=document.getElementById(id);if(el&&scrollTop>=(window.innerWidth>960?el.offsetTop:el.getBoundingClientRect().top+scrollTop)-120)current=id;});
+  document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.dataset.section===current);});
+}
+ps.addEventListener('scroll',handleScroll);
+window.addEventListener('scroll',handleScroll);
+function sScrollTo(id){
+  const el=document.getElementById(id);if(!el)return;
+  if(window.innerWidth>960){ps.scrollTo({top:el.offsetTop-60,behavior:'smooth'});}
+  else{window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-60,behavior:'smooth'});}
+}
+
+// ── IPHONE ISOLATION on desktop ──
+const iphoneSide=document.querySelector('.iphone-side');
+iphoneSide.addEventListener('wheel',e=>{if(window.innerWidth>960){e.stopPropagation();e.preventDefault();}},{passive:false});
+
+// ── LOCK → HOME ──
+let touchStartY=0,mouseStartY=0,dragging=false;
+const lockScreen=document.getElementById('lock-screen'),homeScreen=document.getElementById('home-screen');
+function unlock(){
+  if(unlocked)return;unlocked=true;
+  lockScreen.style.transition='transform .4s ease,opacity .4s ease';
+  lockScreen.style.transform='translateY(-100%)';lockScreen.style.opacity='0';
+  setTimeout(()=>{
+    lockScreen.style.display='none';homeScreen.style.display='flex';
+    homeScreen.style.opacity='0';homeScreen.style.transition='opacity .3s ease';
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{homeScreen.style.opacity='1';}));
+    showToast('welcome','Welcome!','Alex Mercer — Creative Developer');
+  },380);
+}
+lockScreen.addEventListener('click',unlock);
+lockScreen.addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY;e.stopPropagation();},{passive:true});
+lockScreen.addEventListener('touchend',e=>{e.stopPropagation();if(touchStartY-e.changedTouches[0].clientY>30)unlock();});
+lockScreen.addEventListener('mousedown',e=>{mouseStartY=e.clientY;dragging=true;e.stopPropagation();});
+lockScreen.addEventListener('mousemove',e=>{if(dragging&&mouseStartY-e.clientY>30)unlock();});
+lockScreen.addEventListener('mouseup',()=>{dragging=false;});
+
+// ── DYNAMIC ISLAND ──
+const di=document.getElementById('dynamicIsland');
+di.addEventListener('click',()=>{di.classList.toggle('expanded');});
+function showDI(title,sub){
+  document.getElementById('diTitle').textContent=title;
+  document.getElementById('diSub').textContent=sub||'';
+  di.classList.add('expanded');setTimeout(()=>di.classList.remove('expanded'),3500);
+}
+
+// ── TOAST ──
+let toastTimer=null;
+function showToast(iconKey,title,text){
+  const toast=document.getElementById('phoneToast');
+  const iconEl=document.getElementById('toastIconEl');
+  const svgMap={
+    welcome:icons.user,sent:icons.check,download:icons.download,
+    music:icons.music,open:icons.zap,note:icons.pen
+  };
+  iconEl.innerHTML=svgMap[iconKey]||icons.zap;
+  document.getElementById('toastTitle').textContent=title;
+  document.getElementById('toastText').textContent=text;
+  toast.classList.add('show');
+  if(toastTimer)clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toast.classList.remove('show'),3000);
+}
+
+// ── GO HOME / CC ──
+function goHome(){
+  const appScreen=document.getElementById('app-screen');
+  if(appScreen.classList.contains('visible')){closeApp();return;}
+  if(document.getElementById('control-center').classList.contains('visible')){closeCC();return;}
+}
+const ccEl=document.getElementById('control-center');
+let ccDragStart=null;
+const iphoneScreen=document.getElementById('iphoneScreen');
+iphoneScreen.addEventListener('mousedown',e=>{
+  const rect=iphoneScreen.getBoundingClientRect();
+  if(e.clientY-rect.top<60&&unlocked){ccDragStart=e.clientY;e.stopPropagation();}
+});
+iphoneScreen.addEventListener('mousemove',e=>{if(ccDragStart!==null&&e.clientY-ccDragStart>40){ccDragStart=null;openCC();}});
+iphoneScreen.addEventListener('mouseup',()=>{ccDragStart=null;});
+function openCC(){if(!unlocked)return;ccEl.classList.add('visible');}
+function closeCC(){ccEl.classList.remove('visible');}
+function ccToggle(el){el.style.background=el.style.background&&el.style.background!=='rgba(255, 255, 255, 0.14)'?'rgba(255,255,255,.14)':'rgba(255,255,255,.32)';}
+
+// ── MUSIC ENGINE ──
+function startMusicProgress(){
+  if(musicInterval)clearInterval(musicInterval);
+  musicInterval=setInterval(()=>{progressVal=(progressVal+0.3)%100;const p=document.querySelector('.music-progress');if(p)p.value=progressVal;updateTimeDisplay();},300);
+}
+function stopMusicProgress(){if(musicInterval){clearInterval(musicInterval);musicInterval=null;}}
+function updateTimeDisplay(){
+  const el=document.querySelector('.music-current-time');if(!el)return;
+  const s=Math.floor((progressVal/100)*240),m=Math.floor(s/60),sec=s%60;
+  el.textContent=m+':'+(sec<10?'0':'')+sec;
+}
+function playTrack(idx){
+  currentTrack=idx%tracks.length;musicPlaying=true;startMusicProgress();
+  const t=tracks[currentTrack];
+  document.getElementById('diTitle').textContent=t.title;
+  document.getElementById('diSub').textContent=t.artist+' · Now Playing';
+  showToast('music','Now Playing',t.title+' — '+t.artist);
+  renderMusicApp();
+}
+function togglePlay(){musicPlaying=!musicPlaying;if(musicPlaying)startMusicProgress();else stopMusicProgress();renderMusicApp();}
+function nextTrack(){playTrack((currentTrack+1)%tracks.length);}
+function prevTrack(){playTrack((currentTrack-1+tracks.length)%tracks.length);}
+function renderMusicApp(){
+  if(currentApp!=='music')return;
+  const t=tracks[currentTrack];
+  document.getElementById('appBody').innerHTML=`
+    <div class="music-player">
+      <div class="music-cover" style="background:${t.color}">
+        ${icons.music.replace('18px','56px').replace('18px','56px').replace('stroke-width:2','stroke-width:1.5')}
+        <div class="music-cover-overlay"></div>
+      </div>
+      <div class="music-info"><div class="music-title">${t.title}</div><div class="music-artist">${t.artist}</div></div>
+      <div class="music-progress-wrap">
+        <input type="range" class="music-progress" value="${progressVal}" min="0" max="100" oninput="progressVal=+this.value;updateTimeDisplay()">
+        <div class="music-times"><span class="music-current-time">0:00</span><span>${t.dur}</span></div>
+      </div>
+      <div class="music-controls">
+        <button class="music-btn" onclick="prevTrack()">
+          <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        </button>
+        <button class="music-btn play-btn" onclick="togglePlay()">
+          ${musicPlaying?'<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>':'<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>'}
+        </button>
+        <button class="music-btn" onclick="nextTrack()">
+          <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="music-tracklist">
+      ${tracks.map((tr,i)=>`<div class="music-track ${i===currentTrack?'playing':''}" onclick="playTrack(${i})">
+        <div class="track-num">${i===currentTrack&&musicPlaying?'▶':i+1}</div>
+        <div style="width:30px;height:30px;border-radius:6px;background:${tr.color};flex-shrink:0;display:flex;align-items:center;justify-content:center">${icons.music.replace('18px','14px').replace('18px','14px').replace('currentColor','#fff')}</div>
+        <div class="track-info"><div class="track-name">${tr.title}</div><div class="track-artist">${tr.artist}</div></div>
+        <div class="track-dur">${tr.dur}</div>
+      </div>`).join('')}
+    </div>`;
+  updateTimeDisplay();
+}
+
+// ── NOTES ──
+function escHtml(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function renderNotesApp(){
+  if(editingNote!==null){
+    const n=notesData.find(x=>x.id===editingNote)||{id:Date.now(),title:'',body:'',date:'Today'};
+    document.getElementById('appBody').innerHTML=`
+      <div class="note-actions">
+        <button class="note-action-btn" style="background:#f2f2f7;color:#000" onclick="saveNote(${n.id})">Done</button>
+        <button class="note-action-btn" style="background:#fee2e2;color:#dc2626" onclick="deleteNote(${n.id})">Delete</button>
+      </div>
+      <div class="note-editor">
+        <div class="note-editor-header"><input class="note-editor-title-input" id="noteTitle" placeholder="Title" value="${escHtml(n.title)}"></div>
+        <textarea class="note-editor-body" id="noteBody" placeholder="Start writing...">${escHtml(n.body)}</textarea>
+      </div>`;return;
+  }
+  document.getElementById('appBody').innerHTML=`
+    <button style="width:100%;background:#ffcc00;color:#000;border:none;border-radius:13px;padding:.7rem;font-size:.8rem;font-weight:600;margin-bottom:.7rem;cursor:pointer" onclick="newNote()">+ New Note</button>
+    <div class="notes-list">
+      ${notesData.map(n=>`<div class="note-card" onclick="editNote(${n.id})">
+        <div class="note-date">${n.date}</div>
+        <div class="note-title">${escHtml(n.title)||'Untitled'}</div>
+        <div class="note-preview">${escHtml(n.body).replace(/\n/g,' ')}</div>
+      </div>`).join('')}
+    </div>`;
+}
+function newNote(){editingNote=-1;renderNotesApp();}
+function editNote(id){editingNote=id;renderNotesApp();}
+function saveNote(id){
+  const title=document.getElementById('noteTitle').value,body=document.getElementById('noteBody').value;
+  if(id===-1)notesData.unshift({id:Date.now(),title,body,date:'Today'});
+  else{const n=notesData.find(x=>x.id===id);if(n){n.title=title;n.body=body;}}
+  localStorage.setItem('iphone_notes',JSON.stringify(notesData));editingNote=null;renderNotesApp();
+}
+function deleteNote(id){notesData=notesData.filter(x=>x.id!==id);localStorage.setItem('iphone_notes',JSON.stringify(notesData));editingNote=null;renderNotesApp();}
+function dlResume(type){showToast('download','Downloading','Resume_'+type+'.pdf');showDI('Downloading…','Resume_'+type+'.pdf');}
+
+// ── APP CONTENT ──
+const appContent={
+  portfolio:{title:'About Me',color:'linear-gradient(135deg,#5b5fd6,#4f46e5)'},
+  projects:{title:'Projects',color:'linear-gradient(135deg,#0ea5e9,#0284c7)'},
+  photos:{title:'Photos',color:'linear-gradient(135deg,#f59e0b,#d97706)'},
+  skills:{title:'Skills',color:'linear-gradient(135deg,#10b981,#059669)'},
+  resume:{title:'Résumé',color:'linear-gradient(135deg,#ef4444,#dc2626)'},
+  contact:{title:'Contact',color:'linear-gradient(135deg,#22c55e,#16a34a)'},
+  music:{title:'Music',color:'linear-gradient(135deg,#ff2d55,#c0135a)'},
+  notes:{title:'Notes',color:'linear-gradient(135deg,#ffcc00,#ff9500)'},
+  files:{title:'Files',color:'linear-gradient(135deg,#007aff,#0056cc)'},
+  testimonials:{title:'Reviews',color:'linear-gradient(135deg,#f472b6,#ec4899)'},
+  blog:{title:'Blog',color:'linear-gradient(135deg,#f97316,#ea580c)'},
+  settings:{title:'Settings',color:'linear-gradient(135deg,#8e8e93,#636366)'}
+};
+
+function getAppHTML(name){
+  switch(name){
+    case 'portfolio': return `
+      <div class="app-hero" style="background:linear-gradient(135deg,#5b5fd6,#4f46e5)">
+        <div style="width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin-bottom:.7rem">${icons.user.replace('18px','28px').replace('18px','28px').replace('currentColor','#fff').replace('stroke-width:2','stroke-width:1.5')}</div>
+        <div class="app-hero-name">Alex Mercer</div>
+        <div class="app-hero-sub">Creative Developer · UI/UX Designer</div>
+        <div style="margin-top:.7rem"><span class="app-chip">React</span><span class="app-chip">TypeScript</span><span class="app-chip">Figma</span><span class="app-chip">Node.js</span></div>
+      </div>
+      <div class="app-section">
+        <div class="app-section-title">Biography</div>
+        <div class="app-row"><div class="app-row-text"><div class="app-row-sub" style="white-space:normal;line-height:1.6">Full-stack developer & digital designer based in San Francisco. Seven years building products used by millions, with obsessive attention to detail from pixel-perfect layouts to performant backend architecture.</div></div></div>
+      </div>
+      <div class="app-section">
+        <div class="app-section-title">Career Journey</div>
+        <div class="app-row"><div class="app-row-icon" style="background:#ede9fe;color:#5b5fd6">${icons.briefcase}</div><div class="app-row-text"><div class="app-row-title">Senior Frontend Engineer</div><div class="app-row-sub">Stripe · 2022 – Present</div></div><div class="app-row-arrow">›</div></div>
+        <div class="app-row"><div class="app-row-icon" style="background:#ede9fe;color:#4f46e5">${icons.code}</div><div class="app-row-text"><div class="app-row-title">Full-Stack Developer</div><div class="app-row-sub">Linear · 2019 – 2022</div></div><div class="app-row-arrow">›</div></div>
+        <div class="app-row"><div class="app-row-icon" style="background:#fce7f3;color:#ec4899">${icons.palette}</div><div class="app-row-text"><div class="app-row-title">UI/UX Designer & Developer</div><div class="app-row-sub">Freelance · 2017 – 2019</div></div><div class="app-row-arrow">›</div></div>
+      </div>
+      <div class="app-section">
+        <div class="app-section-title">Education</div>
+        <div class="app-row"><div class="app-row-icon" style="background:#dbeafe;color:#3b82f6">${icons.award}</div><div class="app-row-text"><div class="app-row-title">B.S. Computer Science</div><div class="app-row-sub">UC Berkeley · 2017</div></div></div>
+      </div>`;
+
+    case 'projects': return `
+      <div class="proj-card"><div class="proj-thumb" style="background:linear-gradient(135deg,#5b5fd6,#4f46e5)">${icons.music.replace('18px','36px').replace('18px','36px').replace('currentColor','#fff').replace('stroke-width:2','stroke-width:1.5')}</div><div class="proj-info"><div class="proj-name">Lyra — AI Music Platform</div><div class="proj-desc">Streaming platform with AI recommendations. 200K+ active listeners.</div><div class="proj-tags-inner"><span class="proj-tag-inner">React</span><span class="proj-tag-inner">WebAudio</span><span class="proj-tag-inner">AWS</span></div></div></div>
+      <div class="proj-card"><div class="proj-thumb" style="background:linear-gradient(135deg,#10b981,#059669)">${icons.activity.replace('18px','36px').replace('18px','36px').replace('currentColor','#fff').replace('stroke-width:2','stroke-width:1.5')}</div><div class="proj-info"><div class="proj-name">Vault — Finance Dashboard</div><div class="proj-desc">Real-time analytics with D3.js and AI anomaly detection for enterprise.</div><div class="proj-tags-inner"><span class="proj-tag-inner">Next.js</span><span class="proj-tag-inner">D3.js</span><span class="proj-tag-inner">Python</span></div></div></div>
+      <div class="proj-card"><div class="proj-thumb" style="background:linear-gradient(135deg,#f59e0b,#d97706)">${icons.palette.replace('18px','36px').replace('18px','36px').replace('currentColor','#fff').replace('stroke-width:2','stroke-width:1.5')}</div><div class="proj-info"><div class="proj-name">Atlas Design System</div><div class="proj-desc">120+ components, dark mode, Figma integration. Fortune 500 team of 15.</div><div class="proj-tags-inner"><span class="proj-tag-inner">TypeScript</span><span class="proj-tag-inner">Storybook</span><span class="proj-tag-inner">Figma</span></div></div></div>
+      <div class="proj-card"><div class="proj-thumb" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">${icons.link.replace('18px','36px').replace('18px','36px').replace('currentColor','#fff').replace('stroke-width:2','stroke-width:1.5')}</div><div class="proj-info"><div class="proj-name">Meridian — Travel App</div><div class="proj-desc">AI itinerary planning, hotel booking, offline maps. React Native.</div><div class="proj-tags-inner"><span class="proj-tag-inner">React Native</span><span class="proj-tag-inner">MapKit</span><span class="proj-tag-inner">GPT-4</span></div></div></div>`;
+
+    case 'photos': return `
+      <div class="app-section" style="margin-bottom:.7rem"><div class="app-section-title">Recents</div></div>
+      <div class="photos-grid">${['#5b5fd6','#10b981','#f59e0b','#ef4444','#0ea5e9','#8b5cf6','#f97316','#22c55e','#ec4899'].map((c,i)=>{
+        const svgs=[icons.briefcase,icons.palette,icons.star,icons.music,icons.code,icons.zap,icons.pen,icons.activity,icons.image];
+        return`<div class="photo-thumb" style="background:${c}">${(svgs[i]||icons.image).replace('18px','32px').replace('18px','32px').replace('currentColor','#fff').replace('stroke-width:2','stroke-width:1.5')}</div>`;
+      }).join('')}</div>
+      <div class="app-section">
+        <div class="app-section-title">Albums</div>
+        <div class="app-row"><div class="app-row-icon" style="background:#fff3cd;color:#d97706">${icons.briefcase}</div><div class="app-row-text"><div class="app-row-title">Workspace</div><div class="app-row-sub">24 photos</div></div><div class="app-row-arrow">›</div></div>
+        <div class="app-row"><div class="app-row-icon" style="background:#d1fae5;color:#059669">${icons.star}</div><div class="app-row-text"><div class="app-row-title">Events</div><div class="app-row-sub">87 photos</div></div><div class="app-row-arrow">›</div></div>
+        <div class="app-row"><div class="app-row-icon" style="background:#ede9fe;color:#7c3aed">${icons.zap}</div><div class="app-row-text"><div class="app-row-title">Talks & Conferences</div><div class="app-row-sub">32 photos</div></div><div class="app-row-arrow">›</div></div>
+        <div class="app-row"><div class="app-row-icon" style="background:#fce7f3;color:#ec4899">${icons.link}</div><div class="app-row-text"><div class="app-row-title">Travel</div><div class="app-row-sub">156 photos</div></div><div class="app-row-arrow">›</div></div>
+      </div>`;
+
+    case 'skills': return `
+      <div class="app-section"><div class="app-section-title">Frontend</div><div style="padding:.7rem 1rem">
+        ${[['React / Next.js',97,'linear-gradient(90deg,#5b5fd6,#818cf8)'],['TypeScript',94,'linear-gradient(90deg,#0ea5e9,#38bdf8)'],['CSS / Tailwind',96,'linear-gradient(90deg,#06b6d4,#22d3ee)'],['Three.js / WebGL',78,'linear-gradient(90deg,#8b5cf6,#a78bfa)']].map(([n,v,g])=>`<div class="skill-bar-wrap"><div class="skill-bar-label"><span>${n}</span><span>${v}%</span></div><div class="skill-bar"><div class="skill-fill" data-w="${v}%" style="background:${g}"></div></div></div>`).join('')}
+      </div></div>
+      <div class="app-section"><div class="app-section-title">Backend</div><div style="padding:.7rem 1rem">
+        ${[['Node.js',90,'linear-gradient(90deg,#10b981,#34d399)'],['Python',82,'linear-gradient(90deg,#f59e0b,#fbbf24)'],['PostgreSQL',85,'linear-gradient(90deg,#ef4444,#f87171)'],['GraphQL',88,'linear-gradient(90deg,#e879f9,#d946ef)']].map(([n,v,g])=>`<div class="skill-bar-wrap"><div class="skill-bar-label"><span>${n}</span><span>${v}%</span></div><div class="skill-bar"><div class="skill-fill" data-w="${v}%" style="background:${g}"></div></div></div>`).join('')}
+      </div></div>`;
+
+    case 'resume': return `
+      <div class="resume-preview">
+        <div class="resume-header-preview" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+          <div class="resume-h-name">Alex Mercer</div>
+          <div class="resume-h-role">Senior Frontend Engineer · UI/UX Designer</div>
+          <div style="font-size:.62rem;opacity:.7;margin-top:.28rem">alex@alexmercer.dev · San Francisco, CA</div>
+        </div>
+        <div class="resume-body-preview">
+          <div class="resume-section-h">Experience</div>
+          <div class="resume-item"><div class="resume-item-title">Senior Frontend Engineer — Stripe</div><div class="resume-item-sub">2022 – Present · Led UI architecture for merchant dashboard</div></div>
+          <div class="resume-item"><div class="resume-item-title">Full-Stack Developer — Linear</div><div class="resume-item-sub">2019 – 2022 · Core features for project management platform</div></div>
+          <div class="resume-section-h">Education</div>
+          <div class="resume-item"><div class="resume-item-title">B.S. Computer Science</div><div class="resume-item-sub">UC Berkeley · 2017</div></div>
+          <div class="resume-section-h">Skills</div>
+          <div style="font-size:.7rem;color:#3c3c43;line-height:1.8">React · Next.js · TypeScript · Node.js · Python · Figma · AWS · PostgreSQL · GraphQL</div>
+        </div>
+      </div>
+      <div class="app-section">
+        <div class="app-section-title">Resume Versions</div>
+        <div class="app-row" onclick="dlResume('General')"><div class="app-row-icon" style="background:#fee2e2;color:#dc2626">${icons.file}</div><div class="app-row-text"><div class="app-row-title">Resume.pdf</div><div class="app-row-sub">General · Updated June 2025</div></div><div style="color:#5b5fd6;display:flex;align-items:center">${icons.download.replace('18px','16px').replace('18px','16px').replace('currentColor','#5b5fd6')}</div></div>
+        <div class="app-row" onclick="dlResume('UIUX')"><div class="app-row-icon" style="background:#ede9fe;color:#7c3aed">${icons.palette}</div><div class="app-row-text"><div class="app-row-title">Resume_UIUX.pdf</div><div class="app-row-sub">Design-focused version</div></div><div style="color:#5b5fd6;display:flex;align-items:center">${icons.download.replace('18px','16px').replace('18px','16px').replace('currentColor','#5b5fd6')}</div></div>
+        <div class="app-row" onclick="dlResume('Developer')"><div class="app-row-icon" style="background:#dbeafe;color:#2563eb">${icons.code}</div><div class="app-row-text"><div class="app-row-title">Resume_Developer.pdf</div><div class="app-row-sub">Engineering-focused version</div></div><div style="color:#5b5fd6;display:flex;align-items:center">${icons.download.replace('18px','16px').replace('18px','16px').replace('currentColor','#5b5fd6')}</div></div>
+      </div>`;
+
+    case 'contact': return `
+      <div class="app-hero" style="background:linear-gradient(135deg,#22c55e,#16a34a)">
+        <div class="app-hero-name">Get in Touch</div>
+        <div class="app-hero-sub">Open to projects · Responds within 24h</div>
+        <div style="margin-top:.5rem;font-size:.7rem;opacity:.8">● Available for new work</div>
+      </div>
+      <div class="contact-btn"><div class="contact-btn-icon" style="background:#dbeafe;color:#3b82f6">${icons.mail}</div><div><div class="contact-btn-label">Email</div><div class="contact-btn-sub">alex@alexmercer.dev</div></div></div>
+      <div class="contact-btn"><div class="contact-btn-icon" style="background:#dcfce7;color:#16a34a">${icons.phone}</div><div><div class="contact-btn-label">WhatsApp</div><div class="contact-btn-sub">+1 (415) 000-0000</div></div></div>
+      <div class="contact-btn"><div class="contact-btn-icon" style="background:#dbeafe;color:#2563eb">${icons.linkedin}</div><div><div class="contact-btn-label">LinkedIn</div><div class="contact-btn-sub">linkedin.com/in/alexmercer</div></div></div>
+      <div class="contact-btn"><div class="contact-btn-icon" style="background:#f3f4f6;color:#374151">${icons.github}</div><div><div class="contact-btn-label">GitHub</div><div class="contact-btn-sub">github.com/alexmercer</div></div></div>
+      <div class="app-section" style="margin-top:.7rem">
+        <div class="app-section-title">Quick Message</div>
+        <div style="padding:.7rem">
+          <input type="text" placeholder="Your name" style="width:100%;border:1px solid #e5e7eb;border-radius:9px;padding:.6rem;font-size:.76rem;font-family:inherit;margin-bottom:.5rem;outline:none;color:#000">
+          <textarea placeholder="Say hello..." style="width:100%;border:1px solid #e5e7eb;border-radius:9px;padding:.6rem;font-size:.76rem;font-family:inherit;resize:none;min-height:70px;outline:none;color:#000"></textarea>
+          <button style="width:100%;background:#22c55e;color:#fff;border:none;border-radius:9px;padding:.65rem;font-size:.82rem;font-weight:600;margin-top:.5rem;cursor:pointer" onclick="showToast('sent','Sent!','Your message has been delivered.')">Send →</button>
+        </div>
+      </div>`;
+
+    case 'testimonials': return `
+      <div style="background:linear-gradient(135deg,#fff0f7,#fce7f3);border-radius:13px;padding:.85rem;margin-bottom:.7rem;text-align:center">
+        <div style="font-size:1.8rem;font-weight:700;color:#000;font-family:serif">4.9</div>
+        <div style="color:#ff9500;font-size:1rem">★★★★★</div>
+        <div style="font-size:.7rem;color:#8e8e93;margin-top:.15rem">Based on 40+ client reviews</div>
+      </div>
+      ${[{q:'Alex delivered a product that exceeded every expectation.',n:'Sarah Chen',r:'CTO, Lyra Inc.',i:'SC',c:'#5b5fd6'},{q:'Creativity and technical depth in equal measure. Shipped everything on time.',n:'Marcus Rivera',r:'Product Lead, Vault',i:'MR',c:'#4f46e5'},{q:'The design system Alex built transformed how our engineering org ships UI.',n:'Jess Park',r:'Design Director, Atlassian',i:'JP',c:'#10b981'},{q:'Alex translates business goals into beautiful, functional software.',n:'Tom Walker',r:'CEO, Meridian',i:'TW',c:'#f59e0b'}].map(t=>`<div class="testi-item"><div class="testi-stars">★★★★★</div><div class="testi-quote">"${t.q}"</div><div class="testi-person"><div class="testi-av" style="background:${t.c}">${t.i}</div><div><div class="testi-pname">${t.n}</div><div class="testi-prole">${t.r}</div></div></div></div>`).join('')}`;
+
+    case 'blog': return `
+      ${[{c1:'#5b5fd6',c2:'#4f46e5',tag:'Design Systems',title:'Building a Token-Based Design System That Scales',date:'June 2, 2025 · 8 min',icon:icons.palette},{c1:'#0ea5e9',c2:'#0284c7',tag:'Performance',title:'How I Achieved 99 on Lighthouse With Next.js',date:'May 18, 2025 · 6 min',icon:icons.zap},{c1:'#10b981',c2:'#059669',tag:'Animation',title:'Framer Motion Patterns Every Dev Should Know',date:'April 30, 2025 · 10 min',icon:icons.activity},{c1:'#f59e0b',c2:'#d97706',tag:'Career',title:'From Freelance to FAANG: What I Learned',date:'April 12, 2025 · 12 min',icon:icons.briefcase},{c1:'#8b5cf6',c2:'#7c3aed',tag:'AI',title:'Using AI in the Design Workflow: Honest Thoughts',date:'March 28, 2025 · 7 min',icon:icons.zap}].map(b=>`<div style="background:#fff;border-radius:13px;overflow:hidden;margin-bottom:.7rem"><div style="height:60px;background:linear-gradient(135deg,${b.c1},${b.c2});display:flex;align-items:center;justify-content:center">${b.icon.replace('18px','30px').replace('18px','30px').replace('currentColor','#fff').replace('stroke-width:2','stroke-width:1.5')}</div><div style="padding:.6rem .8rem"><div style="font-size:.6rem;color:#5b5fd6;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem">${b.tag}</div><div style="font-size:.76rem;font-weight:600;color:#000;line-height:1.4;margin-bottom:.18rem">${b.title}</div><div style="font-size:.64rem;color:#8e8e93">${b.date}</div></div></div>`).join('')}`;
+
+    case 'files': return `
+      <div class="app-section" style="margin-bottom:.7rem"><div class="app-section-title">Documents</div></div>
+      ${[{bg:'#fee2e2',tc:'#dc2626',n:'Resume.pdf',m:'PDF · 245 KB · Updated Jun 2025'},{bg:'#ede9fe',tc:'#7c3aed',n:'Resume_UIUX.pdf',m:'PDF · 238 KB'},{bg:'#dbeafe',tc:'#2563eb',n:'Resume_Developer.pdf',m:'PDF · 241 KB'},{bg:'#fef3c7',tc:'#d97706',n:'AWS_Certification.pdf',m:'PDF · 1.2 MB'},{bg:'#d1fae5',tc:'#059669',n:'UC_Berkeley_Degree.pdf',m:'PDF · 890 KB'},{bg:'#fce7f3',tc:'#ec4899',n:'Portfolio_Case_Studies.pdf',m:'PDF · 8.4 MB'}].map(f=>`<div class="file-item" onclick="showToast('download','Downloading','${f.n} saved to your device.')"><div class="file-icon" style="background:${f.bg};color:${f.tc}">${icons.file}</div><div class="file-info"><div class="file-name">${f.n}</div><div class="file-meta">${f.m}</div></div><div class="file-dl">Download</div></div>`).join('')}`;
+
+    case 'settings': return `
+      <div class="app-section">
+        <div class="app-section-title">Profile</div>
+        <div class="app-row"><div class="app-row-icon" style="background:linear-gradient(135deg,#5b5fd6,#4f46e5);color:#fff">${icons.user.replace('currentColor','#fff')}</div><div class="app-row-text"><div class="app-row-title">Alex Mercer</div><div class="app-row-sub">alex@alexmercer.dev</div></div><div class="app-row-arrow">›</div></div>
+      </div>
+      <div class="settings-section">
+        <div class="app-section-title" style="background:#f2f2f7">Appearance</div>
+        <div class="settings-row"><div><div class="settings-label">Dark Mode</div><div class="settings-sub">System default</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="settings-row"><div><div class="settings-label">Reduce Motion</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+        <div class="settings-row"><div><div class="settings-label">Bold Text</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+      <div class="settings-section">
+        <div class="app-section-title" style="background:#f2f2f7">Notifications</div>
+        <div class="settings-row"><div><div class="settings-label">Allow Notifications</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="settings-row"><div><div class="settings-label">Sound</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+      <div class="settings-section">
+        <div class="app-section-title" style="background:#f2f2f7">About</div>
+        <div class="settings-row"><div class="settings-label">Version</div><div style="font-size:.78rem;color:#8e8e93">2.0.0</div></div>
+        <div class="settings-row"><div class="settings-label">Built with</div><div style="font-size:.78rem;color:#8e8e93">HTML · CSS · JS</div></div>
+      </div>`;
+
+    default: return '<div style="padding:1rem;color:#8e8e93;font-size:.84rem;text-align:center;margin-top:2.5rem">Coming soon</div>';
+  }
+}
+
+// ── OPEN / CLOSE APP ──
+function openApp(name){
+  if(!unlocked)unlock();
+  const data=appContent[name];if(!data)return;
+  currentApp=name;
+  const appScreen=document.getElementById('app-screen');
+  document.getElementById('appTitle').textContent=data.title;
+  document.getElementById('appHeader').style.background=data.color;
+  appScreen.classList.add('visible');
+  appScreen.style.transition='none';
+  appScreen.style.transform='scale(.85)';appScreen.style.opacity='0';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    appScreen.style.transition='transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s ease';
+    appScreen.style.transform='scale(1)';appScreen.style.opacity='1';
+  }));
+  if(name==='music')renderMusicApp();
+  else if(name==='notes'){editingNote=null;renderNotesApp();}
+  else{
+    document.getElementById('appBody').innerHTML=getAppHTML(name);
+    setTimeout(()=>{document.querySelectorAll('.skill-fill[data-w]').forEach(el=>{el.style.width=el.dataset.w;});},150);
+  }
+  showDI('Opening '+data.title,'Tap × to close');
+}
+function closeApp(){
+  const s=document.getElementById('app-screen');
+  s.style.transition='transform .3s ease,opacity .3s ease';
+  s.style.transform='scale(.85)';s.style.opacity='0';
+  setTimeout(()=>{s.classList.remove('visible');currentApp=null;},300);
+}
+
+// ── INIT ──
+setTimeout(()=>showDI('Welcome!','Tap an app to explore'),1800);
+setTimeout(()=>showToast('open','Portfolio ready','Tap the phone to unlock'),2500);
+</script>
+</body>
+</html>
