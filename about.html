@@ -112,8 +112,6 @@
         color: var(--accent);
         font-style: italic;
       }
-
-      /* Inline links — always visible on wide screens */
       .nav-links {
         display: flex;
         gap: 0.15rem;
@@ -133,7 +131,6 @@
         color: var(--text);
         background: var(--surface2);
       }
-
       .nav-right {
         display: flex;
         gap: 0.5rem;
@@ -151,71 +148,12 @@
         white-space: nowrap;
       }
 
-      /* Hamburger — hidden by default, revealed below 640px */
+      /* Hamburger — never shown */
       .nav-hamburger {
         display: none;
-        background: var(--surface);
-        border: 1px solid var(--border2);
-        color: var(--text2);
-        border-radius: 8px;
-        width: 36px;
-        height: 36px;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 1.1rem;
-        flex-shrink: 0;
-        transition: color 0.2s;
       }
-      .nav-hamburger:hover {
-        color: var(--text);
-      }
-
-      /* Slide-down drawer */
       .nav-drawer {
         display: none;
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        z-index: 99;
-        background: rgba(11, 10, 15, 0.97);
-        backdrop-filter: blur(24px);
-        border-bottom: 1px solid var(--border);
-        padding: 0.6rem 1.25rem 0.85rem;
-        flex-direction: column;
-        gap: 0.2rem;
-        animation: drawerIn 0.2s ease;
-      }
-      body.light .nav-drawer {
-        background: rgba(247, 244, 239, 0.97);
-      }
-      .nav-drawer.open {
-        display: flex;
-      }
-      @keyframes drawerIn {
-        from {
-          opacity: 0;
-          transform: translateY(-6px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .nav-drawer a {
-        color: var(--text2);
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 500;
-        padding: 0.65rem 0.85rem;
-        border-radius: 10px;
-        transition: all 0.18s;
-      }
-      .nav-drawer a:hover,
-      .nav-drawer a.active {
-        color: var(--text);
-        background: var(--surface2);
       }
 
       .scroll-progress {
@@ -430,9 +368,7 @@
         animation: aura 5s ease-in-out infinite alternate;
       }
       @keyframes aura {
-        to {
-          opacity: 0.6;
-        }
+        to { opacity: 0.6; }
       }
       .iphone-wrap {
         position: relative;
@@ -445,13 +381,7 @@
         position: absolute;
         inset: 0;
         border-radius: 52px;
-        background: linear-gradient(
-          145deg,
-          #3f3f41 0%,
-          #2c2c2e 35%,
-          #1c1c1e 70%,
-          #2a2a2c 100%
-        );
+        background: linear-gradient(145deg, #3f3f41 0%, #2c2c2e 35%, #1c1c1e 70%, #2a2a2c 100%);
         box-shadow:
           inset 0 0 0 1px rgba(255, 255, 255, 0.14),
           inset 0 1px 0 rgba(255, 255, 255, 0.22),
@@ -459,10 +389,7 @@
       }
       .iphone-screen {
         position: absolute;
-        top: 7px;
-        left: 7px;
-        right: 7px;
-        bottom: 7px;
+        top: 7px; left: 7px; right: 7px; bottom: 7px;
         border-radius: 45px;
         overflow: hidden;
         background: #000;
@@ -489,28 +416,14 @@
         width: 4px;
         border-radius: 0 2px 2px 0;
       }
-      .vol-up {
-        top: 115px;
-        height: 40px;
-      }
-      .vol-dn {
-        top: 168px;
-        height: 40px;
-      }
-      .mute {
-        top: 92px;
-        height: 28px;
-      }
-      .power {
-        top: 150px;
-        height: 62px;
-      }
+      .vol-up { top: 115px; height: 40px; }
+      .vol-dn { top: 168px; height: 40px; }
+      .mute { top: 92px; height: 28px; }
+      .power { top: 150px; height: 62px; }
       .camera-bump {
         position: absolute;
-        top: 13px;
-        right: 13px;
-        width: 60px;
-        height: 60px;
+        top: 13px; right: 13px;
+        width: 60px; height: 60px;
         background: linear-gradient(145deg, #3a3a3c, #2c2c2e);
         border-radius: 16px;
         border: 1px solid rgba(255, 255, 255, 0.08);
@@ -525,47 +438,33 @@
         padding: 4px;
       }
       .cam-lens {
-        width: 13px;
-        height: 13px;
+        width: 13px; height: 13px;
         border-radius: 50%;
         background: #1a1a1c;
         border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: inset 0 0 5px rgba(91, 95, 214, 0.2);
       }
-      .cam-lens.small {
-        width: 9px;
-        height: 9px;
-        background: #111;
-        margin-top: 4px;
-      }
+      .cam-lens.small { width: 9px; height: 9px; background: #111; margin-top: 4px; }
       .cam-flash {
         position: absolute;
-        bottom: 10px;
-        right: 10px;
-        width: 6px;
-        height: 6px;
+        bottom: 10px; right: 10px;
+        width: 6px; height: 6px;
         border-radius: 50%;
         background: #c9a96e;
         box-shadow: 0 0 5px rgba(201, 169, 110, 0.5);
       }
       .dynamic-island {
         position: absolute;
-        top: 12px;
-        left: 50%;
+        top: 12px; left: 50%;
         transform: translateX(-50%);
-        width: 90px;
-        height: 28px;
+        width: 90px; height: 28px;
         background: #000;
         border-radius: 20px;
         z-index: 50;
         transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         cursor: pointer;
       }
-      .dynamic-island.expanded {
-        width: 220px;
-        height: 72px;
-        top: 8px;
-      }
+      .dynamic-island.expanded { width: 220px; height: 72px; top: 8px; }
       .di-content {
         display: none;
         align-items: center;
@@ -573,535 +472,135 @@
         padding: 0.45rem 0.85rem;
         height: 100%;
       }
-      .dynamic-island.expanded .di-content {
-        display: flex;
-      }
-      .di-music {
-        font-size: 0.6rem;
-        color: rgba(255, 255, 255, 0.7);
-      }
-      .di-music strong {
-        display: block;
-        color: #fff;
-        font-size: 0.65rem;
-        margin-bottom: 0.1rem;
-      }
-      .di-bars {
-        display: flex;
-        gap: 2px;
-        align-items: flex-end;
-        height: 16px;
-      }
-      .di-bar {
-        width: 3px;
-        background: #c9a96e;
-        border-radius: 2px;
-        animation: dibar 1s ease-in-out infinite alternate;
-      }
-      .di-bar:nth-child(2) {
-        animation-delay: 0.2s;
-        height: 60%;
-      }
-      .di-bar:nth-child(3) {
-        animation-delay: 0.4s;
-        height: 100%;
-      }
-      .di-bar:nth-child(1) {
-        height: 40%;
-      }
-      @keyframes dibar {
-        to {
-          transform: scaleY(1.8);
-        }
-      }
-      .di-cover {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
-      }
+      .dynamic-island.expanded .di-content { display: flex; }
+      .di-music { font-size: 0.6rem; color: rgba(255, 255, 255, 0.7); }
+      .di-music strong { display: block; color: #fff; font-size: 0.65rem; margin-bottom: 0.1rem; }
+      .di-bars { display: flex; gap: 2px; align-items: flex-end; height: 16px; }
+      .di-bar { width: 3px; background: #c9a96e; border-radius: 2px; animation: dibar 1s ease-in-out infinite alternate; }
+      .di-bar:nth-child(1) { height: 40%; }
+      .di-bar:nth-child(2) { animation-delay: 0.2s; height: 60%; }
+      .di-bar:nth-child(3) { animation-delay: 0.4s; height: 100%; }
+      @keyframes dibar { to { transform: scaleY(1.8); } }
+      .di-cover { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
       .status-bar {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 50px;
-        z-index: 40;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        top: 0; left: 0; right: 0;
+        height: 50px; z-index: 40;
+        display: flex; align-items: center; justify-content: space-between;
         padding: 0 1.2rem 0 0.9rem;
       }
-      .status-time {
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: #fff;
-        margin-top: 2px;
-      }
-      .battery {
-        display: flex;
-        align-items: center;
-        gap: 1px;
-      }
-      .battery-body {
-        width: 20px;
-        height: 10px;
-        border: 1.5px solid rgba(255, 255, 255, 0.6);
-        border-radius: 3px;
-        position: relative;
-        overflow: hidden;
-      }
-      .battery-fill {
-        position: absolute;
-        top: 1px;
-        left: 1px;
-        bottom: 1px;
-        width: 80%;
-        background: #fff;
-        border-radius: 1px;
-      }
-      .battery-tip {
-        width: 2px;
-        height: 5px;
-        background: rgba(255, 255, 255, 0.4);
-        border-radius: 0 1px 1px 0;
-      }
+      .status-time { font-size: 0.78rem; font-weight: 600; color: #fff; margin-top: 2px; }
+      .battery { display: flex; align-items: center; gap: 1px; }
+      .battery-body { width: 20px; height: 10px; border: 1.5px solid rgba(255,255,255,0.6); border-radius: 3px; position: relative; overflow: hidden; }
+      .battery-fill { position: absolute; top: 1px; left: 1px; bottom: 1px; width: 80%; background: #fff; border-radius: 1px; }
+      .battery-tip { width: 2px; height: 5px; background: rgba(255,255,255,0.4); border-radius: 0 1px 1px 0; }
       .scroll-pill {
         position: absolute;
-        bottom: 10px;
-        left: 50%;
+        bottom: 10px; left: 50%;
         transform: translateX(-50%);
-        width: 90px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.28);
-        border-radius: 3px;
-        z-index: 50;
-        cursor: pointer;
+        width: 90px; height: 4px;
+        background: rgba(255,255,255,0.28);
+        border-radius: 3px; z-index: 50; cursor: pointer;
       }
       #lock-screen {
-        background: linear-gradient(
-          160deg,
-          #0a0a2e 0%,
-          #1a0a3e 40%,
-          #0d1b3e 100%
-        );
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 60px;
-        cursor: pointer;
+        background: linear-gradient(160deg, #0a0a2e 0%, #1a0a3e 40%, #0d1b3e 100%);
+        display: flex; flex-direction: column; align-items: center;
+        justify-content: flex-start; padding-top: 60px; cursor: pointer;
       }
       .lock-bg-orb {
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(91, 95, 214, 0.28) 0%,
-          transparent 70%
-        );
-        top: 28%;
-        left: 50%;
-        transform: translateX(-50%);
-        pointer-events: none;
+        position: absolute; width: 200px; height: 200px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(91,95,214,0.28) 0%, transparent 70%);
+        top: 28%; left: 50%; transform: translateX(-50%); pointer-events: none;
       }
-      .lock-time {
-        font-size: 4rem;
-        font-weight: 200;
-        color: #fff;
-        letter-spacing: -0.04em;
-        line-height: 1;
-        margin-bottom: 0.3rem;
-        position: relative;
-        z-index: 1;
-        font-family: "Lora", serif;
-      }
-      .lock-date {
-        font-size: 0.82rem;
-        color: rgba(255, 255, 255, 0.65);
-        position: relative;
-        z-index: 1;
-        margin-bottom: 2rem;
-      }
+      .lock-time { font-size: 4rem; font-weight: 200; color: #fff; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.3rem; position: relative; z-index: 1; font-family: "Lora", serif; }
+      .lock-date { font-size: 0.82rem; color: rgba(255,255,255,0.65); position: relative; z-index: 1; margin-bottom: 2rem; }
       .lock-notif {
-        background: rgba(255, 255, 255, 0.11);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 16px;
-        padding: 0.85rem 0.95rem;
-        margin: 0 1rem 0.7rem;
-        width: calc(100% - 2rem);
-        position: relative;
-        z-index: 1;
+        background: rgba(255,255,255,0.11); backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.14); border-radius: 16px;
+        padding: 0.85rem 0.95rem; margin: 0 1rem 0.7rem;
+        width: calc(100% - 2rem); position: relative; z-index: 1;
       }
-      .notif-app {
-        font-size: 0.62rem;
-        color: rgba(255, 255, 255, 0.55);
-        margin-bottom: 0.22rem;
-        font-weight: 500;
-      }
-      .notif-text {
-        font-size: 0.76rem;
-        color: rgba(255, 255, 255, 0.88);
-        line-height: 1.4;
-      }
+      .notif-app { font-size: 0.62rem; color: rgba(255,255,255,0.55); margin-bottom: 0.22rem; font-weight: 500; }
+      .notif-text { font-size: 0.76rem; color: rgba(255,255,255,0.88); line-height: 1.4; }
       .faceid-ring {
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.28);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1.4rem;
-        animation: faceid 3s ease-in-out infinite;
-        position: relative;
-        z-index: 1;
+        width: 46px; height: 46px; border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.28);
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 1.4rem; animation: faceid 3s ease-in-out infinite;
+        position: relative; z-index: 1;
       }
       @keyframes faceid {
-        0%,
-        100% {
-          border-color: rgba(255, 255, 255, 0.2);
-          box-shadow: none;
-        }
-        50% {
-          border-color: rgba(201, 169, 110, 0.8);
-          box-shadow: 0 0 16px rgba(201, 169, 110, 0.35);
-        }
+        0%, 100% { border-color: rgba(255,255,255,0.2); box-shadow: none; }
+        50% { border-color: rgba(201,169,110,0.8); box-shadow: 0 0 16px rgba(201,169,110,0.35); }
       }
-      .swipe-hint {
-        position: absolute;
-        bottom: 2.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        color: rgba(255, 255, 255, 0.38);
-        font-size: 0.7rem;
-        z-index: 1;
-        pointer-events: none;
-      }
-      .swipe-arrow {
-        display: block;
-        animation: swipeup 2s ease-in-out infinite;
-      }
+      .swipe-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); text-align: center; color: rgba(255,255,255,0.38); font-size: 0.7rem; z-index: 1; pointer-events: none; }
+      .swipe-arrow { display: block; animation: swipeup 2s ease-in-out infinite; }
       @keyframes swipeup {
-        0%,
-        100% {
-          transform: translateY(0);
-          opacity: 0.38;
-        }
-        50% {
-          transform: translateY(-9px);
-          opacity: 0.8;
-        }
+        0%, 100% { transform: translateY(0); opacity: 0.38; }
+        50% { transform: translateY(-9px); opacity: 0.8; }
       }
       #home-screen {
-        background: linear-gradient(
-          160deg,
-          #0d0d2e 0%,
-          #1a0d3d 50%,
-          #0a1528 100%
-        );
-        display: none;
-        flex-direction: column;
-        overflow: hidden;
+        background: linear-gradient(160deg, #0d0d2e 0%, #1a0d3d 50%, #0a1528 100%);
+        display: none; flex-direction: column; overflow: hidden;
       }
-      .home-wallpaper-orb {
-        position: absolute;
-        width: 260px;
-        height: 260px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(79, 70, 229, 0.22) 0%,
-          transparent 70%
-        );
-        top: 13%;
-        left: 50%;
-        transform: translateX(-50%);
-        pointer-events: none;
-      }
-      .home-wallpaper-orb2 {
-        position: absolute;
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(44, 196, 168, 0.13) 0%,
-          transparent 70%
-        );
-        bottom: 22%;
-        right: 8%;
-        pointer-events: none;
-      }
-      .home-grid {
-        padding: 54px 14px 8px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 11px;
-        flex: 1;
-        position: relative;
-        z-index: 5;
-        align-content: start;
-      }
-      .app-icon {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-        cursor: pointer;
-        transition: transform 0.15s;
-        -webkit-tap-highlight-color: transparent;
-        user-select: none;
-      }
-      .app-icon:active {
-        transform: scale(0.86);
-      }
-      .app-icon-img {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
-        position: relative;
-        overflow: hidden;
-      }
-      .app-label {
-        font-size: 0.58rem;
-        color: rgba(255, 255, 255, 0.83);
-        font-weight: 500;
-        text-align: center;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-      }
-      .dock {
-        position: absolute;
-        bottom: 16px;
-        left: 14px;
-        right: 14px;
-        background: rgba(255, 255, 255, 0.11);
-        backdrop-filter: blur(22px);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 20px;
-        padding: 11px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        z-index: 10;
-      }
-      .widget-row {
-        padding: 0 14px 12px;
-        display: flex;
-        gap: 9px;
-        position: relative;
-        z-index: 5;
-      }
-      .widget {
-        background: rgba(255, 255, 255, 0.09);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        border-radius: 14px;
-        flex: 1;
-        padding: 0.6rem;
-        overflow: hidden;
-      }
-      .widget-title {
-        font-size: 0.54rem;
-        color: rgba(255, 255, 255, 0.48);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 0.25rem;
-      }
-      .widget-val {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #fff;
-      }
-      #app-screen {
-        position: absolute;
-        inset: 0;
-        background: #f2f2f7;
-        display: none;
-        flex-direction: column;
-        z-index: 70;
-        border-radius: 45px;
-        overflow: hidden;
-        opacity: 0;
-        transform: scale(0.85);
-        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-      #app-screen.visible {
-        display: flex;
-        opacity: 1;
-        transform: scale(1);
-      }
-      .app-header {
-        padding: 52px 0.95rem 0.95rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-shrink: 0;
-      }
-      .app-header-title {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: #fff;
-      }
-      .app-close {
-        background: rgba(255, 255, 255, 0.2);
-        border: none;
-        color: #fff;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 0.9rem;
-      }
-      .app-body {
-        flex: 1;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        padding: 0.85rem;
-        background: #f2f2f7;
-        overscroll-behavior: contain;
-      }
-      .app-body::-webkit-scrollbar {
-        width: 0;
-      }
-      #control-center {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(32px);
-        z-index: 60;
-        display: none;
-        padding: 58px 11px 18px;
-        flex-direction: column;
-        gap: 9px;
-      }
-      #control-center.visible {
-        display: flex;
-      }
-      .cc-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 9px;
-      }
-      .cc-tile {
-        background: rgba(255, 255, 255, 0.14);
-        border-radius: 14px;
-        padding: 0.8rem;
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        cursor: pointer;
-      }
-      .cc-tile.wide {
-        grid-column: span 2;
-      }
-      .cc-tile-label {
-        font-size: 0.7rem;
-        color: #fff;
-        font-weight: 500;
-      }
-      .cc-close {
-        align-self: center;
-        background: rgba(255, 255, 255, 0.14);
-        border: none;
-        color: #fff;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        font-size: 0.9rem;
-        cursor: pointer;
-        margin-top: auto;
-      }
+      .home-wallpaper-orb { position: absolute; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(79,70,229,0.22) 0%, transparent 70%); top: 13%; left: 50%; transform: translateX(-50%); pointer-events: none; }
+      .home-wallpaper-orb2 { position: absolute; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(44,196,168,0.13) 0%, transparent 70%); bottom: 22%; right: 8%; pointer-events: none; }
+      .home-grid { padding: 54px 14px 8px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; flex: 1; position: relative; z-index: 5; align-content: start; }
+      .app-icon { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; transition: transform 0.15s; -webkit-tap-highlight-color: transparent; user-select: none; }
+      .app-icon:active { transform: scale(0.86); }
+      .app-icon-img { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.45); position: relative; overflow: hidden; }
+      .app-label { font-size: 0.58rem; color: rgba(255,255,255,0.83); font-weight: 500; text-align: center; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
+      .dock { position: absolute; bottom: 16px; left: 14px; right: 14px; background: rgba(255,255,255,0.11); backdrop-filter: blur(22px); border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 11px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; z-index: 10; }
+      .widget-row { padding: 0 14px 12px; display: flex; gap: 9px; position: relative; z-index: 5; }
+      .widget { background: rgba(255,255,255,0.09); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; flex: 1; padding: 0.6rem; overflow: hidden; }
+      .widget-title { font-size: 0.54rem; color: rgba(255,255,255,0.48); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+      .widget-val { font-size: 1.2rem; font-weight: 700; color: #fff; }
+      #app-screen { position: absolute; inset: 0; background: #f2f2f7; display: none; flex-direction: column; z-index: 70; border-radius: 45px; overflow: hidden; opacity: 0; transform: scale(0.85); transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+      #app-screen.visible { display: flex; opacity: 1; transform: scale(1); }
+      .app-header { padding: 52px 0.95rem 0.95rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+      .app-header-title { font-size: 0.95rem; font-weight: 700; color: #fff; }
+      .app-close { background: rgba(255,255,255,0.2); border: none; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.9rem; }
+      .app-body { flex: 1; overflow-y: scroll; -webkit-overflow-scrolling: touch; padding: 0.85rem; background: #f2f2f7; overscroll-behavior: contain; }
+      .app-body::-webkit-scrollbar { width: 0; }
+      #control-center { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(32px); z-index: 60; display: none; padding: 58px 11px 18px; flex-direction: column; gap: 9px; }
+      #control-center.visible { display: flex; }
+      .cc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+      .cc-tile { background: rgba(255,255,255,0.14); border-radius: 14px; padding: 0.8rem; display: flex; align-items: center; gap: 0.55rem; cursor: pointer; }
+      .cc-tile.wide { grid-column: span 2; }
+      .cc-tile-label { font-size: 0.7rem; color: #fff; font-weight: 500; }
+      .cc-close { align-self: center; background: rgba(255,255,255,0.14); border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; font-size: 0.9rem; cursor: pointer; margin-top: auto; }
 
       /* ── RESPONSIVE ── */
       @media (max-width: 960px) {
-        .layout {
-          grid-template-columns: 1fr;
-        }
-        .iphone-side {
-          display: none;
-        }
-        .hero-inner {
-          grid-template-columns: 1fr;
-          text-align: center;
-        }
-        .hero-image-col {
-          display: flex;
-          justify-content: center;
-        }
-        .profile-img {
-          width: 150px;
-          height: 150px;
-        }
-        .hero-body {
-          max-width: 100%;
-        }
-        .hero h1 {
-          font-size: clamp(1.9rem, 6vw, 2.8rem);
-        }
-        section {
-          padding: 3rem 1.5rem;
-        }
-        .hero {
-          padding: 3.5rem 1.5rem 3rem;
-        }
-        nav {
-          padding: 0 1.5rem;
-        }
-        footer {
-          padding: 1.5rem;
-        }
+        .layout { grid-template-columns: 1fr; }
+        .iphone-side { display: none; }
+        .hero-inner { grid-template-columns: 1fr; text-align: center; }
+        .hero-image-col { display: flex; justify-content: center; }
+        .profile-img { width: 150px; height: 150px; }
+        .hero-body { max-width: 100%; }
+        .hero h1 { font-size: clamp(1.9rem, 6vw, 2.8rem); }
+        section { padding: 3rem 1.5rem; }
+        .hero { padding: 3.5rem 1.5rem 3rem; }
+        nav { padding: 0 1.5rem; }
+        footer { padding: 1.5rem; }
       }
 
-      /* Below 640px: swap inline links for hamburger */
       @media (max-width: 640px) {
-        nav {
-          padding: 0 1rem;
-        }
-        .nav-links {
-          display: none;
-        }
-        .nav-hamburger {
-          display: flex;
-        }
-        .nav-logo {
-          font-size: 1rem;
-        }
-        .theme-btn {
-          padding: 0.3rem 0.65rem;
-          font-size: 0.73rem;
-        }
-        .skills-cols {
-          grid-template-columns: 1fr;
-        }
+        nav { padding: 0 1rem; }
+        .nav-logo { font-size: 0.95rem; }
+        .nav-links a { font-size: 0.75rem; padding: 0.3rem 0.55rem; }
+        .theme-btn { padding: 0.3rem 0.65rem; font-size: 0.73rem; }
+        .skills-cols { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 400px) {
+        .nav-links a { font-size: 0.7rem; padding: 0.28rem 0.45rem; }
+        .theme-btn { display: none; }
       }
     </style>
   </head>
   <body>
     <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Mobile nav drawer (renders above layout, outside scroll container) -->
-    <div class="nav-drawer" id="navDrawer">
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-      <a href="work.html">Work</a>
-      <a href="contact.html">Contact</a>
-    </div>
 
     <div class="layout">
       <div class="portfolio-side" id="portfolioSide">
@@ -1116,14 +615,6 @@
             </div>
             <div class="nav-right">
               <button class="theme-btn" onclick="toggleTheme()">◐ Theme</button>
-              <button
-                class="nav-hamburger"
-                id="hamburger"
-                onclick="toggleDrawer()"
-                aria-label="Open menu"
-              >
-                ☰
-              </button>
             </div>
           </div>
         </nav>
@@ -1334,14 +825,7 @@
                 </div>
               </div>
               <div class="cc-row">
-                <div
-                  class="cc-tile wide"
-                  style="
-                    flex-direction: column;
-                    align-items: flex-start;
-                    gap: 0.4rem;
-                  "
-                >
+                <div class="cc-tile wide" style="flex-direction:column;align-items:flex-start;gap:0.4rem">
                   <div class="cc-tile-label">Brightness</div>
                   <input type="range" class="cc-slider" value="70" />
                 </div>
@@ -1355,15 +839,11 @@
               <div class="faceid-ring">👤</div>
               <div class="lock-notif">
                 <div class="notif-app">Portfolio</div>
-                <div class="notif-text">
-                  Selorm is open for research collaborations
-                </div>
+                <div class="notif-text">Selorm is open for research collaborations</div>
               </div>
               <div class="lock-notif">
                 <div class="notif-app">Katalyze Africa</div>
-                <div class="notif-text">
-                  New chapter application received from Nairobi
-                </div>
+                <div class="notif-text">New chapter application received from Nairobi</div>
               </div>
               <div class="swipe-hint">
                 <span class="swipe-arrow">↑</span>Swipe up to unlock
@@ -1402,8 +882,7 @@
     </div>
 
     <script>
-      let unlocked = false,
-        currentApp = null;
+      let unlocked = false, currentApp = null;
 
       function updateClock() {
         const n = new Date(),
@@ -1414,29 +893,8 @@
           document.getElementById("statusTime").textContent = t;
         if (document.getElementById("lockTime"))
           document.getElementById("lockTime").textContent = t;
-        const days = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-          ],
-          months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-          ];
+        const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         if (document.getElementById("lockDate"))
           document.getElementById("lockDate").textContent =
             days[n.getDay()] + ", " + months[n.getMonth()] + " " + n.getDate();
@@ -1444,24 +902,7 @@
       updateClock();
       setInterval(updateClock, 30000);
 
-      function toggleTheme() {
-        document.body.classList.toggle("light");
-      }
-
-      // Hamburger drawer
-      function toggleDrawer() {
-        const drawer = document.getElementById("navDrawer");
-        const btn = document.getElementById("hamburger");
-        const isOpen = drawer.classList.toggle("open");
-        btn.textContent = isOpen ? "✕" : "☰";
-        btn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-      }
-      document.querySelectorAll(".nav-drawer a").forEach((a) => {
-        a.addEventListener("click", () => {
-          document.getElementById("navDrawer").classList.remove("open");
-          document.getElementById("hamburger").textContent = "☰";
-        });
-      });
+      function toggleTheme() { document.body.classList.toggle("light"); }
 
       const ps = document.getElementById("portfolioSide"),
         sp = document.getElementById("scrollProgress");
@@ -1490,43 +931,18 @@
 
       function goHome() {
         const appScr = document.getElementById("app-screen");
-        if (appScr.classList.contains("visible")) {
-          closeApp();
-          return;
-        }
-        if (
-          document
-            .getElementById("control-center")
-            .classList.contains("visible")
-        )
-          closeCC();
+        if (appScr.classList.contains("visible")) { closeApp(); return; }
+        if (document.getElementById("control-center").classList.contains("visible")) closeCC();
       }
-      function closeCC() {
-        document.getElementById("control-center").classList.remove("visible");
-      }
-      function ccToggle(el) {
-        el.style.background = el.style.background
-          ? ""
-          : "rgba(255,255,255,0.28)";
-      }
-      function closeApp() {
-        document.getElementById("app-screen").classList.remove("visible");
-        currentApp = null;
-      }
+      function closeCC() { document.getElementById("control-center").classList.remove("visible"); }
+      function ccToggle(el) { el.style.background = el.style.background ? "" : "rgba(255,255,255,0.28)"; }
+      function closeApp() { document.getElementById("app-screen").classList.remove("visible"); currentApp = null; }
       function openApp(name) {
         if (!unlocked) unlock();
         currentApp = name;
-        const titles = {
-          portfolio: "About Selorm",
-          projects: "Projects",
-          skills: "Skills",
-          resume: "Resume",
-          contact: "Contact",
-          music: "Music",
-        };
+        const titles = { portfolio: "About Selorm", projects: "Projects", skills: "Skills", resume: "Resume", contact: "Contact", music: "Music" };
         document.getElementById("appTitle").textContent = titles[name] || name;
-        document.getElementById("appHeader").style.background =
-          "linear-gradient(135deg,#8C1515,#b83a3a)";
+        document.getElementById("appHeader").style.background = "linear-gradient(135deg,#8C1515,#b83a3a)";
         let html = "";
         if (name === "portfolio")
           html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div style="padding:.5rem 0;color:#333;font-size:.82rem;line-height:1.7">CS student at Stanford. Building at intersection of AI, climate tech, and African innovation. Founder of Katalyze Africa. 2x African Service Fellow.</div>`;
@@ -1534,16 +950,13 @@
           html = `<div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Drop It Off — iOS App</div><div style="font-size:.75rem;color:#666">4.8★ · 1K+ downloads · Swift + Firebase</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">CS124 AI Booking Agent</div><div style="font-size:.75rem;color:#666">Python · DSPy · ReAct pattern</div></div>`;
         else if (name === "resume")
           html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff;font-weight:600;cursor:pointer">Download Resume</button></div>`;
-        else
-          html =
-            '<div style="padding:1rem;color:#8e8e93;text-align:center">Coming soon</div>';
+        else html = '<div style="padding:1rem;color:#8e8e93;text-align:center">Coming soon</div>';
         document.getElementById("appBody").innerHTML = html;
         document.getElementById("app-screen").classList.add("visible");
       }
 
       function renderHomeScreen() {
-        const grid = document.getElementById("homeGrid"),
-          dock = document.getElementById("dock");
+        const grid = document.getElementById("homeGrid"), dock = document.getElementById("dock");
         const apps = [
           { name: "portfolio", label: "About", icon: "🏠" },
           { name: "projects", label: "Projects", icon: "🚀" },
@@ -1553,20 +966,9 @@
           { name: "music", label: "Music", icon: "🎵" },
         ];
         if (grid)
-          grid.innerHTML = apps
-            .map(
-              (a) =>
-                `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div><div class="app-label">${a.label}</div></div>`,
-            )
-            .join("");
+          grid.innerHTML = apps.map(a => `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div><div class="app-label">${a.label}</div></div>`).join("");
         if (dock)
-          dock.innerHTML = apps
-            .slice(0, 4)
-            .map(
-              (a) =>
-                `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div></div>`,
-            )
-            .join("");
+          dock.innerHTML = apps.slice(0, 4).map(a => `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div></div>`).join("");
       }
 
       window.openApp = openApp;

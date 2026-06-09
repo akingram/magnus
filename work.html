@@ -1216,15 +1216,35 @@
           padding: 1.5rem;
         }
       }
-      @media (max-width: 480px) {
+      /* @media (max-width: 480px) {
         .nav-links {
           display: none;
         }
         .iphone-wrap {
           width: 260px;
           height: 560px;
-        }
-      }
+        } */
+         @media (max-width: 480px) {
+  .nav-links {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-links a {
+    font-size: 0.76rem;
+    padding: 0.3rem 0.65rem;
+  }
+  .iphone-wrap {
+    width: 260px;
+    height: 560px;
+  }
+}
+     
     </style>
   </head>
   <body>
