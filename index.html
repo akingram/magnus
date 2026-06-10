@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -105,7 +104,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 60px;
+        min-height: 60px;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        padding: 0.4rem 0;
       }
       .nav-logo {
         font-family: "Lora", serif;
@@ -179,8 +181,6 @@
         gap: 2.5rem;
         align-items: center;
       }
-      .hero-text {
-      }
       .hero-kicker {
         display: inline-flex;
         align-items: center;
@@ -247,6 +247,8 @@
         cursor: pointer;
         transition: all 0.22s;
         letter-spacing: 0.02em;
+        text-decoration: none;
+        display: inline-block;
       }
       .btn-primary:hover {
         background: var(--accent2);
@@ -263,6 +265,8 @@
         font-weight: 500;
         cursor: pointer;
         transition: all 0.22s;
+        text-decoration: none;
+        display: inline-block;
       }
       .btn-ghost:hover {
         color: var(--text);
@@ -366,93 +370,6 @@
         color: var(--text3);
         margin-top: 0.2rem;
       }
-      .signature {
-        font-family: "Lora", serif;
-        font-style: italic;
-        font-size: 1.4rem;
-        color: var(--text3);
-        margin-top: 0.5rem;
-        display: block;
-      }
-      .skills-cols {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.1rem;
-      }
-      .skill-group {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1.3rem;
-      }
-      .skill-group-name {
-        font-size: 0.68rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--text3);
-        margin-bottom: 0.9rem;
-      }
-      .skill-pills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-      }
-      .pill {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 100px;
-        padding: 0.28rem 0.75rem;
-        font-size: 0.76rem;
-        color: var(--text2);
-        transition: all 0.18s;
-        cursor: default;
-      }
-      .pill:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-      .services-list {
-        display: grid;
-        gap: 0.75rem;
-      }
-      .service-row {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: start;
-        gap: 1.25rem;
-        padding: 1.35rem 1.4rem;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        transition: all 0.2s;
-      }
-      .service-row:hover {
-        border-color: var(--border2);
-        background: var(--surface2);
-      }
-      .svc-num {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.65rem;
-        color: var(--text3);
-        padding-top: 0.15rem;
-      }
-      .svc-title {
-        font-size: 0.95rem;
-        font-weight: 500;
-        color: var(--text);
-        margin-bottom: 0.3rem;
-      }
-      .svc-desc {
-        font-size: 0.82rem;
-        color: var(--text2);
-        line-height: 1.65;
-      }
-      .svc-arrow {
-        color: var(--text3);
-        font-size: 0.9rem;
-        padding-top: 0.1rem;
-      }
       .projects-list {
         display: grid;
         gap: 1rem;
@@ -510,181 +427,6 @@
         border-radius: 4px;
         padding: 0.18rem 0.55rem;
       }
-      .testi-grid {
-        display: grid;
-        gap: 0.85rem;
-      }
-      .testi-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1.4rem;
-      }
-      .testi-quote {
-        font-family: "Lora", serif;
-        font-style: italic;
-        font-size: 0.92rem;
-        color: var(--text2);
-        line-height: 1.8;
-        margin-bottom: 1rem;
-      }
-      .testi-stars {
-        color: var(--accent);
-        font-size: 0.82rem;
-        margin-bottom: 0.65rem;
-        letter-spacing: 0.08em;
-      }
-      .testi-person {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-      .testi-av {
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: #fff;
-        flex-shrink: 0;
-      }
-      .testi-name {
-        font-size: 0.84rem;
-        font-weight: 500;
-        color: var(--text);
-      }
-      .testi-role {
-        font-size: 0.72rem;
-        color: var(--text3);
-      }
-      .exp-list {
-        display: grid;
-        gap: 0;
-      }
-      .exp-item {
-        display: grid;
-        grid-template-columns: 120px 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem 0;
-        border-bottom: 1px solid var(--border);
-      }
-      .exp-item:last-child {
-        border-bottom: none;
-      }
-      .exp-period {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.68rem;
-        color: var(--text3);
-        padding-top: 0.15rem;
-        line-height: 1.6;
-      }
-      .exp-role {
-        font-size: 0.94rem;
-        font-weight: 500;
-        color: var(--text);
-        margin-bottom: 0.2rem;
-      }
-      .exp-company {
-        font-size: 0.8rem;
-        color: var(--accent);
-        margin-bottom: 0.55rem;
-      }
-      .exp-desc {
-        font-size: 0.82rem;
-        color: var(--text2);
-        line-height: 1.7;
-      }
-      .contact-layout {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
-      }
-      .contact-lede {
-        font-family: "Lora", serif;
-        font-style: italic;
-        font-size: 1.05rem;
-        color: var(--text2);
-        line-height: 1.7;
-        margin-bottom: 1.25rem;
-      }
-      .contact-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .clink {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        color: var(--text2);
-        text-decoration: none;
-        font-size: 0.86rem;
-        padding: 0.7rem 0.9rem;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        transition: all 0.18s;
-      }
-      .clink:hover {
-        color: var(--text);
-        border-color: var(--border2);
-        background: var(--surface2);
-      }
-      .clink-icon {
-        width: 30px;
-        height: 30px;
-        border-radius: 7px;
-        background: var(--surface2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
-        flex-shrink: 0;
-      }
-      .contact-form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-      }
-      .fgroup {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-      }
-      .fgroup label {
-        font-size: 0.72rem;
-        color: var(--text3);
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
-      .fgroup input,
-      .fgroup textarea {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 9px;
-        padding: 0.65rem 0.9rem;
-        color: var(--text);
-        font-size: 0.86rem;
-        font-family: inherit;
-        resize: none;
-        outline: none;
-        transition: border 0.18s;
-      }
-      .fgroup input:focus,
-      .fgroup textarea:focus {
-        border-color: var(--accent);
-      }
-      .fgroup textarea {
-        min-height: 90px;
-      }
-      body.light .fgroup input,
-      body.light .fgroup textarea {
-        color: var(--text);
-      }
       footer {
         border-top: 1px solid var(--border);
         padding: 1.75rem 2.75rem;
@@ -719,13 +461,15 @@
         border-color: var(--accent);
         color: var(--accent);
       }
+
+      /* ===================== IPHONE SHELL ===================== */
       .iphone-aura {
         position: absolute;
         inset: -30px;
         border-radius: 80px;
         background: radial-gradient(
           ellipse at center,
-          rgba(91, 95, 214, 0.12) 0%,
+          rgba(140, 21, 21, 0.18) 0%,
           transparent 65%
         );
         animation: aura 5s ease-in-out infinite alternate;
@@ -733,7 +477,8 @@
       }
       @keyframes aura {
         to {
-          opacity: 0.6;
+          opacity: 0.5;
+          transform: scale(1.04);
         }
       }
       .iphone-wrap {
@@ -770,7 +515,7 @@
         background: #000;
         isolation: isolate;
         overscroll-behavior: contain;
-        touch-action: none;
+        touch-action: pan-y;
       }
       .iphone-screen-inner {
         position: absolute;
@@ -850,6 +595,8 @@
         background: #c9a96e;
         box-shadow: 0 0 5px rgba(201, 169, 110, 0.5);
       }
+
+      /* ===================== DYNAMIC ISLAND ===================== */
       .dynamic-island {
         position: absolute;
         top: 12px;
@@ -860,19 +607,19 @@
         background: #000;
         border-radius: 20px;
         z-index: 50;
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
         cursor: pointer;
       }
       .dynamic-island.expanded {
-        width: 220px;
-        height: 72px;
+        width: 230px;
+        height: 76px;
         top: 8px;
       }
       .di-content {
         display: none;
         align-items: center;
         justify-content: space-between;
-        padding: 0.45rem 0.85rem;
+        padding: 0.5rem 0.9rem;
         height: 100%;
       }
       .dynamic-island.expanded .di-content {
@@ -896,9 +643,12 @@
       }
       .di-bar {
         width: 3px;
-        background: #c9a96e;
+        background: #8c1515;
         border-radius: 2px;
         animation: dibar 1s ease-in-out infinite alternate;
+      }
+      .di-bar:nth-child(1) {
+        height: 40%;
       }
       .di-bar:nth-child(2) {
         animation-delay: 0.2s;
@@ -908,24 +658,25 @@
         animation-delay: 0.4s;
         height: 100%;
       }
-      .di-bar:nth-child(1) {
-        height: 40%;
-      }
       @keyframes dibar {
         to {
           transform: scaleY(1.8);
         }
       }
       .di-cover {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
         flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
+        overflow: hidden;
       }
+      .di-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ===================== STATUS BAR ===================== */
       .status-bar {
         position: absolute;
         top: 0;
@@ -937,17 +688,19 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 1.2rem 0 0.9rem;
+        pointer-events: none;
       }
       .status-time {
         font-size: 0.78rem;
-        font-weight: 600;
+        font-weight: 700;
         color: #fff;
         margin-top: 2px;
+        font-family: "Inter", sans-serif;
       }
-      .status-icons {
+      .status-right {
         display: flex;
         align-items: center;
-        gap: 0.35rem;
+        gap: 4px;
         margin-top: 2px;
       }
       .signal-bars {
@@ -973,14 +726,9 @@
       .signal-bar:nth-child(4) {
         height: 100%;
       }
-      .battery {
-        display: flex;
-        align-items: center;
-        gap: 1px;
-      }
       .battery-body {
-        width: 20px;
-        height: 10px;
+        width: 22px;
+        height: 11px;
         border: 1.5px solid rgba(255, 255, 255, 0.6);
         border-radius: 3px;
         position: relative;
@@ -991,130 +739,272 @@
         top: 1px;
         left: 1px;
         bottom: 1px;
-        width: 80%;
-        background: #fff;
+        width: 78%;
+        background: #34c759;
         border-radius: 1px;
       }
-      .battery-tip {
-        width: 2px;
-        height: 5px;
-        background: rgba(255, 255, 255, 0.4);
-        border-radius: 0 1px 1px 0;
+      .wifi-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
       }
+      .wifi-arc {
+        border: 2px solid rgba(255, 255, 255, 0);
+        border-top-color: #fff;
+        border-radius: 50%;
+      }
+      .wa1 {
+        width: 6px;
+        height: 6px;
+      }
+      .wa2 {
+        width: 10px;
+        height: 10px;
+      }
+      .wa3 {
+        width: 14px;
+        height: 14px;
+      }
+      .wifi-dot {
+        width: 3px;
+        height: 3px;
+        background: #fff;
+        border-radius: 50%;
+      }
+
+      /* ===================== HOME INDICATOR ===================== */
       .scroll-pill {
         position: absolute;
-        bottom: 10px;
+        bottom: 8px;
         left: 50%;
         transform: translateX(-50%);
-        width: 90px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.28);
+        width: 100px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.3);
         border-radius: 3px;
         z-index: 50;
+        cursor: pointer;
+        transition: background 0.2s;
       }
+      .scroll-pill:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      /* ===================== TOAST ===================== */
+      .phone-toast {
+        position: absolute;
+        top: 58px;
+        left: 10px;
+        right: 10px;
+        background: rgba(30, 30, 32, 0.96);
+        backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        padding: 0.75rem 1rem;
+        z-index: 90;
+        display: none;
+        gap: 0.6rem;
+        align-items: center;
+      }
+      .phone-toast.show {
+        display: flex;
+        animation: toastin 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+      }
+      @keyframes toastin {
+        from {
+          transform: translateY(-14px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .toast-app-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+      }
+      .toast-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .toast-app-name {
+        font-size: 0.62rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .toast-title {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .toast-text {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.7);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .toast-time {
+        font-size: 0.6rem;
+        color: rgba(255, 255, 255, 0.35);
+        flex-shrink: 0;
+      }
+
+      /* ===================== LOCK SCREEN ===================== */
       #lock-screen {
-        background: linear-gradient(
-          160deg,
-          #0a0a2e 0%,
-          #1a0a3e 40%,
-          #0d1b3e 100%
-        );
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-top: 60px;
+        padding-top: 58px;
         cursor: pointer;
+        overflow: hidden;
+        background: #000;
       }
-      .lock-bg-orb {
+      .lock-wallpaper {
         position: absolute;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(91, 95, 214, 0.28) 0%,
-          transparent 70%
+        inset: 0;
+        background-image: url("https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=640&h=1280&fit=crop&crop=top");
+        background-size: cover;
+        background-position: center top;
+        filter: brightness(0.55) saturate(1.1);
+      }
+      .lock-wallpaper-blur {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.25) 0%,
+          rgba(0, 0, 0, 0.1) 40%,
+          rgba(0, 0, 0, 0.6) 100%
         );
-        top: 28%;
-        left: 50%;
-        transform: translateX(-50%);
-        pointer-events: none;
       }
       .lock-time {
-        font-size: 4rem;
+        font-size: 4.8rem;
         font-weight: 200;
         color: #fff;
         letter-spacing: -0.04em;
         line-height: 1;
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.2rem;
         position: relative;
         z-index: 1;
         font-family: "Lora", serif;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
       }
       .lock-date {
-        font-size: 0.82rem;
-        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.85);
         position: relative;
         z-index: 1;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
       }
       .lock-notif {
-        background: rgba(255, 255, 255, 0.11);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 16px;
-        padding: 0.85rem 0.95rem;
-        margin: 0 1rem 0.7rem;
-        width: calc(100% - 2rem);
+        background: rgba(255, 255, 255, 0.13);
+        backdrop-filter: blur(28px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 18px;
+        padding: 0.9rem 1rem;
+        margin: 0 0.8rem 0.6rem;
+        width: calc(100% - 1.6rem);
         position: relative;
         z-index: 1;
+        transition: transform 0.15s;
       }
-      .notif-app {
-        font-size: 0.62rem;
-        color: rgba(255, 255, 255, 0.55);
-        margin-bottom: 0.22rem;
-        font-weight: 500;
+      .lock-notif:hover {
+        transform: scale(1.01);
       }
-      .notif-text {
-        font-size: 0.76rem;
-        color: rgba(255, 255, 255, 0.88);
-        line-height: 1.4;
+      .notif-header {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-bottom: 0.3rem;
       }
-      .faceid-ring {
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.28);
+      .notif-app-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        background: #8c1515;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 1.4rem;
+        font-size: 0.6rem;
+        flex-shrink: 0;
+      }
+      .notif-app {
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.65);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .notif-time {
+        font-size: 0.6rem;
+        color: rgba(255, 255, 255, 0.4);
+        margin-left: auto;
+      }
+      .notif-text {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.92);
+        line-height: 1.45;
+      }
+      .faceid-ring {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1.2rem auto 0.5rem;
         animation: faceid 3s ease-in-out infinite;
         position: relative;
         z-index: 1;
+        overflow: hidden;
+      }
+      .faceid-ring img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
       }
       @keyframes faceid {
         0%,
         100% {
-          border-color: rgba(255, 255, 255, 0.2);
+          border-color: rgba(255, 255, 255, 0.25);
           box-shadow: none;
         }
         50% {
-          border-color: rgba(201, 169, 110, 0.8);
-          box-shadow: 0 0 16px rgba(201, 169, 110, 0.35);
+          border-color: rgba(140, 21, 21, 0.9);
+          box-shadow: 0 0 20px rgba(140, 21, 21, 0.4);
         }
       }
       .swipe-hint {
         position: absolute;
-        bottom: 2.5rem;
+        bottom: 2.2rem;
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
-        color: rgba(255, 255, 255, 0.38);
-        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.68rem;
         z-index: 1;
         pointer-events: none;
+        letter-spacing: 0.04em;
       }
       .swipe-arrow {
         display: block;
@@ -1124,58 +1014,45 @@
         0%,
         100% {
           transform: translateY(0);
-          opacity: 0.38;
+          opacity: 0.5;
         }
         50% {
-          transform: translateY(-9px);
-          opacity: 0.8;
+          transform: translateY(-8px);
+          opacity: 1;
         }
       }
+
+      /* ===================== HOME SCREEN ===================== */
       #home-screen {
-        background: linear-gradient(
-          160deg,
-          #0d0d2e 0%,
-          #1a0d3d 50%,
-          #0a1528 100%
-        );
         display: none;
         flex-direction: column;
         overflow: hidden;
+        background: #000;
       }
-      .home-wallpaper-orb {
+      .home-wallpaper {
         position: absolute;
-        width: 260px;
-        height: 260px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(79, 70, 229, 0.22) 0%,
-          transparent 70%
-        );
-        top: 13%;
-        left: 50%;
-        transform: translateX(-50%);
-        pointer-events: none;
+        inset: 0;
+        background-image: url("https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=640&h=1280&fit=crop&crop=top");
+        background-size: cover;
+        background-position: center top;
+        filter: brightness(0.45) saturate(1.15) blur(0px);
+        transition: filter 0.3s;
       }
-      .home-wallpaper-orb2 {
+      .home-wallpaper-overlay {
         position: absolute;
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(44, 196, 168, 0.13) 0%,
-          transparent 70%
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.3) 0%,
+          rgba(0, 0, 0, 0.1) 50%,
+          rgba(0, 0, 0, 0.55) 100%
         );
-        bottom: 22%;
-        right: 8%;
-        pointer-events: none;
       }
       .home-grid {
-        padding: 54px 14px 8px;
+        padding: 58px 16px 10px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 11px;
+        gap: 14px;
         flex: 1;
         position: relative;
         z-index: 5;
@@ -1192,260 +1069,308 @@
         user-select: none;
       }
       .app-icon:active {
-        transform: scale(0.86);
+        transform: scale(0.84);
       }
       .app-icon-img {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
+        width: 52px;
+        height: 52px;
+        border-radius: 13px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
         position: relative;
         overflow: hidden;
+        font-size: 1.4rem;
       }
-      .app-icon-img svg {
-        width: 26px;
-        height: 26px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 1.8;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+      .app-icon-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 60%
+        );
+        border-radius: 13px;
+        pointer-events: none;
       }
       .app-label {
-        font-size: 0.58rem;
-        color: rgba(255, 255, 255, 0.83);
+        font-size: 0.6rem;
+        color: rgba(255, 255, 255, 0.9);
         font-weight: 500;
         text-align: center;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
       }
       .app-badge {
         position: absolute;
-        top: -3px;
-        right: -3px;
+        top: -4px;
+        right: -4px;
         background: #ff3b30;
         color: #fff;
-        font-size: 0.44rem;
+        font-size: 0.42rem;
         font-weight: 700;
         padding: 1px 4px;
         border-radius: 10px;
         border: 1.5px solid #000;
         min-width: 14px;
         text-align: center;
-      }
-      .dock {
-        position: absolute;
-        bottom: 16px;
-        left: 14px;
-        right: 14px;
-        background: rgba(255, 255, 255, 0.11);
-        backdrop-filter: blur(22px);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 20px;
-        padding: 11px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
         z-index: 10;
       }
       .widget-row {
-        padding: 0 14px 12px;
+        padding: 0 16px 14px;
         display: flex;
-        gap: 9px;
+        gap: 10px;
         position: relative;
         z-index: 5;
       }
       .widget {
-        background: rgba(255, 255, 255, 0.09);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
         flex: 1;
-        padding: 0.6rem;
+        padding: 0.65rem;
         overflow: hidden;
       }
       .widget-title {
-        font-size: 0.54rem;
-        color: rgba(255, 255, 255, 0.48);
+        font-size: 0.52rem;
+        color: rgba(255, 255, 255, 0.55);
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 0.25rem;
+        letter-spacing: 0.09em;
+        margin-bottom: 0.22rem;
       }
       .widget-val {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         font-weight: 700;
         color: #fff;
+        line-height: 1;
       }
       .widget-sub {
         font-size: 0.5rem;
-        color: rgba(255, 255, 255, 0.42);
-        margin-top: 0.1rem;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 0.15rem;
       }
+      .dock {
+        position: absolute;
+        bottom: 20px;
+        left: 16px;
+        right: 16px;
+        background: rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(28px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 22px;
+        padding: 12px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        z-index: 10;
+      }
+
+      /* ===================== APP SCREEN ===================== */
       #app-screen {
         position: absolute;
         inset: 0;
-        background: #f2f2f7;
         display: none;
         flex-direction: column;
         z-index: 20;
         border-radius: 45px;
         overflow: hidden;
         opacity: 0;
-        transform: scale(0.85);
+        transform: scale(0.92);
+        transition:
+          opacity 0.25s,
+          transform 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
       }
       #app-screen.visible {
         display: flex;
+        opacity: 1;
+        transform: scale(1);
       }
-      .app-header {
-        padding: 52px 0.95rem 0.95rem;
+      .app-nav-bar {
+        height: 52px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 0 1rem 0.6rem;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+      }
+      .app-back-btn {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        flex-shrink: 0;
+        gap: 4px;
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px 0;
+      }
+      .app-back-btn svg {
+        width: 16px;
+        height: 16px;
       }
       .app-header-title {
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: 700;
         color: #fff;
-        letter-spacing: -0.01em;
-      }
-      .app-close {
-        background: rgba(255, 255, 255, 0.2);
-        border: none;
-        color: #fff;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 0.9rem;
-        line-height: 1;
-        flex-shrink: 0;
       }
       .app-body {
         flex: 1;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
-        padding: 0.85rem;
+        padding: 0;
         background: #f2f2f7;
         overscroll-behavior: contain;
       }
       .app-body::-webkit-scrollbar {
         width: 0;
       }
-      .app-section {
+
+      /* ===================== iOS APP CONTENT STYLES ===================== */
+      .ios-large-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #000;
+        padding: 0.5rem 1rem 0.6rem;
+        background: #f2f2f7;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+      .ios-section {
         background: #fff;
         border-radius: 13px;
-        margin-bottom: 0.7rem;
+        margin: 0 0.75rem 0.75rem;
         overflow: hidden;
       }
-      .app-section-title {
-        font-size: 0.67rem;
-        color: #8e8e93;
+      .ios-section-header {
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: #6c6c70;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
-        padding: 0.6rem 1rem 0.3rem;
-        background: #fff;
+        letter-spacing: 0.07em;
+        padding: 0.5rem 1rem 0.2rem;
       }
-      .app-row {
+      .ios-row {
         display: flex;
         align-items: center;
-        gap: 0.7rem;
+        gap: 0.75rem;
         padding: 0.65rem 1rem;
-        border-bottom: 1px solid #f2f2f7;
-        cursor: pointer;
-        transition: background 0.1s;
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+        min-height: 46px;
       }
-      .app-row:last-child {
+      .ios-row:last-child {
         border-bottom: none;
       }
-      .app-row:active {
-        background: #f5f5f5;
-      }
-      .app-row-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
+      .ios-row-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         flex-shrink: 0;
       }
-      .app-row-icon svg {
-        width: 18px;
-        height: 18px;
+      .ios-row-icon svg {
+        width: 17px;
+        height: 17px;
         fill: none;
-        stroke: currentColor;
+        stroke: #fff;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-      .app-row-text {
+      .ios-row-text {
         flex: 1;
         min-width: 0;
       }
-      .app-row-title {
-        font-size: 0.8rem;
-        font-weight: 500;
+      .ios-row-title {
+        font-size: 0.82rem;
         color: #000;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-weight: 400;
       }
-      .app-row-sub {
+      .ios-row-sub {
         font-size: 0.7rem;
         color: #8e8e93;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        margin-top: 1px;
+        line-height: 1.3;
       }
-      .app-row-arrow {
-        color: #c7c7cc;
-        font-size: 0.78rem;
+      .ios-row-value {
+        font-size: 0.8rem;
+        color: #8e8e93;
         flex-shrink: 0;
       }
-      .app-hero {
-        border-radius: 13px;
-        padding: 1.2rem;
-        margin-bottom: 0.7rem;
-        color: #fff;
+      .ios-row-arrow {
+        color: #c7c7cc;
+        font-size: 0.7rem;
+        flex-shrink: 0;
+        margin-left: 4px;
       }
-      .app-hero-name {
-        font-size: 1.05rem;
+      .ios-hero-card {
+        margin: 0 0.75rem 0.75rem;
+        border-radius: 16px;
+        padding: 1.2rem;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .ios-hero-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          transparent 60%
+        );
+        border-radius: 16px;
+        pointer-events: none;
+      }
+      .ios-hero-name {
+        font-size: 1.15rem;
         font-weight: 700;
         margin-bottom: 0.18rem;
       }
-      .app-hero-sub {
-        font-size: 0.75rem;
-        opacity: 0.8;
+      .ios-hero-sub {
+        font-size: 0.76rem;
+        opacity: 0.82;
       }
-      .app-chip {
+      .ios-chip {
         display: inline-block;
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.22);
         border-radius: 20px;
-        padding: 0.2rem 0.6rem;
+        padding: 0.22rem 0.65rem;
         font-size: 0.62rem;
-        margin: 0.25rem 0.25rem 0 0;
+        margin: 0.3rem 0.25rem 0 0;
         color: #fff;
       }
-      .proj-card {
+      .ios-proj-card {
         background: #fff;
         border-radius: 13px;
         overflow: hidden;
-        margin-bottom: 0.7rem;
+        margin: 0 0.75rem 0.75rem;
       }
-      .proj-thumb {
-        height: 76px;
+      .ios-proj-thumb {
+        height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+        overflow: hidden;
       }
-      .proj-thumb svg {
+      .ios-proj-thumb-img {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.6);
+      }
+      .ios-proj-thumb svg {
         width: 36px;
         height: 36px;
         fill: none;
@@ -1453,259 +1378,142 @@
         stroke-width: 1.6;
         stroke-linecap: round;
         stroke-linejoin: round;
-        opacity: 0.85;
+        position: relative;
+        z-index: 1;
       }
-      .proj-info {
-        padding: 0.75rem;
+      .ios-proj-info {
+        padding: 0.8rem;
       }
-      .proj-name {
-        font-size: 0.84rem;
+      .ios-proj-name {
+        font-size: 0.86rem;
         font-weight: 600;
         color: #000;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.22rem;
       }
-      .proj-desc {
-        font-size: 0.7rem;
-        color: #8e8e93;
+      .ios-proj-desc {
+        font-size: 0.72rem;
+        color: #636366;
         line-height: 1.5;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.45rem;
       }
-      .proj-tags-inner {
+      .ios-proj-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 0.28rem;
       }
-      .proj-tag-inner {
+      .ios-proj-tag {
         font-size: 0.6rem;
         background: #f2f2f7;
         border-radius: 4px;
-        padding: 0.14rem 0.38rem;
+        padding: 0.14rem 0.4rem;
         color: #636366;
       }
-      .contact-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        background: #fff;
-        border-radius: 13px;
-        padding: 0.75rem 0.95rem;
-        margin-bottom: 0.5rem;
-        cursor: pointer;
-        transition: background 0.1s;
+      .ios-skill-bar {
+        padding: 0.65rem 1rem;
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
       }
-      .contact-btn:active {
-        background: #f5f5f5;
+      .ios-skill-bar:last-child {
+        border-bottom: none;
       }
-      .contact-btn-icon {
-        width: 34px;
-        height: 34px;
-        border-radius: 9px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .contact-btn-icon svg {
-        width: 18px;
-        height: 18px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-      .contact-btn-label {
-        font-size: 0.84rem;
-        font-weight: 500;
-        color: #000;
-      }
-      .contact-btn-sub {
-        font-size: 0.7rem;
-        color: #8e8e93;
-      }
-      .skill-bar-wrap {
-        padding: 0.38rem 0;
-      }
-      .skill-bar-label {
+      .ios-skill-label {
         display: flex;
         justify-content: space-between;
-        font-size: 0.7rem;
-        color: #3c3c43;
-        margin-bottom: 0.35rem;
+        font-size: 0.76rem;
+        color: #000;
+        margin-bottom: 0.32rem;
       }
-      .skill-bar {
+      .ios-skill-pct {
+        color: #8e8e93;
+        font-size: 0.72rem;
+      }
+      .ios-bar {
         height: 5px;
         background: #f2f2f7;
         border-radius: 3px;
         overflow: hidden;
       }
-      .skill-fill {
+      .ios-bar-fill {
         height: 100%;
         border-radius: 3px;
+        background: #8c1515;
         width: 0;
-        transition: width 1s ease;
+        transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
       }
-      .testi-item {
-        background: #fff;
-        border-radius: 13px;
-        padding: 0.85rem;
-        margin-bottom: 0.7rem;
-      }
-      .testi-stars {
-        color: #ff9500;
-        font-size: 0.75rem;
-        margin-bottom: 0.38rem;
-      }
-      .testi-quote {
-        font-size: 0.76rem;
-        color: #3c3c43;
-        line-height: 1.6;
-        margin-bottom: 0.6rem;
-        font-style: italic;
-      }
-      .testi-person {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .testi-av {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.64rem;
-        font-weight: 700;
-        color: #fff;
-      }
-      .testi-pname {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: #000;
-      }
-      .testi-prole {
-        font-size: 0.62rem;
-        color: #8e8e93;
-      }
-      .resume-preview {
-        background: #fff;
-        border-radius: 13px;
-        overflow: hidden;
-        margin-bottom: 0.7rem;
-      }
-      .resume-header-preview {
-        padding: 0.85rem;
-        color: #fff;
-      }
-      .resume-h-name {
-        font-size: 0.95rem;
-        font-weight: 700;
-        margin-bottom: 0.12rem;
-      }
-      .resume-h-role {
-        font-size: 0.72rem;
-        opacity: 0.8;
-      }
-      .resume-body-preview {
-        padding: 0.75rem;
-      }
-      .resume-section-h {
-        font-size: 0.68rem;
-        font-weight: 600;
-        color: #5b5fd6;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin: 0.6rem 0 0.28rem;
-      }
-      .resume-item {
-        margin-bottom: 0.38rem;
-      }
-      .resume-item-title {
-        font-size: 0.74rem;
-        font-weight: 600;
-        color: #000;
-      }
-      .resume-item-sub {
-        font-size: 0.66rem;
-        color: #8e8e93;
-      }
-      .settings-section {
-        background: #fff;
-        border-radius: 13px;
-        margin-bottom: 0.7rem;
-        overflow: hidden;
-      }
-      .settings-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.65rem 1rem;
-        border-bottom: 1px solid #f2f2f7;
-      }
-      .settings-row:last-child {
-        border-bottom: none;
-      }
-      .settings-label {
-        font-size: 0.8rem;
-        color: #000;
-      }
-      .settings-sub {
-        font-size: 0.68rem;
-        color: #8e8e93;
-      }
-      .toggle {
-        width: 36px;
-        height: 20px;
+      .ios-toggle {
+        width: 38px;
+        height: 22px;
         background: #e5e5ea;
         border-radius: 20px;
         position: relative;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: background 0.25s;
         flex-shrink: 0;
       }
-      .toggle.on {
+      .ios-toggle.on {
         background: #34c759;
       }
-      .toggle::after {
+      .ios-toggle::after {
         content: "";
         position: absolute;
         top: 2px;
         left: 2px;
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
         border-radius: 50%;
         background: #fff;
-        transition: transform 0.2s;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
       }
-      .toggle.on::after {
+      .ios-toggle.on::after {
         transform: translateX(16px);
       }
-      .music-player {
-        background: #fff;
-        border-radius: 15px;
-        overflow: hidden;
-        margin-bottom: 0.7rem;
+      /* contact app */
+      .contact-list-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.65rem 1rem;
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+        cursor: pointer;
       }
-      .music-cover {
-        height: 140px;
+      .contact-list-item:last-child {
+        border-bottom: none;
+      }
+      .contact-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 3.5rem;
-        position: relative;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
       }
-      .music-cover svg {
-        width: 56px;
-        height: 56px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 1.5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+      .contact-name {
+        font-size: 0.83rem;
+        font-weight: 500;
+        color: #000;
+      }
+      .contact-role {
+        font-size: 0.7rem;
+        color: #8e8e93;
+      }
+      /* music player */
+      .music-cover-big {
+        width: 100%;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
-        z-index: 1;
+        overflow: hidden;
+      }
+      .music-cover-big img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
       .music-cover-overlay {
         position: absolute;
@@ -1713,335 +1521,215 @@
         background: linear-gradient(
           to bottom,
           transparent 50%,
-          rgba(0, 0, 0, 0.3) 100%
+          rgba(0, 0, 0, 0.4) 100%
         );
       }
-      .music-info {
-        padding: 0.8rem 1rem 0.5rem;
-        text-align: center;
-      }
-      .music-title {
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: #000;
-        margin-bottom: 0.18rem;
-      }
-      .music-artist {
-        font-size: 0.74rem;
-        color: #8e8e93;
-      }
-      .music-controls {
+      .music-info-row {
+        padding: 0.85rem 1.1rem 0.35rem;
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 1.4rem;
-        padding: 0.7rem 1rem;
+        justify-content: space-between;
       }
-      .music-btn {
+      .music-track-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #000;
+      }
+      .music-artist-name {
+        font-size: 0.8rem;
+        color: #636366;
+        margin-top: 1px;
+      }
+      .music-love {
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+      .music-progress-wrap {
+        padding: 0 1.1rem 0.4rem;
+      }
+      .music-progress {
+        width: 100%;
+        height: 4px;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 4px;
+        background: linear-gradient(
+          to right,
+          #8c1515 var(--val, 35%),
+          #e5e5ea var(--val, 35%)
+        );
+        outline: none;
+        cursor: pointer;
+      }
+      .music-progress::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #000;
+      }
+      .music-times {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.62rem;
+        color: #8e8e93;
+        margin-top: 4px;
+      }
+      .music-controls-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 1.4rem 0.8rem;
+      }
+      .mc-btn {
         background: none;
         border: none;
         cursor: pointer;
-        padding: 0.25rem;
-        transition: transform 0.1s;
+        padding: 6px;
         color: #000;
+        transition: transform 0.1s;
       }
-      .music-btn svg {
-        width: 22px;
-        height: 22px;
+      .mc-btn:active {
+        transform: scale(0.88);
+      }
+      .mc-btn svg {
+        width: 24px;
+        height: 24px;
         fill: none;
         stroke: currentColor;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-      .music-btn:active {
-        transform: scale(0.88);
-      }
-      .music-btn.play-btn {
-        width: 44px;
-        height: 44px;
-        background: #5b5fd6;
+      .mc-play {
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
+        background: #000;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-      }
-      .music-btn.play-btn svg {
-        width: 20px;
-        height: 20px;
-      }
-      .music-progress-wrap {
-        padding: 0 1rem 0.7rem;
-      }
-      .music-progress {
-        width: 100%;
-        height: 3px;
-        -webkit-appearance: none;
-        appearance: none;
-        border-radius: 3px;
-        background: #f2f2f7;
-        outline: none;
         cursor: pointer;
+        transition: transform 0.15s;
       }
-      .music-progress::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #5b5fd6;
+      .mc-play:active {
+        transform: scale(0.9);
       }
-      .music-times {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.6rem;
-        color: #8e8e93;
-        margin-top: 0.28rem;
+      .mc-play svg {
+        width: 24px;
+        height: 24px;
+        fill: #fff;
+        stroke: none;
       }
-      .music-tracklist {
-        background: #fff;
-        border-radius: 13px;
-        overflow: hidden;
-      }
-      .music-track {
+      .music-track-row {
         display: flex;
         align-items: center;
-        gap: 0.7rem;
+        gap: 0.75rem;
         padding: 0.6rem 1rem;
-        border-bottom: 1px solid #f2f2f7;
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
         cursor: pointer;
-        transition: background 0.1s;
       }
-      .music-track:last-child {
+      .music-track-row:last-child {
         border-bottom: none;
       }
-      .music-track:active,
-      .music-track.playing {
-        background: #f0efff;
+      .music-track-row.active {
+        background: rgba(140, 21, 21, 0.06);
       }
-      .track-num {
-        font-size: 0.7rem;
-        color: #8e8e93;
-        width: 16px;
+      .track-num-label {
+        width: 18px;
         text-align: center;
+        font-size: 0.7rem;
+        color: #8e8e93;
         flex-shrink: 0;
       }
-      .track-info {
+      .track-title-col {
         flex: 1;
         min-width: 0;
       }
-      .track-name {
-        font-size: 0.78rem;
+      .track-name-t {
+        font-size: 0.8rem;
         font-weight: 500;
         color: #000;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      .track-artist {
-        font-size: 0.66rem;
+      .track-artist-t {
+        font-size: 0.68rem;
         color: #8e8e93;
       }
-      .track-dur {
-        font-size: 0.66rem;
+      .track-dur-t {
+        font-size: 0.68rem;
         color: #8e8e93;
         flex-shrink: 0;
       }
-      .notes-list {
-        display: grid;
-        gap: 0.5rem;
-      }
-      .note-card {
-        background: #fff;
-        border-radius: 11px;
-        padding: 0.7rem;
-        cursor: pointer;
-        transition: background 0.1s;
-        border: 1px solid transparent;
-      }
-      .note-card.selected {
-        border-color: #5b5fd6;
-      }
-      .note-card:active {
-        background: #f5f5f5;
-      }
-      .note-title {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #000;
-        margin-bottom: 0.12rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .note-preview {
-        font-size: 0.7rem;
-        color: #8e8e93;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .note-date {
-        font-size: 0.6rem;
-        color: #c7c7cc;
-        margin-bottom: 0.18rem;
-      }
-      .note-editor {
-        background: #fff;
-        border-radius: 13px;
-        overflow: hidden;
-        margin-bottom: 0.7rem;
-      }
-      .note-editor-header {
-        padding: 0.7rem 1rem;
-        border-bottom: 1px solid #f2f2f7;
+      /* settings */
+      .ios-settings-profile {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1rem;
+        background: #fff;
+        border-radius: 13px;
+        margin: 0 0.75rem 0.75rem;
       }
-      .note-editor-title-input {
-        font-size: 0.86rem;
+      .ios-settings-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .ios-settings-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ios-settings-name {
+        font-size: 1rem;
         font-weight: 600;
-        border: none;
-        outline: none;
         color: #000;
-        width: 100%;
-        font-family: inherit;
       }
-      .note-editor-body {
-        padding: 0.7rem 1rem;
-        min-height: 120px;
-        font-size: 0.78rem;
-        color: #3c3c43;
-        line-height: 1.65;
-        border: none;
-        outline: none;
-        width: 100%;
-        resize: none;
-        font-family: inherit;
-      }
-      .note-actions {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 0.7rem;
-      }
-      .note-action-btn {
-        flex: 1;
-        padding: 0.6rem;
-        border-radius: 9px;
+      .ios-settings-sub {
         font-size: 0.74rem;
-        font-weight: 600;
-        cursor: pointer;
-        border: none;
-        transition: all 0.15s;
-      }
-      .photos-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2px;
-        border-radius: 13px;
-        overflow: hidden;
-        margin-bottom: 0.7rem;
-      }
-      .photo-thumb {
-        aspect-ratio: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: opacity 0.15s;
-      }
-      .photo-thumb svg {
-        width: 32px;
-        height: 32px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 1.5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        opacity: 0.75;
-      }
-      .photo-thumb:active {
-        opacity: 0.7;
-      }
-      .file-item {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        background: #fff;
-        border-radius: 11px;
-        padding: 0.7rem 1rem;
-        margin-bottom: 0.5rem;
-        cursor: pointer;
-        transition: background 0.1s;
-      }
-      .file-item:active {
-        background: #f5f5f5;
-      }
-      .file-icon {
-        width: 36px;
-        height: 36px;
-        border-radius: 9px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .file-icon svg {
-        width: 20px;
-        height: 20px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 1.8;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-      .file-info {
-        flex: 1;
-        min-width: 0;
-      }
-      .file-name {
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: #000;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .file-meta {
-        font-size: 0.66rem;
         color: #8e8e93;
       }
-      .file-dl {
-        color: #5b5fd6;
-        font-size: 0.7rem;
-        font-weight: 600;
-        white-space: nowrap;
-      }
+
+      /* ===================== CONTROL CENTER ===================== */
       #control-center {
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(32px);
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(36px);
         z-index: 60;
         display: none;
-        padding: 58px 11px 18px;
+        padding: 58px 12px 20px;
         flex-direction: column;
-        gap: 9px;
+        gap: 10px;
       }
       #control-center.visible {
         display: flex;
+        animation: ccin 0.3s ease;
+      }
+      @keyframes ccin {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
       .cc-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 9px;
+        gap: 10px;
       }
       .cc-tile {
-        background: rgba(255, 255, 255, 0.14);
-        border-radius: 14px;
-        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.16);
+        border-radius: 15px;
+        padding: 0.85rem;
         display: flex;
         align-items: center;
         gap: 0.55rem;
@@ -2049,7 +1737,13 @@
         transition: background 0.15s;
       }
       .cc-tile:active {
-        background: rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.28);
+      }
+      .cc-tile.on {
+        background: rgba(255, 255, 255, 0.9);
+      }
+      .cc-tile.on .cc-tile-label {
+        color: #000;
       }
       .cc-tile.wide {
         grid-column: span 2;
@@ -2065,91 +1759,62 @@
         stroke-linejoin: round;
         flex-shrink: 0;
       }
+      .cc-tile.on svg {
+        stroke: #000;
+      }
       .cc-tile-label {
-        font-size: 0.7rem;
+        font-size: 0.72rem;
         color: #fff;
         font-weight: 500;
       }
+      .cc-slider-wrap {
+        grid-column: span 2;
+        background: rgba(255, 255, 255, 0.16);
+        border-radius: 15px;
+        padding: 0.85rem;
+      }
       .cc-slider {
         width: 100%;
-        height: 4px;
+        height: 5px;
         -webkit-appearance: none;
         appearance: none;
-        background: rgba(255, 255, 255, 0.28);
-        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
         outline: none;
       }
       .cc-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
-        appearance: none;
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
         border-radius: 50%;
         background: #fff;
       }
-      .cc-close {
-        align-self: center;
-        background: rgba(255, 255, 255, 0.14);
-        border: none;
-        color: #fff;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        font-size: 0.9rem;
-        cursor: pointer;
-        margin-top: auto;
-      }
-      .phone-toast {
-        position: absolute;
-        top: 60px;
-        left: 11px;
-        right: 11px;
-        background: rgba(28, 28, 30, 0.92);
-        backdrop-filter: blur(22px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        padding: 0.7rem 0.95rem;
-        z-index: 80;
-        display: none;
-        animation: toastin 0.3s ease;
-      }
-      .phone-toast.show {
+      .cc-slider-label {
+        font-size: 0.62rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 6px;
         display: flex;
         align-items: center;
-        gap: 0.55rem;
+        gap: 5px;
       }
-      @keyframes toastin {
-        from {
-          transform: translateY(-10px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      .toast-icon {
-        flex-shrink: 0;
-      }
-      .toast-icon svg {
-        width: 20px;
-        height: 20px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-      .toast-text {
-        font-size: 0.74rem;
+      .cc-close {
+        align-self: center;
+        background: rgba(255, 255, 255, 0.16);
+        border: none;
         color: #fff;
-        line-height: 1.3;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        font-size: 0.95rem;
+        cursor: pointer;
+        margin-top: auto;
+        transition: background 0.15s;
       }
-      .toast-title {
-        font-weight: 600;
-        font-size: 0.76rem;
+      .cc-close:hover {
+        background: rgba(255, 255, 255, 0.28);
       }
 
+      /* ===================== RESPONSIVE ===================== */
       @media (max-width: 960px) {
         .layout {
           grid-template-columns: 1fr;
@@ -2176,14 +1841,11 @@
         .iphone-wrap {
           width: 280px;
           height: 600px;
-          transform: scale(1);
         }
         .portfolio-side {
           order: 1;
         }
-        .about-layout,
-        .skills-cols,
-        .contact-layout {
+        .about-layout {
           grid-template-columns: 1fr;
         }
         .hero-inner {
@@ -2219,21 +1881,30 @@
         footer {
           padding: 1.5rem;
         }
-        .nav-links {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 0.2rem;
-        }
-        .nav-links a {
-          padding: 0.3rem 0.6rem;
-          font-size: 0.75rem;
-        }
       }
       @media (max-width: 480px) {
+        nav {
+          padding: 0 1rem;
+        }
+        .nav-inner {
+          flex-wrap: wrap;
+          min-height: auto;
+          padding: 0.5rem 0;
+          gap: 0.3rem;
+        }
+        .nav-logo {
+          font-size: 1rem;
+        }
+        .nav-links {
+          order: 3;
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          padding-bottom: 0.35rem;
+        }
         .nav-links a {
-          padding: 0.25rem 0.5rem;
-          font-size: 0.7rem;
+          font-size: 0.76rem;
+          padding: 0.3rem 0.65rem;
         }
         .iphone-wrap {
           width: 260px;
@@ -2245,6 +1916,7 @@
   <body>
     <div class="scroll-progress" id="scrollProgress"></div>
     <div class="layout">
+      <!-- ═══════════════════ PORTFOLIO SIDE (UNTOUCHED) ═══════════════════ -->
       <div class="portfolio-side" id="portfolioSide">
         <nav>
           <div class="nav-inner">
@@ -2277,9 +1949,9 @@
                 Fellow, and founder of Katalyze Africa.
               </p>
               <div class="hero-cta">
-                <a href="work.html" class="btn-primary">See my work</a
-                ><a href="contact.html" class="btn-ghost">Say hello</a
-                ><span class="avail-pill"
+                <a href="work.html" class="btn-primary">See my work</a>
+                <a href="contact.html" class="btn-ghost">Say hello</a>
+                <span class="avail-pill"
                   ><span class="avail-dot"></span>Open to research &
                   collaboration</span
                 >
@@ -2412,18 +2084,23 @@
         <footer>
           <p>© 2025 Selorm Magnus Avakame — Stanford, CA</p>
           <div class="social-row">
-            <a href="https://github.com/smagnusavakame" class="soc">GH</a
-            ><a href="#" class="soc">LI</a><a href="#" class="soc">𝕏</a>
+            <a href="https://github.com/smagnusavakame" class="soc">GH</a>
+            <a href="#" class="soc">LI</a>
+            <a href="#" class="soc">𝕏</a>
           </div>
         </footer>
       </div>
+
+      <!-- ═══════════════════ IPHONE SIDE ═══════════════════ -->
       <div class="iphone-side">
         <div class="iphone-aura"></div>
-        <div class="iphone-wrap">
+        <div class="iphone-wrap" id="iphoneWrap">
+          <!-- Physical buttons -->
           <div class="phone-btn-l mute"></div>
           <div class="phone-btn-l vol-up"></div>
           <div class="phone-btn-l vol-dn"></div>
           <div class="phone-btn-r power"></div>
+          <!-- Frame + camera -->
           <div class="iphone-frame">
             <div class="camera-bump">
               <div class="cam-lenses">
@@ -2434,10 +2111,17 @@
               <div class="cam-flash"></div>
             </div>
           </div>
+          <!-- Screen -->
           <div class="iphone-screen" id="iphoneScreen">
+            <!-- Dynamic Island -->
             <div class="dynamic-island" id="dynamicIsland">
               <div class="di-content">
-                <div class="di-cover" style="background: #8c1515">🎵</div>
+                <div class="di-cover">
+                  <img
+                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop"
+                    alt=""
+                  />
+                </div>
                 <div class="di-music">
                   <strong id="diTitle">Afrobeats Mix</strong
                   ><span id="diSub">Now Playing</span>
@@ -2449,92 +2133,231 @@
                 </div>
               </div>
             </div>
+            <!-- Status Bar -->
             <div class="status-bar">
               <div class="status-time" id="statusTime">9:41</div>
-              <div class="battery">
+              <div class="status-right">
+                <div class="signal-bars">
+                  <div class="signal-bar"></div>
+                  <div class="signal-bar"></div>
+                  <div class="signal-bar"></div>
+                  <div class="signal-bar"></div>
+                </div>
+                <div
+                  style="
+                    font-size: 0.58rem;
+                    color: #fff;
+                    font-weight: 600;
+                    letter-spacing: 0.02em;
+                  "
+                >
+                  5G
+                </div>
                 <div class="battery-body"><div class="battery-fill"></div></div>
-                <div class="battery-tip"></div>
               </div>
             </div>
-            <div class="scroll-pill" id="scrollPill" onclick="goHome()"></div>
+            <!-- Home indicator -->
+            <div class="scroll-pill" id="homeIndicator"></div>
+            <!-- Toast -->
             <div class="phone-toast" id="phoneToast">
-              <div class="toast-icon">📱</div>
-              <div>
-                <div class="toast-title">Notification</div>
-                <div class="toast-text" id="toastText"></div>
+              <div class="toast-app-icon" id="toastIcon">📱</div>
+              <div class="toast-body">
+                <div class="toast-app-name" id="toastApp">Portfolio</div>
+                <div class="toast-title" id="toastTitle">Welcome</div>
+                <div class="toast-text" id="toastText">
+                  Tap the phone to unlock
+                </div>
               </div>
+              <div class="toast-time">now</div>
             </div>
+            <!-- Control Center -->
             <div id="control-center">
               <div class="cc-row">
-                <div class="cc-tile" onclick="ccToggle(this)">
+                <div class="cc-tile" id="ccWifi" onclick="ccToggle('ccWifi')">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                    <circle cx="12" cy="20" r="1" fill="#fff" />
+                  </svg>
                   <div class="cc-tile-label">Wi-Fi</div>
                 </div>
-                <div class="cc-tile" onclick="ccToggle(this)">
+                <div class="cc-tile" id="ccBt" onclick="ccToggle('ccBt')">
+                  <svg viewBox="0 0 24 24">
+                    <polyline
+                      points="6.5 6.5 17.5 17.5 12 23 12 1 17.5 6.5 6.5 17.5"
+                    />
+                  </svg>
                   <div class="cc-tile-label">Bluetooth</div>
                 </div>
               </div>
               <div class="cc-row">
                 <div
-                  class="cc-tile wide"
-                  style="
-                    flex-direction: column;
-                    align-items: flex-start;
-                    gap: 0.4rem;
-                  "
+                  class="cc-tile"
+                  id="ccAirplane"
+                  onclick="ccToggle('ccAirplane')"
                 >
-                  <div style="display: flex; align-items: center; gap: 0.45rem">
-                    <div class="cc-tile-label">Brightness</div>
-                  </div>
-                  <input type="range" class="cc-slider" value="70" />
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"
+                    />
+                  </svg>
+                  <div class="cc-tile-label">Airplane</div>
                 </div>
+                <div class="cc-tile" id="ccDnd" onclick="ccToggle('ccDnd')">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 22c1.1 0 2-.9 2-2H10c0 1.1.9 2 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"
+                    />
+                  </svg>
+                  <div class="cc-tile-label">Focus</div>
+                </div>
+              </div>
+              <div class="cc-slider-wrap">
+                <div class="cc-slider-label">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.7)"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                  </svg>
+                  Brightness
+                </div>
+                <input type="range" class="cc-slider" value="75" />
+              </div>
+              <div
+                class="cc-slider-wrap"
+                style="background: rgba(255, 255, 255, 0.1)"
+              >
+                <div class="cc-slider-label">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.7)"
+                    stroke-width="2"
+                  >
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  </svg>
+                  Volume
+                </div>
+                <input type="range" class="cc-slider" value="60" />
               </div>
               <button class="cc-close" onclick="closeCC()">✕</button>
             </div>
+
+            <!-- Lock Screen -->
             <div class="iphone-screen-inner" id="lock-screen">
-              <div class="lock-bg-orb"></div>
+              <div class="lock-wallpaper"></div>
+              <div class="lock-wallpaper-blur"></div>
               <div class="lock-time" id="lockTime">9:41</div>
-              <div class="lock-date" id="lockDate">Stanford · June 2026</div>
-              <div class="faceid-ring">👤</div>
+              <div class="lock-date" id="lockDate">Tuesday, June 9</div>
               <div class="lock-notif">
-                <div class="notif-app">Portfolio</div>
+                <div class="notif-header">
+                  <div class="notif-app-icon">📱</div>
+                  <div class="notif-app">Portfolio</div>
+                  <div class="notif-time">now</div>
+                </div>
                 <div class="notif-text">
                   Selorm is open for research collaborations
                 </div>
               </div>
               <div class="lock-notif">
-                <div class="notif-app">Katalyze Africa</div>
+                <div class="notif-header">
+                  <div class="notif-app-icon" style="background: #1a6b3c">
+                    🌱
+                  </div>
+                  <div class="notif-app">Katalyze Africa</div>
+                  <div class="notif-time">2m</div>
+                </div>
                 <div class="notif-text">
-                  New chapter application received from Nairobi
+                  New chapter application from Nairobi — review pending
                 </div>
               </div>
+              <div class="lock-notif">
+                <div class="notif-header">
+                  <div class="notif-app-icon" style="background: #1a3d6b">
+                    🎓
+                  </div>
+                  <div class="notif-app">Stanford</div>
+                  <div class="notif-time">1h</div>
+                </div>
+                <div class="notif-text">
+                  AgFM-1 training run complete — 94.2% val accuracy
+                </div>
+              </div>
+              <div class="faceid-ring">
+                <img
+                  src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=face"
+                  alt=""
+                />
+              </div>
               <div class="swipe-hint">
-                <span class="swipe-arrow">↑</span>Swipe up to unlock
+                <span class="swipe-arrow">↑</span>&nbsp;Swipe up to unlock
               </div>
             </div>
+
+            <!-- Home Screen -->
             <div class="iphone-screen-inner" id="home-screen">
-              <div class="home-wallpaper-orb"></div>
-              <div class="home-wallpaper-orb2"></div>
+              <div class="home-wallpaper" id="homeWallpaper"></div>
+              <div class="home-wallpaper-overlay"></div>
               <div class="home-grid" id="homeGrid"></div>
               <div class="widget-row">
                 <div class="widget">
                   <div class="widget-title">GPA</div>
                   <div class="widget-val">3.94</div>
+                  <div class="widget-sub">Stanford CS</div>
                 </div>
                 <div class="widget">
                   <div class="widget-title">Apps</div>
                   <div class="widget-val">1k+</div>
+                  <div class="widget-sub">Downloads</div>
                 </div>
                 <div class="widget">
-                  <div class="widget-title">Countries</div>
-                  <div class="widget-val">8+</div>
+                  <div class="widget-title">Fellows</div>
+                  <div class="widget-val">2×</div>
+                  <div class="widget-sub">Service Award</div>
                 </div>
               </div>
               <div class="dock" id="dock"></div>
             </div>
+
+            <!-- App Screen -->
             <div class="iphone-screen-inner" id="app-screen">
-              <div class="app-header" id="appHeader">
+              <div
+                class="app-nav-bar"
+                id="appNavBar"
+                style="background: linear-gradient(135deg, #8c1515, #b83a4b)"
+              >
+                <button class="app-back-btn" onclick="closeApp()">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                  Home
+                </button>
                 <div class="app-header-title" id="appTitle">App</div>
-                <button class="app-close" onclick="closeApp()">✕</button>
+                <div style="width: 60px"></div>
               </div>
               <div class="app-body" id="appBody"></div>
             </div>
@@ -2542,109 +2365,83 @@
         </div>
       </div>
     </div>
+
     <script>
+      // ─── State ───────────────────────────────────────────────────────────────
       let unlocked = false,
         currentApp = null,
         musicPlaying = false,
-        currentTrack = 0,
-        musicInterval = null,
-        progressVal = 0,
-        editingNote = null;
-      let notesData = JSON.parse(
-        localStorage.getItem("iphone_notes") || "null",
-      ) || [
-        {
-          id: 1,
-          title: "Meeting Notes",
-          body: "Discuss Q3 roadmap with design team.",
-          date: "Today",
-        },
-        {
-          id: 2,
-          title: "Project Ideas",
-          body: "1. CLI tool for design tokens\n2. Browser extension",
-          date: "Yesterday",
-        },
-      ];
-      const tracks = [
-        {
-          title: "Midnight City",
-          artist: "M83",
-          color: "linear-gradient(135deg,#5b5fd6,#312e81)",
-          dur: "4:04",
-        },
-        {
-          title: "Electric Feel",
-          artist: "MGMT",
-          color: "linear-gradient(135deg,#10b981,#064e3b)",
-          dur: "3:49",
-        },
-      ];
+        currentTrack = 0;
+      const PROFILE_IMG =
+        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop";
+
+      // ─── Clock ───────────────────────────────────────────────────────────────
       function updateClock() {
-        const n = new Date(),
-          h = n.getHours().toString().padStart(2, "0"),
-          m = n.getMinutes().toString().padStart(2, "0"),
-          t = h + ":" + m;
-        if (document.getElementById("statusTime"))
-          document.getElementById("statusTime").textContent = t;
-        if (document.getElementById("lockTime"))
-          document.getElementById("lockTime").textContent = t;
+        const n = new Date();
+        const t =
+          n.getHours().toString().padStart(2, "0") +
+          ":" +
+          n.getMinutes().toString().padStart(2, "0");
         const days = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-          ],
-          months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-          ];
-        if (document.getElementById("lockDate"))
-          document.getElementById("lockDate").textContent =
-            days[n.getDay()] + ", " + months[n.getMonth()] + " " + n.getDate();
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        document.getElementById("statusTime").textContent = t;
+        document.getElementById("lockTime").textContent = t;
+        document.getElementById("lockDate").textContent =
+          days[n.getDay()] + ", " + months[n.getMonth()] + " " + n.getDate();
       }
       updateClock();
       setInterval(updateClock, 30000);
+
+      // ─── Theme ───────────────────────────────────────────────────────────────
       function toggleTheme() {
         document.body.classList.toggle("light");
       }
+
+      // ─── Scroll progress ─────────────────────────────────────────────────────
       const ps = document.getElementById("portfolioSide"),
         sp = document.getElementById("scrollProgress");
-      ps.addEventListener("scroll", function () {
-        const pct = (ps.scrollTop / (ps.scrollHeight - ps.clientHeight)) * 100;
-        sp.style.width = pct + "%";
+      ps.addEventListener("scroll", () => {
+        sp.style.width =
+          (ps.scrollTop / (ps.scrollHeight - ps.clientHeight)) * 100 + "%";
       });
-      const iphoneSide = document.querySelector(".iphone-side");
-      if (iphoneSide)
-        iphoneSide.addEventListener(
-          "wheel",
-          function (e) {
-            if (window.innerWidth > 960) {
-              e.stopPropagation();
-              e.preventDefault();
-            }
-          },
-          { passive: false },
-        );
+
+      // ─── Dynamic Island ──────────────────────────────────────────────────────
+      const di = document.getElementById("dynamicIsland");
+      di.addEventListener("click", () => {
+        di.classList.toggle("expanded");
+        if (di.classList.contains("expanded"))
+          setTimeout(() => di.classList.remove("expanded"), 4000);
+      });
+
+      // ─── Lock Screen unlock ──────────────────────────────────────────────────
       const lockDiv = document.getElementById("lock-screen"),
         homeDiv = document.getElementById("home-screen");
       function unlock() {
         if (unlocked) return;
         unlocked = true;
-        lockDiv.style.transition = "transform .4s ease,opacity .4s";
+        lockDiv.style.transition =
+          "transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.35s";
         lockDiv.style.transform = "translateY(-100%)";
         lockDiv.style.opacity = "0";
         setTimeout(() => {
@@ -2652,158 +2449,717 @@
           homeDiv.style.display = "flex";
           homeDiv.style.opacity = "1";
           renderHomeScreen();
-          showToast("🔓", "Welcome Selorm", "Stanford CS · AI & Climate");
-        }, 380);
+          showToast("👋", "Portfolio", "Welcome — tap any app to explore");
+        }, 420);
       }
       lockDiv.addEventListener("click", unlock);
-      let touchY = 0;
-      lockDiv.addEventListener("touchstart", (e) => {
-        touchY = e.touches[0].clientY;
-        e.stopPropagation();
-      });
-      lockDiv.addEventListener("touchend", (e) => {
-        e.stopPropagation();
-        if (touchY - e.changedTouches[0].clientY > 30) unlock();
-      });
-      let mouseY = 0,
-        drag = false;
+      // swipe up gesture on lock screen
+      let startY = 0;
+      lockDiv.addEventListener(
+        "touchstart",
+        (e) => {
+          startY = e.touches[0].clientY;
+        },
+        { passive: true },
+      );
+      lockDiv.addEventListener(
+        "touchend",
+        (e) => {
+          if (startY - e.changedTouches[0].clientY > 40) unlock();
+        },
+        { passive: true },
+      );
+      let mStartY = 0,
+        mDrag = false;
       lockDiv.addEventListener("mousedown", (e) => {
-        mouseY = e.clientY;
-        drag = true;
-        e.stopPropagation();
+        mStartY = e.clientY;
+        mDrag = true;
       });
       document.addEventListener("mousemove", (e) => {
-        if (drag && mouseY - e.clientY > 30) unlock();
+        if (mDrag && mStartY - e.clientY > 40) {
+          mDrag = false;
+          unlock();
+        }
       });
       document.addEventListener("mouseup", () => {
-        drag = false;
+        mDrag = false;
       });
-      const di = document.getElementById("dynamicIsland");
-      di.addEventListener("click", () => {
-        di.classList.toggle("expanded");
-        setTimeout(() => di.classList.remove("expanded"), 3000);
-      });
-      function showToast(icon, title, text) {
-        const toast = document.getElementById("phoneToast");
-        document.querySelector(".toast-icon").textContent = icon;
-        document.querySelector(".toast-title").textContent = title;
+
+      // ─── Toast ───────────────────────────────────────────────────────────────
+      function showToast(icon, title, text, app = "Portfolio") {
+        document.getElementById("toastIcon").textContent = icon;
+        document.getElementById("toastTitle").textContent = title;
         document.getElementById("toastText").textContent = text;
-        toast.classList.add("show");
-        if (window.toastTimer) clearTimeout(window.toastTimer);
-        window.toastTimer = setTimeout(
-          () => toast.classList.remove("show"),
-          2500,
-        );
+        document.getElementById("toastApp").textContent = app;
+        const t = document.getElementById("phoneToast");
+        t.classList.add("show");
+        if (window._toastT) clearTimeout(window._toastT);
+        window._toastT = setTimeout(() => t.classList.remove("show"), 3000);
       }
+
+      // ─── Home indicator / close ──────────────────────────────────────────────
+      document.getElementById("homeIndicator").onclick = goHome;
+      function goHome() {
+        if (
+          document
+            .getElementById("control-center")
+            .classList.contains("visible")
+        ) {
+          closeCC();
+          return;
+        }
+        if (
+          document.getElementById("app-screen").classList.contains("visible")
+        ) {
+          closeApp();
+        }
+      }
+
+      // ─── Control Center ──────────────────────────────────────────────────────
       const ccEl = document.getElementById("control-center");
+      // swipe down from top-right on the screen
+      let ccStartY = 0,
+        ccStartX = 0;
+      const scr = document.getElementById("iphoneScreen");
+      scr.addEventListener("mousedown", (e) => {
+        const r = scr.getBoundingClientRect();
+        ccStartY = e.clientY - r.top;
+        ccStartX = e.clientX - r.left;
+      });
+      scr.addEventListener("mouseup", (e) => {
+        const r = scr.getBoundingClientRect();
+        const dy = e.clientY - r.top - ccStartY;
+        if (ccStartY < 40 && ccStartX > r.width * 0.5 && dy > 35 && unlocked)
+          openCC();
+      });
       function openCC() {
-        if (unlocked) ccEl.classList.add("visible");
+        ccEl.classList.add("visible");
       }
       function closeCC() {
         ccEl.classList.remove("visible");
       }
-      function ccToggle(el) {
-        el.style.background =
-          el.style.background === "rgba(255, 255, 255, 0.14)"
-            ? "rgba(255,255,255,.32)"
-            : "rgba(255,255,255,.14)";
+      const ccStates = {};
+      function ccToggle(id) {
+        const el = document.getElementById(id);
+        ccStates[id] = !ccStates[id];
+        el.classList.toggle("on", ccStates[id]);
       }
-      let ccStart = null;
-      const iphScr = document.getElementById("iphoneScreen");
-      if (iphScr) {
-        iphScr.addEventListener("mousedown", (e) => {
-          const rect = iphScr.getBoundingClientRect();
-          if (e.clientY - rect.top < 60 && unlocked) ccStart = e.clientY;
-        });
-        iphScr.addEventListener("mousemove", (e) => {
-          if (ccStart !== null && e.clientY - ccStart > 40) {
-            ccStart = null;
-            openCC();
-          }
-        });
-        iphScr.addEventListener("mouseup", () => {
-          ccStart = null;
-        });
-      }
-      function goHome() {
-        const appScr = document.getElementById("app-screen");
-        if (appScr.classList.contains("visible")) {
-          closeApp();
-          return;
-        }
-        if (ccEl.classList.contains("visible")) closeCC();
-      }
-      function closeApp() {
-        const appScr = document.getElementById("app-screen");
-        appScr.classList.remove("visible");
-        currentApp = null;
-      }
-      function openApp(name) {
-        if (!unlocked) unlock();
-        currentApp = name;
-        const titles = {
-          portfolio: "About Selorm",
-          projects: "Projects",
-          skills: "Skills",
-          resume: "Resume",
-          contact: "Contact",
-          music: "Music",
-        };
-        document.getElementById("appTitle").textContent = titles[name] || name;
-        document.getElementById("appHeader").style.background =
-          "linear-gradient(135deg,#8C1515,#b83a3a)";
-        let html = "";
-        if (name === "portfolio")
-          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div class="app-section"><div class="app-section-title">Bio</div><div class="app-row"><div class="app-row-text"><div class="app-row-sub">CS student at Stanford. Building at intersection of AI, climate tech, and African innovation. Founder of Katalyze Africa. 2x African Service Fellow.</div></div></div></div>`;
-        else if (name === "projects")
-          html = `<div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Drop It Off — iOS App</div><div>4.8★ · 1K+ downloads · Swift + Firebase</div></div><div style="background:#fff;border-radius:12px;padding:.8rem"><div style="font-weight:600">CS124 AI Booking Agent</div><div>Python · DSPy · ReAct pattern</div></div>`;
-        else if (name === "resume")
-          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button class="btn-primary" style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff" onclick="showToast('📄','Download','Resume would download here')">Download Resume</button></div>`;
-        else
-          html =
-            '<div style="padding:1rem;color:#8e8e93;text-align:center">Coming soon</div>';
-        document.getElementById("appBody").innerHTML = html;
-        const appScr = document.getElementById("app-screen");
-        appScr.classList.add("visible");
-        showToast("🚀", "Opening " + (titles[name] || name), "");
-      }
+
+      // ─── App definitions ─────────────────────────────────────────────────────
+      const APPS = [
+        { id: "about", label: "About", icon: "👤", bg: "#8c1515", badge: 0 },
+        {
+          id: "projects",
+          label: "Projects",
+          icon: "🚀",
+          bg: "#1a3d6b",
+          badge: 3,
+        },
+        { id: "skills", label: "Skills", icon: "⚡", bg: "#1a5c38", badge: 0 },
+        { id: "resume", label: "Resume", icon: "📄", bg: "#5b2d8e", badge: 1 },
+        {
+          id: "contact",
+          label: "Contact",
+          icon: "✉️",
+          bg: "#c25a00",
+          badge: 2,
+        },
+        { id: "music", label: "Music", icon: "🎵", bg: "#1c1c1e", badge: 0 },
+        { id: "photos", label: "Photos", icon: "🖼️", bg: "#1a6b5c", badge: 0 },
+        {
+          id: "settings",
+          label: "Settings",
+          icon: "⚙️",
+          bg: "#636366",
+          badge: 0,
+        },
+      ];
+
+      // ─── Render home / dock ──────────────────────────────────────────────────
       function renderHomeScreen() {
         const grid = document.getElementById("homeGrid"),
           dock = document.getElementById("dock");
-        const apps = [
-          { name: "portfolio", label: "About", icon: "🏠" },
-          { name: "projects", label: "Projects", icon: "🚀" },
-          { name: "skills", label: "Skills", icon: "⚡" },
-          { name: "resume", label: "Resume", icon: "📄" },
-          { name: "contact", label: "Contact", icon: "✉️" },
-          { name: "music", label: "Music", icon: "🎵" },
-        ];
-        if (grid)
-          grid.innerHTML = apps
-            .map(
-              (a) =>
-                `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div><div class="app-label">${a.label}</div></div>`,
-            )
-            .join("");
-        if (dock)
-          dock.innerHTML = apps
-            .slice(0, 4)
-            .map(
-              (a) =>
-                `<div class="app-icon" onclick="openApp('${a.name}')"><div class="app-icon-img" style="background:linear-gradient(135deg,#8C1515,#b83a3a)">${a.icon}</div></div>`,
-            )
-            .join("");
+        grid.innerHTML = APPS.map(
+          (a) => `
+        <div class="app-icon" onclick="openApp('${a.id}')">
+          <div class="app-icon-img" style="background:${a.bg}">
+            ${a.icon}
+            ${a.badge ? `<div class="app-badge">${a.badge}</div>` : ""}
+          </div>
+          <div class="app-label">${a.label}</div>
+        </div>`,
+        ).join("");
+        dock.innerHTML = APPS.slice(0, 4)
+          .map(
+            (a) => `
+        <div class="app-icon" onclick="openApp('${a.id}')">
+          <div class="app-icon-img" style="background:${a.bg}">${a.icon}</div>
+        </div>`,
+          )
+          .join("");
       }
+
+      // ─── Open / close app ────────────────────────────────────────────────────
+      function openApp(id) {
+        if (!unlocked) {
+          unlock();
+          setTimeout(() => openApp(id), 500);
+          return;
+        }
+        const app = APPS.find((a) => a.id === id);
+        currentApp = id;
+        const navBar = document.getElementById("appNavBar");
+        navBar.style.background = `linear-gradient(135deg,${app.bg},${app.bg}cc)`;
+        document.getElementById("appTitle").textContent = app.label;
+        document.getElementById("appBody").innerHTML = buildApp(id);
+        const scr = document.getElementById("app-screen");
+        scr.classList.add("visible");
+        // trigger skill bars after render
+        if (id === "skills") setTimeout(animateSkillBars, 100);
+        showToast(app.icon, app.label, getAppSubtitle(id), app.label);
+      }
+      function closeApp() {
+        const s = document.getElementById("app-screen");
+        s.style.opacity = "0";
+        s.style.transform = "scale(0.92)";
+        setTimeout(() => {
+          s.classList.remove("visible");
+          s.style.opacity = "";
+          s.style.transform = "";
+          currentApp = null;
+        }, 220);
+      }
+
+      function getAppSubtitle(id) {
+        const m = {
+          about: "Stanford CS · AI Track",
+          projects: "5 projects shipped",
+          skills: "8 languages & counting",
+          resume: "Download available",
+          contact: "Open to collabs",
+          music: "Afrobeats & more",
+          photos: "Campus & beyond",
+          settings: "Preferences",
+        };
+        return m[id] || "";
+      }
+
+      // ─── App content builders ─────────────────────────────────────────────────
+      function buildApp(id) {
+        if (id === "about") return buildAbout();
+        if (id === "projects") return buildProjects();
+        if (id === "skills") return buildSkills();
+        if (id === "resume") return buildResume();
+        if (id === "contact") return buildContact();
+        if (id === "music") return buildMusic();
+        if (id === "photos") return buildPhotos();
+        if (id === "settings") return buildSettings();
+        return '<div style="padding:2rem;text-align:center;color:#8e8e93">Coming soon</div>';
+      }
+
+      function buildAbout() {
+        return `
+        <div class="ios-large-title">About</div>
+        <div class="ios-hero-card" style="background:linear-gradient(135deg,#8c1515,#b83a4b)">
+          <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem">
+            <img src="${PROFILE_IMG}" style="width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);object-fit:cover;flex-shrink:0" />
+            <div>
+              <div class="ios-hero-name">Selorm Magnus Avakame</div>
+              <div class="ios-hero-sub">Stanford CS · AI Track · Class of 2028</div>
+            </div>
+          </div>
+          <span class="ios-chip">Leland Scholar</span>
+          <span class="ios-chip">2× Service Fellow</span>
+          <span class="ios-chip">Founder</span>
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Bio</div>
+          <div class="ios-row"><div class="ios-row-text"><div class="ios-row-sub" style="font-size:0.76rem;line-height:1.6;color:#3c3c43">Sophomore at Stanford studying CS with an AI focus. From Accra, Ghana — came to Stanford on a full Leland Scholarship. Building at the intersection of AI, climate tech, and African innovation.</div></div></div>
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Details</div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#8c1515">🎓</div><div class="ios-row-text"><div class="ios-row-title">Stanford University</div><div class="ios-row-sub">Computer Science · AI Track</div></div><div class="ios-row-value">2028</div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#1a6b3c">🌍</div><div class="ios-row-text"><div class="ios-row-title">Accra, Ghana</div><div class="ios-row-sub">Hometown</div></div><div class="ios-row-arrow">›</div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#1a3d6b">🏆</div><div class="ios-row-text"><div class="ios-row-title">Leland Scholarship</div><div class="ios-row-sub">Full ride — tuition, room & board</div></div><div class="ios-row-value">$400k</div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#5b2d8e">⚡</div><div class="ios-row-text"><div class="ios-row-title">GPA</div><div class="ios-row-sub">Spring 2026</div></div><div class="ios-row-value" style="color:#8c1515;font-weight:600">3.94</div></div>
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Current Focus</div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#1a5c38">🌾</div><div class="ios-row-text"><div class="ios-row-title">AI/ML Intern</div><div class="ios-row-sub">American Tractor Company — AgFM-1</div></div><div class="ios-row-value">2026</div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#c25a00">🚀</div><div class="ios-row-text"><div class="ios-row-title">Katalyze Africa</div><div class="ios-row-sub">Founder — pan-African accelerator</div></div><div class="ios-row-arrow">›</div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#1a3d6b">🌐</div><div class="ios-row-text"><div class="ios-row-title">IPCC Youth Delegate</div><div class="ios-row-sub">1 of 8 Ghanaian youth delegates</div></div><div class="ios-row-arrow">›</div></div>
+        </div>
+      `;
+      }
+
+      function buildProjects() {
+        const projs = [
+          {
+            name: "Drop It Off",
+            desc: "4.8★ · 1K+ downloads. Production iOS logistics app co-built at Digits Agency with Firebase backend and live sync.",
+            tags: ["Swift", "Firebase", "iOS"],
+            thumb: "#1a3d6b",
+            icon: "📦",
+            type: "Shipped",
+          },
+          {
+            name: "CS124 AI Booking Agent",
+            desc: "Python · DSPy · ReAct. Movie recommendation + ticket booking AI agent with tool use and failure mode analysis.",
+            tags: ["Python", "DSPy", "AI Agents"],
+            thumb: "#5b2d8e",
+            icon: "🤖",
+            type: "Course",
+          },
+          {
+            name: "Safe Circle",
+            desc: "Flutter · Dart · C++ · 1st place at Academic City College Hackathon 2023. Safety app for a national hackathon.",
+            tags: ["Flutter", "Dart", "Hackathon"],
+            thumb: "#1a6b3c",
+            icon: "🛡️",
+            type: "1st Place",
+          },
+          {
+            name: "TimeSand",
+            desc: "Chrome extension that tracks time spent on websites. Clean, minimal, functional.",
+            tags: ["JavaScript", "Chrome API"],
+            thumb: "#c25a00",
+            icon: "⏳",
+            type: "Tool",
+          },
+          {
+            name: "SymSys Dog Behavior",
+            desc: "Cognitive analysis of a dog performing learned behaviors — goal analysis, Bayesian reasoning, parallels to ML.",
+            tags: ["Cognitive Science", "AI"],
+            thumb: "#636366",
+            icon: "🐾",
+            type: "Research",
+          },
+        ];
+        return (
+          `<div class="ios-large-title">Projects</div>` +
+          projs
+            .map(
+              (p) => `
+        <div class="ios-proj-card">
+          <div class="ios-proj-thumb" style="background:${p.thumb}">
+            <div style="font-size:2.2rem;position:relative;z-index:1">${p.icon}</div>
+            <span style="position:absolute;top:8px;right:10px;background:rgba(255,255,255,0.2);border-radius:20px;padding:2px 8px;font-size:0.6rem;color:#fff;z-index:1">${p.type}</span>
+          </div>
+          <div class="ios-proj-info">
+            <div class="ios-proj-name">${p.name}</div>
+            <div class="ios-proj-desc">${p.desc}</div>
+            <div class="ios-proj-tags">${p.tags.map((t) => `<span class="ios-proj-tag">${t}</span>`).join("")}</div>
+          </div>
+        </div>`,
+            )
+            .join("")
+        );
+      }
+
+      function buildSkills() {
+        const langs = [
+          ["Python", 92],
+          ["Swift", 85],
+          ["JavaScript", 80],
+          ["C", 75],
+          ["Java", 70],
+          ["OCaml", 60],
+          ["Dart", 72],
+          ["SQL", 65],
+        ];
+        const tools = [
+          "Firebase",
+          "Git",
+          "Unix",
+          "Xcode",
+          "PyTorch",
+          "TensorFlow",
+          "React",
+          "Flutter",
+          "DSPy",
+          "Node.js",
+        ];
+        return `
+        <div class="ios-large-title">Skills</div>
+        <div class="ios-section">
+          <div class="ios-section-header">Languages</div>
+          ${langs
+            .map(
+              ([l, p]) => `
+            <div class="ios-skill-bar">
+              <div class="ios-skill-label">${l}<span class="ios-skill-pct">${p}%</span></div>
+              <div class="ios-bar"><div class="ios-bar-fill" data-pct="${p}"></div></div>
+            </div>`,
+            )
+            .join("")}
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Frameworks & Tools</div>
+          <div class="ios-row"><div class="ios-row-text"><div style="display:flex;flex-wrap:wrap;gap:6px;padding:4px 0">
+            ${tools.map((t) => `<span style="background:#f2f2f7;border-radius:6px;padding:4px 10px;font-size:0.72rem;color:#3c3c43">${t}</span>`).join("")}
+          </div></div></div>
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Domains</div>
+          ${[
+            "Mobile dev (iOS native, Flutter)",
+            "AI agents & tool use",
+            "Full-stack web",
+            "Systems programming in C",
+            "Linear algebra & multivar calc",
+          ]
+            .map(
+              (d) => `
+            <div class="ios-row"><div class="ios-row-icon" style="background:#8c1515">✦</div><div class="ios-row-text"><div class="ios-row-title" style="font-size:0.78rem">${d}</div></div></div>`,
+            )
+            .join("")}
+        </div>`;
+      }
+
+      function animateSkillBars() {
+        document.querySelectorAll(".ios-bar-fill").forEach((el) => {
+          el.style.width = el.dataset.pct + "%";
+        });
+      }
+
+      function buildResume() {
+        return `
+        <div class="ios-large-title">Resume</div>
+        <div style="margin:0 .75rem .75rem">
+          <div style="background:#fff;border-radius:16px;overflow:hidden">
+            <div style="background:linear-gradient(135deg,#8c1515,#b83a4b);padding:1.1rem;color:#fff">
+              <div style="display:flex;align-items:center;gap:.8rem">
+                <img src="${PROFILE_IMG}" style="width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.4);flex-shrink:0"/>
+                <div>
+                  <div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div>
+                  <div style="font-size:0.74rem;opacity:.85">Stanford CS · Class of 2028 · smagnusa@stanford.edu</div>
+                </div>
+              </div>
+            </div>
+            <div style="padding:.75rem">
+              <div style="font-size:.65rem;font-weight:700;color:#8c1515;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem">Education</div>
+              <div style="font-size:.8rem;font-weight:600;color:#000">Stanford University</div>
+              <div style="font-size:.7rem;color:#636366;margin-bottom:.7rem">B.S. Computer Science (AI Track) · Minor: Earth Systems · GPA: 3.94</div>
+              <div style="font-size:.65rem;font-weight:700;color:#8c1515;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem">Experience</div>
+              ${[
+                ["AI/ML Intern", "American Tractor Company", "Summer 2026"],
+                [
+                  "Product Match Fellow",
+                  "Stanford Product Pathways",
+                  "2025–Present",
+                ],
+                ["Founder", "Katalyze Africa Group", "2024–Present"],
+                ["iOS Engineer", "Digits Agency · Drop It Off", "2024–2025"],
+                ["IPCC Youth Delegate", "United Nations", "2025–Present"],
+              ]
+                .map(
+                  ([r, c, d]) => `
+                <div style="margin-bottom:.55rem">
+                  <div style="font-size:.78rem;font-weight:600;color:#000">${r}</div>
+                  <div style="font-size:.68rem;color:#636366">${c} · <span style="color:#8e8e93">${d}</span></div>
+                </div>`,
+                )
+                .join("")}
+            </div>
+          </div>
+        </div>
+        <div style="margin:0 .75rem">
+          <button onclick="showToast('📄','Resume','Download starting…','Resume')" style="width:100%;background:#8c1515;color:#fff;border:none;border-radius:13px;padding:.85rem;font-size:.86rem;font-weight:600;cursor:pointer;letter-spacing:.02em">⬇ Download PDF Resume</button>
+        </div>`;
+      }
+
+      function buildContact() {
+        const contacts = [
+          {
+            icon: "📧",
+            name: "Email",
+            val: "smagnusa@stanford.edu",
+            color: "#8c1515",
+          },
+          {
+            icon: "🐙",
+            name: "GitHub",
+            val: "github.com/smagnusavakame",
+            color: "#1c1c1e",
+          },
+          {
+            icon: "💼",
+            name: "LinkedIn",
+            val: "linkedin.com/in/selorm-avakame",
+            color: "#0a66c2",
+          },
+          {
+            icon: "𝕏",
+            name: "Twitter / X",
+            val: "@selormavakame",
+            color: "#000",
+          },
+        ];
+        return `
+        <div class="ios-large-title">Contact</div>
+        <div class="ios-hero-card" style="background:linear-gradient(135deg,#c25a00,#e8820c)">
+          <div class="ios-hero-name">Let's build something.</div>
+          <div class="ios-hero-sub" style="line-height:1.5">Open to research collaborations, internship enquiries, and connecting with builders across Africa and beyond.</div>
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Reach Out</div>
+          ${contacts
+            .map(
+              (c) => `
+            <div class="ios-row" onclick="showToast('${c.icon}','${c.name}','${c.val}','Contact')" style="cursor:pointer">
+              <div class="ios-row-icon" style="background:${c.color};font-size:1rem">${c.icon}</div>
+              <div class="ios-row-text"><div class="ios-row-title">${c.name}</div><div class="ios-row-sub">${c.val}</div></div>
+              <div class="ios-row-arrow">›</div>
+            </div>`,
+            )
+            .join("")}
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Availability</div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#1a6b3c">🟢</div><div class="ios-row-text"><div class="ios-row-title">Open to Research</div><div class="ios-row-sub">AI, climate tech, African innovation</div></div><div class="ios-row-value" style="color:#34c759;font-weight:600">Active</div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#1a3d6b">🌍</div><div class="ios-row-text"><div class="ios-row-title">Timezone</div><div class="ios-row-sub">Stanford, CA · PST</div></div><div class="ios-row-value">GMT-7</div></div>
+        </div>`;
+      }
+
+      const TRACKS = [
+        {
+          title: "Midnight City",
+          artist: "M83",
+          dur: "4:04",
+          color: "linear-gradient(135deg,#1a1a3e,#4a4aff)",
+          emoji: "🌃",
+        },
+        {
+          title: "Electric Feel",
+          artist: "MGMT",
+          dur: "3:49",
+          color: "linear-gradient(135deg,#0d4a2e,#00c878)",
+          emoji: "⚡",
+        },
+        {
+          title: "Risky",
+          artist: "Davido ft. Popcaan",
+          dur: "3:22",
+          color: "linear-gradient(135deg,#4a1a0d,#ff6b35)",
+          emoji: "🔥",
+        },
+        {
+          title: "Peru",
+          artist: "Fireboy DML & Ed Sheeran",
+          dur: "3:06",
+          color: "linear-gradient(135deg,#1a3d0d,#7ec850)",
+          emoji: "🌿",
+        },
+        {
+          title: "Essence",
+          artist: "Wizkid ft. Tems",
+          dur: "4:14",
+          color: "linear-gradient(135deg,#2d0d4a,#b050e8)",
+          emoji: "✨",
+        },
+      ];
+
+      function buildMusic() {
+        const tr = TRACKS[currentTrack];
+        return `
+        <div style="background:#f2f2f7">
+          <div class="music-cover-big" style="background:${tr.color}">
+            <div style="font-size:4rem;position:relative;z-index:1">${tr.emoji}</div>
+            <div class="music-cover-overlay"></div>
+          </div>
+          <div style="background:#f2f2f7">
+            <div class="music-info-row">
+              <div><div class="music-track-name">${tr.title}</div><div class="music-artist-name">${tr.artist}</div></div>
+              <div class="music-love" onclick="showToast('❤️','Loved','${tr.title} added to favourites','Music')">♥</div>
+            </div>
+            <div class="music-progress-wrap">
+              <input type="range" class="music-progress" id="musicProgress" value="35" oninput="this.style.setProperty('--val',this.value+'%')" />
+              <div class="music-times"><span>1:22</span><span>${tr.dur}</span></div>
+            </div>
+            <div class="music-controls-row">
+              <button class="mc-btn" onclick="showToast('🔀','Shuffle','Shuffle on','Music')">
+                <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+              </button>
+              <button class="mc-btn" onclick="prevTrack()">
+                <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+              </button>
+              <div class="mc-play" id="playBtn" onclick="togglePlay()">
+                <svg viewBox="0 0 24 24" id="playIcon"><polygon points="5 3 19 12 5 21 5 3" fill="#fff"/></svg>
+              </div>
+              <button class="mc-btn" onclick="nextTrack()">
+                <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+              </button>
+              <button class="mc-btn" onclick="showToast('🔁','Repeat','Repeat on','Music')">
+                <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+              </button>
+            </div>
+            <div style="background:#fff;border-radius:13px;margin:0 .75rem .75rem">
+              <div class="ios-section-header" style="padding:.55rem 1rem .2rem">Up Next</div>
+              ${TRACKS.map(
+                (t, i) => `
+                <div class="music-track-row ${i === currentTrack ? "active" : ""}" onclick="switchTrack(${i})">
+                  <div class="track-num-label">${i === currentTrack ? "▶" : i + 1}</div>
+                  <div style="font-size:1.2rem">${t.emoji}</div>
+                  <div class="track-title-col"><div class="track-name-t" style="${i === currentTrack ? "color:#8c1515" : ""}">${t.title}</div><div class="track-artist-t">${t.artist}</div></div>
+                  <div class="track-dur-t">${t.dur}</div>
+                </div>`,
+              ).join("")}
+            </div>
+          </div>
+        </div>`;
+      }
+
+      function togglePlay() {
+        musicPlaying = !musicPlaying;
+        const icon = document.getElementById("playIcon");
+        if (icon)
+          icon.setAttribute(
+            "points",
+            musicPlaying
+              ? "6 19 10 19 10 5 6 5 M14 5 14 19 18 19 18 5"
+              : "5 3 19 12 5 21 5 3",
+          );
+        showToast(
+          musicPlaying ? "▶️" : "⏸️",
+          musicPlaying ? "Now Playing" : "Paused",
+          TRACKS[currentTrack].title + " — " + TRACKS[currentTrack].artist,
+          "Music",
+        );
+      }
+      function nextTrack() {
+        currentTrack = (currentTrack + 1) % TRACKS.length;
+        openApp("music");
+      }
+      function prevTrack() {
+        currentTrack = (currentTrack - 1 + TRACKS.length) % TRACKS.length;
+        openApp("music");
+      }
+      function switchTrack(i) {
+        currentTrack = i;
+        openApp("music");
+      }
+
+      function buildPhotos() {
+        const photos = [
+          {
+            bg: "linear-gradient(135deg,#1a3d6b,#4a8fd6)",
+            emoji: "🏛️",
+            label: "Stanford",
+          },
+          {
+            bg: "linear-gradient(135deg,#1a6b3c,#4ad688)",
+            emoji: "🌾",
+            label: "AgFM-1",
+          },
+          {
+            bg: "linear-gradient(135deg,#6b1a1a,#d64a4a)",
+            emoji: "🇬🇭",
+            label: "Accra",
+          },
+          {
+            bg: "linear-gradient(135deg,#3d1a6b,#8a4ad6)",
+            emoji: "🎓",
+            label: "Graduation",
+          },
+          {
+            bg: "linear-gradient(135deg,#1a5c6b,#4ad6cc)",
+            emoji: "🌍",
+            label: "IPCC",
+          },
+          {
+            bg: "linear-gradient(135deg,#6b5a1a,#d6c04a)",
+            emoji: "🚀",
+            label: "Demo Day",
+          },
+          {
+            bg: "linear-gradient(135deg,#1a6b4a,#4ad67a)",
+            emoji: "🌱",
+            label: "Madina Garden",
+          },
+          {
+            bg: "linear-gradient(135deg,#1a1a6b,#4a4ad6)",
+            emoji: "💻",
+            label: "Hackathon",
+          },
+          {
+            bg: "linear-gradient(135deg,#6b1a4a,#d64a9a)",
+            emoji: "📱",
+            label: "Drop It Off",
+          },
+        ];
+        return `
+        <div class="ios-large-title">Photos</div>
+        <div class="ios-section-header" style="padding:.5rem 1rem .3rem">Recents · ${photos.length} photos</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:.75rem">
+          ${photos
+            .map(
+              (p) => `
+            <div onclick="showToast('${p.emoji}','${p.label}','Tap to view full photo','Photos')" style="aspect-ratio:1;background:${p.bg};display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden">
+              <div style="font-size:2rem">${p.emoji}</div>
+              <div style="font-size:.58rem;color:rgba(255,255,255,.8);margin-top:4px;font-weight:500">${p.label}</div>
+            </div>`,
+            )
+            .join("")}
+        </div>`;
+      }
+
+      function buildSettings() {
+        return `
+        <div class="ios-large-title">Settings</div>
+        <div class="ios-settings-profile">
+          <div class="ios-settings-avatar"><img src="${PROFILE_IMG}" alt="" /></div>
+          <div>
+            <div class="ios-settings-name">Selorm Avakame</div>
+            <div class="ios-settings-sub">smagnusa@stanford.edu · Stanford iCloud</div>
+          </div>
+        </div>
+        <div class="ios-section">
+          <div class="ios-row" onclick="ccToggle('ccWifi')"><div class="ios-row-icon" style="background:#1a7bcd">📶</div><div class="ios-row-text"><div class="ios-row-title">Wi-Fi</div></div><div class="ios-row-value">Stanford Secure</div><div class="ios-row-arrow">›</div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#1a7bcd">📱</div><div class="ios-row-text"><div class="ios-row-title">Cellular</div></div><div class="ios-row-value">5G</div><div class="ios-row-arrow">›</div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#005fcc">🔵</div><div class="ios-row-text"><div class="ios-row-title">Bluetooth</div></div><div class="ios-row-value">On</div><div class="ios-row-arrow">›</div></div>
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Appearance</div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#636366">🌙</div><div class="ios-row-text"><div class="ios-row-title">Dark Mode</div></div><div class="ios-toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#8c1515">🎨</div><div class="ios-row-text"><div class="ios-row-title">Accent Color</div><div class="ios-row-sub">Stanford Cardinal Red</div></div><div style="width:20px;height:20px;border-radius:50%;background:#8c1515;border:2px solid #e5e5ea;flex-shrink:0"></div></div>
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Portfolio</div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#1a6b3c">✉️</div><div class="ios-row-text"><div class="ios-row-title">Email Notifications</div></div><div class="ios-toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="ios-row"><div class="ios-row-icon" style="background:#c25a00">🔔</div><div class="ios-row-text"><div class="ios-row-title">Push Notifications</div></div><div class="ios-toggle" onclick="this.classList.toggle('on')"></div></div>
+        </div>
+        <div class="ios-section">
+          <div class="ios-section-header">Info</div>
+          <div class="ios-row"><div class="ios-row-text"><div class="ios-row-title">Version</div></div><div class="ios-row-value">Portfolio 1.0</div></div>
+          <div class="ios-row"><div class="ios-row-text"><div class="ios-row-title">Built with</div></div><div class="ios-row-value">HTML · CSS · JS</div></div>
+        </div>`;
+      }
+
+      // ─── Expose globals ──────────────────────────────────────────────────────
       window.openApp = openApp;
       window.closeApp = closeApp;
       window.goHome = goHome;
       window.toggleTheme = toggleTheme;
       window.ccToggle = ccToggle;
       window.closeCC = closeCC;
+      window.openCC = openCC;
+      window.togglePlay = togglePlay;
+      window.nextTrack = nextTrack;
+      window.prevTrack = prevTrack;
+      window.switchTrack = switchTrack;
+      window.showToast = showToast;
+
+      // ─── Initial toast ───────────────────────────────────────────────────────
       renderHomeScreen();
       setTimeout(
-        () => showToast("📱", "Portfolio ready", "Tap the phone to unlock"),
-        1800,
+        () =>
+          showToast(
+            "👆",
+            "Portfolio",
+            "Tap the phone screen to unlock",
+            "Portfolio",
+          ),
+        1500,
       );
     </script>
   </body>
