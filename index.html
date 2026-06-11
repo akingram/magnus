@@ -878,7 +878,7 @@
       .lock-wallpaper {
         position: absolute;
         inset: 0;
-        background-image: url("https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=640&h=1280&fit=crop&crop=top");
+        background-image: none;
         background-size: cover;
         background-position: center top;
         filter: brightness(0.55) saturate(1.1);
@@ -1032,7 +1032,7 @@
       .home-wallpaper {
         position: absolute;
         inset: 0;
-        background-image: url("https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=640&h=1280&fit=crop&crop=top");
+        background-image: none;
         background-size: cover;
         background-position: center top;
         filter: brightness(0.45) saturate(1.15) blur(0px);
@@ -1912,6 +1912,9 @@
         }
       }
     </style>
+    <link rel="icon" href="images/logo.jpeg" type="image/jpeg" />
+    <link rel="stylesheet" href="css/explosive.css" />
+    <link rel="stylesheet" href="css/studio.css?v=phone4" />
   </head>
   <body>
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -1920,7 +1923,13 @@
       <div class="portfolio-side" id="portfolioSide">
         <nav>
           <div class="nav-inner">
-            <div class="nav-logo">Selorm <em>Avakame</em></div>
+            <div class="nav-logo">
+              <span class="brand-logo" aria-hidden="true">
+                <img class="brand-logo-img" data-asset="logo" src="images/logo.jpeg" alt="" onerror="this.hidden=true;this.nextElementSibling.hidden=false" />
+                <span class="brand-logo-fallback" hidden>SM</span>
+              </span>
+              Selorm <em>Avakame</em>
+            </div>
             <div class="nav-links">
               <a href="index.html" class="active">Home</a>
               <a href="about.html">About</a>
@@ -1935,9 +1944,7 @@
         <section class="hero" id="hero">
           <div class="hero-inner">
             <div class="hero-text">
-              <div class="hero-kicker">
-                Stanford CS · AI & Climate · Class of 2028
-              </div>
+              
               <h1>
                 From Accra to Stanford,<br />building software that
                 <em>matters.</em>
@@ -1951,18 +1958,28 @@
               <div class="hero-cta">
                 <a href="work.html" class="btn-primary">See my work</a>
                 <a href="contact.html" class="btn-ghost">Say hello</a>
-                <span class="avail-pill"
+                <!-- <span class="avail-pill"
                   ><span class="avail-dot"></span>Open to research &
                   collaboration</span
-                >
+                > -->
               </div>
             </div>
             <div class="hero-image-col">
               <img
-                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop"
-                alt="Selorm Avakame"
-                class="profile-image"
+                class="profile-image profile-photo"
+                data-asset="portrait"
+                src="images/selorm.jpeg"
+                alt="Selorm Magnus Avakame"
+                onerror="this.hidden=true;this.nextElementSibling.hidden=false"
               />
+              <div
+                class="profile-image profile-mark"
+                role="img"
+                aria-label="Selorm Magnus Avakame"
+                hidden
+              >
+                SM
+              </div>
             </div>
           </div>
         </section>
@@ -2118,7 +2135,7 @@
               <div class="di-content">
                 <div class="di-cover">
                   <img
-                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop"
+                    src="images/logo.jpeg"
                     alt=""
                   />
                 </div>
@@ -2302,7 +2319,7 @@
               </div>
               <div class="faceid-ring">
                 <img
-                  src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=face"
+                  src="images/selorm.jpeg"
                   alt=""
                 />
               </div>
@@ -2373,7 +2390,7 @@
         musicPlaying = false,
         currentTrack = 0;
       const PROFILE_IMG =
-        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop";
+        "images/selorm.jpeg";
 
       // ─── Clock ───────────────────────────────────────────────────────────────
       function updateClock() {
@@ -3162,5 +3179,6 @@
         1500,
       );
     </script>
+    <script src="js/iphone-polish.js?v=phone4"></script>
   </body>
 </html>

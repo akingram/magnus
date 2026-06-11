@@ -1,0 +1,980 @@
+(function () {
+  "use strict";
+
+  const LOGO_HTML =
+    '<img class="ios-logo-img" data-asset="logo" src="images/logo.jpeg" alt="" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="ios-sm-mark" hidden>SM</span>';
+  const PORTRAIT_HTML =
+    '<img class="ios-portrait-img" data-asset="portrait" src="images/selorm.jpeg" alt="Selorm Magnus Avakame" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="ios-sm-mark" hidden>SM</span>';
+
+  const icons = {
+    magnus: LOGO_HTML,
+    work: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16 12 3l8 13"/><path d="M7.5 13h9L12 21z"/><path d="M12 3v18"/></svg>',
+    skills: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h4l3-8 4 14 3-6h2"/><path d="M5 20h14"/></svg>',
+    resume: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8 13h8M8 17h6"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.7 19.7 0 0 1-8.6-3.1 19.3 19.3 0 0 1-6-6A19.7 19.7 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2.1z"/></svg>',
+    messages: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12c0 4.4-4.3 8-9.5 8-1.1 0-2.2-.2-3.2-.5L3 21l1.6-4.1A7.3 7.3 0 0 1 2 12c0-4.4 4.3-8 9.5-8S21 7.6 21 12z"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>',
+    safari: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.8 8.2-2.1 5.5-5.5 2.1 2.1-5.5z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>',
+    photos: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.3"/><path d="M12 3.2c1.3 2.7 1.3 4.6 0 5.7-1.3-1.1-1.3-3 0-5.7z"/><path d="M20.8 12c-2.7 1.3-4.6 1.3-5.7 0 1.1-1.3 3-1.3 5.7 0z"/><path d="M12 20.8c-1.3-2.7-1.3-4.6 0-5.7 1.3 1.1 1.3 3 0 5.7z"/><path d="M3.2 12c2.7-1.3 4.6-1.3 5.7 0-1.1 1.3-3 1.3-5.7 0z"/></svg>',
+    notes: '<span class="notes-icon" aria-hidden="true"><i></i><i></i><i></i></span>',
+    calendar: '<span class="calendar-icon"><span>JUN</span><strong>11</strong></span>',
+    files: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7l2 3h9v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 7V5a2 2 0 0 1 2-2h5l2 4"/></svg>',
+    music: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
+    settings: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7.4 7.4 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7.5 7.5 0 0 0-2-1.1L14 3h-4l-.4 2.7a7.5 7.5 0 0 0-2 1.1l-2.4-1-2 3.4 2 1.6A7.4 7.4 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.6 2 3.4 2.4-1a7.5 7.5 0 0 0 2 1.1L10 21h4l.4-2.7a7.5 7.5 0 0 0 2-1.1l2.4 1 2-3.4-2-1.6c.1-.4.2-.8.2-1.2z"/></svg>',
+    wifi: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M1.5 9a16 16 0 0 1 21 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><circle cx="12" cy="20" r="1"/></svg>',
+    bluetooth: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10-5 5V2l5 5L7 17"/></svg>',
+    focus: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>',
+    brightness: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+    x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>'
+  };
+
+  const apps = [
+    { id: "magnus", label: "Magnus", kind: "magnus", badge: 1 },
+    { id: "work", label: "Work", kind: "work", badge: 3 },
+    { id: "skills", label: "Skills", kind: "skills" },
+    { id: "resume", label: "Resume", kind: "resume", badge: 1 },
+    { id: "messages", label: "Messages", kind: "messages", badge: 2 },
+    { id: "mail", label: "Mail", kind: "mail" },
+    { id: "safari", label: "Safari", kind: "safari" },
+    { id: "photos", label: "Photos", kind: "photos" },
+    { id: "notes", label: "Notes", kind: "notes" },
+    { id: "calendar", label: "Calendar", kind: "calendar" },
+    { id: "files", label: "Files", kind: "files" },
+    { id: "music", label: "Music", kind: "music" },
+    { id: "settings", label: "Settings", kind: "settings" }
+  ];
+
+  const dockApps = [
+    { id: "phone", label: "Phone", kind: "phone" },
+    { id: "safari", label: "Safari", kind: "safari" },
+    { id: "messages", label: "Messages", kind: "messages", badge: 2 },
+    { id: "mail", label: "Mail", kind: "mail" }
+  ];
+
+  const state = {
+    unlocked: false,
+    currentApp: null,
+    musicPlaying: false,
+    currentTrack: 0,
+    editingNote: null,
+    toastTimer: null
+  };
+
+  const defaultNotes = [
+    {
+      id: "seed-1",
+      title: "Portfolio notes",
+      body: "Keep the phone consistent on every page. The same apps, photos, notes, and design should follow the visitor.",
+      date: "Today"
+    },
+    {
+      id: "seed-2",
+      title: "Picture room",
+      body: "Use Photos for portraits, brand shots, project screenshots, and campus moments.",
+      date: "Today"
+    },
+    {
+      id: "seed-3",
+      title: "Next build",
+      body: "Add stronger project screenshots once the final app assets are ready.",
+      date: "Jun 11"
+    }
+  ];
+
+  const defaultPhotos = [
+    { id: "portrait", title: "Portrait", src: "images/selorm.jpeg", kind: "photos" },
+    { id: "brand", title: "Magnus mark", src: "images/logo.jpeg", kind: "magnus" },
+    { id: "stanford", title: "Stanford", kind: "calendar" },
+    { id: "accra", title: "Accra", kind: "work" },
+    { id: "dropitoff", title: "Drop It Off", kind: "phone" },
+    { id: "research", title: "Research", kind: "files" }
+  ];
+
+  let phoneNotes = readPhoneStorage("magnus_phone_notes", defaultNotes);
+  let phonePhotos = readPhoneStorage("magnus_phone_photos", []);
+
+  const phoneHtml = `
+    <div class="iphone-aura"></div>
+    <div class="iphone-wrap" id="iphoneWrap">
+      <div class="phone-btn-l mute"></div>
+      <div class="phone-btn-l vol-up"></div>
+      <div class="phone-btn-l vol-dn"></div>
+      <div class="phone-btn-r power"></div>
+      <div class="iphone-frame"></div>
+      <div class="iphone-screen" id="iphoneScreen">
+        <div class="dynamic-island" id="dynamicIsland">
+          <div class="di-content">
+            <div class="di-cover">${LOGO_HTML}</div>
+            <div class="di-music"><strong id="diTitle">Magnus OS</strong><span id="diSub">Portfolio live</span></div>
+            <div class="di-bars"><div class="di-bar"></div><div class="di-bar"></div><div class="di-bar"></div></div>
+          </div>
+        </div>
+
+        <div class="status-bar">
+          <div class="status-time" id="statusTime">9:41</div>
+          <div class="status-right">
+            <div class="signal-bars"><div class="signal-bar"></div><div class="signal-bar"></div><div class="signal-bar"></div><div class="signal-bar"></div></div>
+            <div class="status-5g">5G</div>
+            <div class="battery-body"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+
+        <div class="scroll-pill" id="homeIndicator" aria-label="Home"></div>
+
+        <div class="phone-toast" id="phoneToast">
+          <div class="toast-app-icon polished-toast-icon" id="toastIcon">${icons.magnus}</div>
+          <span id="toastIconEl" hidden></span>
+          <div class="toast-body">
+            <div class="toast-app-name" id="toastApp">Portfolio</div>
+            <div class="toast-title" id="toastTitle">Welcome</div>
+            <div class="toast-text" id="toastText">Swipe up or tap to unlock</div>
+          </div>
+          <div class="toast-time">now</div>
+        </div>
+
+        <div id="control-center">
+          <div class="cc-row">
+            <div class="cc-tile on" id="ccWifi" onclick="ccToggle('ccWifi')">${icons.wifi}<div class="cc-tile-label">Wi-Fi</div></div>
+            <div class="cc-tile on" id="ccBt" onclick="ccToggle('ccBt')">${icons.bluetooth}<div class="cc-tile-label">Bluetooth</div></div>
+          </div>
+          <div class="cc-row">
+            <div class="cc-tile" id="ccFocus" onclick="ccToggle('ccFocus')">${icons.focus}<div class="cc-tile-label">Focus</div></div>
+            <div class="cc-tile" id="ccBright" onclick="ccToggle('ccBright')">${icons.brightness}<div class="cc-tile-label">Display</div></div>
+          </div>
+          <div class="cc-slider-wrap"><div class="cc-slider-label">${icons.brightness} Brightness</div><input class="cc-slider" type="range" value="78"></div>
+          <div class="cc-slider-wrap"><div class="cc-slider-label">${icons.music} Volume</div><input class="cc-slider" type="range" value="62"></div>
+          <button class="cc-close" onclick="closeCC()" aria-label="Close">${icons.x}</button>
+        </div>
+
+        <div class="iphone-screen-inner" id="lock-screen">
+          <div class="lock-wallpaper"></div>
+          <div class="lock-wallpaper-blur"></div>
+          <div class="lock-time" id="lockTime">9:41</div>
+          <div class="lock-date" id="lockDate">Thursday, June 11</div>
+          <div class="lock-notif">
+            <div class="notif-header"><div class="notif-app-icon polished-row-icon">${icons.messages}</div><div class="notif-app">MESSAGES</div><div class="notif-time">now</div></div>
+            <div class="notif-text">Selorm is open for research and product collaborations</div>
+          </div>
+          <div class="lock-notif">
+            <div class="notif-header"><div class="notif-app-icon polished-row-icon">${icons.work}</div><div class="notif-app">WORK</div><div class="notif-time">2m</div></div>
+            <div class="notif-text">Drop It Off, AgFM-1, and Katalyze Africa are ready to explore</div>
+          </div>
+          <div class="lock-notif">
+            <div class="notif-header"><div class="notif-app-icon polished-row-icon">${icons.calendar}</div><div class="notif-app">CALENDAR</div><div class="notif-time">1h</div></div>
+            <div class="notif-text">Stanford CS - AI track - Class of 2028</div>
+          </div>
+          <div class="faceid-ring">${PORTRAIT_HTML}</div>
+          <div class="swipe-hint"><span class="swipe-arrow">^</span> Swipe up to unlock</div>
+        </div>
+
+        <div class="iphone-screen-inner" id="home-screen">
+          <div class="home-wallpaper"></div>
+          <div class="home-wallpaper-overlay"></div>
+          <div class="home-grid" id="homeGrid"></div>
+          <div class="widget-row">
+            <div class="widget"><div class="widget-title">Today</div><div class="widget-val">Jun 11</div><div class="widget-sub">Portfolio OS</div></div>
+            <div class="widget"><div class="widget-title">GPA</div><div class="widget-val">3.94</div><div class="widget-sub">Stanford CS</div></div>
+            <div class="widget"><div class="widget-title">Apps</div><div class="widget-val">1k+</div><div class="widget-sub">Downloads</div></div>
+          </div>
+          <div class="dock" id="dock"></div>
+        </div>
+
+        <div class="iphone-screen-inner" id="app-screen">
+          <div class="app-nav-bar" id="appNavBar">
+            <button class="app-back-btn" onclick="closeApp()" aria-label="Back">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+              Home
+            </button>
+            <div class="app-header-title" id="appTitle">App</div>
+            <div class="app-nav-spacer"></div>
+          </div>
+          <div class="app-body" id="appBody"></div>
+        </div>
+      </div>
+    </div>`;
+
+  const appMeta = Object.fromEntries(apps.concat(dockApps).map((app) => [app.id, app]));
+
+  function readPhoneStorage(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return fallback.slice ? fallback.slice() : fallback;
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : fallback.slice ? fallback.slice() : fallback;
+    } catch (error) {
+      return fallback.slice ? fallback.slice() : fallback;
+    }
+  }
+
+  function writePhoneStorage(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch (error) {
+      showToast("settings", "Storage full", "Could not save that item", "Settings");
+      return false;
+    }
+  }
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function cleanTitle(value) {
+    return String(value || "")
+      .replace(/\.[a-z0-9]+$/i, "")
+      .replace(/[-_]+/g, " ")
+      .trim()
+      .slice(0, 32) || "New photo";
+  }
+
+  function mountPhone() {
+    const side = document.querySelector(".iphone-side");
+    if (!side) return false;
+    side.classList.add("iphone-canonical");
+    side.innerHTML = phoneHtml;
+    return true;
+  }
+
+  function hydrateImageAssets() {
+    const candidates = {
+      logo: [
+        "images/logo.jpeg",
+        "images/logo.jpg",
+        "images/logo.png",
+        "images/logo.webp",
+        "images/logo.svg",
+        "assets/logo.png",
+        "assets/logo.jpg",
+        "assets/logo.jpeg",
+        "assets/logo.webp",
+        "assets/logo.svg"
+      ],
+      portrait: [
+        "images/selorm.jpeg",
+        "images/selorm.jpg",
+        "images/selorm.png",
+        "images/selorm.webp",
+        "assets/selorm-photo.jpg",
+        "assets/selorm-photo.png",
+        "assets/selorm-photo.jpeg",
+        "assets/selorm-photo.webp",
+        "assets/portrait.jpg",
+        "assets/portrait.png",
+        "assets/portrait.webp",
+        "assets/selorm.jpg",
+        "assets/selorm.png",
+        "assets/selorm.webp"
+      ]
+    };
+
+    document.querySelectorAll("img[data-asset]").forEach((img) => {
+      const list = candidates[img.dataset.asset] || [img.getAttribute("src")];
+      const fallback = img.nextElementSibling;
+      let index = 0;
+      const tryNext = () => {
+        if (index >= list.length) {
+          img.hidden = true;
+          if (fallback) fallback.hidden = false;
+          return;
+        }
+        img.hidden = false;
+        if (fallback) fallback.hidden = true;
+        img.src = list[index++];
+      };
+      img.onload = () => {
+        img.hidden = false;
+        if (fallback) fallback.hidden = true;
+      };
+      img.onerror = tryNext;
+      tryNext();
+    });
+  }
+
+  function iconFor(kind) {
+    return icons[kind] || icons.magnus;
+  }
+
+  function appIcon(app, dock) {
+    const badge = app.badge && !dock ? '<div class="app-badge">' + app.badge + "</div>" : "";
+    return `
+      <div class="app-icon" role="button" tabindex="0" onclick="openApp('${app.id}')" data-app="${app.id}">
+        <div class="app-icon-img ios-polished-icon kind-${app.kind}">${iconFor(app.kind)}${badge}</div>
+        ${dock ? "" : '<div class="app-label">' + app.label + "</div>"}
+      </div>`;
+  }
+
+  function renderHomeScreen() {
+    const grid = document.getElementById("homeGrid");
+    const dock = document.getElementById("dock");
+    if (grid) grid.innerHTML = apps.map((app) => appIcon(app, false)).join("");
+    if (dock) dock.innerHTML = dockApps.map((app) => appIcon(app, true)).join("");
+    setPhoneMotionOrder();
+  }
+
+  function prefersReducedMotion() {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function setPhoneMotionOrder() {
+    if (prefersReducedMotion()) return;
+    const items = [
+      ...document.querySelectorAll("#homeGrid .app-icon"),
+      ...document.querySelectorAll(".widget-row .widget"),
+      ...document.querySelectorAll("#dock .app-icon")
+    ];
+    items.forEach((el, index) => {
+      el.style.setProperty("--phone-order", String(index));
+    });
+  }
+
+  function preparePhonePanelMotion(root) {
+    if (prefersReducedMotion() || !root) return;
+    const items = root.querySelectorAll(
+      ".ios-large-title, .ios-hero-card, .ios-settings-profile, .ios-section, .ios-proj-card, .calendar-card, .resume-card, .music-panel, .photo-tile, .music-track-row, .notes-list .note-card, .note-editor, .note-action-row"
+    );
+    items.forEach((el, index) => {
+      el.classList.add("phone-float-item");
+      el.style.setProperty("--phone-order", String(Math.min(index, 12)));
+    });
+  }
+
+  function setupPageFloatIns() {
+    if (prefersReducedMotion()) return;
+
+    const scope = document.querySelector(".portfolio-side") || document.body;
+    const selectors = [
+      ".nav-logo",
+      ".nav-links a",
+      ".theme-btn",
+      ".hero-kicker",
+      ".hero h1",
+      ".hero-body",
+      ".hero-cta > *",
+      ".avail-pill",
+      ".hero-image-col",
+      ".section-label",
+      ".section-title",
+      ".section-intro",
+      "section > h2",
+      "section > p",
+      ".aside-fact",
+      ".project-card",
+      ".service-row",
+      ".skill-group",
+      ".testi-card",
+      ".clink",
+      ".contact-form",
+      ".fgroup",
+      "footer > *",
+      ".iphone-side"
+    ];
+    const seen = new Set();
+    const targets = [];
+
+    selectors.forEach((selector) => {
+      document.querySelectorAll(selector).forEach((el) => {
+        if (seen.has(el) || el.closest("#app-screen") || el.closest("#home-screen") || el.closest("#lock-screen")) return;
+        if (el.closest(".iphone-side") && !el.classList.contains("iphone-side")) return;
+        seen.add(el);
+        targets.push(el);
+      });
+    });
+
+    if (!targets.length) return;
+
+    const groupCounts = new Map();
+    targets.forEach((el) => {
+      const group = el.closest("nav, .hero, section, footer, .iphone-side") || scope;
+      const count = groupCounts.get(group) || 0;
+      groupCounts.set(group, count + 1);
+      el.classList.add("float-in-item");
+      el.style.setProperty("--float-order", String(Math.min(count, 10)));
+    });
+
+    document.documentElement.classList.add("studio-motion-enabled");
+
+    const reveal = (el) => {
+      el.classList.add("is-visible");
+    };
+    const revealVisible = () => {
+      targets.forEach((el) => {
+        if (el.classList.contains("is-visible")) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.96 && rect.bottom > 0) reveal(el);
+      });
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting && entry.intersectionRatio <= 0) return;
+          reveal(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+      targets.forEach((el) => observer.observe(el));
+    } else {
+      window.addEventListener("scroll", revealVisible, { passive: true });
+      window.addEventListener("resize", revealVisible);
+    }
+
+    setTimeout(revealVisible, 80);
+  }
+
+  function updateClock() {
+    const now = new Date();
+    const time = now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0");
+    const day = now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+    const statusTime = document.getElementById("statusTime");
+    const lockTime = document.getElementById("lockTime");
+    const lockDate = document.getElementById("lockDate");
+    if (statusTime) statusTime.textContent = time;
+    if (lockTime) lockTime.textContent = time;
+    if (lockDate) lockDate.textContent = day;
+  }
+
+  function unlock() {
+    if (state.unlocked) return;
+    state.unlocked = true;
+    const lock = document.getElementById("lock-screen");
+    const home = document.getElementById("home-screen");
+    const screen = document.getElementById("iphoneScreen");
+    if (!lock || !home) return;
+    if (screen) screen.classList.add("unlocked");
+    lock.style.transition = "transform .45s cubic-bezier(.22,1,.36,1), opacity .35s ease";
+    lock.style.transform = "translateY(-100%)";
+    lock.style.opacity = "0";
+    setTimeout(() => {
+      lock.style.display = "none";
+      home.style.display = "flex";
+      home.style.opacity = "1";
+      renderHomeScreen();
+      showToast("magnus", "Magnus OS", "Home screen ready", "Portfolio");
+    }, 420);
+  }
+
+  function showToast(kind, title, text, appName) {
+    const toast = document.getElementById("phoneToast");
+    if (!toast) return;
+    const iconEl = document.getElementById("toastIcon");
+    const hiddenAlias = document.getElementById("toastIconEl");
+    if (iconEl) {
+      iconEl.className = "toast-app-icon polished-toast-icon ios-polished-icon kind-" + (kind || "magnus");
+      iconEl.innerHTML = iconFor(kind);
+    }
+    if (hiddenAlias) hiddenAlias.innerHTML = iconFor(kind);
+    const titleEl = document.getElementById("toastTitle");
+    const textEl = document.getElementById("toastText");
+    const appEl = document.getElementById("toastApp");
+    if (titleEl) titleEl.textContent = title || "Portfolio";
+    if (textEl) textEl.textContent = text || "";
+    if (appEl) appEl.textContent = appName || title || "Portfolio";
+    toast.classList.add("show");
+    clearTimeout(state.toastTimer);
+    state.toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+  }
+
+  function openApp(id) {
+    if (!state.unlocked) {
+      unlock();
+      setTimeout(() => openApp(id), 520);
+      return;
+    }
+    const app = appMeta[id] || appMeta.magnus;
+    if (id !== "notes") state.editingNote = null;
+    state.currentApp = id;
+    const screen = document.getElementById("app-screen");
+    const title = document.getElementById("appTitle");
+    const nav = document.getElementById("appNavBar");
+    const body = document.getElementById("appBody");
+    if (!screen || !body || !nav || !title) return;
+    title.textContent = app.label;
+    nav.style.background = gradientFor(app.kind);
+    screen.classList.remove("ready");
+    body.innerHTML = buildApp(id);
+    preparePhonePanelMotion(body);
+    screen.classList.add("visible");
+    requestAnimationFrame(() => requestAnimationFrame(() => screen.classList.add("ready")));
+    setTimeout(() => screen.classList.add("ready"), 80);
+    if (id === "skills") setTimeout(animateSkillBars, 80);
+    showToast(app.kind, app.label, subtitleFor(id), app.label);
+  }
+
+  function closeApp() {
+    const screen = document.getElementById("app-screen");
+    if (!screen) return;
+    screen.classList.remove("ready");
+    setTimeout(() => {
+      screen.classList.remove("visible");
+      state.currentApp = null;
+      state.editingNote = null;
+    }, 180);
+  }
+
+  function goHome() {
+    const cc = document.getElementById("control-center");
+    const app = document.getElementById("app-screen");
+    if (cc && cc.classList.contains("visible")) {
+      closeCC();
+      return;
+    }
+    if (app && app.classList.contains("visible")) closeApp();
+  }
+
+  function openCC() {
+    const cc = document.getElementById("control-center");
+    if (cc) cc.classList.add("visible");
+  }
+
+  function closeCC() {
+    const cc = document.getElementById("control-center");
+    if (cc) cc.classList.remove("visible");
+  }
+
+  function ccToggle(id) {
+    const el = typeof id === "string" ? document.getElementById(id) : id;
+    if (el) el.classList.toggle("on");
+  }
+
+  function gradientFor(kind) {
+    const map = {
+      magnus: "linear-gradient(135deg,#111318,#ff3030)",
+      work: "linear-gradient(135deg,#ffb000,#ff3030)",
+      skills: "linear-gradient(135deg,#087b4f,#61ff8a)",
+      resume: "linear-gradient(135deg,#155cff,#00d5ff)",
+      phone: "linear-gradient(135deg,#0e8f44,#32d74b)",
+      messages: "linear-gradient(135deg,#16c75f,#32d74b)",
+      mail: "linear-gradient(135deg,#007aff,#63d2ff)",
+      safari: "linear-gradient(135deg,#00a6ff,#155cff)",
+      photos: "linear-gradient(135deg,#ffffff,#e9eef7)",
+      notes: "linear-gradient(135deg,#ffcf33,#ff9f0a)",
+      calendar: "linear-gradient(135deg,#ffffff,#f5f5f7)",
+      files: "linear-gradient(135deg,#007aff,#5ac8fa)",
+      music: "linear-gradient(135deg,#ff2d55,#ff6a00)",
+      settings: "linear-gradient(135deg,#24272c,#7d8590)"
+    };
+    return map[kind] || map.magnus;
+  }
+
+  function subtitleFor(id) {
+    const map = {
+      magnus: "Identity card loaded",
+      work: "Shipping log open",
+      skills: "Toolbox ready",
+      resume: "Credentials ready",
+      phone: "Contact options open",
+      messages: "Conversation ready",
+      mail: "Inbox ready",
+      safari: "Portfolio browser open",
+      photos: "Gallery ready",
+      notes: "Notes ready",
+      calendar: "Schedule ready",
+      files: "Archive ready",
+      music: "Playlist live",
+      settings: "Device tuned"
+    };
+    return map[id] || "App open";
+  }
+
+  function buildApp(id) {
+    if (id === "magnus") return buildMagnus();
+    if (id === "work" || id === "safari") return buildWork(id);
+    if (id === "skills") return buildSkills();
+    if (id === "resume" || id === "files") return buildResume(id);
+    if (id === "phone" || id === "messages" || id === "mail") return buildContact(id);
+    if (id === "photos") return buildPhotos();
+    if (id === "notes") return buildNotes();
+    if (id === "calendar") return buildCalendar();
+    if (id === "music") return buildMusic();
+    if (id === "settings") return buildSettings();
+    return buildMagnus();
+  }
+
+  function row(kind, title, sub, value) {
+    return `
+      <div class="ios-row">
+        <div class="ios-row-icon polished-row-icon kind-${kind}">${iconFor(kind)}</div>
+        <div class="ios-row-text"><div class="ios-row-title">${title}</div><div class="ios-row-sub">${sub}</div></div>
+        ${value ? '<div class="ios-row-value">' + value + "</div>" : '<div class="ios-row-arrow">></div>'}
+      </div>`;
+  }
+
+  function buildMagnus() {
+    return `
+      <div class="ios-large-title">Magnus</div>
+      <div class="ios-hero-card app-hero-magnus">
+        <div class="ios-hero-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-hero-name">Selorm Magnus Avakame</div><div class="ios-hero-sub">Stanford CS - AI Track - Class of 2028</div></div></div>
+        <span class="ios-chip">Leland Scholar</span><span class="ios-chip">Founder</span><span class="ios-chip">Builder</span>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Snapshot</div>
+        ${row("calendar", "Stanford University", "Computer Science, AI track", "2028")}
+        ${row("work", "Katalyze Africa", "Founder - student startup accelerator", "Active")}
+        ${row("skills", "AI and climate tech", "Research, product, and systems", "Focus")}
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Now</div>
+        ${row("work", "American Tractor Company", "AI/ML intern working on AgFM-1", "2026")}
+        ${row("resume", "Leland Scholarship", "Full ride covering tuition, room, board", "$400k")}
+      </div>`;
+  }
+
+  function buildWork(source) {
+    const title = source === "safari" ? "Safari" : "Work";
+    return `
+      <div class="ios-large-title">${title}</div>
+      <div class="ios-proj-card">
+        <div class="ios-proj-thumb kind-work">${icons.work}<span>Shipped</span></div>
+        <div class="ios-proj-info"><div class="ios-proj-name">Drop It Off</div><div class="ios-proj-desc">Production iOS logistics app co-built with Digits Agency. Firebase backend, public launch, 4.8-star rating, and 1K+ downloads.</div><div class="ios-proj-tags"><span>Swift</span><span>Firebase</span><span>iOS</span></div></div>
+      </div>
+      <div class="ios-proj-card">
+        <div class="ios-proj-thumb kind-skills">${icons.skills}<span>AI</span></div>
+        <div class="ios-proj-info"><div class="ios-proj-name">CS124 AI Booking Agent</div><div class="ios-proj-desc">Movie recommendation and ticket-booking agent using Python, DSPy, and ReAct-style tool use.</div><div class="ios-proj-tags"><span>Python</span><span>DSPy</span><span>Agents</span></div></div>
+      </div>
+      <div class="ios-proj-card">
+        <div class="ios-proj-thumb kind-magnus">${icons.magnus}<span>Founder</span></div>
+        <div class="ios-proj-info"><div class="ios-proj-name">Katalyze Africa</div><div class="ios-proj-desc">Pan-African accelerator for student-led startups solving African problems through mentorship and demo days.</div><div class="ios-proj-tags"><span>Venture</span><span>Africa</span><span>Community</span></div></div>
+      </div>`;
+  }
+
+  function buildSkills() {
+    const skills = [["Python", 92], ["Swift", 85], ["JavaScript", 82], ["C", 75], ["Flutter", 72], ["PyTorch", 78]];
+    return `
+      <div class="ios-large-title">Skills</div>
+      <div class="ios-section"><div class="ios-section-header">Languages and Tools</div>
+        ${skills.map(([name, pct]) => `
+          <div class="ios-skill-bar"><div class="ios-skill-label">${name}<span>${pct}%</span></div><div class="ios-bar"><div class="ios-bar-fill" data-pct="${pct}"></div></div></div>
+        `).join("")}
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Domains</div>
+        ${row("skills", "AI agents", "Tool use, recommendation, automation", "")}
+        ${row("phone", "Mobile apps", "Native iOS and Flutter products", "")}
+        ${row("work", "Climate tech", "Agriculture, edge AI, and startup systems", "")}
+      </div>`;
+  }
+
+  function animateSkillBars() {
+    document.querySelectorAll(".ios-bar-fill").forEach((el) => {
+      el.style.width = el.dataset.pct + "%";
+    });
+  }
+
+  function buildResume(source) {
+    const title = source === "files" ? "Files" : "Resume";
+    return `
+      <div class="ios-large-title">${title}</div>
+      <div class="ios-section resume-card">
+        <div class="resume-top"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><strong>Selorm Magnus Avakame</strong><span>Stanford CS - AI Track</span></div></div>
+        <div class="resume-block"><strong>Education</strong><span>Stanford University - B.S. Computer Science - GPA 3.94</span></div>
+        <div class="resume-block"><strong>Experience</strong><span>AI/ML Intern, Product Match Fellow, Founder, iOS Engineer</span></div>
+        <button class="ios-action" onclick="showToast('resume','Resume','PDF download placeholder','Resume')">${icons.resume} Download PDF Resume</button>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Highlights</div>
+        ${row("work", "American Tractor Company", "AI/ML intern - AgFM-1", "2026")}
+        ${row("messages", "African Service Fellow", "Selected twice", "2x")}
+        ${row("phone", "Drop It Off", "Published iOS app", "1K+")}
+      </div>`;
+  }
+
+  function buildContact(source) {
+    const title = source === "phone" ? "Phone" : source === "mail" ? "Mail" : "Messages";
+    return `
+      <div class="ios-large-title">${title}</div>
+      <div class="ios-hero-card app-hero-contact"><div class="ios-hero-name">Open channels</div><div class="ios-hero-sub">Research, internships, startup work, and builder-to-builder conversations.</div></div>
+      <div class="ios-section"><div class="ios-section-header">Contact</div>
+        <div class="ios-row" onclick="showToast('mail','Email','smagnusa@stanford.edu','Mail')"><div class="ios-row-icon polished-row-icon kind-mail">${icons.mail}</div><div class="ios-row-text"><div class="ios-row-title">Email</div><div class="ios-row-sub">smagnusa@stanford.edu</div></div><div class="ios-row-arrow">></div></div>
+        <div class="ios-row" onclick="showToast('safari','GitHub','github.com/smagnusavakame','Safari')"><div class="ios-row-icon polished-row-icon kind-safari">${icons.safari}</div><div class="ios-row-text"><div class="ios-row-title">GitHub</div><div class="ios-row-sub">github.com/smagnusavakame</div></div><div class="ios-row-arrow">></div></div>
+        <div class="ios-row" onclick="showToast('messages','LinkedIn','linkedin.com/in/selorm-avakame','Messages')"><div class="ios-row-icon polished-row-icon kind-messages">${icons.messages}</div><div class="ios-row-text"><div class="ios-row-title">LinkedIn</div><div class="ios-row-sub">linkedin.com/in/selorm-avakame</div></div><div class="ios-row-arrow">></div></div>
+      </div>`;
+  }
+
+  function buildPhotos() {
+    const photos = defaultPhotos.concat(phonePhotos);
+    const emptySlots = Math.max(0, 9 - photos.length);
+    const renderPhoto = (photo) => {
+      const title = escapeHtml(photo.title || "Photo slot");
+      const kind = photo.kind || "photos";
+      const image = photo.src
+        ? `<img src="${escapeHtml(photo.src)}" alt="${title}" loading="lazy"><span>${title}</span>`
+        : `${iconFor(kind)}<span>${title}</span>`;
+      return `<button class="photo-tile phone-photo-tile ${photo.src ? "has-image" : ""} kind-${kind}" onclick="showToast('photos','Photos','Photo slot ready','Photos')">${image}</button>`;
+    };
+    return `
+      <div class="ios-large-title">Photos</div>
+      <div class="ios-section phone-photo-room">
+        <div class="ios-section-header">Picture room</div>
+        <p class="phone-room-copy">Portraits, project screenshots, campus moments, and anything you want to preview inside this phone.</p>
+        <button class="ios-action phone-photo-add" onclick="document.getElementById('phonePhotoInput')?.click()">${icons.photos} Add Photo Slot</button>
+        <input id="phonePhotoInput" type="file" accept="image/*" hidden onchange="savePhonePhoto(this)">
+      </div>
+      <div class="photo-grid">
+        ${photos.map(renderPhoto).join("")}
+        ${Array.from({ length: emptySlots }, (_, index) => `<button class="photo-tile phone-photo-tile empty-slot kind-photos" onclick="document.getElementById('phonePhotoInput')?.click()">${icons.photos}<span>Open slot ${index + 1}</span></button>`).join("")}
+      </div>`;
+  }
+
+  function savePhonePhoto(input) {
+    const file = input && input.files && input.files[0];
+    if (!file) return;
+    if (!file.type || !file.type.startsWith("image/")) {
+      showToast("photos", "Photos", "Choose an image file", "Photos");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      phonePhotos.unshift({
+        id: String(Date.now()),
+        title: cleanTitle(file.name),
+        src: String(reader.result || ""),
+        kind: "photos"
+      });
+      phonePhotos = phonePhotos.slice(0, 8);
+      if (writePhoneStorage("magnus_phone_photos", phonePhotos)) {
+        state.editingNote = null;
+        openApp("photos");
+        showToast("photos", "Photo added", "Saved inside this phone", "Photos");
+      }
+      input.value = "";
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function buildNotes() {
+    if (state.editingNote) {
+      const isNew = state.editingNote === "new";
+      const note = isNew
+        ? { id: "new", title: "", body: "", date: "Today" }
+        : phoneNotes.find((item) => String(item.id) === state.editingNote) || phoneNotes[0] || defaultNotes[0];
+      const noteId = escapeHtml(note.id);
+      return `
+        <div class="ios-large-title">Notes</div>
+        <div class="note-editor">
+          <input id="phoneNoteTitle" class="note-title-input" value="${escapeHtml(note.title)}" placeholder="Note title">
+          <textarea id="phoneNoteBody" class="note-body-input" placeholder="Start writing...">${escapeHtml(note.body)}</textarea>
+        </div>
+        <div class="note-action-row">
+          <button class="note-save-btn" onclick="savePhoneNote('${noteId}')">Done</button>
+          <button class="note-delete-btn" onclick="deletePhoneNote('${noteId}')">${isNew ? "Cancel" : "Delete"}</button>
+        </div>`;
+    }
+
+    return `
+      <div class="ios-large-title">Notes</div>
+      <div class="ios-section phone-notes-room">
+        <div class="ios-section-header">Notes room</div>
+        <p class="phone-room-copy">A place for launch notes, image ideas, project captions, and copy you want to keep inside the phone.</p>
+        <button class="ios-action phone-note-add" onclick="newPhoneNote()">${icons.notes} New Note</button>
+      </div>
+      <div class="notes-list">
+        ${phoneNotes.map((note) => `
+          <button class="note-card" onclick="openPhoneNote('${escapeHtml(note.id)}')">
+            <span class="note-date">${escapeHtml(note.date || "Today")}</span>
+            <strong>${escapeHtml(note.title || "Untitled")}</strong>
+            <span>${escapeHtml(note.body || "Empty note").replace(/\n/g, " ")}</span>
+          </button>
+        `).join("")}
+      </div>`;
+  }
+
+  function newPhoneNote() {
+    state.editingNote = "new";
+    openApp("notes");
+  }
+
+  function openPhoneNote(id) {
+    state.editingNote = String(id || "");
+    openApp("notes");
+  }
+
+  function savePhoneNote(id) {
+    const titleEl = document.getElementById("phoneNoteTitle");
+    const bodyEl = document.getElementById("phoneNoteBody");
+    const title = (titleEl && titleEl.value.trim()) || "Untitled";
+    const body = (bodyEl && bodyEl.value.trim()) || "";
+    const noteId = String(id || "new");
+
+    if (noteId === "new") {
+      phoneNotes.unshift({ id: String(Date.now()), title, body, date: "Today" });
+    } else {
+      const note = phoneNotes.find((item) => String(item.id) === noteId);
+      if (note) {
+        note.title = title;
+        note.body = body;
+        note.date = "Updated";
+      }
+    }
+
+    phoneNotes = phoneNotes.slice(0, 12);
+    if (writePhoneStorage("magnus_phone_notes", phoneNotes)) {
+      state.editingNote = null;
+      openApp("notes");
+      showToast("notes", "Note saved", title, "Notes");
+    }
+  }
+
+  function deletePhoneNote(id) {
+    const noteId = String(id || "");
+    if (noteId !== "new") phoneNotes = phoneNotes.filter((item) => String(item.id) !== noteId);
+    writePhoneStorage("magnus_phone_notes", phoneNotes);
+    state.editingNote = null;
+    openApp("notes");
+    showToast("notes", noteId === "new" ? "Note cancelled" : "Note deleted", "Notes updated", "Notes");
+  }
+
+  function buildCalendar() {
+    return `
+      <div class="ios-large-title">Calendar</div>
+      <div class="calendar-card"><div class="calendar-date"><span>JUN</span><strong>11</strong></div><div><strong>Portfolio Review</strong><span>Design system and iPhone emulator polish</span></div></div>
+      <div class="ios-section"><div class="ios-section-header">Upcoming</div>
+        ${row("work", "AgFM-1 sprint", "American Tractor Company", "Today")}
+        ${row("messages", "Katalyze Africa", "Founder outreach and chapter reviews", "Fri")}
+        ${row("skills", "Research block", "AI, HCI, climate tech", "Sat")}
+      </div>`;
+  }
+
+  const tracks = [
+    ["Essence", "Wizkid ft. Tems", "4:14", "music"],
+    ["Risky", "Davido ft. Popcaan", "3:22", "work"],
+    ["Electric Feel", "MGMT", "3:49", "skills"]
+  ];
+
+  function buildMusic() {
+    const track = tracks[state.currentTrack];
+    return `
+      <div class="music-panel kind-${track[3]}">
+        <div class="music-art">${icons.music}</div>
+        <div class="music-info-row"><div><div class="music-track-name">${track[0]}</div><div class="music-artist-name">${track[1]}</div></div><button class="music-love" onclick="showToast('music','Loved','${track[0]} added','Music')">+</button></div>
+        <div class="music-progress-wrap"><input class="music-progress" type="range" value="38"><div class="music-times"><span>1:32</span><span>${track[2]}</span></div></div>
+        <div class="music-controls-row"><button class="mc-btn" onclick="prevTrack()">&lt;</button><button class="mc-play" onclick="togglePlay()">${state.musicPlaying ? "II" : ">"}</button><button class="mc-btn" onclick="nextTrack()">&gt;</button></div>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Up Next</div>
+        ${tracks.map((item, index) => `<div class="music-track-row ${index === state.currentTrack ? "active" : ""}" onclick="switchTrack(${index})"><div class="ios-row-icon polished-row-icon kind-${item[3]}">${icons.music}</div><div class="ios-row-text"><div class="ios-row-title">${item[0]}</div><div class="ios-row-sub">${item[1]}</div></div><div class="ios-row-value">${item[2]}</div></div>`).join("")}
+      </div>`;
+  }
+
+  function buildSettings() {
+    return `
+      <div class="ios-large-title">Settings</div>
+      <div class="ios-settings-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-settings-name">Selorm Avakame</div><div class="ios-settings-sub">Magnus OS - Portfolio phone</div></div></div>
+      <div class="ios-section">
+        ${row("wifi", "Wi-Fi", "Stanford Secure", "On")}
+        ${row("phone", "Cellular", "5G", "Active")}
+        ${row("settings", "Appearance", "Explosive mode", "On")}
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Portfolio</div>
+        ${row("messages", "Notifications", "Research and collaboration alerts", "On")}
+        ${row("calendar", "Version", "Shared emulator across all pages", "2.0")}
+      </div>`;
+  }
+
+  function togglePlay() {
+    state.musicPlaying = !state.musicPlaying;
+    openApp("music");
+    showToast("music", state.musicPlaying ? "Now Playing" : "Paused", tracks[state.currentTrack][0], "Music");
+  }
+
+  function nextTrack() {
+    state.currentTrack = (state.currentTrack + 1) % tracks.length;
+    openApp("music");
+  }
+
+  function prevTrack() {
+    state.currentTrack = (state.currentTrack - 1 + tracks.length) % tracks.length;
+    openApp("music");
+  }
+
+  function switchTrack(index) {
+    state.currentTrack = index;
+    state.musicPlaying = true;
+    openApp("music");
+  }
+
+  function bindPhone() {
+    const lock = document.getElementById("lock-screen");
+    const homeIndicator = document.getElementById("homeIndicator");
+    const island = document.getElementById("dynamicIsland");
+    const screen = document.getElementById("iphoneScreen");
+    let startY = 0;
+    let ccStart = null;
+
+    if (lock) {
+      lock.addEventListener("click", unlock);
+      lock.addEventListener("touchstart", (event) => {
+        startY = event.touches[0].clientY;
+      }, { passive: true });
+      lock.addEventListener("touchend", (event) => {
+        if (startY - event.changedTouches[0].clientY > 35) unlock();
+      }, { passive: true });
+    }
+
+    if (homeIndicator) homeIndicator.addEventListener("click", goHome);
+
+    if (island) {
+      island.addEventListener("click", () => {
+        island.classList.toggle("expanded");
+        if (island.classList.contains("expanded")) setTimeout(() => island.classList.remove("expanded"), 3600);
+      });
+    }
+
+    if (screen) {
+      screen.addEventListener("pointerdown", (event) => {
+        const rect = screen.getBoundingClientRect();
+        ccStart = { x: event.clientX - rect.left, y: event.clientY - rect.top, rect };
+      });
+      screen.addEventListener("pointerup", (event) => {
+        if (!ccStart || !state.unlocked) return;
+        const dy = event.clientY - ccStart.rect.top - ccStart.y;
+        if (ccStart.y < 48 && ccStart.x > ccStart.rect.width * 0.5 && dy > 36) openCC();
+        ccStart = null;
+      });
+    }
+  }
+
+  function exposeGlobals() {
+    window.renderHomeScreen = renderHomeScreen;
+    window.updateClock = updateClock;
+    window.unlock = unlock;
+    window.openApp = openApp;
+    window.closeApp = closeApp;
+    window.goHome = goHome;
+    window.openCC = openCC;
+    window.closeCC = closeCC;
+    window.ccToggle = ccToggle;
+    window.showToast = showToast;
+    window.togglePlay = togglePlay;
+    window.nextTrack = nextTrack;
+    window.prevTrack = prevTrack;
+    window.switchTrack = switchTrack;
+    window.savePhonePhoto = savePhonePhoto;
+    window.newPhoneNote = newPhoneNote;
+    window.openPhoneNote = openPhoneNote;
+    window.savePhoneNote = savePhoneNote;
+    window.deletePhoneNote = deletePhoneNote;
+  }
+
+  function init() {
+    if (!mountPhone()) return;
+    exposeGlobals();
+    renderHomeScreen();
+    updateClock();
+    bindPhone();
+    hydrateImageAssets();
+    setupPageFloatIns();
+    setInterval(updateClock, 30000);
+    setTimeout(() => {
+      if (!state.unlocked) showToast("magnus", "Magnus OS", "Swipe up or tap to unlock", "Portfolio");
+    }, 1800);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();

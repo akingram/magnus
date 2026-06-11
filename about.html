@@ -598,6 +598,9 @@
         .theme-btn { display: none; }
       }
     </style>
+    <link rel="icon" href="images/logo.jpeg" type="image/jpeg" />
+    <link rel="stylesheet" href="css/explosive.css" />
+    <link rel="stylesheet" href="css/studio.css?v=phone4" />
   </head>
   <body>
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -606,7 +609,13 @@
       <div class="portfolio-side" id="portfolioSide">
         <nav>
           <div class="nav-inner">
-            <div class="nav-logo">Selorm <em>Avakame</em></div>
+            <div class="nav-logo">
+              <span class="brand-logo" aria-hidden="true">
+                <img class="brand-logo-img" data-asset="logo" src="images/logo.jpeg" alt="" onerror="this.hidden=true;this.nextElementSibling.hidden=false" />
+                <span class="brand-logo-fallback" hidden>SM</span>
+              </span>
+              Selorm <em>Avakame</em>
+            </div>
             <div class="nav-links">
               <a href="index.html">Home</a>
               <a href="about.html" class="active">About</a>
@@ -622,7 +631,7 @@
         <section class="hero" id="hero">
           <div class="hero-inner">
             <div class="hero-text">
-              <div class="hero-kicker">Personal Story</div>
+              <!-- <div class="hero-kicker">Personal Story</div> -->
               <h1>Education as <em>liberation.</em></h1>
               <p class="hero-body">
                 "My journey from a limited set of high school options in Ghana,
@@ -635,10 +644,20 @@
             </div>
             <div class="hero-image-col">
               <img
-                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop"
-                alt="Selorm Avakame"
-                class="profile-img"
+                class="profile-img profile-image profile-photo"
+                data-asset="portrait"
+                src="images/selorm.jpeg"
+                alt="Selorm Magnus Avakame"
+                onerror="this.hidden=true;this.nextElementSibling.hidden=false"
               />
+              <div
+                class="profile-img profile-image profile-mark"
+                role="img"
+                aria-label="Selorm Magnus Avakame"
+                hidden
+              >
+                SM
+              </div>
             </div>
           </div>
         </section>
@@ -977,5 +996,6 @@
       window.toggleTheme = toggleTheme;
       renderHomeScreen();
     </script>
+    <script src="js/iphone-polish.js?v=phone4"></script>
   </body>
 </html>
