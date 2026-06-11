@@ -87,20 +87,20 @@
   const defaultNotes = [
     {
       id: "seed-1",
-      title: "Portfolio notes",
-      body: "Keep the phone consistent on every page. The same apps, photos, notes, and design should follow the visitor.",
+      title: "Portfolio OS",
+      body: "Keep the phone consistent on every page: same icons, same apps, same resume, same contact links, and the same polished home behavior.",
       date: "Today"
     },
     {
       id: "seed-2",
       title: "Picture room",
-      body: "Use Photos for portraits, brand shots, project screenshots, and campus moments.",
+      body: "Use Photos for portraits, project screenshots, Stanford moments, Katalyze visuals, and proof of shipped work.",
       date: "Today"
     },
     {
       id: "seed-3",
-      title: "Next build",
-      body: "Add stronger project screenshots once the final app assets are ready.",
+      title: "Interview story",
+      body: "Lead with shipped products, AI/ML at American Tractor, Katalyze Africa, and the Stanford CS path. Keep it specific and credible.",
       date: "Jun 11"
     }
   ];
@@ -112,6 +112,45 @@
     { id: "accra", title: "Accra", kind: "work" },
     { id: "dropitoff", title: "Drop It Off", kind: "phone" },
     { id: "aiml", title: "AI/ML", kind: "files" }
+  ];
+
+  const projectStories = [
+    {
+      kind: "phone",
+      name: "Drop It Off",
+      label: "Shipped iOS",
+      desc: "Production logistics app co-built with Digits Agency. Firebase backend, auth, live data sync, 4.8-star rating, and 1K+ downloads.",
+      impact: "1K+ downloads",
+      role: "iOS co-builder",
+      tags: ["Swift", "Firebase", "Launch"]
+    },
+    {
+      kind: "work",
+      name: "American Tractor",
+      label: "AI/ML",
+      desc: "AI/ML internship work around AgFM-1, a multimodal agricultural foundation model trained on farm, climate, equipment, and crop data.",
+      impact: "Summer 2026",
+      role: "AI/ML intern",
+      tags: ["AI/ML", "AgTech", "Edge AI"]
+    },
+    {
+      kind: "magnus",
+      name: "Katalyze Africa",
+      label: "Founder",
+      desc: "Founder platform for student-led African startups, built around mentorship, chapter formation, founder onboarding, and demo-day pathways.",
+      impact: "Active",
+      role: "Founder",
+      tags: ["Africa", "Venture", "Community"]
+    },
+    {
+      kind: "skills",
+      name: "CS124 AI Agent",
+      label: "Agents",
+      desc: "Movie recommendation and ticket-booking agent using Python, DSPy, ReAct-style tool use, and explicit failure-mode reflection.",
+      impact: "Course project",
+      role: "Agent builder",
+      tags: ["Python", "DSPy", "Tools"]
+    }
   ];
 
   let phoneNotes = readPhoneStorage("magnus_phone_notes", defaultNotes);
@@ -731,6 +770,12 @@
         <div class="ios-hero-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-hero-name">${DISPLAY_NAME}</div><div class="ios-hero-sub">Stanford CS - AI Track - Class of 2028</div></div></div>
         <span class="ios-chip">Leland Scholar</span><span class="ios-chip">Founder</span><span class="ios-chip">Builder</span>
       </div>
+      <div class="phone-metric-grid">
+        <button onclick="openApp('resume')"><strong>$400k</strong><span>Leland Scholarship</span></button>
+        <button onclick="openApp('work')"><strong>1K+</strong><span>App downloads</span></button>
+        <button onclick="openApp('notes')"><strong>2x</strong><span>African Service Fellow</span></button>
+        <button onclick="openApp('phone')"><strong>AI/ML</strong><span>American Tractor</span></button>
+      </div>
       <div class="ios-section"><div class="ios-section-header">Snapshot</div>
         ${row("calendar", "Stanford University", "Computer Science, AI track", "2028")}
         ${row("work", "Katalyze Africa", "Founder - student startup accelerator", "Active")}
@@ -746,17 +791,18 @@
     const title = source === "safari" ? "Safari" : "Work";
     return `
       <div class="ios-large-title">${title}</div>
-      <div class="ios-proj-card">
-        <div class="ios-proj-thumb kind-work">${icons.work}<span>Shipped</span></div>
-        <div class="ios-proj-info"><div class="ios-proj-name">Drop It Off</div><div class="ios-proj-desc">Production iOS logistics app co-built with Digits Agency. Firebase backend, public launch, 4.8-star rating, and 1K+ downloads.</div><div class="ios-proj-tags"><span>Swift</span><span>Firebase</span><span>iOS</span></div></div>
-      </div>
-      <div class="ios-proj-card">
-        <div class="ios-proj-thumb kind-skills">${icons.skills}<span>AI</span></div>
-        <div class="ios-proj-info"><div class="ios-proj-name">CS124 AI Booking Agent</div><div class="ios-proj-desc">Movie recommendation and ticket-booking agent using Python, DSPy, and ReAct-style tool use.</div><div class="ios-proj-tags"><span>Python</span><span>DSPy</span><span>Agents</span></div></div>
-      </div>
-      <div class="ios-proj-card">
-        <div class="ios-proj-thumb kind-magnus">${icons.magnus}<span>Founder</span></div>
-        <div class="ios-proj-info"><div class="ios-proj-name">Katalyze Africa</div><div class="ios-proj-desc">Pan-African accelerator for student-led startups solving African problems through mentorship and demo days.</div><div class="ios-proj-tags"><span>Venture</span><span>Africa</span><span>Community</span></div></div>
+      <div class="phone-case-list">
+        ${projectStories.map((project) => `
+          <button class="phone-case-card" onclick="showToast('${project.kind}','${project.name}','${project.impact}','Work')">
+            <div class="ios-proj-thumb kind-${project.kind}">${iconFor(project.kind)}<span>${project.label}</span></div>
+            <div class="ios-proj-info">
+              <div class="phone-case-top"><div class="ios-proj-name">${project.name}</div><b>${project.impact}</b></div>
+              <div class="ios-proj-desc">${project.desc}</div>
+              <div class="phone-case-role">${project.role}</div>
+              <div class="ios-proj-tags">${project.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+            </div>
+          </button>
+        `).join("")}
       </div>`;
   }
 
@@ -788,14 +834,19 @@
       <div class="ios-large-title">${title}</div>
       <div class="ios-section resume-card">
         <div class="resume-top"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><strong>${DISPLAY_NAME}</strong><span>Stanford CS - AI Track</span></div></div>
-        <div class="resume-block"><strong>Education</strong><span>Stanford University - B.S. Computer Science - GPA 3.94</span></div>
-        <div class="resume-block"><strong>Experience</strong><span>AI/ML Intern, Product Match Fellow, Founder, iOS Engineer</span></div>
+        <div class="phone-resume-preview">
+          <div><small>Current focus</small><strong>AI/ML, mobile products, climate tech, and African founder infrastructure.</strong></div>
+          <div class="phone-resume-stamps"><span>Stanford CS</span><span>Founder</span><span>Shipped iOS</span></div>
+        </div>
+        <div class="resume-block"><strong>Education</strong><span>Stanford University - B.S. Computer Science, AI Track - GPA 3.94</span></div>
+        <div class="resume-block"><strong>Experience</strong><span>AI/ML Intern at American Tractor, Product Match Fellow, Katalyze Africa Founder, Drop It Off iOS Engineer</span></div>
         <button class="ios-action" onclick="downloadResume()">${icons.resume} Download Resume PDF</button>
       </div>
       <div class="ios-section"><div class="ios-section-header">Highlights</div>
         ${row("work", "American Tractor Company", "AI/ML intern - AgFM-1", "2026")}
         ${row("messages", "African Service Fellow", "Selected twice", "2x")}
         ${row("phone", "Drop It Off", "Published iOS app", "1K+")}
+        ${row("magnus", "Katalyze Africa", "Student startup accelerator", "Founder")}
       </div>`;
   }
 
@@ -808,6 +859,10 @@
         <a class="ios-row ios-link-row" href="mailto:${PRIMARY_EMAIL}" onclick="showToast('mail','Email','Opening email draft','Mail')"><div class="ios-row-icon polished-row-icon kind-mail">${icons.mail}</div><div class="ios-row-text"><div class="ios-row-title">Email</div><div class="ios-row-sub">${PRIMARY_EMAIL}</div></div><div class="ios-row-arrow">></div></a>
         <a class="ios-row ios-link-row" href="https://github.com/smagnusavakame" target="_blank" rel="noreferrer" onclick="showToast('safari','GitHub','Opening profile','Safari')"><div class="ios-row-icon polished-row-icon kind-safari">${icons.safari}</div><div class="ios-row-text"><div class="ios-row-title">GitHub</div><div class="ios-row-sub">github.com/smagnusavakame</div></div><div class="ios-row-arrow">></div></a>
         <a class="ios-row ios-link-row" href="${LINKEDIN_URL}" target="_blank" rel="noreferrer" onclick="showToast('messages','LinkedIn','Opening profile','Messages')"><div class="ios-row-icon polished-row-icon kind-messages">${icons.messages}</div><div class="ios-row-text"><div class="ios-row-title">LinkedIn</div><div class="ios-row-sub">${LINKEDIN_LABEL}</div></div><div class="ios-row-arrow">></div></a>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Best for</div>
+        ${row("work", "AI/ML and product work", "Applied AI, agents, agtech, climate systems", "High fit")}
+        ${row("magnus", "Founder conversations", "Katalyze Africa, student startups, mentorship", "Open")}
       </div>`;
   }
 
@@ -829,6 +884,11 @@
         <p class="phone-room-copy">Portraits, project screenshots, campus moments, and anything you want to preview inside this phone.</p>
         <button class="ios-action phone-photo-add" onclick="document.getElementById('phonePhotoInput')?.click()">${icons.photos} Add Photo Slot</button>
         <input id="phonePhotoInput" type="file" accept="image/*" hidden onchange="savePhonePhoto(this)">
+      </div>
+      <div class="phone-albums">
+        <button onclick="showToast('photos','Portraits','Profile imagery ready','Photos')"><strong>Portraits</strong><span>Profile, logo, and brand shots</span></button>
+        <button onclick="showToast('phone','Projects','Drop It Off and AI/ML work','Photos')"><strong>Projects</strong><span>App screens, case-study proof, launch visuals</span></button>
+        <button onclick="showToast('calendar','Campus','Stanford and Accra moments','Photos')"><strong>Places</strong><span>Stanford, Accra, field work, community</span></button>
       </div>
       <div class="photo-grid">
         ${photos.map(renderPhoto).join("")}
@@ -987,7 +1047,7 @@
       </div>
       <div class="ios-section"><div class="ios-section-header">Portfolio</div>
         ${row("messages", "Notifications", "AI/ML and collaboration alerts", "On")}
-        ${row("calendar", "Version", "Shared emulator across all pages", "2.0")}
+        ${row("calendar", "Version", "Polished shared emulator", "2.1")}
       </div>`;
   }
 

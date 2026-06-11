@@ -462,6 +462,10 @@ body.contact-page .soc {
   pointer-events: none !important;
 }
 
+.iphone-canonical .phone-toast {
+  pointer-events: none !important;
+}
+
 .iphone-canonical #app-screen {
   z-index: 110 !important;
 }
@@ -492,6 +496,17 @@ body.contact-page .soc {
 
 .iphone-canonical .app-icon {
   gap: 4px !important;
+  transition: transform 0.16s ease, filter 0.16s ease !important;
+}
+
+.iphone-canonical .app-icon:active,
+.iphone-canonical .phone-case-card:active,
+.iphone-canonical .phone-metric-grid button:active,
+.iphone-canonical .phone-albums button:active,
+.iphone-canonical .note-card:active,
+.iphone-canonical .phone-photo-tile:active {
+  transform: scale(0.96) !important;
+  filter: brightness(0.98) !important;
 }
 
 .iphone-canonical .app-icon-img {
@@ -629,6 +644,156 @@ body.contact-page .soc {
   flex: 1 !important;
   min-height: 0 !important;
   padding: 0 !important;
+}
+
+.iphone-canonical .phone-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
+  padding: 0 0.7rem 0.75rem;
+}
+
+.iphone-canonical .phone-metric-grid button,
+.iphone-canonical .phone-albums button,
+.iphone-canonical .phone-case-card {
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: #fff;
+  color: #111;
+  text-align: left;
+  cursor: pointer;
+}
+
+.iphone-canonical .phone-metric-grid button {
+  min-height: 78px;
+  border-radius: 16px;
+  padding: 0.8rem;
+}
+
+.iphone-canonical .phone-metric-grid strong {
+  display: block;
+  font-size: 1.32rem;
+  line-height: 1;
+}
+
+.iphone-canonical .phone-metric-grid span {
+  display: block;
+  margin-top: 0.35rem;
+  color: #6b7280;
+  font-size: 0.68rem;
+  line-height: 1.25;
+}
+
+.iphone-canonical .phone-case-list {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0 0.7rem 1rem;
+}
+
+.iphone-canonical .phone-case-card {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 0.72rem;
+  width: 100%;
+  border-radius: 18px;
+  padding: 0.72rem;
+}
+
+.iphone-canonical .phone-case-card .ios-proj-thumb {
+  min-height: 102px;
+  border-radius: 15px;
+}
+
+.iphone-canonical .phone-case-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.45rem;
+}
+
+.iphone-canonical .phone-case-top b {
+  color: #8c1515;
+  font-size: 0.62rem;
+  white-space: nowrap;
+}
+
+.iphone-canonical .phone-case-role {
+  margin: 0.35rem 0 0.4rem;
+  color: #111;
+  font-size: 0.66rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.iphone-canonical .phone-resume-preview {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+  border-radius: 15px;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #111318, #8c1515);
+  color: #fff;
+}
+
+.iphone-canonical .phone-resume-preview small {
+  display: block;
+  margin-bottom: 0.32rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.iphone-canonical .phone-resume-preview strong {
+  color: #fff;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.iphone-canonical .phone-resume-stamps,
+.iphone-canonical .phone-albums {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.iphone-canonical .phone-resume-stamps {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.iphone-canonical .phone-resume-stamps span {
+  border-radius: 999px;
+  padding: 0.35rem 0.4rem;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.iphone-canonical .phone-albums {
+  padding: 0 0.7rem 0.75rem;
+}
+
+.iphone-canonical .phone-albums button {
+  border-radius: 14px;
+  padding: 0.75rem 0.85rem;
+}
+
+.iphone-canonical .phone-albums strong,
+.iphone-canonical .phone-albums span {
+  display: block;
+}
+
+.iphone-canonical .phone-albums strong {
+  font-size: 0.82rem;
+}
+
+.iphone-canonical .phone-albums span {
+  margin-top: 0.18rem;
+  color: #6b7280;
+  font-size: 0.68rem;
+  line-height: 1.35;
 }
 
 /* iOS-native-looking icon drawings. */
