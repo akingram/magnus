@@ -143,7 +143,7 @@
           </div>
         </div>
 
-        <div class="scroll-pill" id="homeIndicator" aria-label="Home"></div>
+        <button class="scroll-pill" id="homeIndicator" type="button" onclick="goHome()" aria-label="Home"></button>
 
         <div class="phone-toast" id="phoneToast">
           <div class="toast-app-icon polished-toast-icon" id="toastIcon">${icons.magnus}</div>
@@ -1016,6 +1016,7 @@
   function bindPhone() {
     const lock = document.getElementById("lock-screen");
     const homeIndicator = document.getElementById("homeIndicator");
+    const backButton = document.querySelector(".iphone-canonical .app-back-btn");
     const island = document.getElementById("dynamicIsland");
     const screen = document.getElementById("iphoneScreen");
     let startY = 0;
@@ -1031,7 +1032,21 @@
       }, { passive: true });
     }
 
-    if (homeIndicator) homeIndicator.addEventListener("click", goHome);
+    if (homeIndicator) {
+      homeIndicator.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        goHome();
+      });
+    }
+
+    if (backButton) {
+      backButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        closeApp();
+      });
+    }
 
     if (island) {
       island.addEventListener("click", () => {
