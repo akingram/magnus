@@ -253,9 +253,116 @@ section {
     linear-gradient(45deg, transparent 0 68%, rgba(140, 21, 21, 0.22) 68% 70%, transparent 70.4%) !important;
 }
 
+.iphone-canonical #home-screen {
+  color: #fff !important;
+}
+
+.iphone-canonical .home-wallpaper {
+  background:
+    radial-gradient(circle at 32% 18%, rgba(72, 176, 255, 0.9), transparent 15rem),
+    radial-gradient(circle at 78% 30%, rgba(123, 19, 44, 0.85), transparent 12rem),
+    radial-gradient(circle at 34% 66%, rgba(239, 30, 108, 0.95), transparent 13rem),
+    radial-gradient(circle at 75% 86%, rgba(70, 223, 216, 0.95), transparent 13rem),
+    linear-gradient(145deg, #193b66, #ef1f78 54%, #31c7c5) !important;
+}
+
+.iphone-canonical .home-wallpaper::after {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 36%),
+    radial-gradient(circle at 58% 64%, rgba(255, 255, 255, 0.08), transparent 9rem) !important;
+}
+
+.iphone-canonical .home-grid {
+  padding: 62px 19px 0 !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  grid-auto-rows: 77px !important;
+  gap: 6px 12px !important;
+  align-content: start !important;
+  flex: 0 0 auto !important;
+}
+
+.iphone-canonical .app-icon {
+  gap: 4px !important;
+}
+
+.iphone-canonical .app-icon-img {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 12px !important;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.22) !important;
+}
+
+.iphone-canonical .app-label {
+  max-width: 68px;
+  color: #fff !important;
+  font-size: 0.66rem !important;
+  font-weight: 500 !important;
+  line-height: 1.1 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iphone-canonical .ios-page-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 94px;
+  z-index: 8;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+
+.iphone-canonical .ios-page-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.iphone-canonical .ios-page-dots span.active {
+  background: #fff;
+}
+
+.iphone-canonical .dock {
+  left: 13px !important;
+  right: 13px !important;
+  bottom: 14px !important;
+  padding: 11px 14px !important;
+  border-radius: 23px !important;
+  background: rgba(255, 255, 255, 0.28) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 10px 26px rgba(0, 0, 0, 0.28) !important;
+}
+
+.iphone-canonical .dock .app-icon-img {
+  width: 55px !important;
+  height: 55px !important;
+}
+
 /* iOS-native-looking icon drawings. */
 .iphone-canonical .app-icon-img {
+  position: relative;
+  overflow: hidden;
   border-radius: 13px !important;
+}
+
+.iphone-canonical .ios-row-icon,
+.iphone-canonical .toast-app-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.iphone-canonical .ios-native-glyph {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .iphone-canonical .app-icon-img svg,
@@ -422,6 +529,457 @@ section {
   color: #fff;
   font-size: 2rem;
   line-height: 1;
+}
+
+.iphone-canonical .app-icon-img.kind-facetime,
+.iphone-canonical .ios-row-icon.kind-facetime,
+.iphone-canonical .toast-app-icon.kind-facetime {
+  background: linear-gradient(180deg, #65f27b, #12b844) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-camera,
+.iphone-canonical .ios-row-icon.kind-camera,
+.iphone-canonical .toast-app-icon.kind-camera {
+  background: linear-gradient(180deg, #fbfbfc, #cdd2d8) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-clock,
+.iphone-canonical .ios-row-icon.kind-clock,
+.iphone-canonical .toast-app-icon.kind-clock {
+  background: linear-gradient(180deg, #fff, #f0f1f4) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-maps,
+.iphone-canonical .ios-row-icon.kind-maps,
+.iphone-canonical .toast-app-icon.kind-maps {
+  background:
+    linear-gradient(135deg, transparent 0 28%, #34c759 29% 42%, transparent 43%),
+    linear-gradient(58deg, transparent 0 42%, #ffcc00 43% 55%, transparent 56%),
+    linear-gradient(135deg, #e9fff1 0 33%, #d9f7ff 34% 61%, #f8fbff 62% 100%) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-weather,
+.iphone-canonical .ios-row-icon.kind-weather,
+.iphone-canonical .toast-app-icon.kind-weather {
+  background: linear-gradient(180deg, #0a9bff, #007aff) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-reminders,
+.iphone-canonical .ios-row-icon.kind-reminders,
+.iphone-canonical .toast-app-icon.kind-reminders {
+  background: linear-gradient(180deg, #fff, #f4f5f7) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-stocks,
+.iphone-canonical .ios-row-icon.kind-stocks,
+.iphone-canonical .toast-app-icon.kind-stocks {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px) 0 0 / 100% 25%,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px) 0 0 / 25% 100%,
+    #050506 !important;
+}
+
+.iphone-canonical .app-icon-img.kind-videos,
+.iphone-canonical .ios-row-icon.kind-videos,
+.iphone-canonical .toast-app-icon.kind-videos {
+  background: linear-gradient(180deg, #71efff 0 38%, #35d7f4 39% 100%) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-itunes,
+.iphone-canonical .ios-row-icon.kind-itunes,
+.iphone-canonical .toast-app-icon.kind-itunes {
+  background: linear-gradient(180deg, #ff3db7, #a93bff) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-appstore,
+.iphone-canonical .ios-row-icon.kind-appstore,
+.iphone-canonical .toast-app-icon.kind-appstore {
+  background: linear-gradient(180deg, #2fd6ff, #007aff) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-books,
+.iphone-canonical .ios-row-icon.kind-books,
+.iphone-canonical .toast-app-icon.kind-books {
+  background: linear-gradient(180deg, #ffb42b, #ff7b00) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-health,
+.iphone-canonical .ios-row-icon.kind-health,
+.iphone-canonical .toast-app-icon.kind-health {
+  background: linear-gradient(180deg, #fff, #f3f4f7) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-home,
+.iphone-canonical .ios-row-icon.kind-home,
+.iphone-canonical .toast-app-icon.kind-home {
+  background: linear-gradient(180deg, #fff, #f2f3f6) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-wallet,
+.iphone-canonical .ios-row-icon.kind-wallet,
+.iphone-canonical .toast-app-icon.kind-wallet {
+  background: linear-gradient(180deg, #2b2f34, #0f1114) !important;
+}
+
+.iphone-canonical .app-icon-img.kind-facetime::before,
+.iphone-canonical .ios-row-icon.kind-facetime::before,
+.iphone-canonical .toast-app-icon.kind-facetime::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 21%;
+  top: 32%;
+  width: 46%;
+  height: 35%;
+  border-radius: 16%;
+  background: #fff;
+}
+
+.iphone-canonical .app-icon-img.kind-facetime::after,
+.iphone-canonical .ios-row-icon.kind-facetime::after,
+.iphone-canonical .toast-app-icon.kind-facetime::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: 17%;
+  top: 37%;
+  width: 22%;
+  height: 26%;
+  background: #fff;
+  clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
+}
+
+.iphone-canonical .app-icon-img.kind-camera::before,
+.iphone-canonical .ios-row-icon.kind-camera::before,
+.iphone-canonical .toast-app-icon.kind-camera::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 18%;
+  top: 34%;
+  width: 64%;
+  height: 42%;
+  border-radius: 13%;
+  background: #2b2d32;
+  box-shadow:
+    9px -8px 0 -4px #2b2d32,
+    -8px -5px 0 -5px #6f7580;
+}
+
+.iphone-canonical .app-icon-img.kind-camera::after,
+.iphone-canonical .ios-row-icon.kind-camera::after,
+.iphone-canonical .toast-app-icon.kind-camera::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 55%;
+  width: 27%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #7f8794 0 32%, #14161a 34% 100%);
+  transform: translate(-50%, -50%);
+}
+
+.iphone-canonical .app-icon-img.kind-clock::before,
+.iphone-canonical .ios-row-icon.kind-clock::before,
+.iphone-canonical .toast-app-icon.kind-clock::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 15%;
+  border: 2px solid #141414;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #141414 0 5%, transparent 6%),
+    repeating-conic-gradient(#141414 0 2deg, transparent 2deg 30deg);
+}
+
+.iphone-canonical .app-icon-img.kind-clock::after,
+.iphone-canonical .ios-row-icon.kind-clock::after,
+.iphone-canonical .toast-app-icon.kind-clock::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 27%;
+  width: 3px;
+  height: 24%;
+  border-radius: 4px;
+  background: #141414;
+  transform-origin: 50% 100%;
+  transform: translateX(-50%) rotate(4deg);
+  box-shadow: 7px 9px 0 -1px #141414;
+}
+
+.iphone-canonical .app-icon-img.kind-maps::before,
+.iphone-canonical .ios-row-icon.kind-maps::before,
+.iphone-canonical .toast-app-icon.kind-maps::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: -10%;
+  top: 50%;
+  width: 122%;
+  height: 12%;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 -7px 0 -3px rgba(255, 204, 0, 0.95);
+  transform: rotate(-29deg);
+}
+
+.iphone-canonical .app-icon-img.kind-maps::after,
+.iphone-canonical .ios-row-icon.kind-maps::after,
+.iphone-canonical .toast-app-icon.kind-maps::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 30%;
+  top: 26%;
+  width: 31%;
+  height: 43%;
+  background: #147efb;
+  clip-path: polygon(50% 0, 85% 100%, 50% 78%, 15% 100%);
+  transform: rotate(28deg);
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
+}
+
+.iphone-canonical .app-icon-img.kind-weather::before,
+.iphone-canonical .ios-row-icon.kind-weather::before,
+.iphone-canonical .toast-app-icon.kind-weather::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 18%;
+  top: 20%;
+  width: 27%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffd60a;
+  box-shadow: 0 0 0 4px rgba(255, 214, 10, 0.18);
+}
+
+.iphone-canonical .app-icon-img.kind-weather::after,
+.iphone-canonical .ios-row-icon.kind-weather::after,
+.iphone-canonical .toast-app-icon.kind-weather::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 25%;
+  top: 43%;
+  width: 53%;
+  height: 27%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 25% 35%, #fff 0 37%, transparent 38%),
+    radial-gradient(circle at 52% 18%, #fff 0 39%, transparent 40%),
+    radial-gradient(circle at 73% 43%, #fff 0 35%, transparent 36%),
+    linear-gradient(#fff, #fff);
+}
+
+.iphone-canonical .app-icon-img.kind-reminders::before,
+.iphone-canonical .ios-row-icon.kind-reminders::before,
+.iphone-canonical .toast-app-icon.kind-reminders::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 27%, #ff9500 0 4.5%, transparent 5%),
+    radial-gradient(circle at 25% 49%, #34c759 0 4.5%, transparent 5%),
+    radial-gradient(circle at 25% 71%, #007aff 0 4.5%, transparent 5%);
+}
+
+.iphone-canonical .app-icon-img.kind-reminders::after,
+.iphone-canonical .ios-row-icon.kind-reminders::after,
+.iphone-canonical .toast-app-icon.kind-reminders::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 39%;
+  top: 25%;
+  width: 41%;
+  height: 4%;
+  border-radius: 999px;
+  background: #c7c7cc;
+  box-shadow:
+    0 10px 0 #d7d7dc,
+    0 20px 0 #d7d7dc;
+}
+
+.iphone-canonical .app-icon-img.kind-stocks::before,
+.iphone-canonical .ios-row-icon.kind-stocks::before,
+.iphone-canonical .toast-app-icon.kind-stocks::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 22% 13% 19%;
+  background: #fff;
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 80 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 33 18 25l11 7 12-22 13 15 9-10 14 2' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 80 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 33 18 25l11 7 12-22 13 15 9-10 14 2' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.iphone-canonical .app-icon-img.kind-stocks::after,
+.iphone-canonical .ios-row-icon.kind-stocks::after,
+.iphone-canonical .toast-app-icon.kind-stocks::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 55%, rgba(0, 215, 255, 0.32));
+}
+
+.iphone-canonical .app-icon-img.kind-videos::before,
+.iphone-canonical .ios-row-icon.kind-videos::before,
+.iphone-canonical .toast-app-icon.kind-videos::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 31%;
+  background:
+    repeating-linear-gradient(135deg, #17191d 0 16%, #fff 17% 30%);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
+}
+
+.iphone-canonical .app-icon-img.kind-videos::after,
+.iphone-canonical .ios-row-icon.kind-videos::after,
+.iphone-canonical .toast-app-icon.kind-videos::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 39%;
+  top: 49%;
+  width: 27%;
+  height: 30%;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.iphone-canonical .app-icon-img.kind-itunes::before,
+.iphone-canonical .ios-row-icon.kind-itunes::before,
+.iphone-canonical .toast-app-icon.kind-itunes::before {
+  content: "\2605";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.9rem;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
+}
+
+.iphone-canonical .app-icon-img.kind-appstore::before,
+.iphone-canonical .ios-row-icon.kind-appstore::before,
+.iphone-canonical .toast-app-icon.kind-appstore::before {
+  content: "A";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.iphone-canonical .app-icon-img.kind-books::before,
+.iphone-canonical .ios-row-icon.kind-books::before,
+.iphone-canonical .toast-app-icon.kind-books::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 18%;
+  top: 25%;
+  width: 64%;
+  height: 51%;
+  border-radius: 8% 8% 13% 13%;
+  background:
+    linear-gradient(90deg, #fff 0 47%, rgba(255, 255, 255, 0.64) 48% 52%, #fff 53% 100%);
+  box-shadow: inset 0 -7px 0 rgba(255, 255, 255, 0.7);
+}
+
+.iphone-canonical .app-icon-img.kind-health::before,
+.iphone-canonical .ios-row-icon.kind-health::before,
+.iphone-canonical .toast-app-icon.kind-health::before {
+  content: "\2665";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #ff2d55;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.iphone-canonical .app-icon-img.kind-home::before,
+.iphone-canonical .ios-row-icon.kind-home::before,
+.iphone-canonical .toast-app-icon.kind-home::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 19%;
+  top: 24%;
+  width: 62%;
+  height: 54%;
+  border-radius: 0 0 10% 10%;
+  background: linear-gradient(180deg, #ffb21c, #ff7b00);
+  clip-path: polygon(50% 0, 100% 42%, 88% 42%, 88% 100%, 12% 100%, 12% 42%, 0 42%);
+}
+
+.iphone-canonical .app-icon-img.kind-home::after,
+.iphone-canonical .ios-row-icon.kind-home::after,
+.iphone-canonical .toast-app-icon.kind-home::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 45%;
+  bottom: 23%;
+  width: 13%;
+  height: 21%;
+  border-radius: 3px 3px 0 0;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.iphone-canonical .app-icon-img.kind-wallet::before,
+.iphone-canonical .ios-row-icon.kind-wallet::before,
+.iphone-canonical .toast-app-icon.kind-wallet::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 17%;
+  top: 22%;
+  width: 66%;
+  height: 52%;
+  border-radius: 10%;
+  background:
+    linear-gradient(180deg, #47d864 0 18%, #ffd60a 19% 37%, #ff3b30 38% 56%, #58a6ff 57% 75%, #f7f8fa 76% 100%);
+  box-shadow: 0 0 0 3px #1a1d22;
+}
+
+.iphone-canonical .app-icon-img.kind-wallet::after,
+.iphone-canonical .ios-row-icon.kind-wallet::after,
+.iphone-canonical .toast-app-icon.kind-wallet::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 22%;
+  right: 22%;
+  bottom: 22%;
+  height: 7%;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.32);
 }
 
 .iphone-canonical .app-icon-img.kind-magnus {

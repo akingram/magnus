@@ -15,12 +15,26 @@
     messages: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12c0 4.4-4.3 8-9.5 8-1.1 0-2.2-.2-3.2-.5L3 21l1.6-4.1A7.3 7.3 0 0 1 2 12c0-4.4 4.3-8 9.5-8S21 7.6 21 12z"/></svg>',
     mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>',
     safari: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.8 8.2-2.1 5.5-5.5 2.1 2.1-5.5z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>',
-    photos: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.3"/><path d="M12 3.2c1.3 2.7 1.3 4.6 0 5.7-1.3-1.1-1.3-3 0-5.7z"/><path d="M20.8 12c-2.7 1.3-4.6 1.3-5.7 0 1.1-1.3 3-1.3 5.7 0z"/><path d="M12 20.8c-1.3-2.7-1.3-4.6 0-5.7 1.3 1.1 1.3 3 0 5.7z"/><path d="M3.2 12c2.7-1.3 4.6-1.3 5.7 0-1.1 1.3-3 1.3-5.7 0z"/></svg>',
+    photos: '<span class="ios-native-glyph"></span>',
+    facetime: '<span class="ios-native-glyph"></span>',
+    camera: '<span class="ios-native-glyph"></span>',
+    clock: '<span class="ios-native-glyph"></span>',
+    maps: '<span class="ios-native-glyph"></span>',
+    weather: '<span class="ios-native-glyph"></span>',
     notes: '<span class="notes-icon" aria-hidden="true"><i></i><i></i><i></i></span>',
-    calendar: '<span class="calendar-icon"><span>JUN</span><strong>11</strong></span>',
-    files: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7l2 3h9v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 7V5a2 2 0 0 1 2-2h5l2 4"/></svg>',
-    music: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
-    settings: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7.4 7.4 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7.5 7.5 0 0 0-2-1.1L14 3h-4l-.4 2.7a7.5 7.5 0 0 0-2 1.1l-2.4-1-2 3.4 2 1.6A7.4 7.4 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.6 2 3.4 2.4-1a7.5 7.5 0 0 0 2 1.1L10 21h4l.4-2.7a7.5 7.5 0 0 0 2-1.1l2.4 1 2-3.4-2-1.6c.1-.4.2-.8.2-1.2z"/></svg>',
+    calendar: '<span class="calendar-icon"><span>Thursday</span><strong>11</strong></span>',
+    reminders: '<span class="ios-native-glyph"></span>',
+    stocks: '<span class="ios-native-glyph"></span>',
+    videos: '<span class="ios-native-glyph"></span>',
+    itunes: '<span class="ios-native-glyph"></span>',
+    appstore: '<span class="ios-native-glyph"></span>',
+    books: '<span class="ios-native-glyph"></span>',
+    health: '<span class="ios-native-glyph"></span>',
+    home: '<span class="ios-native-glyph"></span>',
+    wallet: '<span class="ios-native-glyph"></span>',
+    files: '<span class="ios-native-glyph"></span>',
+    music: '<span class="ios-native-glyph"></span>',
+    settings: '<span class="ios-native-glyph"></span>',
     wifi: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M1.5 9a16 16 0 0 1 21 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><circle cx="12" cy="20" r="1"/></svg>',
     bluetooth: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10-5 5V2l5 5L7 17"/></svg>',
     focus: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>',
@@ -29,18 +43,24 @@
   };
 
   const apps = [
-    { id: "magnus", label: "Magnus", kind: "magnus", badge: 1 },
-    { id: "work", label: "Work", kind: "work", badge: 3 },
-    { id: "skills", label: "Skills", kind: "skills" },
-    { id: "resume", label: "Resume", kind: "resume", badge: 1 },
-    { id: "messages", label: "Messages", kind: "messages", badge: 2 },
-    { id: "mail", label: "Mail", kind: "mail" },
-    { id: "safari", label: "Safari", kind: "safari" },
-    { id: "photos", label: "Photos", kind: "photos" },
-    { id: "notes", label: "Notes", kind: "notes" },
+    { id: "facetime", label: "FaceTime", kind: "facetime", opens: "phone" },
     { id: "calendar", label: "Calendar", kind: "calendar" },
-    { id: "files", label: "Files", kind: "files" },
-    { id: "music", label: "Music", kind: "music" },
+    { id: "photos", label: "Photos", kind: "photos" },
+    { id: "camera", label: "Camera", kind: "camera", opens: "photos" },
+    { id: "mail", label: "Mail", kind: "mail" },
+    { id: "clock", label: "Clock", kind: "clock", opens: "calendar" },
+    { id: "maps", label: "Maps", kind: "maps", opens: "work" },
+    { id: "weather", label: "Weather", kind: "weather", opens: "magnus" },
+    { id: "notes", label: "Notes", kind: "notes" },
+    { id: "reminders", label: "Reminders", kind: "reminders", opens: "notes" },
+    { id: "stocks", label: "Stocks", kind: "stocks", opens: "work" },
+    { id: "videos", label: "Videos", kind: "videos", opens: "photos" },
+    { id: "itunes", label: "iTunes Store", kind: "itunes", opens: "music" },
+    { id: "appstore", label: "App Store", kind: "appstore", opens: "work" },
+    { id: "books", label: "Books", kind: "books", opens: "resume" },
+    { id: "health", label: "Health", kind: "health", opens: "magnus" },
+    { id: "home", label: "Home", kind: "home", opens: "magnus" },
+    { id: "wallet", label: "Wallet", kind: "wallet", opens: "resume" },
     { id: "settings", label: "Settings", kind: "settings" }
   ];
 
@@ -48,7 +68,7 @@
     { id: "phone", label: "Phone", kind: "phone" },
     { id: "safari", label: "Safari", kind: "safari" },
     { id: "messages", label: "Messages", kind: "messages", badge: 2 },
-    { id: "mail", label: "Mail", kind: "mail" }
+    { id: "music", label: "Music", kind: "music" }
   ];
 
   const state = {
@@ -171,11 +191,7 @@
           <div class="home-wallpaper"></div>
           <div class="home-wallpaper-overlay"></div>
           <div class="home-grid" id="homeGrid"></div>
-          <div class="widget-row">
-            <div class="widget"><div class="widget-title">Today</div><div class="widget-val">Jun 11</div><div class="widget-sub">Portfolio OS</div></div>
-            <div class="widget"><div class="widget-title">GPA</div><div class="widget-val">3.94</div><div class="widget-sub">Stanford CS</div></div>
-            <div class="widget"><div class="widget-title">Apps</div><div class="widget-val">1k+</div><div class="widget-sub">Downloads</div></div>
-          </div>
+          <div class="ios-page-dots" id="pageDots"><span class="active"></span><span></span></div>
           <div class="dock" id="dock"></div>
         </div>
 
@@ -325,7 +341,7 @@
     if (prefersReducedMotion()) return;
     const items = [
       ...document.querySelectorAll("#homeGrid .app-icon"),
-      ...document.querySelectorAll(".widget-row .widget"),
+      ...document.querySelectorAll("#pageDots"),
       ...document.querySelectorAll("#dock .app-icon")
     ];
     items.forEach((el, index) => {
@@ -487,9 +503,10 @@
       setTimeout(() => openApp(id), 520);
       return;
     }
-    const app = appMeta[id] || appMeta.magnus;
-    if (id !== "notes") state.editingNote = null;
-    state.currentApp = id;
+    const app = appMeta[id] || { id: "magnus", label: "Magnus", kind: "magnus", opens: "magnus" };
+    const targetId = app.opens || id;
+    if (targetId !== "notes") state.editingNote = null;
+    state.currentApp = targetId;
     const screen = document.getElementById("app-screen");
     const title = document.getElementById("appTitle");
     const nav = document.getElementById("appNavBar");
@@ -498,13 +515,13 @@
     title.textContent = app.label;
     nav.style.background = gradientFor(app.kind);
     screen.classList.remove("ready");
-    body.innerHTML = buildApp(id);
+    body.innerHTML = buildApp(targetId);
     preparePhonePanelMotion(body);
     screen.classList.add("visible");
     requestAnimationFrame(() => requestAnimationFrame(() => screen.classList.add("ready")));
     setTimeout(() => screen.classList.add("ready"), 80);
-    if (id === "skills") setTimeout(animateSkillBars, 80);
-    showToast(app.kind, app.label, subtitleFor(id), app.label);
+    if (targetId === "skills") setTimeout(animateSkillBars, 80);
+    showToast(app.kind, app.label, subtitleFor(targetId), app.label);
   }
 
   function closeApp() {
@@ -556,6 +573,20 @@
       photos: "linear-gradient(135deg,#ffffff,#e9eef7)",
       notes: "linear-gradient(135deg,#ffcf33,#ff9f0a)",
       calendar: "linear-gradient(135deg,#ffffff,#f5f5f7)",
+      facetime: "linear-gradient(135deg,#65f27b,#12b844)",
+      camera: "linear-gradient(135deg,#fbfbfc,#cdd2d8)",
+      clock: "linear-gradient(135deg,#ffffff,#f0f1f4)",
+      maps: "linear-gradient(135deg,#34c759,#0a84ff)",
+      weather: "linear-gradient(135deg,#0a9bff,#007aff)",
+      reminders: "linear-gradient(135deg,#ffffff,#f4f5f7)",
+      stocks: "linear-gradient(135deg,#050506,#17191d)",
+      videos: "linear-gradient(135deg,#71efff,#35d7f4)",
+      itunes: "linear-gradient(135deg,#ff3db7,#a93bff)",
+      appstore: "linear-gradient(135deg,#2fd6ff,#007aff)",
+      books: "linear-gradient(135deg,#ffb42b,#ff7b00)",
+      health: "linear-gradient(135deg,#ffffff,#f3f4f7)",
+      home: "linear-gradient(135deg,#ffffff,#f2f3f6)",
+      wallet: "linear-gradient(135deg,#2b2f34,#0f1114)",
       files: "linear-gradient(135deg,#007aff,#5ac8fa)",
       music: "linear-gradient(135deg,#ff2d55,#ff6a00)",
       settings: "linear-gradient(135deg,#24272c,#7d8590)"
