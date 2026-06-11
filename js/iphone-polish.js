@@ -4,7 +4,11 @@
   const LOGO_HTML =
     '<img class="ios-logo-img" data-asset="logo" src="images/logo.jpeg" alt="" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="ios-sm-mark" hidden>SM</span>';
   const PORTRAIT_HTML =
-    '<img class="ios-portrait-img" data-asset="portrait" src="images/selorm.jpeg" alt="Selorm Magnus Avakame" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="ios-sm-mark" hidden>SM</span>';
+    '<img class="ios-portrait-img" data-asset="portrait" src="images/selorm.jpeg" alt="H. E SELORM MAGNUS AVAKAME" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="ios-sm-mark" hidden>SM</span>';
+  const DISPLAY_NAME = "H. E SELORM MAGNUS AVAKAME";
+  const PRIMARY_EMAIL = "smagnusa@stanford.edu";
+  const LINKEDIN_URL = "https://www.linkedin.com/in/selavamag/?isSelfProfile=false";
+  const LINKEDIN_LABEL = "linkedin.com/in/selavamag";
 
   const icons = {
     magnus: LOGO_HTML,
@@ -107,7 +111,7 @@
     { id: "stanford", title: "Stanford", kind: "calendar" },
     { id: "accra", title: "Accra", kind: "work" },
     { id: "dropitoff", title: "Drop It Off", kind: "phone" },
-    { id: "research", title: "Research", kind: "files" }
+    { id: "aiml", title: "AI/ML", kind: "files" }
   ];
 
   let phoneNotes = readPhoneStorage("magnus_phone_notes", defaultNotes);
@@ -173,7 +177,7 @@
           <div class="lock-date" id="lockDate">Thursday, June 11</div>
           <div class="lock-notif">
             <div class="notif-header"><div class="notif-app-icon polished-row-icon">${icons.messages}</div><div class="notif-app">MESSAGES</div><div class="notif-time">now</div></div>
-            <div class="notif-text">Selorm is open for research and product collaborations</div>
+            <div class="notif-text">${DISPLAY_NAME} is open for AI/ML and product collaborations</div>
           </div>
           <div class="lock-notif">
             <div class="notif-header"><div class="notif-app-icon polished-row-icon">${icons.work}</div><div class="notif-app">WORK</div><div class="notif-time">2m</div></div>
@@ -247,6 +251,89 @@
       .replace(/[-_]+/g, " ")
       .trim()
       .slice(0, 32) || "New photo";
+  }
+
+  function escapePdfText(value) {
+    return String(value || "").replace(/[\\()]/g, "\\$&");
+  }
+
+  function buildResumePdfBlob() {
+    const lines = [
+      DISPLAY_NAME,
+      "Stanford University - B.S. Computer Science, AI Track - Class of 2028",
+      `Email: ${PRIMARY_EMAIL}`,
+      "GitHub: github.com/smagnusavakame",
+      `LinkedIn: ${LINKEDIN_LABEL}`,
+      "",
+      "EDUCATION",
+      "Stanford University - B.S. Computer Science - GPA 3.94",
+      "Leland Scholar - African Service Fellow",
+      "",
+      "EXPERIENCE",
+      "AI/ML Intern - American Tractor Company - AgFM-1",
+      "Founder - Katalyze Africa student startup accelerator",
+      "iOS Engineer - Drop It Off logistics app with Firebase backend",
+      "",
+      "SELECTED WORK",
+      "Drop It Off - 4.8-star public iOS app with 1K+ downloads",
+      "CS124 AI Booking Agent - Python, DSPy, ReAct-style tool use",
+      "Climate and agriculture AI systems for low-resource deployment",
+      "",
+      "SKILLS",
+      "Python, Swift, JavaScript, C, Flutter, Firebase, PyTorch, AI agents"
+    ];
+    const textOps = [
+      "BT",
+      "/F1 18 Tf",
+      "72 742 Td",
+      "18 TL",
+      `(${escapePdfText(lines[0])}) Tj`,
+      "/F1 10 Tf",
+      "0 -26 Td"
+    ];
+    lines.slice(1).forEach((line) => {
+      textOps.push(`(${escapePdfText(line)}) Tj`);
+      textOps.push("0 -16 Td");
+    });
+    textOps.push("ET");
+    const stream = textOps.join("\n");
+    const objects = [
+      "<< /Type /Catalog /Pages 2 0 R >>",
+      "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+      "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>",
+      "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+      `<< /Length ${stream.length} >>\nstream\n${stream}\nendstream`
+    ];
+    const offsets = [0];
+    let pdf = "%PDF-1.4\n";
+    objects.forEach((object, index) => {
+      offsets[index + 1] = pdf.length;
+      pdf += `${index + 1} 0 obj\n${object}\nendobj\n`;
+    });
+    const xrefOffset = pdf.length;
+    pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+    offsets.slice(1).forEach((offset) => {
+      pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
+    });
+    pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+    return new Blob([pdf], { type: "application/pdf" });
+  }
+
+  function downloadResume() {
+    try {
+      const blob = buildResumePdfBlob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "H-E-Selorm-Magnus-Avakame-Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1200);
+      showToast("resume", "Resume", "Download started", "Resume");
+    } catch (error) {
+      window.location.href = `mailto:${PRIMARY_EMAIL}?subject=Resume%20request`;
+    }
   }
 
   function mountPhone() {
@@ -641,13 +728,13 @@
     return `
       <div class="ios-large-title">Magnus</div>
       <div class="ios-hero-card app-hero-magnus">
-        <div class="ios-hero-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-hero-name">Selorm Magnus Avakame</div><div class="ios-hero-sub">Stanford CS - AI Track - Class of 2028</div></div></div>
+        <div class="ios-hero-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-hero-name">${DISPLAY_NAME}</div><div class="ios-hero-sub">Stanford CS - AI Track - Class of 2028</div></div></div>
         <span class="ios-chip">Leland Scholar</span><span class="ios-chip">Founder</span><span class="ios-chip">Builder</span>
       </div>
       <div class="ios-section"><div class="ios-section-header">Snapshot</div>
         ${row("calendar", "Stanford University", "Computer Science, AI track", "2028")}
         ${row("work", "Katalyze Africa", "Founder - student startup accelerator", "Active")}
-        ${row("skills", "AI and climate tech", "Research, product, and systems", "Focus")}
+        ${row("skills", "AI and climate tech", "AI/ML, product, and systems", "Focus")}
       </div>
       <div class="ios-section"><div class="ios-section-header">Now</div>
         ${row("work", "American Tractor Company", "AI/ML intern working on AgFM-1", "2026")}
@@ -700,10 +787,10 @@
     return `
       <div class="ios-large-title">${title}</div>
       <div class="ios-section resume-card">
-        <div class="resume-top"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><strong>Selorm Magnus Avakame</strong><span>Stanford CS - AI Track</span></div></div>
+        <div class="resume-top"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><strong>${DISPLAY_NAME}</strong><span>Stanford CS - AI Track</span></div></div>
         <div class="resume-block"><strong>Education</strong><span>Stanford University - B.S. Computer Science - GPA 3.94</span></div>
         <div class="resume-block"><strong>Experience</strong><span>AI/ML Intern, Product Match Fellow, Founder, iOS Engineer</span></div>
-        <button class="ios-action" onclick="showToast('resume','Resume','PDF download placeholder','Resume')">${icons.resume} Download PDF Resume</button>
+        <button class="ios-action" onclick="downloadResume()">${icons.resume} Download Resume PDF</button>
       </div>
       <div class="ios-section"><div class="ios-section-header">Highlights</div>
         ${row("work", "American Tractor Company", "AI/ML intern - AgFM-1", "2026")}
@@ -716,11 +803,11 @@
     const title = source === "phone" ? "Phone" : source === "mail" ? "Mail" : "Messages";
     return `
       <div class="ios-large-title">${title}</div>
-      <div class="ios-hero-card app-hero-contact"><div class="ios-hero-name">Open channels</div><div class="ios-hero-sub">Research, internships, startup work, and builder-to-builder conversations.</div></div>
+      <div class="ios-hero-card app-hero-contact"><div class="ios-hero-name">Open channels</div><div class="ios-hero-sub">AI/ML work, internships, startup work, and builder-to-builder conversations.</div></div>
       <div class="ios-section"><div class="ios-section-header">Contact</div>
-        <div class="ios-row" onclick="showToast('mail','Email','smagnusa@stanford.edu','Mail')"><div class="ios-row-icon polished-row-icon kind-mail">${icons.mail}</div><div class="ios-row-text"><div class="ios-row-title">Email</div><div class="ios-row-sub">smagnusa@stanford.edu</div></div><div class="ios-row-arrow">></div></div>
-        <div class="ios-row" onclick="showToast('safari','GitHub','github.com/smagnusavakame','Safari')"><div class="ios-row-icon polished-row-icon kind-safari">${icons.safari}</div><div class="ios-row-text"><div class="ios-row-title">GitHub</div><div class="ios-row-sub">github.com/smagnusavakame</div></div><div class="ios-row-arrow">></div></div>
-        <div class="ios-row" onclick="showToast('messages','LinkedIn','linkedin.com/in/selorm-avakame','Messages')"><div class="ios-row-icon polished-row-icon kind-messages">${icons.messages}</div><div class="ios-row-text"><div class="ios-row-title">LinkedIn</div><div class="ios-row-sub">linkedin.com/in/selorm-avakame</div></div><div class="ios-row-arrow">></div></div>
+        <a class="ios-row ios-link-row" href="mailto:${PRIMARY_EMAIL}" onclick="showToast('mail','Email','Opening email draft','Mail')"><div class="ios-row-icon polished-row-icon kind-mail">${icons.mail}</div><div class="ios-row-text"><div class="ios-row-title">Email</div><div class="ios-row-sub">${PRIMARY_EMAIL}</div></div><div class="ios-row-arrow">></div></a>
+        <a class="ios-row ios-link-row" href="https://github.com/smagnusavakame" target="_blank" rel="noreferrer" onclick="showToast('safari','GitHub','Opening profile','Safari')"><div class="ios-row-icon polished-row-icon kind-safari">${icons.safari}</div><div class="ios-row-text"><div class="ios-row-title">GitHub</div><div class="ios-row-sub">github.com/smagnusavakame</div></div><div class="ios-row-arrow">></div></a>
+        <a class="ios-row ios-link-row" href="${LINKEDIN_URL}" target="_blank" rel="noreferrer" onclick="showToast('messages','LinkedIn','Opening profile','Messages')"><div class="ios-row-icon polished-row-icon kind-messages">${icons.messages}</div><div class="ios-row-text"><div class="ios-row-title">LinkedIn</div><div class="ios-row-sub">${LINKEDIN_LABEL}</div></div><div class="ios-row-arrow">></div></a>
       </div>`;
   }
 
@@ -865,7 +952,7 @@
       <div class="ios-section"><div class="ios-section-header">Upcoming</div>
         ${row("work", "AgFM-1 sprint", "American Tractor Company", "Today")}
         ${row("messages", "Katalyze Africa", "Founder outreach and chapter reviews", "Fri")}
-        ${row("skills", "Research block", "AI, HCI, climate tech", "Sat")}
+        ${row("skills", "AI/ML build block", "Agents, HCI, climate tech", "Sat")}
       </div>`;
   }
 
@@ -892,14 +979,14 @@
   function buildSettings() {
     return `
       <div class="ios-large-title">Settings</div>
-      <div class="ios-settings-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-settings-name">Selorm Avakame</div><div class="ios-settings-sub">Magnus OS - Portfolio phone</div></div></div>
+      <div class="ios-settings-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-settings-name">${DISPLAY_NAME}</div><div class="ios-settings-sub">Magnus OS - Portfolio phone</div></div></div>
       <div class="ios-section">
         ${row("wifi", "Wi-Fi", "Stanford Secure", "On")}
         ${row("phone", "Cellular", "5G", "Active")}
         ${row("settings", "Appearance", "Explosive mode", "On")}
       </div>
       <div class="ios-section"><div class="ios-section-header">Portfolio</div>
-        ${row("messages", "Notifications", "Research and collaboration alerts", "On")}
+        ${row("messages", "Notifications", "AI/ML and collaboration alerts", "On")}
         ${row("calendar", "Version", "Shared emulator across all pages", "2.0")}
       </div>`;
   }
@@ -987,6 +1074,7 @@
     window.openPhoneNote = openPhoneNote;
     window.savePhoneNote = savePhoneNote;
     window.deletePhoneNote = deletePhoneNote;
+    window.downloadResume = downloadResume;
   }
 
   function init() {

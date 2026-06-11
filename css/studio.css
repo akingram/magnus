@@ -57,11 +57,15 @@ nav {
 
 .nav-logo {
   gap: 12px !important;
-  font-size: 1rem !important;
+  max-width: min(420px, 46vw) !important;
+  white-space: normal !important;
+  font-size: clamp(0.72rem, 1.05vw, 0.95rem) !important;
+  line-height: 1.08 !important;
 }
 
 .nav-logo em {
   color: var(--studio-gold) !important;
+  font-style: normal !important;
 }
 
 .nav-links a,
@@ -228,6 +232,203 @@ section {
   color: #e1c17b !important;
 }
 
+body.contact-page .hero {
+  min-height: auto !important;
+  padding: clamp(3rem, 8vw, 4.6rem) 2rem clamp(2.8rem, 7vw, 4rem) !important;
+  text-align: center;
+  background:
+    linear-gradient(90deg, rgba(247, 242, 232, 0.05), transparent 42%),
+    linear-gradient(180deg, transparent, rgba(140, 21, 21, 0.12)) !important;
+  border-bottom: 0 !important;
+}
+
+body.contact-page .hero::before {
+  background:
+    linear-gradient(90deg, rgba(247, 242, 232, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(247, 242, 232, 0.045) 1px, transparent 1px) !important;
+  background-size: 72px 72px !important;
+  mask-image: linear-gradient(90deg, black, transparent 72%) !important;
+}
+
+body.contact-page .contact-hero-grid {
+  display: block !important;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+body.contact-page .contact-panel {
+  display: none !important;
+}
+
+body.contact-page .hero h1 {
+  max-width: none !important;
+  color: var(--studio-ink) !important;
+  font-size: clamp(2.25rem, 6vw, 4.15rem) !important;
+  line-height: 1.04 !important;
+  text-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+}
+
+body.contact-page .hero-body {
+  margin: 1rem auto 0 !important;
+  max-width: 520px !important;
+  color: var(--studio-muted) !important;
+  font-size: 1.02rem !important;
+}
+
+body.contact-page .hero-cta {
+  justify-content: center;
+  margin-top: 1.4rem !important;
+}
+
+body.contact-page .hero-cta .btn-primary {
+  background: var(--studio-ink) !important;
+  border-color: var(--studio-ink) !important;
+  color: #0b0c0d !important;
+}
+
+body.contact-page .contact-message-section {
+  padding: clamp(2.3rem, 6vw, 4rem) clamp(1rem, 5vw, 3rem) !important;
+  background: rgba(10, 11, 12, 0.58) !important;
+}
+
+body.contact-page .contact-layout {
+  grid-template-columns: minmax(0, 640px) minmax(220px, 300px) !important;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 1.5rem) !important;
+}
+
+body.contact-page .contact-form {
+  gap: 1rem !important;
+  padding: clamp(1.25rem, 3vw, 1.75rem) !important;
+  background: rgba(247, 242, 232, 0.055) !important;
+  border: 1px solid rgba(247, 242, 232, 0.12) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24) !important;
+}
+
+body.contact-page .contact-form-heading {
+  display: grid;
+  gap: 0.35rem;
+}
+
+body.contact-page .contact-form-title {
+  color: var(--studio-ink) !important;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+body.contact-page .contact-form-heading p {
+  color: var(--studio-muted) !important;
+  font-size: 0.92rem;
+}
+
+body.contact-page .fgroup {
+  gap: 0.5rem !important;
+}
+
+body.contact-page .fgroup label {
+  color: var(--studio-ink) !important;
+  font-size: 0.92rem !important;
+  font-weight: 780 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+body.contact-page .fgroup label span {
+  color: var(--studio-red-bright) !important;
+}
+
+body.contact-page .fgroup input,
+body.contact-page .fgroup textarea {
+  min-height: 56px;
+  background: rgba(247, 242, 232, 0.08) !important;
+  border: 1px solid rgba(247, 242, 232, 0.16) !important;
+  border-radius: 14px !important;
+  color: var(--studio-ink) !important;
+  padding: 0.95rem 1rem !important;
+  box-shadow: none !important;
+}
+
+body.contact-page .fgroup textarea {
+  min-height: 170px !important;
+}
+
+body.contact-page .fgroup input::placeholder,
+body.contact-page .fgroup textarea::placeholder {
+  color: rgba(247, 242, 232, 0.48) !important;
+}
+
+body.contact-page .fgroup input:focus,
+body.contact-page .fgroup textarea:focus {
+  border-color: rgba(210, 42, 42, 0.66) !important;
+  box-shadow: 0 0 0 4px rgba(210, 42, 42, 0.14) !important;
+}
+
+body.contact-page .contact-submit {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 54px;
+  width: 100%;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: linear-gradient(180deg, var(--studio-red-bright), var(--studio-red)) !important;
+  color: var(--studio-ink) !important;
+  box-shadow: 0 16px 30px rgba(140, 21, 21, 0.28) !important;
+}
+
+body.contact-page .contact-aside .aside-fact,
+body.contact-page .contact-card,
+body.contact-page .project-card {
+  background: rgba(247, 242, 232, 0.055) !important;
+  border: 1px solid rgba(247, 242, 232, 0.12) !important;
+  color: var(--studio-ink) !important;
+  box-shadow: none !important;
+}
+
+body.contact-page .contact-card span,
+body.contact-page .aside-fact span,
+body.contact-page .project-desc,
+body.contact-page footer p {
+  color: var(--studio-muted) !important;
+}
+
+body.contact-page .section-label,
+body.contact-page .contact-card b,
+body.contact-page .aside-fact b {
+  color: var(--studio-gold) !important;
+}
+
+body.contact-page .section-title,
+body.contact-page .contact-card strong,
+body.contact-page .project-name,
+body.contact-page .aside-fact strong {
+  color: var(--studio-ink) !important;
+}
+
+body.contact-page .section-title em {
+  color: var(--studio-red-bright) !important;
+}
+
+body.contact-page #channels,
+body.contact-page #collaborate {
+  background: transparent !important;
+}
+
+body.contact-page footer {
+  background: transparent !important;
+  border-top-color: rgba(247, 242, 232, 0.1) !important;
+}
+
+body.contact-page .soc {
+  background: rgba(247, 242, 232, 0.055) !important;
+  border-color: rgba(247, 242, 232, 0.12) !important;
+  color: var(--studio-ink) !important;
+}
+
 .iphone-side {
   background:
     radial-gradient(circle at 48% 44%, rgba(247, 242, 232, 0.08), transparent 18rem),
@@ -342,6 +543,12 @@ section {
 .iphone-canonical .dock .app-icon-img {
   width: 55px !important;
   height: 55px !important;
+}
+
+.iphone-canonical .ios-link-row {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* iOS-native-looking icon drawings. */
@@ -1386,6 +1593,7 @@ section {
   .nav-logo {
     max-width: 100% !important;
     min-width: 0 !important;
+    font-size: 0.78rem !important;
   }
 
   .nav-links {
@@ -1452,6 +1660,27 @@ section {
     aspect-ratio: 390 / 812 !important;
     margin: 0 auto !important;
   }
+
+  body.contact-page .hero {
+    padding: 3rem 1.15rem 2.7rem !important;
+  }
+
+  body.contact-page .contact-message-section {
+    padding: 2rem 1rem !important;
+  }
+
+  body.contact-page .contact-layout,
+  body.contact-page .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.contact-page .contact-form {
+    border-radius: 18px !important;
+  }
+
+  body.contact-page .contact-aside {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1485,5 +1714,24 @@ section {
 
   .iphone-wrap {
     width: min(286px, calc(100vw - 2rem)) !important;
+  }
+
+  body.contact-page .hero h1 {
+    font-size: clamp(2.15rem, 13vw, 3rem) !important;
+    line-height: 1.06 !important;
+  }
+
+  body.contact-page .hero-cta {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  body.contact-page .hero-cta .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  body.contact-page .contact-form {
+    padding: 1.15rem !important;
   }
 }

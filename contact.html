@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact | Selorm Avakame - Stanford CS</title>
+    <title>Contact | H. E SELORM MAGNUS AVAKAME - Stanford CS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -1323,9 +1323,9 @@
     </style>
     <link rel="icon" href="images/logo.jpeg" type="image/jpeg" />
     <link rel="stylesheet" href="css/explosive.css" />
-    <link rel="stylesheet" href="css/studio.css?v=iphone-icons1" />
+    <link rel="stylesheet" href="css/studio.css?v=profile-links1" />
   </head>
-  <body>
+  <body class="contact-page">
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <div class="layout">
@@ -1337,7 +1337,7 @@
                 <img class="brand-logo-img" data-asset="logo" src="images/logo.jpeg" alt="" onerror="this.hidden=true;this.nextElementSibling.hidden=false" />
                 <span class="brand-logo-fallback" hidden>SM</span>
               </span>
-              Selorm <em>Avakame</em>
+              H. E <em>SELORM MAGNUS AVAKAME</em>
             </div>
             <div class="nav-links">
               <a href="index.html">Home</a>
@@ -1352,75 +1352,45 @@
           <div class="contact-hero-grid">
             <div class="hero-text">
               <!-- <div class="hero-kicker">Contact</div> -->
-              <h1>Let's build something <em>worth shipping.</em></h1>
+              <h1>Let's Connect</h1>
               <p class="hero-body">
-                Reach out for research collaborations, internships, product
-                work, startup conversations, or student founder projects across
-                AI, climate, mobile, and Africa-focused systems.
+                Send a message and I will get back to you soon.
               </p>
               <div class="hero-cta">
-                <a href="mailto:smagnusa@stanford.edu">
-                  <button class="btn-primary">Email me</button>
-                </a>
-                <a href="#message">
-                  <button class="btn-primary">Send a note</button>
-                </a>
+                <a href="mailto:smagnusa@stanford.edu" class="btn-primary">Email me</a>
+                <a href="#message" class="btn-primary">Send a note</a>
               </div>
             </div>
             <div class="contact-panel">
               <strong>Open to thoughtful work.</strong>
               <span>
-                Best for: AI research, mobile products, climate/agriculture
+                Best for: AI/ML work, mobile products, climate/agriculture
                 systems, founder communities, and high-agency student teams.
               </span>
             </div>
           </div>
         </section>
 
-        <section id="channels">
-          <div class="section-label">Direct Lines</div>
-          <h2 class="section-title">The fastest ways to <em>reach me.</em></h2>
-          <div class="contact-grid">
-            <a class="contact-card" href="mailto:smagnusa@stanford.edu">
-              <b>Email</b>
-              <strong>smagnusa@stanford.edu</strong>
-              <span>Best for research, internship, product, and longer-form collaboration notes.</span>
-            </a>
-            <a class="contact-card" href="https://github.com/smagnusavakame" target="_blank" rel="noreferrer">
-              <b>GitHub</b>
-              <strong>@smagnusavakame</strong>
-              <span>Code, project history, experiments, and shipped technical work.</span>
-            </a>
-            <a class="contact-card" href="https://www.linkedin.com/in/selorm-avakame" target="_blank" rel="noreferrer">
-              <b>LinkedIn</b>
-              <strong>Selorm Avakame</strong>
-              <span>Professional updates, internships, programs, and founder conversations.</span>
-            </a>
-          </div>
-        </section>
-
-        <section id="message">
-          <div class="section-label">Start A Conversation</div>
-          <h2 class="section-title">Send context, not just a <em>ping.</em></h2>
+        <section id="message" class="contact-message-section">
           <div class="contact-layout">
-            <form class="contact-form" action="mailto:smagnusa@stanford.edu" method="post" enctype="text/plain">
-              <div class="fgroup">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" placeholder="Your name" />
+            <form class="contact-form" action="mailto:smagnusa@stanford.edu?subject=Portfolio%20message" method="post" enctype="text/plain">
+              <div class="contact-form-heading">
+                <h2 class="contact-form-title">Send a Message</h2>
+                <p>Use the form below or email me directly at smagnusa@stanford.edu.</p>
               </div>
               <div class="fgroup">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" />
+                <label for="name">Full Name <span>*</span></label>
+                <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
               </div>
               <div class="fgroup">
-                <label for="topic">Topic</label>
-                <input id="topic" name="topic" type="text" placeholder="Research, internship, startup, project..." />
+                <label for="email">Email Address <span>*</span></label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
               </div>
               <div class="fgroup">
-                <label for="messageBox">Message</label>
-                <textarea id="messageBox" name="message" placeholder="What are you building, what do you need, and what would a useful next step look like?"></textarea>
+                <label for="messageBox">Message <span>*</span></label>
+                <textarea id="messageBox" name="message" placeholder="Your message..." required></textarea>
               </div>
-              <button class="btn-primary" type="submit">Open email draft</button>
+              <button class="btn-primary contact-submit" type="submit">Send Message <span aria-hidden="true">&gt;</span></button>
             </form>
 
             <aside class="contact-aside">
@@ -1443,18 +1413,40 @@
           </div>
         </section>
 
+        <section id="channels">
+          <div class="section-label">Direct Lines</div>
+          <h2 class="section-title">The fastest ways to <em>reach me.</em></h2>
+          <div class="contact-grid">
+            <a class="contact-card" href="mailto:smagnusa@stanford.edu">
+              <b>Email</b>
+              <strong>smagnusa@stanford.edu</strong>
+              <span>Best for AI/ML work, internship, product, and longer-form collaboration notes.</span>
+            </a>
+            <a class="contact-card" href="https://github.com/smagnusavakame" target="_blank" rel="noreferrer">
+              <b>GitHub</b>
+              <strong>@smagnusavakame</strong>
+              <span>Code, project history, experiments, and shipped technical work.</span>
+            </a>
+            <a class="contact-card" href="https://www.linkedin.com/in/selavamag/?isSelfProfile=false" target="_blank" rel="noreferrer">
+              <b>LinkedIn</b>
+              <strong>H. E SELORM MAGNUS AVAKAME</strong>
+              <span>Professional updates, internships, programs, and founder conversations.</span>
+            </a>
+          </div>
+        </section>
+
         <section id="collaborate">
           <div class="section-label">Collaboration</div>
           <h2 class="section-title">What I am open to <em>right now.</em></h2>
           <div class="projects-list">
             <div class="project-card">
               <div>
-                <div class="project-name">Research and AI systems</div>
+                <div class="project-name">AI/ML systems</div>
                 <div class="project-desc">
                   Applied AI, agents, agriculture, climate resilience, low-resource deployments, and thoughtful product-facing ML.
                 </div>
                 <div class="project-tags">
-                  <span class="tag">AI</span><span class="tag">Climate</span><span class="tag">Research</span>
+                  <span class="tag">AI</span><span class="tag">Climate</span><span class="tag">AI/ML</span>
                 </div>
               </div>
               <span class="project-type">High fit</span>
@@ -1486,7 +1478,7 @@
           </div>
         </section>
         <footer>
-          <p>© 2025 Selorm Magnus Avakame — Stanford, CA</p>
+          <p>© 2025 H. E SELORM MAGNUS AVAKAME — Stanford, CA</p>
           <div class="social-row">
             <a
               href="https://github.com/smagnusavakame"
@@ -1494,8 +1486,8 @@
               target="_blank"
               >GH</a
             >
-            <a href="#" class="soc">LI</a>
-            <a href="#" class="soc">𝕏</a>
+            <a href="https://www.linkedin.com/in/selavamag/?isSelfProfile=false" class="soc" target="_blank" rel="noreferrer">LI</a>
+            <a href="mailto:smagnusa@stanford.edu" class="soc">EM</a>
           </div>
         </footer>
       </div>
@@ -1723,7 +1715,7 @@
         if (!unlocked) unlock();
         currentApp = name;
         const titles = {
-          portfolio: "About Selorm",
+          portfolio: "About Magnus",
           projects: "Projects",
           skills: "Skills",
           resume: "Resume",
@@ -1737,9 +1729,9 @@
         if (name === "projects")
           html = `<div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Drop It Off — iOS App</div><div style="font-size:.75rem;color:#666">4.8★ · 1K+ downloads · Swift + Firebase</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">SafeRoute</div><div style="font-size:.75rem;color:#666">National hackathon winner · Flutter</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Katalyze Africa</div><div style="font-size:.75rem;color:#666">Startup accelerator · Founder</div></div>`;
         else if (name === "resume")
-          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff;font-weight:600;cursor:pointer">Download Resume</button></div>`;
+          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">H. E SELORM MAGNUS AVAKAME</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button onclick="window.downloadResume ? downloadResume() : showToast('resume','Resume','Download started','Resume')" style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff;font-weight:600;cursor:pointer">Download Resume PDF</button></div>`;
         else if (name === "portfolio")
-          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div style="font-size:.82rem;color:#333;line-height:1.7;padding:.5rem 0">Building at the intersection of AI, climate tech, and African innovation.</div>`;
+          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">H. E SELORM MAGNUS AVAKAME</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div style="font-size:.82rem;color:#333;line-height:1.7;padding:.5rem 0">Building at the intersection of AI, climate tech, and African innovation.</div>`;
         else
           html =
             '<div style="padding:1rem;color:#8e8e93;text-align:center">Coming soon</div>';
@@ -1781,7 +1773,7 @@
       window.toggleTheme = toggleTheme;
       renderHomeScreen();
     </script>
-    <script src="js/iphone-polish.js?v=iphone-icons1"></script>
+    <script src="js/iphone-polish.js?v=profile-links1"></script>
   </body>
 </html>
 

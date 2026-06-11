@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About · Selorm Avakame | Stanford CS</title>
+    <title>About · H. E SELORM MAGNUS AVAKAME | Stanford CS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -600,7 +600,7 @@
     </style>
     <link rel="icon" href="images/logo.jpeg" type="image/jpeg" />
     <link rel="stylesheet" href="css/explosive.css" />
-    <link rel="stylesheet" href="css/studio.css?v=iphone-icons1" />
+    <link rel="stylesheet" href="css/studio.css?v=profile-links1" />
   </head>
   <body>
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -614,7 +614,7 @@
                 <img class="brand-logo-img" data-asset="logo" src="images/logo.jpeg" alt="" onerror="this.hidden=true;this.nextElementSibling.hidden=false" />
                 <span class="brand-logo-fallback" hidden>SM</span>
               </span>
-              Selorm <em>Avakame</em>
+              H. E <em>SELORM MAGNUS AVAKAME</em>
             </div>
             <div class="nav-links">
               <a href="index.html">Home</a>
@@ -644,13 +644,13 @@
                 class="profile-img profile-image profile-photo"
                 data-asset="portrait"
                 src="images/selorm.jpeg"
-                alt="Selorm Magnus Avakame"
+                alt="H. E SELORM MAGNUS AVAKAME"
                 onerror="this.hidden=true;this.nextElementSibling.hidden=false"
               />
               <div
                 class="profile-img profile-image profile-mark"
                 role="img"
-                aria-label="Selorm Magnus Avakame"
+                aria-label="H. E SELORM MAGNUS AVAKAME"
                 hidden
               >
                 SM
@@ -723,7 +723,7 @@
               <div class="svc-title">AI for Climate & Africa</div>
               <div class="svc-desc">
                 Technology should serve the places and people who need it most —
-                not just the wealthiest markets. My research and building focus
+                not just the wealthiest markets. My AI/ML building focus
                 on adapting AI to smallholder agriculture and climate
                 resilience.
               </div>
@@ -736,7 +736,7 @@
               <div class="svc-desc">
                 I share what I learn so others can follow. Open source, open
                 notes, open doors. The projects I build are documented, the
-                research I do is shared, and the accelerator I'm building is
+                work I do is shared, and the accelerator I'm building is
                 designed to be replicated.
               </div>
             </div>
@@ -782,11 +782,11 @@
         </section>
 
         <footer>
-          <p>© 2025 Selorm Magnus Avakame — Stanford, CA</p>
+          <p>© 2025 H. E SELORM MAGNUS AVAKAME — Stanford, CA</p>
           <div class="social-row">
-            <a href="https://github.com/smagnusavakame" class="soc">GH</a>
-            <a href="#" class="soc">LI</a>
-            <a href="#" class="soc">𝕏</a>
+            <a href="https://github.com/smagnusavakame" class="soc" target="_blank" rel="noreferrer">GH</a>
+            <a href="https://www.linkedin.com/in/selavamag/?isSelfProfile=false" class="soc" target="_blank" rel="noreferrer">LI</a>
+            <a href="mailto:smagnusa@stanford.edu" class="soc">EM</a>
           </div>
         </footer>
       </div>
@@ -855,7 +855,7 @@
               <div class="faceid-ring">👤</div>
               <div class="lock-notif">
                 <div class="notif-app">Portfolio</div>
-                <div class="notif-text">Selorm is open for research collaborations</div>
+                <div class="notif-text">H. E SELORM MAGNUS AVAKAME is open for AI/ML collaborations</div>
               </div>
               <div class="lock-notif">
                 <div class="notif-app">Katalyze Africa</div>
@@ -956,16 +956,16 @@
       function openApp(name) {
         if (!unlocked) unlock();
         currentApp = name;
-        const titles = { portfolio: "About Selorm", projects: "Projects", skills: "Skills", resume: "Resume", contact: "Contact", music: "Music" };
+        const titles = { portfolio: "About Magnus", projects: "Projects", skills: "Skills", resume: "Resume", contact: "Contact", music: "Music" };
         document.getElementById("appTitle").textContent = titles[name] || name;
         document.getElementById("appHeader").style.background = "linear-gradient(135deg,#8C1515,#b83a3a)";
         let html = "";
         if (name === "portfolio")
-          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div style="padding:.5rem 0;color:#333;font-size:.82rem;line-height:1.7">CS student at Stanford. Building at intersection of AI, climate tech, and African innovation. Founder of Katalyze Africa. 2x African Service Fellow.</div>`;
+          html = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:.7rem"><div style="font-size:1rem;font-weight:700">H. E SELORM MAGNUS AVAKAME</div><div>Stanford CS · AI Track · Leland Scholar</div></div><div style="padding:.5rem 0;color:#333;font-size:.82rem;line-height:1.7">CS student at Stanford. Building at intersection of AI, climate tech, and African innovation. Founder of Katalyze Africa. 2x African Service Fellow.</div>`;
         else if (name === "projects")
           html = `<div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">Drop It Off — iOS App</div><div style="font-size:.75rem;color:#666">4.8★ · 1K+ downloads · Swift + Firebase</div></div><div style="background:#fff;border-radius:12px;margin-bottom:.7rem;padding:.8rem"><div style="font-weight:600">CS124 AI Booking Agent</div><div style="font-size:.75rem;color:#666">Python · DSPy · ReAct pattern</div></div>`;
         else if (name === "resume")
-          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">Selorm Magnus Avakame</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff;font-weight:600;cursor:pointer">Download Resume</button></div>`;
+          html = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700">H. E SELORM MAGNUS AVAKAME</div><div>Stanford CS · Class of 2028</div><div style="font-size:.7rem;color:#8e8e93;margin-top:.5rem">Leland Scholar · 2x African Service Fellow</div><button onclick="window.downloadResume ? downloadResume() : showToast('resume','Resume','Download started','Resume')" style="margin-top:1rem;width:100%;background:#8C1515;padding:.6rem;border-radius:8px;border:none;color:#fff;font-weight:600;cursor:pointer">Download Resume PDF</button></div>`;
         else html = '<div style="padding:1rem;color:#8e8e93;text-align:center">Coming soon</div>';
         document.getElementById("appBody").innerHTML = html;
         document.getElementById("app-screen").classList.add("visible");
@@ -993,6 +993,6 @@
       window.toggleTheme = toggleTheme;
       renderHomeScreen();
     </script>
-    <script src="js/iphone-polish.js?v=iphone-icons1"></script>
+    <script src="js/iphone-polish.js?v=profile-links1"></script>
   </body>
 </html>
