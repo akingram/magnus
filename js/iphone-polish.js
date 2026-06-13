@@ -20,6 +20,18 @@
     messages: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12c0 4.4-4.3 8-9.5 8-1.1 0-2.2-.2-3.2-.5L3 21l1.6-4.1A7.3 7.3 0 0 1 2 12c0-4.4 4.3-8 9.5-8S21 7.6 21 12z"/></svg>',
     mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>',
     safari: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.8 8.2-2.1 5.5-5.5 2.1 2.1-5.5z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>',
+    contacts: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+    experience: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2M4 12h16"/></svg>',
+    organizations: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7M7 10h.1M12 10h.1M17 10h.1"/></svg>',
+    awards: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m8.5 12.5-2 8 5.5-3 5.5 3-2-8"/></svg>',
+    poetry: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20 18.5 5.5"/><path d="m14 6 4 4"/><path d="M5 19l5.5-1.4L19 9.1 14.9 5 6.4 13.5z"/></svg>',
+    magnusgpt: '<span class="ios-text-glyph">AI</span>',
+    laolugpt: '<span class="chatgpt-mark" aria-hidden="true"></span>',
+    findmy: '<span class="ios-native-glyph"></span>',
+    linkedin: '<span class="ios-text-glyph">in</span>',
+    instagram: '<span class="instagram-mark" aria-hidden="true"></span>',
+    xbrand: '<span class="x-mark" aria-hidden="true">X</span>',
+    github: '<span class="ios-text-glyph">GH</span>',
     photos: '<span class="ios-native-glyph"></span>',
     facetime: '<span class="ios-native-glyph"></span>',
     camera: '<span class="ios-native-glyph"></span>',
@@ -48,32 +60,24 @@
   };
 
   const apps = [
-    { id: "facetime", label: "FaceTime", kind: "facetime" },
-    { id: "calendar", label: "Calendar", kind: "calendar" },
     { id: "photos", label: "Photos", kind: "photos" },
-    { id: "camera", label: "Camera", kind: "camera" },
-    { id: "mail", label: "Mail", kind: "mail" },
-    { id: "clock", label: "Clock", kind: "clock" },
-    { id: "maps", label: "Maps", kind: "maps" },
-    { id: "weather", label: "Weather", kind: "weather" },
     { id: "notes", label: "Notes", kind: "notes" },
-    { id: "reminders", label: "Reminders", kind: "reminders" },
-    { id: "stocks", label: "Stocks", kind: "stocks" },
-    { id: "videos", label: "Videos", kind: "videos" },
-    { id: "itunes", label: "iTunes Store", kind: "itunes" },
-    { id: "appstore", label: "App Store", kind: "appstore" },
-    { id: "books", label: "Books", kind: "books" },
-    { id: "health", label: "Health", kind: "health" },
-    { id: "home", label: "Home", kind: "home" },
-    { id: "wallet", label: "Wallet", kind: "wallet" },
-    { id: "settings", label: "Settings", kind: "settings" }
+    { id: "contacts", label: "Contacts", kind: "contacts" },
+    { id: "projects", label: "Projects", kind: "appstore" },
+    { id: "poetry", label: "Poetry", kind: "poetry" },
+    { id: "experience", label: "Experience", kind: "experience" },
+    { id: "organizations", label: "Organizations", kind: "organizations" },
+    { id: "awards", label: "Awards", kind: "awards" },
+    { id: "laolugpt", label: "LaoluGPT", kind: "laolugpt" },
+    { id: "findmy", label: "Find My", kind: "findmy" },
+    { id: "music", label: "Music", kind: "music" }
   ];
 
   const dockApps = [
-    { id: "phone", label: "Phone", kind: "phone" },
-    { id: "safari", label: "Safari", kind: "safari" },
-    { id: "messages", label: "Messages", kind: "messages", badge: 2 },
-    { id: "music", label: "Music", kind: "music" }
+    { id: "linkedin", label: "LinkedIn", kind: "linkedin", href: LINKEDIN_URL },
+    { id: "instagram", label: "Instagram", kind: "instagram" },
+    { id: "xprofile", label: "X", kind: "xbrand" },
+    { id: "github", label: "GitHub", kind: "github", href: "https://github.com/smagnusavakame" }
   ];
 
   const state = {
@@ -214,7 +218,8 @@
           <div class="lock-wallpaper"></div>
           <div class="lock-wallpaper-blur"></div>
           <div class="lock-time" id="lockTime">9:41</div>
-          <div class="lock-date" id="lockDate">Thursday, June 11</div>
+          <div class="lock-date" id="lockDate">His Excellency Selorm Magnus</div>
+          <div class="lock-owner">Tap the screen to unlock</div>
           <div class="lock-notif">
             <div class="notif-header"><div class="notif-app-icon polished-row-icon">${icons.messages}</div><div class="notif-app">MESSAGES</div><div class="notif-time">now</div></div>
             <div class="notif-text">Raising $10 Million to Catalyze Africa</div>
@@ -429,11 +434,14 @@
 
   function appIcon(app, dock) {
     const badge = app.badge && !dock ? '<div class="app-badge">' + app.badge + "</div>" : "";
+    const action = app.href
+      ? `href="${app.href}" target="_blank" rel="noreferrer"`
+      : `href="#${app.id}" onclick="openApp('${app.id}'); return false;"`;
     return `
-      <div class="app-icon" role="button" tabindex="0" onclick="openApp('${app.id}')" data-app="${app.id}">
+      <a class="app-icon" ${action} data-app="${app.id}" aria-label="${app.label}">
         <div class="app-icon-img ios-polished-icon kind-${app.kind}">${iconFor(app.kind)}${badge}</div>
-        ${dock ? "" : '<div class="app-label">' + app.label + "</div>"}
-      </div>`;
+        ${dock ? '<div class="app-label dock-app-label">' + app.label + "</div>" : '<div class="app-label">' + app.label + "</div>"}
+      </a>`;
   }
 
   function renderHomeScreen() {
@@ -581,7 +589,7 @@
     const lockDate = document.getElementById("lockDate");
     if (statusTime) statusTime.textContent = time;
     if (lockTime) lockTime.textContent = time;
-    if (lockDate) lockDate.textContent = day;
+    if (lockDate) lockDate.textContent = document.body.classList.contains("phone-webapp-page") ? "His Excellency Selorm Magnus" : day;
   }
 
   function unlock() {
@@ -591,7 +599,10 @@
     const home = document.getElementById("home-screen");
     const screen = document.getElementById("iphoneScreen");
     if (!lock || !home) return;
-    if (screen) screen.classList.add("unlocked");
+    if (screen) {
+      screen.classList.add("unlocked", "home-active");
+      screen.classList.remove("app-active");
+    }
     lock.style.transition = "transform .28s cubic-bezier(.22,1,.36,1), opacity .24s ease";
     lock.style.transform = "translateY(-100%)";
     lock.style.opacity = "0";
@@ -600,7 +611,9 @@
       home.style.display = "flex";
       home.style.opacity = "1";
       renderHomeScreen();
-      showToast("magnus", "Magnus OS", "Home screen ready", "Portfolio");
+      if (!document.body.classList.contains("phone-webapp-page")) {
+        showToast("magnus", "Magnus OS", "Home screen ready", "Portfolio");
+      }
     }, 260);
   }
 
@@ -636,12 +649,17 @@
     if (targetId !== "notes") state.editingNote = null;
     state.currentApp = targetId;
     const screen = document.getElementById("app-screen");
+    const phoneScreen = document.getElementById("iphoneScreen");
     const title = document.getElementById("appTitle");
     const nav = document.getElementById("appNavBar");
     const body = document.getElementById("appBody");
     if (!screen || !body || !nav || !title) return;
     title.textContent = app.label;
     nav.style.background = gradientFor(app.kind);
+    if (phoneScreen) {
+      phoneScreen.classList.remove("home-active");
+      phoneScreen.classList.add("app-active");
+    }
     screen.classList.remove("ready");
     body.innerHTML = buildApp(targetId);
     preparePhonePanelMotion(body);
@@ -654,10 +672,15 @@
 
   function closeApp() {
     const screen = document.getElementById("app-screen");
+    const phoneScreen = document.getElementById("iphoneScreen");
     if (!screen) return;
     screen.classList.remove("ready");
     setTimeout(() => {
       screen.classList.remove("visible");
+      if (phoneScreen) {
+        phoneScreen.classList.remove("app-active");
+        phoneScreen.classList.add("home-active");
+      }
       state.currentApp = null;
       state.editingNote = null;
     }, 120);
@@ -717,6 +740,10 @@
       wallet: "linear-gradient(135deg,#2b2f34,#0f1114)",
       files: "linear-gradient(135deg,#007aff,#5ac8fa)",
       music: "linear-gradient(135deg,#ff2d55,#ff6a00)",
+      poetry: "linear-gradient(135deg,#ffb31a,#ff7a00)",
+      laolugpt: "linear-gradient(135deg,#ffffff,#f5f5f5)",
+      instagram: "linear-gradient(135deg,#feda75,#fa7e1e 30%,#d62976 58%,#962fbf 78%,#4f5bd5)",
+      xbrand: "linear-gradient(135deg,#050506,#111318)",
       settings: "linear-gradient(135deg,#24272c,#7d8590)"
     };
     return map[kind] || map.magnus;
@@ -734,6 +761,7 @@
       mail: "Inbox ready",
       safari: "Portfolio browser open",
       photos: "Gallery ready",
+      poetry: "Poetry room open",
       camera: "Viewfinder ready",
       notes: "Notes ready",
       reminders: "Checklist ready",
@@ -751,6 +779,9 @@
       wallet: "Passes ready",
       files: "Archive ready",
       music: "Playlist live",
+      laolugpt: "Assistant ready",
+      instagram: "Instagram card ready",
+      xprofile: "X card ready",
       settings: "Device tuned"
     };
     return map[id] || "App open";
@@ -758,12 +789,13 @@
 
   function buildApp(id) {
     if (id === "magnus") return buildMagnus();
-    if (id === "work") return buildWork(id);
+    if (id === "work" || id === "projects") return buildWork(id);
+    if (id === "poetry") return buildPoetry();
     if (id === "skills") return buildSkills();
     if (id === "resume") return buildResume(id);
-    if (id === "phone") return buildPhone();
+    if (id === "phone" || id === "contacts") return buildPhone();
     if (id === "messages") return buildMessages();
-    if (id === "mail") return buildMail();
+    if (id === "mail" || id === "email") return buildMail();
     if (id === "facetime") return buildFaceTime();
     if (id === "safari") return buildSafari();
     if (id === "photos") return buildPhotos();
@@ -779,6 +811,14 @@
     if (id === "itunes") return buildITunes();
     if (id === "appstore") return buildAppStore();
     if (id === "books") return buildBooks();
+    if (id === "experience") return buildExperience();
+    if (id === "organizations") return buildOrganizations();
+    if (id === "awards") return buildAwards();
+    if (id === "laolugpt") return buildLaoluGPT();
+    if (id === "magnusgpt") return buildMagnusGPT();
+    if (id === "findmy") return buildFindMy();
+    if (id === "instagram") return buildSocialCard("Instagram", "instagram", "Portfolio visuals, founder updates, and project moments can live here once you add the real handle.");
+    if (id === "xprofile") return buildSocialCard("X", "xbrand", "Short updates, launch notes, and public build-in-progress posts can live here once you add the real handle.");
     if (id === "health") return buildHealth();
     if (id === "home") return buildHomeDashboard();
     if (id === "wallet") return buildWallet();
@@ -837,6 +877,22 @@
             </div>
           </button>
         `).join("")}
+      </div>`;
+  }
+
+  function buildPoetry() {
+    return `
+      <div class="ios-large-title">Poetry</div>
+      <div class="book-cover kind-poetry">
+        <small>Notebook</small>
+        <strong>Builder Notes</strong>
+        <span>Short reflections on Accra, Stanford, AI, climate, and building for Africa.</span>
+        <button onclick="openApp('notes')">${icons.poetry} Open Notes</button>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Pieces</div>
+        ${row("poetry", "Accra to Stanford", "A founder path across two worlds", "Draft")}
+        ${row("notes", "Catalyze Africa", "Why infrastructure matters", "Note")}
+        ${row("weather", "Climate and code", "Building under real conditions", "Idea")}
       </div>`;
   }
 
@@ -1139,6 +1195,118 @@
       <div class="ios-section"><div class="ios-section-header">Library</div>
         ${row("books", "Resume PDF", "Education, experience, projects, skills", "Ready")}
         ${row("work", "Case studies", "Drop It Off, American Tractor, Katalyze Africa", "4")}
+      </div>`;
+  }
+
+  function buildExperience() {
+    return `
+      <div class="ios-large-title">Experience</div>
+      <div class="appstore-feature experience-feature">
+        <div class="ios-row-icon polished-row-icon kind-experience">${icons.experience}</div>
+        <div><small>Current Role</small><strong>American Tractor Company</strong><span>AI/ML work on AgFM-1, connecting agricultural, climate, equipment, and crop intelligence.</span></div>
+        <button onclick="openApp('projects')">View</button>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Timeline</div>
+        ${row("experience", "AI/ML Intern", "American Tractor Company - AgFM-1", "2026")}
+        ${row("home", "Founder", "Katalyze Africa Group and Gatherhub LLC", "Active")}
+        ${row("appstore", "iOS Engineer", "Drop It Off logistics app with Firebase", "Shipped")}
+        ${row("skills", "Product Match Fellow", "Stanford builder ecosystem", "Fellow")}
+      </div>`;
+  }
+
+  function buildOrganizations() {
+    return `
+      <div class="ios-large-title">Organizations</div>
+      <div class="home-dashboard-card organizations-card">
+        <strong>Katalyze Africa Group</strong>
+        <span>Founder infrastructure for African student builders: chapters, mentorship, demo pathways, and founder readiness.</span>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Affiliations</div>
+        ${row("organizations", "Gatherhub LLC", "Community and collaboration infrastructure", "Founder")}
+        ${row("calendar", "Stanford University", "Computer Science, AI Track", "2028")}
+        ${row("awards", "Stanford Haas African Service Fellow", "Selected twice", "2x")}
+        ${row("weather", "Climate and Africa", "Building at the intersection", "Focus")}
+      </div>`;
+  }
+
+  function buildAwards() {
+    return `
+      <div class="ios-large-title">Awards</div>
+      <div class="health-rings awards-rings">
+        <button onclick="openApp('books')"><strong>$400K</strong><span>Leland Scholarship</span></button>
+        <button onclick="openApp('organizations')"><strong>2x</strong><span>Haas Fellow</span></button>
+        <button onclick="openApp('projects')"><strong>1K+</strong><span>Downloads</span></button>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Recognition</div>
+        ${row("awards", "Leland Scholarship", "Full ride covering tuition, room, board, and meals", "$400K")}
+        ${row("awards", "Stanford Haas African Service Fellow", "Selected twice", "2x")}
+        ${row("phone", "Shipped iOS product", "Drop It Off public app", "1K+")}
+      </div>`;
+  }
+
+  function buildMagnusGPT() {
+    return `
+      <div class="ios-large-title">MagnusGPT</div>
+      <div class="phone-chat-card gpt-card">
+        <div class="message-bubble incoming">Ask me about Magnus.</div>
+        <div class="message-bubble outgoing">He is a Stanford CS builder raising $10M to Catalyze Africa while building at the intersection of AI, climate, and African founder infrastructure.</div>
+        <div class="message-bubble incoming">What should I click first?</div>
+        <div class="message-bubble outgoing">Projects for shipped work, Experience for AI/ML, Books for the resume, or Contacts to reach him.</div>
+      </div>
+      <div class="phone-action-grid">
+        ${phoneAction("appstore", "Projects", "Shipped work", "openApp('projects')")}
+        ${phoneAction("experience", "Experience", "AI/ML role", "openApp('experience')")}
+        ${phoneAction("books", "Resume", "PDF", "openApp('resume')")}
+        ${phoneAction("phone", "Contact", "Reach out", "openApp('contacts')")}
+      </div>`;
+  }
+
+  function buildLaoluGPT() {
+    return `
+      <div class="ios-large-title">LaoluGPT</div>
+      <div class="phone-chat-card gpt-card">
+        <div class="message-bubble incoming">Ask me about this portfolio.</div>
+        <div class="message-bubble outgoing">The home screen is pinned to the exact reference image: Photos, Notes, Contacts, Projects, Poetry, Experience, Organizations, Awards, LaoluGPT, Find My, Music, and the four social dock icons.</div>
+        <div class="message-bubble incoming">What still works?</div>
+        <div class="message-bubble outgoing">Every visible icon has a click target, and the deeper apps still carry Magnus' portfolio information.</div>
+      </div>
+      <div class="phone-action-grid">
+        ${phoneAction("appstore", "Projects", "Shipped work", "openApp('projects')")}
+        ${phoneAction("experience", "Experience", "AI/ML role", "openApp('experience')")}
+        ${phoneAction("poetry", "Poetry", "Notes", "openApp('poetry')")}
+        ${phoneAction("phone", "Contact", "Reach out", "openApp('contacts')")}
+      </div>`;
+  }
+
+  function buildSocialCard(title, kind, copy) {
+    const isInstagram = kind === "instagram";
+    return `
+      <div class="ios-large-title">${title}</div>
+      <div class="home-dashboard-card social-card kind-${kind}">
+        <div class="ios-row-icon polished-row-icon kind-${kind}">${iconFor(kind)}</div>
+        <strong>${title}</strong>
+        <span>${copy}</span>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Actions</div>
+        ${row(kind, isInstagram ? "Add Instagram URL" : "Add X URL", "No public profile URL was provided yet", "Ready")}
+        ${row("photos", "Visuals", "Use Photos for portfolio images and updates", "")}
+        ${row("messages", "Contact", "Use LinkedIn or email for now", "")}
+      </div>`;
+  }
+
+  function buildFindMy() {
+    return `
+      <div class="ios-large-title">Find My</div>
+      <div class="map-card findmy-map">
+        <div class="map-route-line"></div>
+        <span class="pin pin-a">Accra</span>
+        <span class="pin pin-b">Stanford</span>
+        <span class="pin pin-c">Africa</span>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">People and Places</div>
+        ${row("findmy", "Magnus", "Stanford, CA - building and studying", "Live")}
+        ${row("maps", "Accra roots", "Ghana, education, and access", "Home")}
+        ${row("organizations", "Africa network", "Katalyze Africa founder ecosystem", "Scale")}
       </div>`;
   }
 
@@ -1494,9 +1662,11 @@
     hydrateImageAssets();
     setupPageFloatIns();
     setInterval(updateClock, 30000);
-    setTimeout(() => {
-      if (!state.unlocked) showToast("magnus", "Magnus OS", "Swipe up or tap to unlock", "Portfolio");
-    }, 1800);
+    if (!document.body.classList.contains("phone-webapp-page")) {
+      setTimeout(() => {
+        if (!state.unlocked) showToast("magnus", "Magnus OS", "Swipe up or tap to unlock", "Portfolio");
+      }, 1800);
+    }
   }
 
   if (document.readyState === "loading") {
