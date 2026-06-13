@@ -7,7 +7,7 @@
     '<img class="ios-portrait-img" data-asset="portrait" src="images/selorm.jpeg" alt="H. E SELORM MAGNUS AVAKAME" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="ios-sm-mark" hidden>SM</span>';
   const DISPLAY_NAME = "H. E SELORM MAGNUS AVAKAME";
   const PROFILE_HEADLINE = "Raising $10 Million to Catalyze Africa | CS @ Stanford • 2x Stanford Haas African Service Fellow | Founder @ Katalyze Africa Group, Gatherhub LLC | Building at the intersection of AI, Climate & Africa";
-  const PRIMARY_EMAIL = "smagnus1@standford.edu";
+  const PRIMARY_EMAIL = "smagnus1@stanford.edu";
   const LINKEDIN_URL = "https://www.linkedin.com/in/selavamag/?isSelfProfile=false";
   const LINKEDIN_LABEL = "linkedin.com/in/selavamag";
 
@@ -48,24 +48,24 @@
   };
 
   const apps = [
-    { id: "facetime", label: "FaceTime", kind: "facetime", opens: "phone" },
+    { id: "facetime", label: "FaceTime", kind: "facetime" },
     { id: "calendar", label: "Calendar", kind: "calendar" },
     { id: "photos", label: "Photos", kind: "photos" },
-    { id: "camera", label: "Camera", kind: "camera", opens: "photos" },
+    { id: "camera", label: "Camera", kind: "camera" },
     { id: "mail", label: "Mail", kind: "mail" },
-    { id: "clock", label: "Clock", kind: "clock", opens: "calendar" },
-    { id: "maps", label: "Maps", kind: "maps", opens: "work" },
-    { id: "weather", label: "Weather", kind: "weather", opens: "magnus" },
+    { id: "clock", label: "Clock", kind: "clock" },
+    { id: "maps", label: "Maps", kind: "maps" },
+    { id: "weather", label: "Weather", kind: "weather" },
     { id: "notes", label: "Notes", kind: "notes" },
-    { id: "reminders", label: "Reminders", kind: "reminders", opens: "notes" },
-    { id: "stocks", label: "Stocks", kind: "stocks", opens: "work" },
-    { id: "videos", label: "Videos", kind: "videos", opens: "photos" },
-    { id: "itunes", label: "iTunes Store", kind: "itunes", opens: "music" },
-    { id: "appstore", label: "App Store", kind: "appstore", opens: "work" },
-    { id: "books", label: "Books", kind: "books", opens: "resume" },
-    { id: "health", label: "Health", kind: "health", opens: "magnus" },
-    { id: "home", label: "Home", kind: "home", opens: "magnus" },
-    { id: "wallet", label: "Wallet", kind: "wallet", opens: "resume" },
+    { id: "reminders", label: "Reminders", kind: "reminders" },
+    { id: "stocks", label: "Stocks", kind: "stocks" },
+    { id: "videos", label: "Videos", kind: "videos" },
+    { id: "itunes", label: "iTunes Store", kind: "itunes" },
+    { id: "appstore", label: "App Store", kind: "appstore" },
+    { id: "books", label: "Books", kind: "books" },
+    { id: "health", label: "Health", kind: "health" },
+    { id: "home", label: "Home", kind: "home" },
+    { id: "wallet", label: "Wallet", kind: "wallet" },
     { id: "settings", label: "Settings", kind: "settings" }
   ];
 
@@ -253,7 +253,16 @@
       </div>
     </div>`;
 
-  const appMeta = Object.fromEntries(apps.concat(dockApps).map((app) => [app.id, app]));
+  const virtualApps = [
+    { id: "magnus", label: "Magnus", kind: "home" },
+    { id: "work", label: "Work", kind: "appstore" },
+    { id: "skills", label: "Skills", kind: "skills" },
+    { id: "resume", label: "Resume", kind: "books" },
+    { id: "contact", label: "Contact", kind: "phone" },
+    { id: "files", label: "Files", kind: "files" }
+  ];
+
+  const appMeta = Object.fromEntries(apps.concat(dockApps, virtualApps).map((app) => [app.id, app]));
 
   function readPhoneStorage(key, fallback) {
     try {
@@ -387,34 +396,8 @@
 
   function hydrateImageAssets() {
     const candidates = {
-      logo: [
-        "images/logo.jpeg",
-        "images/logo.jpg",
-        "images/logo.png",
-        "images/logo.webp",
-        "images/logo.svg",
-        "assets/logo.png",
-        "assets/logo.jpg",
-        "assets/logo.jpeg",
-        "assets/logo.webp",
-        "assets/logo.svg"
-      ],
-      portrait: [
-        "images/selorm.jpeg",
-        "images/selorm.jpg",
-        "images/selorm.png",
-        "images/selorm.webp",
-        "assets/selorm-photo.jpg",
-        "assets/selorm-photo.png",
-        "assets/selorm-photo.jpeg",
-        "assets/selorm-photo.webp",
-        "assets/portrait.jpg",
-        "assets/portrait.png",
-        "assets/portrait.webp",
-        "assets/selorm.jpg",
-        "assets/selorm.png",
-        "assets/selorm.webp"
-      ]
+      logo: ["images/logo.jpeg"],
+      portrait: ["images/selorm.jpeg"]
     };
 
     document.querySelectorAll("img[data-asset]").forEach((img) => {
@@ -480,7 +463,7 @@
   function preparePhonePanelMotion(root) {
     if (prefersReducedMotion() || !root) return;
     const items = root.querySelectorAll(
-      ".ios-large-title, .ios-hero-card, .ios-settings-profile, .ios-section, .ios-proj-card, .calendar-card, .resume-card, .music-panel, .photo-tile, .music-track-row, .notes-list .note-card, .note-editor, .note-action-row"
+      ".ios-large-title, .ios-hero-card, .ios-settings-profile, .ios-section, .ios-proj-card, .calendar-card, .resume-card, .music-panel, .photo-tile, .music-track-row, .notes-list .note-card, .note-editor, .note-action-row, .phone-action-card, .phone-call-card, .phone-chat-card, .facetime-card, .safari-address, .camera-viewfinder, .camera-controls, .video-reel-card, .clock-face, .map-card, .weather-card, .forecast-strip, .stocks-chart, .appstore-feature, .book-cover, .health-rings, .home-dashboard-card, .wallet-stack"
     );
     items.forEach((el, index) => {
       el.classList.add("phone-float-item");
@@ -494,6 +477,9 @@
     const scope = document.querySelector(".portfolio-side") || document.body;
     const selectors = [
       ".nav-logo",
+      ".brand-name",
+      ".brand-honor",
+      ".brand-main span",
       ".nav-links a",
       ".theme-btn",
       ".hero-kicker",
@@ -572,6 +558,20 @@
     setTimeout(revealVisible, 80);
   }
 
+  function enhanceBrandNames() {
+    document.querySelectorAll(".nav-logo").forEach((logo) => {
+      if (logo.querySelector(".brand-name")) return;
+      const mark = logo.querySelector(".brand-logo");
+      const brandName = document.createElement("span");
+      brandName.className = "brand-name";
+      brandName.setAttribute("aria-label", DISPLAY_NAME);
+      brandName.innerHTML = '<span class="brand-honor">H. E</span><span class="brand-main"><span>SELORM</span> <span>MAGNUS</span> <span>AVAKAME</span></span>';
+      logo.replaceChildren();
+      if (mark) logo.appendChild(mark);
+      logo.appendChild(brandName);
+    });
+  }
+
   function updateClock() {
     const now = new Date();
     const time = now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0");
@@ -592,7 +592,7 @@
     const screen = document.getElementById("iphoneScreen");
     if (!lock || !home) return;
     if (screen) screen.classList.add("unlocked");
-    lock.style.transition = "transform .45s cubic-bezier(.22,1,.36,1), opacity .35s ease";
+    lock.style.transition = "transform .28s cubic-bezier(.22,1,.36,1), opacity .24s ease";
     lock.style.transform = "translateY(-100%)";
     lock.style.opacity = "0";
     setTimeout(() => {
@@ -601,7 +601,7 @@
       home.style.opacity = "1";
       renderHomeScreen();
       showToast("magnus", "Magnus OS", "Home screen ready", "Portfolio");
-    }, 420);
+    }, 260);
   }
 
   function showToast(kind, title, text, appName) {
@@ -622,13 +622,13 @@
     if (appEl) appEl.textContent = appName || title || "Portfolio";
     toast.classList.add("show");
     clearTimeout(state.toastTimer);
-    state.toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+    state.toastTimer = setTimeout(() => toast.classList.remove("show"), 2100);
   }
 
   function openApp(id) {
     if (!state.unlocked) {
       unlock();
-      setTimeout(() => openApp(id), 520);
+      setTimeout(() => openApp(id), 320);
       return;
     }
     const app = appMeta[id] || { id: "magnus", label: "Magnus", kind: "magnus", opens: "magnus" };
@@ -647,8 +647,8 @@
     preparePhonePanelMotion(body);
     screen.classList.add("visible");
     requestAnimationFrame(() => requestAnimationFrame(() => screen.classList.add("ready")));
-    setTimeout(() => screen.classList.add("ready"), 80);
-    if (targetId === "skills") setTimeout(animateSkillBars, 80);
+    setTimeout(() => screen.classList.add("ready"), 40);
+    if (targetId === "skills") setTimeout(animateSkillBars, 40);
     showToast(app.kind, app.label, subtitleFor(targetId), app.label);
   }
 
@@ -660,7 +660,7 @@
       screen.classList.remove("visible");
       state.currentApp = null;
       state.editingNote = null;
-    }, 180);
+    }, 120);
   }
 
   function goHome() {
@@ -729,12 +729,26 @@
       skills: "Toolbox ready",
       resume: "Credentials ready",
       phone: "Contact options open",
+      facetime: "Video card ready",
       messages: "Conversation ready",
       mail: "Inbox ready",
       safari: "Portfolio browser open",
       photos: "Gallery ready",
+      camera: "Viewfinder ready",
       notes: "Notes ready",
+      reminders: "Checklist ready",
       calendar: "Schedule ready",
+      clock: "World clocks ready",
+      maps: "Route loaded",
+      weather: "Forecast ready",
+      stocks: "Impact index ready",
+      videos: "Project reels ready",
+      itunes: "Builder mix ready",
+      appstore: "Project store open",
+      books: "Resume library ready",
+      health: "Vitals open",
+      home: "HQ online",
+      wallet: "Passes ready",
       files: "Archive ready",
       music: "Playlist live",
       settings: "Device tuned"
@@ -744,13 +758,31 @@
 
   function buildApp(id) {
     if (id === "magnus") return buildMagnus();
-    if (id === "work" || id === "safari") return buildWork(id);
+    if (id === "work") return buildWork(id);
     if (id === "skills") return buildSkills();
-    if (id === "resume" || id === "files") return buildResume(id);
-    if (id === "phone" || id === "messages" || id === "mail") return buildContact(id);
+    if (id === "resume") return buildResume(id);
+    if (id === "phone") return buildPhone();
+    if (id === "messages") return buildMessages();
+    if (id === "mail") return buildMail();
+    if (id === "facetime") return buildFaceTime();
+    if (id === "safari") return buildSafari();
     if (id === "photos") return buildPhotos();
+    if (id === "camera") return buildCamera();
+    if (id === "videos") return buildVideos();
     if (id === "notes") return buildNotes();
+    if (id === "reminders") return buildReminders();
     if (id === "calendar") return buildCalendar();
+    if (id === "clock") return buildClock();
+    if (id === "maps") return buildMaps();
+    if (id === "weather") return buildWeather();
+    if (id === "stocks") return buildStocks();
+    if (id === "itunes") return buildITunes();
+    if (id === "appstore") return buildAppStore();
+    if (id === "books") return buildBooks();
+    if (id === "health") return buildHealth();
+    if (id === "home") return buildHomeDashboard();
+    if (id === "wallet") return buildWallet();
+    if (id === "files") return buildFiles();
     if (id === "music") return buildMusic();
     if (id === "settings") return buildSettings();
     return buildMagnus();
@@ -866,6 +898,304 @@
         ${row("work", "AI/ML and product work", "Applied AI, agents, agtech, climate systems", "High fit")}
         ${row("magnus", "Founder conversations", "Katalyze Africa Group, Gatherhub LLC, student startups", "Open")}
       </div>`;
+  }
+
+  function phoneAction(kind, label, sub, action) {
+    return `
+      <button class="phone-action-card" onclick="${action}">
+        <div class="ios-row-icon polished-row-icon kind-${kind}">${iconFor(kind)}</div>
+        <strong>${label}</strong>
+        <span>${sub}</span>
+      </button>`;
+  }
+
+  function linkRow(kind, title, sub, href) {
+    return `
+      <a class="ios-row ios-link-row" href="${href}" target="${href.startsWith("http") ? "_blank" : "_self"}" rel="${href.startsWith("http") ? "noreferrer" : ""}">
+        <div class="ios-row-icon polished-row-icon kind-${kind}">${iconFor(kind)}</div>
+        <div class="ios-row-text"><div class="ios-row-title">${title}</div><div class="ios-row-sub">${sub}</div></div>
+        <div class="ios-row-arrow">></div>
+      </a>`;
+  }
+
+  function buildPhone() {
+    return `
+      <div class="ios-large-title">Phone</div>
+      <div class="phone-call-card">
+        <span class="ios-avatar-mark">${PORTRAIT_HTML}</span>
+        <strong>${DISPLAY_NAME}</strong>
+        <small>Available for AI/ML, climate, product, and founder conversations</small>
+        <a class="phone-big-call" href="mailto:${PRIMARY_EMAIL}">${icons.mail} Email ${PRIMARY_EMAIL}</a>
+      </div>
+      <div class="phone-action-grid">
+        ${phoneAction("facetime", "FaceTime", "Video intro", "openApp('facetime')")}
+        ${phoneAction("messages", "Message", "LinkedIn thread", "openApp('messages')")}
+        ${phoneAction("mail", "Mail", "Formal note", "openApp('mail')")}
+        ${phoneAction("books", "Resume", "PDF download", "openApp('books')")}
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Recent</div>
+        ${linkRow("mail", "Stanford email", PRIMARY_EMAIL, `mailto:${PRIMARY_EMAIL}`)}
+        ${linkRow("messages", "LinkedIn", LINKEDIN_LABEL, LINKEDIN_URL)}
+        ${linkRow("safari", "GitHub", "github.com/smagnusavakame", "https://github.com/smagnusavakame")}
+      </div>`;
+  }
+
+  function buildMessages() {
+    return `
+      <div class="ios-large-title">Messages</div>
+      <div class="phone-chat-card">
+        <div class="message-bubble incoming">Hi Magnus, what are you building right now?</div>
+        <div class="message-bubble outgoing">AI/ML at American Tractor, Katalyze Africa, Gatherhub, and mobile products that can move quickly.</div>
+        <div class="message-bubble incoming">Best way to reach you?</div>
+        <div class="message-bubble outgoing">Email ${PRIMARY_EMAIL} or send a LinkedIn note.</div>
+      </div>
+      <div class="phone-action-grid">
+        ${phoneAction("mail", "Email", "Open draft", `window.location.href='mailto:${PRIMARY_EMAIL}'`)}
+        ${phoneAction("messages", "LinkedIn", "Open profile", `window.open('${LINKEDIN_URL}','_blank')`)}
+        ${phoneAction("books", "Resume", "Download PDF", "downloadResume()")}
+        ${phoneAction("appstore", "Projects", "See work", "openApp('appstore')")}
+      </div>`;
+  }
+
+  function buildMail() {
+    return `
+      <div class="ios-large-title">Mail</div>
+      <div class="ios-section mail-inbox">
+        <div class="ios-section-header">Inbox</div>
+        ${linkRow("mail", "New collaboration", "AI/ML, agtech, climate, or founder infrastructure", `mailto:${PRIMARY_EMAIL}?subject=Collaboration%20with%20Magnus`)}
+        ${linkRow("books", "Resume request", "Get the generated PDF", `mailto:${PRIMARY_EMAIL}?subject=Resume%20request`)}
+        ${linkRow("appstore", "Project walkthrough", "Drop It Off, AgFM-1, Katalyze Africa", "work.html")}
+      </div>
+      <button class="ios-action" onclick="window.location.href='mailto:${PRIMARY_EMAIL}?subject=Portfolio%20message'">${icons.mail} Compose</button>`;
+  }
+
+  function buildFaceTime() {
+    return `
+      <div class="ios-large-title">FaceTime</div>
+      <div class="facetime-card">
+        <span class="ios-avatar-mark">${PORTRAIT_HTML}</span>
+        <strong>Meet His Excellency Selorm Magnus</strong>
+        <small>Stanford CS - AI, Climate & Africa</small>
+        <div class="facetime-controls">
+          <button onclick="showToast('facetime','FaceTime','Video intro queued','FaceTime')">Video</button>
+          <button onclick="window.location.href='mailto:${PRIMARY_EMAIL}?subject=Intro%20call'">Email</button>
+          <button onclick="openApp('calendar')">Schedule</button>
+        </div>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Topics</div>
+        ${row("work", "AI/ML at American Tractor", "AgFM-1 and applied agricultural intelligence", "High")}
+        ${row("home", "Katalyze Africa + Gatherhub", "Founder infrastructure and community", "Active")}
+        ${row("books", "Stanford pathway", "CS, Haas African Service Fellow, Leland Scholar", "Open")}
+      </div>`;
+  }
+
+  function buildSafari() {
+    return `
+      <div class="ios-large-title">Safari</div>
+      <div class="safari-address"><span>AA</span><strong>selormmagnus.com</strong><button onclick="showToast('safari','Reloaded','Portfolio links checked','Safari')">Reload</button></div>
+      <div class="ios-section"><div class="ios-section-header">Bookmarks</div>
+        ${linkRow("home", "Home", "Portfolio landing", "index.html")}
+        ${linkRow("books", "About", "Story and education", "about.html")}
+        ${linkRow("appstore", "Work", "Projects and experience", "work.html")}
+        ${linkRow("phone", "Contact", "Direct message form", "contact.html")}
+        ${linkRow("messages", "LinkedIn", LINKEDIN_LABEL, LINKEDIN_URL)}
+      </div>`;
+  }
+
+  function buildCamera() {
+    return `
+      <div class="ios-large-title">Camera</div>
+      <div class="camera-viewfinder">
+        <div class="camera-grid-lines"></div>
+        <span class="ios-avatar-mark">${PORTRAIT_HTML}</span>
+        <strong>Portfolio Shot</strong>
+        <small>Portrait - projects - proof</small>
+      </div>
+      <div class="camera-controls">
+        <button onclick="openApp('photos')">Photos</button>
+        <button class="camera-shutter" onclick="showToast('camera','Captured','Saved to picture room','Camera')"></button>
+        <button onclick="openApp('photos')">Import</button>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Modes</div>
+        ${row("photos", "Portrait", "Profile imagery", "Ready")}
+        ${row("videos", "Project reel", "Case-study clips", "Ready")}
+      </div>`;
+  }
+
+  function buildVideos() {
+    return `
+      <div class="ios-large-title">Videos</div>
+      <div class="video-reel-list">
+        ${projectStories.map((project) => `
+          <button class="video-reel-card" onclick="showToast('${project.kind}','${project.name}','${project.impact}','Videos')">
+            <div class="video-thumb kind-${project.kind}">${iconFor(project.kind)}</div>
+            <div><strong>${project.name}</strong><span>${project.desc}</span></div>
+          </button>
+        `).join("")}
+      </div>`;
+  }
+
+  function buildReminders() {
+    return `
+      <div class="ios-large-title">Reminders</div>
+      <div class="ios-section reminders-list"><div class="ios-section-header">Today</div>
+        ${["Email Stanford address correctly", "Keep every phone icon functional", "Attach project proof and screenshots", "Make resume downloadable"].map((item) => `
+          <button class="reminder-item" onclick="this.classList.toggle('done')"><span></span><strong>${item}</strong></button>
+        `).join("")}
+      </div>`;
+  }
+
+  function buildClock() {
+    return `
+      <div class="ios-large-title">Clock</div>
+      <div class="clock-face"><span></span><strong>${new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}</strong><small>Local time</small></div>
+      <div class="ios-section"><div class="ios-section-header">World Clock</div>
+        ${row("calendar", "Stanford, CA", "Pacific time", "Now")}
+        ${row("maps", "Accra, Ghana", "Founder roots", "+7h")}
+        ${row("work", "Remote teams", "AI/ML and product blocks", "On")}
+      </div>`;
+  }
+
+  function buildMaps() {
+    return `
+      <div class="ios-large-title">Maps</div>
+      <div class="map-card">
+        <div class="map-route-line"></div>
+        <span class="pin pin-a">Accra</span>
+        <span class="pin pin-b">Stanford</span>
+        <span class="pin pin-c">Africa</span>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Routes</div>
+        ${row("maps", "Accra to Stanford", "Education, access, and founder ambition", "Live")}
+        ${row("work", "AI to Agriculture", "American Tractor and AgFM-1", "Build")}
+        ${row("home", "Katalyze Africa", "Startup infrastructure across the continent", "Scale")}
+      </div>`;
+  }
+
+  function buildWeather() {
+    return `
+      <div class="ios-large-title">Weather</div>
+      <div class="weather-card">
+        <span>72</span>
+        <strong>Clear build weather</strong>
+        <small>AI, Climate & Africa outlook: high momentum</small>
+      </div>
+      <div class="forecast-strip">
+        ${["AI/ML", "Climate", "Africa", "Mobile"].map((item, index) => `<button onclick="showToast('weather','${item}','Forecast is active','Weather')"><strong>${index + 1}</strong><span>${item}</span></button>`).join("")}
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Climate Focus</div>
+        ${row("weather", "Agriculture intelligence", "Farm, climate, equipment, and crop data", "Core")}
+        ${row("maps", "Low-resource deployment", "Useful systems beyond perfect conditions", "Focus")}
+      </div>`;
+  }
+
+  function buildStocks() {
+    const items = [["$10M", "Catalyze Africa raise"], ["1K+", "App downloads"], ["2x", "Haas African Service Fellow"], ["3", "Founder/product tracks"]];
+    return `
+      <div class="ios-large-title">Stocks</div>
+      <div class="stocks-chart"><span></span><strong>Impact Index</strong><small>Founder momentum trending up</small></div>
+      <div class="phone-metric-grid stocks-grid">
+        ${items.map(([value, label]) => `<button onclick="showToast('stocks','${value}','${label}','Stocks')"><strong>${value}</strong><span>${label}</span></button>`).join("")}
+      </div>`;
+  }
+
+  function buildITunes() {
+    return `
+      <div class="ios-large-title">iTunes Store</div>
+      <div class="music-panel kind-music">
+        <div class="music-art">${icons.music}</div>
+        <div class="music-info-row"><div><div class="music-track-name">Builder Mix</div><div class="music-artist-name">Accra - Stanford - Africa</div></div><button class="music-love" onclick="showToast('itunes','Saved','Builder Mix added','iTunes')">+</button></div>
+        <div class="phone-chip-row"><span>Focus</span><span>Founder</span><span>AI/ML</span></div>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Featured</div>
+        ${row("music", "Essence", "Afrobeats energy", "4:14")}
+        ${row("work", "Sprint mode", "Product build sessions", "Live")}
+      </div>`;
+  }
+
+  function buildAppStore() {
+    return `
+      <div class="ios-large-title">App Store</div>
+      <div class="appstore-feature"><div class="ios-row-icon polished-row-icon kind-phone">${icons.phone}</div><div><small>Featured Project</small><strong>Drop It Off</strong><span>Published iOS logistics app with Firebase backend and 1K+ downloads.</span></div><button onclick="openApp('work')">View</button></div>
+      <div class="phone-case-list">
+        ${projectStories.map((project) => `
+          <button class="phone-case-card compact" onclick="showToast('${project.kind}','${project.name}','${project.role}','App Store')">
+            <div class="ios-proj-thumb kind-${project.kind}">${iconFor(project.kind)}<span>${project.label}</span></div>
+            <div class="ios-proj-info"><div class="phone-case-top"><div class="ios-proj-name">${project.name}</div><b>${project.impact}</b></div><div class="ios-proj-desc">${project.desc}</div></div>
+          </button>
+        `).join("")}
+      </div>`;
+  }
+
+  function buildBooks() {
+    return `
+      <div class="ios-large-title">Books</div>
+      <div class="book-cover">
+        <small>Resume</small>
+        <strong>${DISPLAY_NAME}</strong>
+        <span>${PROFILE_HEADLINE}</span>
+        <button onclick="downloadResume()">${icons.books} Download PDF</button>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Library</div>
+        ${row("books", "Resume PDF", "Education, experience, projects, skills", "Ready")}
+        ${row("work", "Case studies", "Drop It Off, American Tractor, Katalyze Africa", "4")}
+      </div>`;
+  }
+
+  function buildHealth() {
+    return `
+      <div class="ios-large-title">Health</div>
+      <div class="health-rings">
+        <button onclick="openApp('work')"><strong>Build</strong><span>92%</span></button>
+        <button onclick="openApp('weather')"><strong>Climate</strong><span>86%</span></button>
+        <button onclick="openApp('home')"><strong>Africa</strong><span>100%</span></button>
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Vitals</div>
+        ${row("skills", "Technical pulse", "Python, Swift, AI agents, product systems", "Strong")}
+        ${row("messages", "Collaboration", "High-agency teams and founder conversations", "Open")}
+      </div>`;
+  }
+
+  function buildHomeDashboard() {
+    return `
+      <div class="ios-large-title">Home</div>
+      <div class="home-dashboard-card">
+        <strong>His Excellency HQ</strong>
+        <span>Portfolio rooms, project proof, and contact routes are online.</span>
+      </div>
+      <div class="phone-action-grid">
+        ${phoneAction("home", "Meet", "Identity", "openApp('magnus')")}
+        ${phoneAction("appstore", "Work", "Projects", "openApp('appstore')")}
+        ${phoneAction("books", "Resume", "PDF", "openApp('books')")}
+        ${phoneAction("phone", "Contact", "Reach out", "openApp('phone')")}
+      </div>
+      <div class="ios-section"><div class="ios-section-header">Rooms</div>
+        ${row("photos", "Picture room", "Portraits and project visuals", "Ready")}
+        ${row("notes", "Notes room", "Editable notes saved locally", "Ready")}
+        ${row("settings", "Device", "Shared across every page", "On")}
+      </div>`;
+  }
+
+  function buildWallet() {
+    return `
+      <div class="ios-large-title">Wallet</div>
+      <div class="wallet-stack">
+        <button onclick="openApp('books')"><strong>Stanford CS</strong><span>Class of 2028 - AI Track</span></button>
+        <button onclick="openApp('work')"><strong>American Tractor</strong><span>AI/ML - AgFM-1</span></button>
+        <button onclick="openApp('home')"><strong>Katalyze Africa</strong><span>Founder pass</span></button>
+      </div>
+      <button class="ios-action" onclick="downloadResume()">${icons.wallet} Add Resume Pass</button>`;
+  }
+
+  function buildFiles() {
+    return `
+      <div class="ios-large-title">Files</div>
+      <div class="ios-section"><div class="ios-section-header">Recents</div>
+        ${row("books", "Resume.pdf", "Generated in-browser", "PDF")}
+        ${row("photos", "Project screenshots", "Drop It Off and portfolio visuals", "Folder")}
+        ${row("notes", "Founder notes", "Katalyze Africa and Gatherhub", "Folder")}
+      </div>
+      <button class="ios-action" onclick="downloadResume()">${icons.files} Download Resume</button>`;
   }
 
   function buildPhotos() {
@@ -1157,6 +1487,7 @@
   function init() {
     if (!mountPhone()) return;
     exposeGlobals();
+    enhanceBrandNames();
     renderHomeScreen();
     updateClock();
     bindPhone();

@@ -2,7 +2,7 @@
 let unlocked = false;
 let currentApp = null;
 const DISPLAY_NAME = 'H. E SELORM MAGNUS AVAKAME';
-const PRIMARY_EMAIL = 'smagnus1@standford.edu';
+const PRIMARY_EMAIL = 'smagnus1@stanford.edu';
 
 function updateClock() {
   const now = new Date();

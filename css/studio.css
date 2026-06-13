@@ -1980,3 +1980,751 @@ body.contact-page .soc {
     padding: 1.15rem !important;
   }
 }
+
+/* Brand and phone-app completion pass. */
+.brand-logo {
+  width: 62px !important;
+  height: 62px !important;
+  flex: 0 0 62px !important;
+  border-radius: 14px !important;
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    0 0 0 1px rgba(247, 242, 232, 0.25),
+    0 18px 34px rgba(0, 0, 0, 0.34),
+    0 0 26px rgba(210, 42, 42, 0.18) !important;
+}
+
+.brand-logo::after {
+  content: "";
+  position: absolute;
+  inset: -35% 35% -35% -55%;
+  z-index: 3;
+  background: linear-gradient(105deg, transparent 0 38%, rgba(255, 255, 255, 0.55) 45%, transparent 54%);
+  transform: translateX(-140%) rotate(10deg);
+  pointer-events: none;
+}
+
+.brand-logo-img {
+  padding: 5px !important;
+}
+
+.nav-logo {
+  gap: 0.88rem !important;
+  max-width: min(650px, 62vw) !important;
+  align-items: center !important;
+}
+
+.brand-name {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.brand-honor {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.22rem 0.48rem;
+  border: 1px solid rgba(210, 42, 42, 0.42);
+  border-radius: 999px;
+  color: var(--studio-ink);
+  background: rgba(210, 42, 42, 0.15);
+  font: 900 0.68rem/1 Inter, system-ui, sans-serif;
+  letter-spacing: 0.09em;
+}
+
+.brand-main {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.32rem;
+  row-gap: 0.12rem;
+  min-width: 0;
+  color: var(--studio-ink);
+  font: 950 clamp(0.86rem, 1.18vw, 1.18rem)/0.98 Inter, system-ui, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.brand-main span {
+  display: inline-block;
+  color: transparent;
+  background: linear-gradient(90deg, var(--studio-ink), var(--studio-gold) 52%, var(--studio-red-bright));
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 10px 28px rgba(210, 42, 42, 0.12);
+}
+
+.nav-logo:hover .brand-main span,
+.nav-logo:focus-within .brand-main span {
+  color: var(--studio-ink);
+}
+
+.iphone-canonical .phone-action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.58rem;
+  padding: 0 0.7rem 0.78rem;
+}
+
+.iphone-canonical .phone-action-card,
+.iphone-canonical .phone-big-call,
+.iphone-canonical .facetime-controls button,
+.iphone-canonical .camera-controls button,
+.iphone-canonical .video-reel-card,
+.iphone-canonical .reminder-item,
+.iphone-canonical .forecast-strip button,
+.iphone-canonical .appstore-feature,
+.iphone-canonical .book-cover button,
+.iphone-canonical .health-rings button,
+.iphone-canonical .wallet-stack button {
+  touch-action: manipulation;
+}
+
+.iphone-canonical .phone-action-card {
+  min-height: 106px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 18px;
+  padding: 0.72rem;
+  background: #fff;
+  color: #111;
+  text-align: left;
+  cursor: pointer;
+}
+
+.iphone-canonical .phone-action-card .ios-row-icon {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.55rem;
+  border-radius: 9px;
+}
+
+.iphone-canonical .phone-action-card strong,
+.iphone-canonical .phone-action-card span,
+.iphone-canonical .phone-call-card strong,
+.iphone-canonical .phone-call-card small,
+.iphone-canonical .book-cover strong,
+.iphone-canonical .book-cover span,
+.iphone-canonical .home-dashboard-card strong,
+.iphone-canonical .home-dashboard-card span {
+  display: block;
+}
+
+.iphone-canonical .phone-action-card strong {
+  font-size: 0.82rem;
+}
+
+.iphone-canonical .phone-action-card span {
+  margin-top: 0.18rem;
+  color: #6b7280;
+  font-size: 0.66rem;
+  line-height: 1.28;
+}
+
+.iphone-canonical .phone-call-card,
+.iphone-canonical .phone-chat-card,
+.iphone-canonical .facetime-card,
+.iphone-canonical .camera-viewfinder,
+.iphone-canonical .clock-face,
+.iphone-canonical .map-card,
+.iphone-canonical .weather-card,
+.iphone-canonical .stocks-chart,
+.iphone-canonical .appstore-feature,
+.iphone-canonical .book-cover,
+.iphone-canonical .home-dashboard-card {
+  margin: 0 0.7rem 0.72rem;
+  border-radius: 22px;
+  padding: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, #111318, #8c1515);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.iphone-canonical .phone-call-card,
+.iphone-canonical .facetime-card {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0.45rem;
+}
+
+.iphone-canonical .phone-call-card .ios-avatar-mark,
+.iphone-canonical .facetime-card .ios-avatar-mark {
+  width: 62px;
+  height: 62px;
+  border-radius: 19px;
+}
+
+.iphone-canonical .phone-call-card small,
+.iphone-canonical .facetime-card small,
+.iphone-canonical .book-cover span,
+.iphone-canonical .home-dashboard-card span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.7rem;
+  line-height: 1.35;
+}
+
+.iphone-canonical .phone-big-call,
+.iphone-canonical .book-cover button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  width: 100%;
+  min-height: 42px;
+  margin-top: 0.35rem;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+  color: #0b0c0d;
+  font: 850 0.76rem/1 Inter, system-ui, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.iphone-canonical .phone-chat-card {
+  display: grid;
+  gap: 0.5rem;
+  background: #f2f2f7;
+  color: #111;
+}
+
+.iphone-canonical .message-bubble {
+  max-width: 86%;
+  border-radius: 18px;
+  padding: 0.58rem 0.72rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.iphone-canonical .message-bubble.incoming {
+  justify-self: start;
+  background: #fff;
+}
+
+.iphone-canonical .message-bubble.outgoing {
+  justify-self: end;
+  background: #0a84ff;
+  color: #fff;
+}
+
+.iphone-canonical .facetime-controls,
+.iphone-canonical .camera-controls,
+.iphone-canonical .forecast-strip,
+.iphone-canonical .health-rings,
+.iphone-canonical .wallet-stack,
+.iphone-canonical .phone-chip-row {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.iphone-canonical .facetime-controls,
+.iphone-canonical .camera-controls,
+.iphone-canonical .forecast-strip,
+.iphone-canonical .health-rings {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.iphone-canonical .facetime-controls button,
+.iphone-canonical .camera-controls button,
+.iphone-canonical .forecast-strip button,
+.iphone-canonical .health-rings button,
+.iphone-canonical .wallet-stack button {
+  border: 0;
+  border-radius: 14px;
+  padding: 0.62rem 0.4rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.iphone-canonical .safari-address {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0.7rem 0.72rem;
+  border-radius: 15px;
+  padding: 0.58rem;
+  background: #e9e9ee;
+  color: #111;
+}
+
+.iphone-canonical .safari-address span,
+.iphone-canonical .safari-address button {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.42rem 0.52rem;
+  background: #fff;
+  color: #007aff;
+  font-weight: 850;
+}
+
+.iphone-canonical .safari-address strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.iphone-canonical .camera-viewfinder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    linear-gradient(180deg, #17191d, #030303);
+}
+
+.iphone-canonical .camera-grid-lines {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 32.8%, rgba(255, 255, 255, 0.2) 33%, transparent 33.3% 66%, rgba(255, 255, 255, 0.2) 66.2%, transparent 66.5%),
+    linear-gradient(180deg, transparent 32.8%, rgba(255, 255, 255, 0.2) 33%, transparent 33.3% 66%, rgba(255, 255, 255, 0.2) 66.2%, transparent 66.5%);
+}
+
+.iphone-canonical .camera-viewfinder .ios-avatar-mark {
+  width: 86px;
+  height: 86px;
+  border-radius: 24px;
+  z-index: 2;
+}
+
+.iphone-canonical .camera-viewfinder strong,
+.iphone-canonical .camera-viewfinder small {
+  position: relative;
+  z-index: 2;
+}
+
+.iphone-canonical .camera-controls {
+  align-items: center;
+  margin: 0 0.7rem 0.75rem;
+}
+
+.iphone-canonical .camera-controls button {
+  background: #1c1c1e;
+}
+
+.iphone-canonical .camera-shutter {
+  width: 58px;
+  height: 58px;
+  justify-self: center;
+  border-radius: 50% !important;
+  background: #fff !important;
+  box-shadow: inset 0 0 0 5px #1c1c1e, 0 0 0 3px #fff;
+}
+
+.iphone-canonical .video-reel-list {
+  display: grid;
+  gap: 0.62rem;
+  padding: 0 0.7rem 1rem;
+}
+
+.iphone-canonical .video-reel-card {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 0.65rem;
+  border: 0;
+  border-radius: 18px;
+  padding: 0.62rem;
+  background: #111;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.iphone-canonical .video-thumb {
+  display: grid;
+  place-items: center;
+  min-height: 88px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff3030, #111318);
+}
+
+.iphone-canonical .video-reel-card span {
+  display: block;
+  margin-top: 0.25rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.66rem;
+  line-height: 1.35;
+}
+
+.iphone-canonical .reminder-item {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #ececf0;
+  padding: 0.7rem 0;
+  background: transparent;
+  color: #111;
+  text-align: left;
+  cursor: pointer;
+}
+
+.iphone-canonical .reminder-item span {
+  width: 19px;
+  height: 19px;
+  border: 2px solid #007aff;
+  border-radius: 50%;
+}
+
+.iphone-canonical .reminder-item.done span {
+  background: #007aff;
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+.iphone-canonical .reminder-item.done strong {
+  color: #8e8e93;
+  text-decoration: line-through;
+}
+
+.iphone-canonical .clock-face {
+  display: grid;
+  justify-items: center;
+  background: #fff;
+  color: #111;
+}
+
+.iphone-canonical .clock-face span {
+  width: 104px;
+  height: 104px;
+  border: 5px solid #111;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #111 0 4%, transparent 5%),
+    conic-gradient(from 0deg, transparent 0 23%, #111 24% 25%, transparent 26% 100%);
+}
+
+.iphone-canonical .clock-face strong,
+.iphone-canonical .weather-card span {
+  margin-top: 0.5rem;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.iphone-canonical .map-card {
+  position: relative;
+  min-height: 230px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, transparent 0 28%, rgba(52, 199, 89, 0.45) 29% 42%, transparent 43%),
+    linear-gradient(58deg, transparent 0 42%, rgba(255, 204, 0, 0.42) 43% 55%, transparent 56%),
+    linear-gradient(135deg, #e9fff1 0 33%, #d9f7ff 34% 61%, #f8fbff 62% 100%);
+  color: #111;
+}
+
+.iphone-canonical .map-route-line {
+  position: absolute;
+  left: 15%;
+  top: 57%;
+  width: 72%;
+  height: 6px;
+  border-radius: 999px;
+  background: #007aff;
+  transform: rotate(-24deg);
+}
+
+.iphone-canonical .pin {
+  position: absolute;
+  border-radius: 999px;
+  padding: 0.35rem 0.48rem;
+  background: #fff;
+  color: #111;
+  font-size: 0.62rem;
+  font-weight: 900;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.iphone-canonical .pin-a { left: 9%; bottom: 20%; }
+.iphone-canonical .pin-b { right: 12%; top: 22%; }
+.iphone-canonical .pin-c { left: 42%; top: 48%; }
+
+.iphone-canonical .weather-card {
+  background: linear-gradient(180deg, #0a9bff, #007aff);
+}
+
+.iphone-canonical .weather-card span {
+  display: block;
+  font-size: 3.4rem;
+}
+
+.iphone-canonical .weather-card span::after {
+  content: "deg";
+  font-size: 1rem;
+  vertical-align: top;
+}
+
+.iphone-canonical .forecast-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0 0.7rem 0.78rem;
+}
+
+.iphone-canonical .forecast-strip button,
+.iphone-canonical .health-rings button {
+  min-height: 74px;
+  background: #fff;
+  color: #111;
+}
+
+.iphone-canonical .forecast-strip span,
+.iphone-canonical .health-rings span,
+.iphone-canonical .wallet-stack span {
+  display: block;
+  margin-top: 0.22rem;
+  color: #6b7280;
+  font-size: 0.64rem;
+}
+
+.iphone-canonical .stocks-chart {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px) 0 0 / 100% 25%,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px) 0 0 / 25% 100%,
+    #050506;
+}
+
+.iphone-canonical .stocks-chart span {
+  display: block;
+  width: 100%;
+  height: 88px;
+  background: linear-gradient(140deg, transparent 0 30%, #32d74b 31% 33%, transparent 34% 45%, #32d74b 46% 49%, transparent 50% 100%);
+}
+
+.iphone-canonical .appstore-feature {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  align-items: center;
+  background: #fff;
+  color: #111;
+}
+
+.iphone-canonical .appstore-feature small,
+.iphone-canonical .book-cover small {
+  display: block;
+  color: #8c1515;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.iphone-canonical .appstore-feature span {
+  display: block;
+  margin-top: 0.25rem;
+  color: #6b7280;
+  font-size: 0.66rem;
+  line-height: 1.35;
+}
+
+.iphone-canonical .appstore-feature button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.48rem 0.72rem;
+  background: #007aff;
+  color: #fff;
+  font-weight: 900;
+}
+
+.iphone-canonical .phone-case-card.compact {
+  grid-template-columns: 62px minmax(0, 1fr);
+}
+
+.iphone-canonical .phone-case-card.compact .ios-proj-thumb {
+  min-height: 76px;
+}
+
+.iphone-canonical .book-cover {
+  min-height: 245px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background:
+    linear-gradient(135deg, rgba(255, 180, 43, 0.82), rgba(255, 48, 48, 0.82)),
+    linear-gradient(180deg, #111318, #8c1515);
+}
+
+.iphone-canonical .book-cover strong {
+  margin: 0.4rem 0;
+  font-size: 1.15rem;
+  line-height: 1.05;
+}
+
+.iphone-canonical .health-rings {
+  padding: 0 0.7rem 0.78rem;
+}
+
+.iphone-canonical .health-rings button {
+  border: 0;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle, #fff 0 47%, transparent 48%),
+    conic-gradient(#ff2d55 0 78%, #f2f2f7 78% 100%);
+  color: #111;
+}
+
+.iphone-canonical .home-dashboard-card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent),
+    linear-gradient(135deg, #111318, #0f8b66);
+}
+
+.iphone-canonical .wallet-stack {
+  padding: 0 0.7rem 0.78rem;
+}
+
+.iphone-canonical .wallet-stack button {
+  min-height: 92px;
+  border: 0;
+  border-radius: 18px;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #2b2f34, #0f1114);
+  color: #fff;
+  text-align: left;
+}
+
+.iphone-canonical .wallet-stack button:nth-child(2) {
+  background: linear-gradient(135deg, #8c1515, #d22a2a);
+}
+
+.iphone-canonical .wallet-stack button:nth-child(3) {
+  background: linear-gradient(135deg, #0f8b66, #1457c8);
+}
+
+.iphone-canonical .phone-chip-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 0.7rem;
+}
+
+.iphone-canonical .phone-chip-row span {
+  border-radius: 999px;
+  padding: 0.38rem 0.4rem;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 850;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand-logo::after {
+    animation: brandLogoGlint 4.2s ease-in-out infinite;
+  }
+
+  .brand-honor {
+    animation: brandHonorPulse 3.8s ease-in-out infinite;
+  }
+
+  .brand-main span {
+    animation: brandWordRise 0.72s cubic-bezier(0.18, 0.86, 0.26, 1) both;
+  }
+
+  .brand-main span:nth-child(2) {
+    animation-delay: 90ms;
+  }
+
+  .brand-main span:nth-child(3) {
+    animation-delay: 180ms;
+  }
+
+  .studio-motion-enabled .float-in-item.is-visible {
+    animation-duration: 0.58s !important;
+    animation-delay: calc(var(--float-order, 0) * 46ms) !important;
+  }
+
+  .iphone-canonical .iphone-screen.unlocked #home-screen .app-icon,
+  .iphone-canonical .iphone-screen.unlocked #home-screen .widget,
+  .iphone-canonical .iphone-screen.unlocked #home-screen .dock {
+    animation-duration: 0.44s !important;
+    animation-delay: calc(var(--phone-order, 0) * 30ms) !important;
+  }
+
+  .iphone-canonical #app-screen.visible.ready .phone-float-item {
+    animation-duration: 0.42s !important;
+    animation-delay: calc(var(--phone-order, 0) * 28ms) !important;
+  }
+}
+
+@keyframes brandLogoGlint {
+  0%, 58% {
+    transform: translateX(-140%) rotate(10deg);
+  }
+
+  72%, 100% {
+    transform: translateX(250%) rotate(10deg);
+  }
+}
+
+@keyframes brandHonorPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(210, 42, 42, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 18px rgba(210, 42, 42, 0.34);
+  }
+}
+
+@keyframes brandWordRise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.55rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 960px) {
+  .brand-logo {
+    width: 56px !important;
+    height: 56px !important;
+    flex-basis: 56px !important;
+  }
+
+  .brand-name {
+    grid-template-columns: auto 1fr;
+    gap: 0.42rem;
+  }
+
+  .brand-main {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-logo {
+    width: 50px !important;
+    height: 50px !important;
+    flex-basis: 50px !important;
+    border-radius: 12px !important;
+  }
+
+  .brand-honor {
+    min-height: 1.45rem;
+    padding-inline: 0.38rem;
+    font-size: 0.6rem;
+  }
+
+  .brand-main {
+    font-size: 0.75rem;
+    line-height: 1;
+  }
+
+  .iphone-canonical .forecast-strip,
+  .iphone-canonical .health-rings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
