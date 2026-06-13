@@ -6,7 +6,8 @@
   const PORTRAIT_HTML =
     '<img class="ios-portrait-img" data-asset="portrait" src="images/selorm.jpeg" alt="H. E SELORM MAGNUS AVAKAME" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="ios-sm-mark" hidden>SM</span>';
   const DISPLAY_NAME = "H. E SELORM MAGNUS AVAKAME";
-  const PRIMARY_EMAIL = "smagnusa@stanford.edu";
+  const PROFILE_HEADLINE = "Raising $10 Million to Catalyze Africa | CS @ Stanford • 2x Stanford Haas African Service Fellow | Founder @ Katalyze Africa Group, Gatherhub LLC | Building at the intersection of AI, Climate & Africa";
+  const PRIMARY_EMAIL = "smagnus1@standford.edu";
   const LINKEDIN_URL = "https://www.linkedin.com/in/selavamag/?isSelfProfile=false";
   const LINKEDIN_LABEL = "linkedin.com/in/selavamag";
 
@@ -216,7 +217,7 @@
           <div class="lock-date" id="lockDate">Thursday, June 11</div>
           <div class="lock-notif">
             <div class="notif-header"><div class="notif-app-icon polished-row-icon">${icons.messages}</div><div class="notif-app">MESSAGES</div><div class="notif-time">now</div></div>
-            <div class="notif-text">${DISPLAY_NAME} is open for AI/ML and product collaborations</div>
+            <div class="notif-text">Raising $10 Million to Catalyze Africa</div>
           </div>
           <div class="lock-notif">
             <div class="notif-header"><div class="notif-app-icon polished-row-icon">${icons.work}</div><div class="notif-app">WORK</div><div class="notif-time">2m</div></div>
@@ -303,14 +304,15 @@
       `Email: ${PRIMARY_EMAIL}`,
       "GitHub: github.com/smagnusavakame",
       `LinkedIn: ${LINKEDIN_LABEL}`,
+      PROFILE_HEADLINE,
       "",
       "EDUCATION",
       "Stanford University - B.S. Computer Science - GPA 3.94",
-      "Leland Scholar - African Service Fellow",
+      "Leland Scholar - 2x Stanford Haas African Service Fellow",
       "",
       "EXPERIENCE",
       "AI/ML Intern - American Tractor Company - AgFM-1",
-      "Founder - Katalyze Africa student startup accelerator",
+      "Founder - Katalyze Africa Group and Gatherhub LLC",
       "iOS Engineer - Drop It Off logistics app with Firebase backend",
       "",
       "SELECTED WORK",
@@ -767,18 +769,18 @@
     return `
       <div class="ios-large-title">Magnus</div>
       <div class="ios-hero-card app-hero-magnus">
-        <div class="ios-hero-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-hero-name">${DISPLAY_NAME}</div><div class="ios-hero-sub">Stanford CS - AI Track - Class of 2028</div></div></div>
-        <span class="ios-chip">Leland Scholar</span><span class="ios-chip">Founder</span><span class="ios-chip">Builder</span>
+        <div class="ios-hero-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-hero-name">${DISPLAY_NAME}</div><div class="ios-hero-sub">Raising $10 Million to Catalyze Africa</div></div></div>
+        <span class="ios-chip">CS @ Stanford</span><span class="ios-chip">2x Haas Fellow</span><span class="ios-chip">Founder</span>
       </div>
       <div class="phone-metric-grid">
-        <button onclick="openApp('resume')"><strong>$400k</strong><span>Leland Scholarship</span></button>
+        <button onclick="openApp('resume')"><strong>$10M</strong><span>Raising to Catalyze Africa</span></button>
         <button onclick="openApp('work')"><strong>1K+</strong><span>App downloads</span></button>
-        <button onclick="openApp('notes')"><strong>2x</strong><span>African Service Fellow</span></button>
+        <button onclick="openApp('notes')"><strong>2x</strong><span>Stanford Haas African Service Fellow</span></button>
         <button onclick="openApp('phone')"><strong>AI/ML</strong><span>American Tractor</span></button>
       </div>
       <div class="ios-section"><div class="ios-section-header">Snapshot</div>
         ${row("calendar", "Stanford University", "Computer Science, AI track", "2028")}
-        ${row("work", "Katalyze Africa", "Founder - student startup accelerator", "Active")}
+        ${row("work", "Katalyze Africa + Gatherhub", "Founder - African startup infrastructure", "Active")}
         ${row("skills", "AI and climate tech", "AI/ML, product, and systems", "Focus")}
       </div>
       <div class="ios-section"><div class="ios-section-header">Now</div>
@@ -835,18 +837,18 @@
       <div class="ios-section resume-card">
         <div class="resume-top"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><strong>${DISPLAY_NAME}</strong><span>Stanford CS - AI Track</span></div></div>
         <div class="phone-resume-preview">
-          <div><small>Current focus</small><strong>AI/ML, mobile products, climate tech, and African founder infrastructure.</strong></div>
-          <div class="phone-resume-stamps"><span>Stanford CS</span><span>Founder</span><span>Shipped iOS</span></div>
+          <div><small>Current focus</small><strong>${PROFILE_HEADLINE}</strong></div>
+          <div class="phone-resume-stamps"><span>Stanford CS</span><span>2x Haas Fellow</span><span>Founder</span></div>
         </div>
         <div class="resume-block"><strong>Education</strong><span>Stanford University - B.S. Computer Science, AI Track - GPA 3.94</span></div>
-        <div class="resume-block"><strong>Experience</strong><span>AI/ML Intern at American Tractor, Product Match Fellow, Katalyze Africa Founder, Drop It Off iOS Engineer</span></div>
+        <div class="resume-block"><strong>Experience</strong><span>AI/ML Intern at American Tractor, Founder at Katalyze Africa Group and Gatherhub LLC, Product Match Fellow, Drop It Off iOS Engineer</span></div>
         <button class="ios-action" onclick="downloadResume()">${icons.resume} Download Resume PDF</button>
       </div>
       <div class="ios-section"><div class="ios-section-header">Highlights</div>
         ${row("work", "American Tractor Company", "AI/ML intern - AgFM-1", "2026")}
-        ${row("messages", "African Service Fellow", "Selected twice", "2x")}
+        ${row("messages", "Stanford Haas African Service Fellow", "Selected twice", "2x")}
         ${row("phone", "Drop It Off", "Published iOS app", "1K+")}
-        ${row("magnus", "Katalyze Africa", "Student startup accelerator", "Founder")}
+        ${row("magnus", "Katalyze Africa + Gatherhub", "Raising $10 Million to Catalyze Africa", "Founder")}
       </div>`;
   }
 
@@ -854,7 +856,7 @@
     const title = source === "phone" ? "Phone" : source === "mail" ? "Mail" : "Messages";
     return `
       <div class="ios-large-title">${title}</div>
-      <div class="ios-hero-card app-hero-contact"><div class="ios-hero-name">Open channels</div><div class="ios-hero-sub">AI/ML work, internships, startup work, and builder-to-builder conversations.</div></div>
+      <div class="ios-hero-card app-hero-contact"><div class="ios-hero-name">Open channels</div><div class="ios-hero-sub">${PROFILE_HEADLINE}</div></div>
       <div class="ios-section"><div class="ios-section-header">Contact</div>
         <a class="ios-row ios-link-row" href="mailto:${PRIMARY_EMAIL}" onclick="showToast('mail','Email','Opening email draft','Mail')"><div class="ios-row-icon polished-row-icon kind-mail">${icons.mail}</div><div class="ios-row-text"><div class="ios-row-title">Email</div><div class="ios-row-sub">${PRIMARY_EMAIL}</div></div><div class="ios-row-arrow">></div></a>
         <a class="ios-row ios-link-row" href="https://github.com/smagnusavakame" target="_blank" rel="noreferrer" onclick="showToast('safari','GitHub','Opening profile','Safari')"><div class="ios-row-icon polished-row-icon kind-safari">${icons.safari}</div><div class="ios-row-text"><div class="ios-row-title">GitHub</div><div class="ios-row-sub">github.com/smagnusavakame</div></div><div class="ios-row-arrow">></div></a>
@@ -862,7 +864,7 @@
       </div>
       <div class="ios-section"><div class="ios-section-header">Best for</div>
         ${row("work", "AI/ML and product work", "Applied AI, agents, agtech, climate systems", "High fit")}
-        ${row("magnus", "Founder conversations", "Katalyze Africa, student startups, mentorship", "Open")}
+        ${row("magnus", "Founder conversations", "Katalyze Africa Group, Gatherhub LLC, student startups", "Open")}
       </div>`;
   }
 
@@ -1039,7 +1041,7 @@
   function buildSettings() {
     return `
       <div class="ios-large-title">Settings</div>
-      <div class="ios-settings-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-settings-name">${DISPLAY_NAME}</div><div class="ios-settings-sub">Magnus OS - Portfolio phone</div></div></div>
+      <div class="ios-settings-profile"><span class="ios-avatar-mark">${PORTRAIT_HTML}</span><div><div class="ios-settings-name">${DISPLAY_NAME}</div><div class="ios-settings-sub">CS @ Stanford - AI, Climate & Africa</div></div></div>
       <div class="ios-section">
         ${row("wifi", "Wi-Fi", "Stanford Secure", "On")}
         ${row("phone", "Cellular", "5G", "Active")}

@@ -2,7 +2,7 @@
 let unlocked = false;
 let currentApp = null;
 const DISPLAY_NAME = 'H. E SELORM MAGNUS AVAKAME';
-const PRIMARY_EMAIL = 'smagnusa@stanford.edu';
+const PRIMARY_EMAIL = 'smagnus1@standford.edu';
 
 function updateClock() {
   const now = new Date();
@@ -64,13 +64,13 @@ function openApp(appName) {
   
   if (appName === 'portfolio') {
     content = `<div style="background:#8C1515;padding:1rem;border-radius:12px;color:#fff;margin-bottom:0.7rem"><div style="font-size:1rem;font-weight:700">${DISPLAY_NAME}</div><div>Stanford CS · AI Track</div></div>
-    <div class="app-section"><div class="app-section-title">Bio</div><div class="app-row"><div class="app-row-text"><div class="app-row-sub">Computer Science student at Stanford. Leland Scholar. Building at the intersection of AI, climate, and African innovation.</div></div></div></div>
+    <div class="app-section"><div class="app-section-title">Bio</div><div class="app-row"><div class="app-row-text"><div class="app-row-sub">Raising $10 Million to Catalyze Africa. CS at Stanford, 2x Stanford Haas African Service Fellow, and founder at Katalyze Africa Group and Gatherhub LLC.</div></div></div></div>
     <div class="app-section"><div class="app-section-title">Links</div><div class="app-row"><div class="app-row-text"><div class="app-row-title">GitHub</div><div class="app-row-sub">github.com/smagnusavakame</div></div></div></div>`;
   } else if (appName === 'projects') {
     content = `<div class="proj-card" style="background:#fff;border-radius:12px;margin-bottom:0.7rem;padding:0.8rem"><div class="proj-name" style="font-weight:600">Drop It Off — iOS App</div><div class="proj-desc" style="font-size:0.7rem;color:#8e8e93">4.8★ · 1K+ downloads · Swift + Firebase</div></div>
     <div class="proj-card" style="background:#fff;border-radius:12px;padding:0.8rem"><div class="proj-name" style="font-weight:600">CS124 AI Booking Agent</div><div class="proj-desc" style="font-size:0.7rem;color:#8e8e93">Python · DSPy · ReAct pattern</div></div>`;
   } else if (appName === 'resume') {
-    content = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700;margin-bottom:0.3rem">${DISPLAY_NAME}</div><div>Stanford CS · Class of 2028</div><div style="font-size:0.7rem;color:#8e8e93;margin-top:0.5rem">Leland Scholar · 2x African Service Fellow</div><button class="btn-primary" style="margin-top:1rem;width:100%;background:#8C1515;padding:0.6rem;border-radius:8px;border:none;color:#fff" onclick="window.downloadResume ? downloadResume() : window.location.href='mailto:${PRIMARY_EMAIL}?subject=Resume%20request'">Download Resume PDF</button></div>`;
+    content = `<div style="background:#fff;border-radius:12px;padding:1rem"><div style="font-weight:700;margin-bottom:0.3rem">${DISPLAY_NAME}</div><div>Stanford CS - Class of 2028</div><div style="font-size:0.7rem;color:#8e8e93;margin-top:0.5rem">2x Stanford Haas African Service Fellow - Founder at Katalyze Africa Group and Gatherhub LLC</div><button class="btn-primary" style="margin-top:1rem;width:100%;background:#8C1515;padding:0.6rem;border-radius:8px;border:none;color:#fff" onclick="window.downloadResume ? downloadResume() : window.location.href='mailto:${PRIMARY_EMAIL}?subject=Resume%20request'">Download Resume PDF</button></div>`;
   } else if (appName === 'contact') {
     content = `<div class="contact-btn" style="background:#fff;border-radius:12px;padding:0.7rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.7rem"><div>✉️</div><div>smagnusavakame1@gmail.com</div></div>
     <div class="contact-btn" style="background:#fff;border-radius:12px;padding:0.7rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.7rem"><div>📱</div><div>+1 (650) 665 4959</div></div>
