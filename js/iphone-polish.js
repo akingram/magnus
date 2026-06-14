@@ -1616,44 +1616,6 @@
     }
 
     if (screen) {
-      screen.addEventListener("click", (event) => {
-        const icon = event.target.closest(".app-icon[data-app]");
-        if (!icon || !screen.contains(icon)) return;
-        const app = appMeta[icon.dataset.app];
-        if (app && app.href) return;
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        openApp(icon.dataset.app);
-      }, true);
-
-      screen.addEventListener("click", (event) => {
-        const actionTarget = event.target.closest("[onclick]");
-        if (!actionTarget || !screen.contains(actionTarget) || actionTarget.closest(".app-icon[data-app]")) return;
-        const action = actionTarget.getAttribute("onclick") || "";
-        const openMatch = action.match(/openApp\('([^']+)'\)/);
-        const toastMatch = action.match(/showToast\('([^']*)','([^']*)','([^']*)','([^']*)'\)/);
-
-        if (openMatch) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          openApp(openMatch[1]);
-          return;
-        }
-
-        if (toastMatch) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          showToast(toastMatch[1], toastMatch[2], toastMatch[3], toastMatch[4]);
-          return;
-        }
-
-        if (action.includes("downloadResume()")) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          downloadResume();
-        }
-      }, true);
-
       screen.addEventListener("pointerdown", (event) => {
         const rect = screen.getBoundingClientRect();
         ccStart = { x: event.clientX - rect.left, y: event.clientY - rect.top, rect };
